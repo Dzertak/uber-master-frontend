@@ -1,0 +1,24 @@
+<header>
+  <h1 class="ui">{{title}}</h1>
+</header>
+<main>
+  <form class="ui large form segment">
+    <h3 class="ui header">Get Entity</h3>
+    <div class="field">
+      <label for="id">Id</label>
+      <input type="number" id="id" name="id" #newId>
+    </div>
+    <div class="field">
+      <label for="class">Class</label>
+      <!--<input type="text" id="class" name="class" #newClass>-->
+      <select class="selection" id="class" name="class" #newClass>
+        <option *ngFor="let class of classes ">{{class.name}}</option>
+      </select>
+    </div>
+
+    <button class="ui positive right floated button" (click)="getEntity(newId, newClass)">Get</button>
+
+    <p></p>
+
+  </form>
+</main>
