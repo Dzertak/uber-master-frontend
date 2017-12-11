@@ -1,0 +1,17 @@
+.demo-panel {
+    margin: 10px 0px;
+}
+
+.toolbar-spacer{
+    flex: 1 1 auto;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.example-container > * {
+    height: 100%;
+}

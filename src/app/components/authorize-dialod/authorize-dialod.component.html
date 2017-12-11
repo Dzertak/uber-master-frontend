@@ -1,0 +1,17 @@
+<div>
+  <h2 mat-dialog-title>Авторизация</h2>
+  <mat-dialog-content>
+
+      <mat-form-field>
+        <input matInput [(ngModel)]="login" placeholder="Login">
+      </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [(ngModel)]="Password" placeholder="Password">
+        </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="onCloseConfirm()">Войти</button>
+    <button mat-raised-button (click)="onCloseCancel()">Отмена</button>
+  </mat-dialog-actions>
+</div>

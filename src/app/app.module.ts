@@ -5,17 +5,21 @@ import { HttpModule } from '@angular/http';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule, MatButtonModule, MatInputModule, MatMenuModule, MatCardModule, MatIconModule} from '@angular/material';
+import {MatFormFieldModule, MatOptionModule, MatDialogModule} from '@angular/material';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
 
 import {RouterModule} from '@angular/router';
 import { StartPageComponent } from './components/start-page/start-page.component';
+import { AuthorizeDialodComponent } from './components/authorize-dialod/authorize-dialod.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     StartPageComponent,
+    AuthorizeDialodComponent,
 
   ],
   imports: [
@@ -28,9 +32,16 @@ import { StartPageComponent } from './components/start-page/start-page.component
       MatCardModule,
       MatIconModule,
       MatToolbarModule,
+      MatFormFieldModule,
+      MatOptionModule,
+      MatDialogModule,
     HttpModule,
+
       RouterModule
   ],
+    entryComponents: [
+        AuthorizeDialodComponent
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
