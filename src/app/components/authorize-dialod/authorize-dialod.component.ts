@@ -9,13 +9,20 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 })
 export class AuthorizeDialodComponent implements OnInit {
 
+    login: String;
+    password: String;
+    // dataAuthorize: [String, String];
+
     constructor(public thisDialogRef: MatDialogRef<AuthorizeDialodComponent>, @Inject(MAT_DIALOG_DATA) public data: string) { }
 
     ngOnInit() {
     }
 
     onCloseConfirm() {
+       // this.thisDialogRef.componentInstance.login = this.login;
+       // this.dataAuthorize = [this.login, this.password];
         this.thisDialogRef.close('Confirm');
+
     }
 
     onCloseCancel() {

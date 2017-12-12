@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {AuthorizeDialodComponent} from '../authorize-dialod/authorize-dialod.component';
 
 
+
 @Component({
   selector: 'app-start-page',
   templateUrl: './start-page.component.html',
@@ -10,7 +11,7 @@ import {AuthorizeDialodComponent} from '../authorize-dialod/authorize-dialod.com
 })
 export class StartPageComponent {
 
-    login: string;
+    public login: string;
     password: string;
     dialogResult = '';
 
@@ -25,8 +26,7 @@ export class StartPageComponent {
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed');
             this.login = result.login;
-            this.dialogResult = result;
-            window.alert('Типа вошел!')
+            window.alert(`Your login ${ result }`)
         });
     }
 }
