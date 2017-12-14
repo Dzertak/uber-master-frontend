@@ -26,7 +26,7 @@ export class StartPageComponent {
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed');
             this.login = result.login;
-            window.alert(`Your login ${ result }`)
+            window.alert(result);
         });
     }
 }

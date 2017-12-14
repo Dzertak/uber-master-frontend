@@ -1,4 +1,25 @@
+<nav class="nav-extended">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">UberMaster</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a routerLink="/authorization"><i class="material-icons left">person</i>Войти</a></li>
+        </ul>
+    </div>
+    <div class="nav-content">
+        <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a class="active" routerLink="/">Главная</a></li>
+            <li class="tab"><a routerLink="/">Заказы</a></li>
+            <li class="tab"><a href="#test3">Мастера</a></li>
+        </ul>
+    </div>
+</nav>
 
-<app-start-page>
+<div class="conteiner" >
 
-</app-start-page>
+<router-outlet></router-outlet>
+
+</div>
+
+
+
