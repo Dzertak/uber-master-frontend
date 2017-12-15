@@ -31,6 +31,7 @@ const routes = [
     {path: '', component: MainPageComponent},
     {path: 'authorization', component: AuthorizationPageComponent},
     {path: 'profile', component: ProfilePageComponent},
+    {path: 'masters', component: ListMastersPageComponent}
 
     ];
 

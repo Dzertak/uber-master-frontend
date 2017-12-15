@@ -6,18 +6,18 @@ import {log} from 'util';
   selector: 'app-authorization-page',
   templateUrl: './authorization-page.component.html',
   styleUrls: ['./authorization-page.component.css'],
-    providers: [AuthorizeService]
+    //providers: [AuthorizeService]
 })
 export class AuthorizationPageComponent implements OnInit {
 
-  users = [];
+  /*users = [];
 
   constructor(private authorizeService: AuthorizeService) { }
-
+*/
   ngOnInit() {
-    this.authorizeService.getAuthorizeUser().subscribe(users => {
-      console.log(users)
-    })
+    //this.authorizeService.getAuthorizeUser().subscribe(users => {
+   //   console.log(users)
+   // })
   }
 
 }
