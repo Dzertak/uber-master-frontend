@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthorizeService} from '../../services/authorize.service';
 import {log} from 'util';
+import {Master} from "../../models/master.model";
+import {MasterTestModel} from "../../models/master-test.model";
 
 @Component({
   selector: 'app-authorization-page',
@@ -10,13 +12,15 @@ import {log} from 'util';
 })
 export class AuthorizationPageComponent implements OnInit {
 
-  user;
+
+  masterTest: MasterTestModel;
 
   constructor(private authorizeService: AuthorizeService) { }
 
   ngOnInit() {
-    this.authorizeService.getAuthorizeUser().subscribe(users => {
-      this.user = users;
+    this.authorizeService.getAuthorizeUser().subscribe(user => {
+      //this.masterTest = user;
+      this.masterTest.name = user.name;
     })
   }
 
