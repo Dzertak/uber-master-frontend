@@ -15,23 +15,24 @@ import 'hammerjs';
 
 import { AppComponent } from './app.component';
 
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import { StartPageComponent } from './components/start-page/start-page.component';
 import { AuthorizeDialodComponent } from './components/authorize-dialod/authorize-dialod.component';
-import { UserTableComponent } from './components/user-table/user-table.component';
-import {UserService} from './services/user.service';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ListOrderPageComponent } from './components/list-order-page/list-order-page.component';
 import { ListMastersPageComponent } from './components/list-masters-page/list-masters-page.component';
 import { AuthorizationPageComponent } from './components/authorization-page/authorization-page.component';
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import {AuthorizeService} from "./services/authorize.service";
+import {AuthguardGuard} from "./authguard.guard";
 
-const routes = [
-    {path: '', component: MainPageComponent},
-    {path: 'authorization', component: AuthorizationPageComponent},
+const routes: Routes = [
+    {path: 'main', canActivate: [AuthguardGuard], component: MainPageComponent},
+    {path: '', component: AuthorizationPageComponent},
     {path: 'profile', component: ProfilePageComponent},
-    {path: 'masters', component: ListMastersPageComponent}
+    {path: 'masters', component: ListMastersPageComponent},
+    {path: 'registration', component: RegistrationPageComponent}
 
     ];
 
@@ -40,7 +41,6 @@ const routes = [
     AppComponent,
     StartPageComponent,
     AuthorizeDialodComponent,
-    UserTableComponent,
     MainPageComponent,
     ListOrderPageComponent,
     ListMastersPageComponent,
@@ -69,10 +69,7 @@ const routes = [
       MatSidenavModule,
       RouterModule.forRoot(routes)
   ],
-    entryComponents: [
-        AuthorizeDialodComponent
-    ],
-  providers: [UserService],
+    providers: [AuthorizeService, AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

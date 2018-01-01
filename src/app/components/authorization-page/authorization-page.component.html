@@ -1,32 +1,53 @@
-<div class="authorize-card" style="padding-top: 8px">
+<div class="ui stackable menu">
+
+  <span class="toolbar-spacer"></span>
+  <a><h1 style="margin-top: 5px">UberMaster</h1></a>
+
+  <span class="toolbar-spacer"></span>
 
 
-<mat-card class="mat-card-start-page center">
-  <mat-card-title>
-    <span>Добро пожаловать в UberMaster</span>
-    <span>{{masterTest.name}}</span>
-  </mat-card-title>
-  <mat-card-subtitle>Авторизуйтесь, чтобы продолжить</mat-card-subtitle>
-<mat-card-content>
-
-  <div class="row">
-    <form class="col s12">
-      <div class="input-field col s6">
-        <i class="material-icons prefix">phone</i>
-        <input id="icon_telephone" type="tel" class="validate">
-      </div>
-
-        <div class="input-field col s6">
-          <i class="material-icons prefix">lock</i>
-          <input id="icon_prefix" type="text" class="validate">
-        </div>
+</div>
 
 
-    </form>
+<div class="ui message">
+  <div class="header">
+    Welcom to UberMaster
   </div>
-      <a class="waves-effect waves-light btn" style="background-color: #EE6E73">Войти</a>
+  <p>Ubermaster is an excellent service for finding masters for your tasks.</p>
+  <p>To get started, log in or register</p>
 
-</mat-card-content>
-</mat-card>
 
+  <div class="containerMy">
+    <div class="ui negative message transition hidden" id="authorization-fail-message">
+      <i class="close icon"></i>
+      <div class="header">Authorization has failed</div>
+      <p>Check the input data</p>
+    </div>
+
+    <div class="ui one column middle aligned very relaxed stackable grid">
+      <div class="column">
+        <div class="ui form">
+          <div class="field">
+            <label>Phone</label>
+            <div class="ui left icon input">
+              <input type="text" placeholder="Phone" [(ngModel)]="phone">
+              <i class="phone icon"></i>
+            </div>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <div class="ui left icon input">
+              <input type="password" [(ngModel)]="pass">
+              <i class="lock icon"></i>
+            </div>
+          </div>
+          <div class="ui blue submit button" (click)="loginUser()">Login</div>
+          <div class="ui green labeled icon button">
+             <i class="signup icon"></i>
+            Sign Up
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

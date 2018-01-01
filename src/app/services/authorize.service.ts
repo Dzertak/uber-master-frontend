@@ -8,13 +8,25 @@ import 'rxjs/add/operator/map'
 export class AuthorizeService {
 
     url: String;
+    private isUserLoggedIn;
+    public username;
 
-
-    constructor(private http: Http) {
-
+    constructor() {
+        this.isUserLoggedIn = false;
     };
 
-    public getAuthorizeUser() {
+
+    setUserLoggedIn() {
+        this.isUserLoggedIn = true;
+        this.username = 'admin';
+    }
+
+    getUserLoggedIn() {
+        return this.isUserLoggedIn;
+    }
+
+
+    /*public getAuthorizeUser() {
         return this.http.get('http://localhost:8090/entities/getUser?phone=380456111789&password=easy_password3')
             .map(response => response.json())
             .map(response => {
@@ -30,6 +42,6 @@ export class AuthorizeService {
                         location: u.location
                     }
                 })
-            })*/
-    }
+            })
+    }*/
 }
