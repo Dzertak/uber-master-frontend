@@ -10,7 +10,7 @@ declare var $:any;
 })
 export class AppComponent implements AfterViewInit {
 
-
+    swipe: number = 0;
 
     constructor(private authService: AuthorizeService, private router: Router){}
 
@@ -24,19 +24,13 @@ export class AppComponent implements AfterViewInit {
         this.router.navigate(['/']);
     }
 
+
+    swipeTab(tab: number){
+        this.swipe = tab;
+    }
     ngAfterViewInit(): void {
 
         $(document).ready(function () {
-
-            $('#ordersRouterLink').click(function () {
-                $('#ordersRouterLink').addClass("active");
-                $('#mastersRouterLink').removeClass("active");
-            });
-
-            $('#mastersRouterLink').click(function() {
-                $('#mastersRouterLink').addClass("active");
-                $('#ordersRouterLink').removeClass("active");
-            });
 
             $('.message .close').on('click', function () {
                 $(this)
@@ -44,12 +38,6 @@ export class AppComponent implements AfterViewInit {
                     .transition('fade');
             });
         });
-    }
-
-    clearActiveClasses() {
-        $('#ordersRouterLink').removeClass("active");
-        $('#mastersRouterLink').removeClass("active");
-
     }
 
 }

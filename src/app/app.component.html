@@ -1,8 +1,8 @@
 <div class="ui pointing menu" style="font-size: 1.2em;">
-    <a class="active item" *ngIf="isCorrectStatus()" id="ordersRouterLink" [routerLink]="['/orders']">
+    <a class="item" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" *ngIf="isCorrectStatus()" id="ordersRouterLink" [routerLink]="['/orders']">
         Orders
     </a>
-    <a class="item" *ngIf="isCorrectStatus()" id="mastersRouterLink" [routerLink]="['/masters']">
+    <a class="item" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" *ngIf="isCorrectStatus()" id="mastersRouterLink" [routerLink]="['/masters']">
         Masters
     </a>
 
@@ -12,14 +12,19 @@
     <span class="toolbar-spacer"></span>
 
     <div class="right menu">
-        <a class="item" *ngIf="isCorrectStatus()"><i class="user icon"></i>Profile</a>
-        <a class="item" *ngIf="isCorrectStatus()" (click)="logout()"><i class="sign out icon"></i>Log out</a>
+        <a class="item" [ngClass]="{'active':swipe===2}" (click)="swipeTab(2)" *ngIf="isCorrectStatus()" [routerLink]="['/profile']">
+            <i class="user icon"></i>
+            Profile
+        </a>
+        <a class="item" *ngIf="isCorrectStatus()" (click)="logout()" >
+            <i class="sign out icon"></i>
+            Log out
+        </a>
     </div>
 </div>
 
-<div class="ui segment">
-    <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>
+
 
 <!--<div class="container">
 
