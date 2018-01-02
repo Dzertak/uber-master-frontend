@@ -12,16 +12,12 @@
     <span class="toolbar-spacer"></span>
 
     <div class="right menu">
-        <div class="ui dropdown item">
-            Settings <i class="dropdown icon"></i>
-            <div class="menu">
-                <a class="item">Profile</a>
-                <a class="item">Log out</a>
-            </div>
-        </div>
+        <a class="item"><i class="user icon"></i>Profile</a>
+        <a class="item" (click)="logoutUser()"><i class="sign out icon"></i>Log out</a>
     </div>
 </div>
-<div class="ui segment">
 
+<div class="ui segment">
+    <router-outlet></router-outlet>
 </div>
 

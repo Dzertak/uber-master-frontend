@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {AuthorizeDialodComponent} from '../authorize-dialod/authorize-dialod.component';
 
 
 
@@ -13,20 +12,9 @@ export class StartPageComponent {
 
     public login: string;
     password: string;
-    dialogResult = '';
 
-    constructor(public dialog: MatDialog) {}
 
-    openDialog(): void {
-        const dialogRef = this.dialog.open(AuthorizeDialodComponent, {
-            width: '400x',
-            data: { login: this.login, password: this.password }
-        });
+    constructor() {}
 
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-            this.login = result.login;
-            window.alert(result);
-        });
-    }
+
 }

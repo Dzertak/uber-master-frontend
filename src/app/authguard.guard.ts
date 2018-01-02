@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import {AuthorizeService} from "./services/authorize.service";
+import decode from 'jwt-decode';
 
 @Injectable()
 export class AuthguardGuard implements CanActivate {
@@ -10,8 +11,24 @@ export class AuthguardGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  boolean {
-      this.router.navigate(['/']);
+     this.router.navigate(['/']);
       console.log('You are not authenticated');
       return this.authorizeService.getUserLoggedIn();
-  }
+/*
+     // this will be passed from the route config
+     // on the data property
+     const expectedRole = next.data.expectedRole;
+     const token = localStorage.getItem('token');
+     // decode the token to get its payload
+     const tokenPayload = decode(token);
+     if (
+         !this.authorizeService.isAuthenticated() ||
+         tokenPayload.role !== expectedRole
+     ) {
+         this.router.navigate(['login']);
+         return false;
+     }
+     return true;*/
+ }
+
 }

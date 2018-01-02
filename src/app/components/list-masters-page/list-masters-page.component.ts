@@ -9,11 +9,12 @@ import {AuthorizeService} from '../../services/authorize.service';
 })
 export class ListMastersPageComponent implements OnInit {
 
-  /*  users = [];
+    userName: string;
 
     constructor(private authorizeService: AuthorizeService) { }
-*/
+
     ngOnInit() {
+        this.userName = this.authorizeService.username;
      /*   this.authorizeService.getAuthorizeUser().subscribe(users => {
           this.users = users;
         })*/

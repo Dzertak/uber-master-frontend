@@ -1,21 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthorizeService} from '../../services/authorize.service';
-import {log} from 'util';
 
-import {RegistrationPageComponent} from "../registration-page/registration-page.component";
-import {$} from "protractor";
+
 import {Router} from "@angular/router";
 
-const routes = [
-    {path: 'registration', component: RegistrationPageComponent},
-
-];
+declare var $:any;
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-authorization-page',
   templateUrl: './authorization-page.component.html',
   styleUrls: ['./authorization-page.component.css'],
-    providers: [AuthorizeService]
+
 })
 export class AuthorizationPageComponent implements OnInit {
 
@@ -23,7 +19,7 @@ export class AuthorizationPageComponent implements OnInit {
     pass: String;
  // masterTest: MasterTestModel;
 
-  constructor(private router:Router, private authorizeService: AuthorizeService) { }
+  constructor(private router: Router, private authorizeService: AuthorizeService) { }
 
   ngOnInit() {
    /* this.authorizeService.getAuthorizeUser().subscribe(user => {
@@ -36,9 +32,15 @@ export class AuthorizationPageComponent implements OnInit {
     this.showFailedAuthorization();
   }*/
 
-  /*showFailedAuthorization() {
+  showFailedAuthorization() {
         $('#authorization-fail-message').removeClass('hidden');
-    }*/
+  }
+
+  registration(){
+      this.router.navigate(['registration']);
+  }
+
+
   loginUser(){
    /* e.preventDefault();
     console.log(e);
@@ -48,8 +50,11 @@ export class AuthorizationPageComponent implements OnInit {
     console.log(this.pass);
 
     if(this.phone == 'admin' && this.pass == 'admin') {
-        this.authorizeService.setUserLoggedIn();
-        this.router.navigate(['main']);
+        this.authorizeService.setUserLoggedIn(true);
+        this.router.navigate(['orders']);
+    }
+    else {
+        this.showFailedAuthorization();
     }
 }
 }

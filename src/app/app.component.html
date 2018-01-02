@@ -1,32 +1,31 @@
-<!--<nav class="nav-extended">
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">UberMaster</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a routerLink="/authorization"><i class="material-icons left">person</i>Войти</a></li>
-        </ul>
+<div class="ui pointing menu" style="font-size: 1.2em;">
+    <a class="active item" *ngIf="isCorrectStatus()" id="ordersRouterLink" [routerLink]="['/orders']">
+        Orders
+    </a>
+    <a class="item" *ngIf="isCorrectStatus()" id="mastersRouterLink" [routerLink]="['/masters']">
+        Masters
+    </a>
+
+    <span class="toolbar-spacer"></span>
+    <a><h1 style="margin-top: 5px">UberMaster</h1></a>
+
+    <span class="toolbar-spacer"></span>
+
+    <div class="right menu">
+        <a class="item" *ngIf="isCorrectStatus()"><i class="user icon"></i>Profile</a>
+        <a class="item" *ngIf="isCorrectStatus()" (click)="logout()"><i class="sign out icon"></i>Log out</a>
     </div>
-    <div class="nav-content">
-        <ul class="tabs tabs-fixed-width">
-            <li class="tab"><a class="active" routerLink="/">Главная</a></li>
-            <li class="tab"><a routerLink="/">Заказы</a></li>
-            <li class="tab"><a routerLink="/masters">Мастера</a></li>
-        </ul>
-    </div>
-</nav>
--->
+</div>
 
+<div class="ui segment">
+    <router-outlet></router-outlet>
+</div>
 
-
-
-
-
-
-<div class="container">
+<!--<div class="container">
 
     <router-outlet></router-outlet>
 
-</div>
+</div> -->
 
 
 

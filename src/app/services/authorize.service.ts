@@ -1,7 +1,7 @@
 import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map'
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Injectable()
@@ -11,19 +11,26 @@ export class AuthorizeService {
     private isUserLoggedIn;
     public username;
 
-    constructor() {
+    constructor(/*public jwtHelper: JwtHelperService*/) {
         this.isUserLoggedIn = false;
     };
 
 
-    setUserLoggedIn() {
-        this.isUserLoggedIn = true;
+    setUserLoggedIn(status: boolean) {
+        this.isUserLoggedIn = status;
         this.username = 'admin';
     }
 
     getUserLoggedIn() {
         return this.isUserLoggedIn;
     }
+
+    /*public isAuthenticated(): boolean {
+        const token = localStorage.getItem('token');
+        // Check whether the token is expired and return
+        // true or false
+        return !this.jwtHelper.isTokenExpired(token);
+    }*/
 
 
     /*public getAuthorizeUser() {
