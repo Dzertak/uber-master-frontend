@@ -20,6 +20,8 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import {AuthorizeService} from "./services/authorize.service";
 import {AuthguardGuard} from "./authguard.guard";
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { CardOrderComponent } from './components/card-order/card-order.component';
+import {OrderService} from "./services/order.service";
 
 const routes: Routes = [
     {path: '', component: AuthorizationPageComponent},
@@ -41,6 +43,7 @@ const routes: Routes = [
     RegistrationPageComponent,
     ProfilePageComponent,
     NotFoundPageComponent,
+    CardOrderComponent,
 
   ],
   imports: [
@@ -51,7 +54,7 @@ const routes: Routes = [
       HttpClientModule,
       RouterModule.forRoot(routes)
   ],
-    providers: [AuthorizeService, AuthguardGuard],
+    providers: [AuthorizeService, AuthguardGuard, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

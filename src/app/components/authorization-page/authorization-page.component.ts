@@ -15,6 +15,7 @@ import 'rxjs/add/operator/finally';
 })
 export class AuthorizationPageComponent implements OnInit {
 
+    isFail: boolean = true;
     phone: String;
     pass: String;
  // masterTest: MasterTestModel;
@@ -33,8 +34,13 @@ export class AuthorizationPageComponent implements OnInit {
   }*/
 
   showFailedAuthorization() {
-        $('#authorization-fail-message').removeClass('hidden');
+      $('#authorization-fail-message').removeClass('hidden');
+     // this.isFail=false;
   }
+
+  /*hideFailedAuthorization(){
+      this.isFail=false;
+  }*/
 
   registration(){
       this.router.navigate(['registration']);
@@ -50,6 +56,7 @@ export class AuthorizationPageComponent implements OnInit {
     console.log(this.pass);
 
     if(this.phone == 'admin' && this.pass == 'admin') {
+        this.isFail=false;
         this.authorizeService.setUserLoggedIn(true);
         this.router.navigate(['orders']);
     }

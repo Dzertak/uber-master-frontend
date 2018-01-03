@@ -1,14 +1,14 @@
 import {BaseEntity} from './baseentity.model';
 
 export class User extends BaseEntity {
-   private _location: String;
-   private _userDescription: String;
-   private _phoneNumber: String;
-   private _password: String;
-   private _picture: String;
+   private _location: string;
+   private _userDescription: string;
+   private _phoneNumber: string;
+   private _password: string;
+   private _picture: string;
 
-   constructor(name: String, description: String, object_id: number, location: String, userDescription: String,
-                phoneNumber: String, password: String, picture: String) {
+   constructor(name: string, description: string, object_id: number, location: string, userDescription: string,
+                phoneNumber: string, password: string, picture: string) {
         super(name, description, object_id);
         this._location = location;
         this._userDescription = userDescription;
@@ -18,43 +18,43 @@ export class User extends BaseEntity {
     }
 
 
-    get location(): String {
+    get location(): string {
         return this._location;
     }
 
-    set location(value: String) {
+    set location(value: string) {
         this._location = value;
     }
 
-    get userDescription(): String {
+    get userDescription(): string {
         return this._userDescription;
     }
 
-    set userDescription(value: String) {
+    set userDescription(value: string) {
         this._userDescription = value;
     }
 
-    get phoneNumber(): String {
+    get phoneNumber(): string {
         return this._phoneNumber;
     }
 
-    set phoneNumber(value: String) {
+    set phoneNumber(value: string) {
         this._phoneNumber = value;
     }
 
-    get password(): String {
+    get password(): string {
         return this._password;
     }
 
-    set password(value: String) {
+    set password(value: string) {
         this._password = value;
     }
 
-    get picture(): String {
+    get picture(): string {
         return this._picture;
     }
 
-    set picture(value: String) {
+    set picture(value: string) {
         this._picture = value;
     }
 }

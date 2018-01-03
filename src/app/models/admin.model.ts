@@ -1,8 +1,8 @@
 import {User} from './user.model';
 
 export class Admin extends User {
-    constructor(name: String, description: String, object_id: number, location: String,
-                userDescription: String, phoneNumber: String, password: String, picture: String) {
+    constructor(name: string, description: string, object_id: number, location: string,
+                userDescription: string, phoneNumber: string, password: string, picture: string) {
         super(name, description, object_id, location, userDescription, phoneNumber, password, picture);
     }
 }

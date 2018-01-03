@@ -33,6 +33,7 @@ export class AuthorizeService {
     }*/
 
 
+
     /*public getAuthorizeUser() {
         return this.http.get('http://localhost:8090/entities/getUser?phone=380456111789&password=easy_password3')
             .map(response => response.json())

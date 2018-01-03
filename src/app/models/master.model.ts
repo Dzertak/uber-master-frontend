@@ -1,20 +1,20 @@
 import {User} from './user.model';
 
 export class Master extends User {
-    private _profession: String;
-    private _skills: String;
-    private _experience: String;
+    private _profession: string;
+    private _skills: string;
+    private _experience: string;
     private _payment: number;
     private _smoke: boolean;
-    private _tools: String;
+    private _tools: string;
     private _start_time: Date;
     private _end_time: Date;
 
 
-    constructor(name: String, description: String, object_id: number, location: String, userDescription: String,
-                phoneNumber: String, password: String, picture: String,
-                profession: String, skills: String, experience: String, payment: number, smoke: boolean,
-                tools: String, start_time: Date, end_time: Date) {
+    constructor(name: string, description: string, object_id: number, location: string, userDescription: string,
+                phoneNumber: string, password: string, picture: string,
+                profession: string, skills: string, experience: string, payment: number, smoke: boolean,
+                tools: string, start_time: Date, end_time: Date) {
         super(name, description, object_id, location, userDescription,
             phoneNumber, password, picture);
         this._profession = profession;
@@ -28,27 +28,27 @@ export class Master extends User {
     }
 
 
-    get profession(): String {
+    get profession(): string {
         return this._profession;
     }
 
-    set profession(value: String) {
+    set profession(value: string) {
         this._profession = value;
     }
 
-    get skills(): String {
+    get skills(): string {
         return this._skills;
     }
 
-    set skills(value: String) {
+    set skills(value: string) {
         this._skills = value;
     }
 
-    get experience(): String {
+    get experience(): string {
         return this._experience;
     }
 
-    set experience(value: String) {
+    set experience(value: string) {
         this._experience = value;
     }
 
@@ -68,11 +68,11 @@ export class Master extends User {
         this._smoke = value;
     }
 
-    get tools(): String {
+    get tools(): string {
         return this._tools;
     }
 
-    set tools(value: String) {
+    set tools(value: string) {
         this._tools = value;
     }
 

@@ -1,16 +1,16 @@
 import {BaseEntity} from './baseentity.model';
 
 export class Order extends BaseEntity {
-    private _smallDescription: String;
-    private _bigDescription: String;
+    private _smallDescription: string;
+    private _bigDescription: string;
     private _startDate: Date;
     private _dueDate: Date;
-    private _status: String;
+    private _status: string;
     private _master: number;
 
 
-    constructor(name: String, description: String, object_id: number, smallDescription: String, bigDescription: String,
-                startDate: Date, dueDate: Date, status: String, master: number) {
+    constructor(name: string, description: string, object_id: number, smallDescription: string, bigDescription: string,
+                startDate: Date, dueDate: Date, status: string, master: number) {
         super(name, description, object_id);
         this._smallDescription = smallDescription;
         this._bigDescription = bigDescription;
@@ -21,19 +21,19 @@ export class Order extends BaseEntity {
     }
 
 
-    get smallDescription(): String {
+    get smallDescription(): string {
         return this._smallDescription;
     }
 
-    set smallDescription(value: String) {
+    set smallDescription(value: string) {
         this._smallDescription = value;
     }
 
-    get bigDescription(): String {
+    get bigDescription(): string {
         return this._bigDescription;
     }
 
-    set bigDescription(value: String) {
+    set bigDescription(value: string) {
         this._bigDescription = value;
     }
 
@@ -53,11 +53,11 @@ export class Order extends BaseEntity {
         this._dueDate = value;
     }
 
-    get status(): String {
+    get status(): string {
         return this._status;
     }
 
-    set status(value: String) {
+    set status(value: string) {
         this._status = value;
     }
 

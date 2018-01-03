@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AuthorizeService} from "../../services/authorize.service";
+import {Order} from "../../index";
+import {OrderService} from "../../services/order.service";
 
 @Component({
   selector: 'app-list-order-page',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListOrderPageComponent implements OnInit {
 
-  constructor() { }
+
+
+  orders = [
+
+  ];
+
+  constructor(private authorizeService: AuthorizeService, private orderService:OrderService) { }
 
   ngOnInit() {
+    this.orderService.getOrderList().subscribe(orders => {
+      this.orders = orders;
+    })
   }
 
 }

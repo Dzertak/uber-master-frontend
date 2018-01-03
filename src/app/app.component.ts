@@ -37,6 +37,9 @@ export class AppComponent implements AfterViewInit {
                     .closest('.message')
                     .transition('fade');
             });
+
+            $("#multi-select").dropdown("get value")
+
         });
     }
 
