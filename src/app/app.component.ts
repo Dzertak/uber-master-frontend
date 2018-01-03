@@ -38,7 +38,7 @@ export class AppComponent implements AfterViewInit {
                     .transition('fade');
             });
 
-            $("#multi-select").dropdown("get value")
+            $("#filter-order").dropdown();
 
         });
     }

@@ -11,15 +11,18 @@ import {OrderService} from "../../services/order.service";
 export class ListOrderPageComponent implements OnInit {
 
 
+  isLoad: boolean = true;
 
-  orders = [
+  orders = [];
 
-  ];
-
+  loading(status: boolean){
+    this.isLoad=status;
+  }
   constructor(private authorizeService: AuthorizeService, private orderService:OrderService) { }
 
   ngOnInit() {
     this.orderService.getOrderList().subscribe(orders => {
+      this.loading(false);
       this.orders = orders;
     })
   }

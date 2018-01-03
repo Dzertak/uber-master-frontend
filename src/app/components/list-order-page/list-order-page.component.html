@@ -1,72 +1,73 @@
 <div class="ui bottom attached segment" style="height: 100%">
-  <div class="ui grid">
-    <div class="three wide column">
 
-      <div class="ui divider">
-        <!-- Divider -->
-      </div>
-      <div class="ui multiple dropdown" >
-        <input type="hidden" name="filters">
-        <i class="filter icon"></i>
-        <span class="text">Filter Posts</span>
-        <div class="menu">
-          <div class="ui icon search input">
-            <i class="search icon"></i>
-            <input type="text" placeholder="Search tags...">
-          </div>
-          <div class="divider"></div>
-          <div class="header">
-            <i class="tags icon"></i>
-            Tag Label
-          </div>
-          <div class="scrolling menu">
-            <div class="item" data-value="news">
-              <div class="ui purple empty circular label"></div>
-              News
+      <div class="ui one column centered grid">
+        <div class="column">
+
+          <div class="ui multiple dropdown" id="filter-order">
+            <input type="hidden" name="filters">
+            <i class="filter icon"></i>
+            <span class="text">Filter Posts</span>
+            <div class="menu">
+              <div class="ui icon search input">
+                <i class="search icon"></i>
+                <input type="text" placeholder="Search tags...">
+              </div>
+              <div class="divider"></div>
+              <div class="header">
+                <i class="tags icon"></i>
+                Tag Label
+              </div>
+              <div class="scrolling menu">
+                <div class="item" data-value="news">
+                  <div class="ui purple empty circular label"></div>
+                  News
+                </div>
+                <div class="item" data-value="skill">
+                  <div class="ui orange empty circular label"></div>
+                  Enhancement
+                </div>
+              </div>
             </div>
-            <div class="item" data-value="skill">
-              <div class="ui orange empty circular label"></div>
-              Enhancement
-            </div>
+          </div>
+
+          <div class="ui divider">
+            <!-- Divider -->
           </div>
         </div>
-      </div>
+        <div class="two column centered row">
+          <div class="column">
+              <!--<div style="width:100%; height: 100%; text-align: center; display: inline-block;" >
+                <i class="circle notched big loading icon" style="position: relative; top: 50%; transform: translateY(-50%);"
+                   [ngClass]="{'hidden':!isLoad}"></i>
+              </div>
 
+              <!--<div style="padding-bottom: 1em;">
+                <div class="ui field">
+                  <button class="ui button fluid" [ngClass]="{'green': currentPage != 1, 'grey': currentPage == 1}"
+                          ><i class="arrow up icon"></i></button>
+                </div>
+              </div> -->
+              <!-- Four Books -->
 
-      <div class="ui divider">
-        <!-- Divider -->
-      </div>
+              <app-card-order
+                      *ngFor="let ord of orders"
+                      [order]="ord"
+              ></app-card-order>
 
+              <!--[order]="ord"-->
+              <!--"
+                           -->
+              <!-- <div style="padding-top: 1em;">
+                 <div class="ui field fluid">
+                   <button class="ui button fluid" [ngClass]="{'green': currentPage != pageCount, 'grey': currentPage == pageCount}"
+                           ><i class="arrow down icon"></i></button>
+                 </div>
+               </div>-->
 
-    </div>
-    <!-- Book Catalog -->
-    <div class="thirteen wide column">
-      <!--<div style="width:100%; height: 100%; text-align: center; display: inline-block;">
-        <i class="circle notched big loading icon" style="position: relative; top: 50%; transform: translateY(-50%); "></i>
-      </div> -->
-
-        <!--<div style="padding-bottom: 1em;">
-          <div class="ui field">
-            <button class="ui button fluid" [ngClass]="{'green': currentPage != 1, 'grey': currentPage == 1}"
-                    ><i class="arrow up icon"></i></button>
           </div>
-        </div> -->
-        <!-- Four Books -->
+        </div>
+     <!-- Book Catalog -->
 
-        <app-card-order
-                *ngFor="let ord of orders"
-        ></app-card-order>
-
-      <!--[order]="ord"-->
-        <!--"
-                     -->
-       <!-- <div style="padding-top: 1em;">
-          <div class="ui field fluid">
-            <button class="ui button fluid" [ngClass]="{'green': currentPage != pageCount, 'grey': currentPage == pageCount}"
-                    ><i class="arrow down icon"></i></button>
-          </div>
-        </div>-->
-    </div>
     <!-- End of Book Catalog -->
   </div>
 </div>
