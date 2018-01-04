@@ -22,8 +22,12 @@ import {AuthguardGuard} from "./authguard.guard";
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { CardOrderComponent } from './components/card-order/card-order.component';
 import {OrderService} from "./services/order.service";
+<<<<<<< HEAD
 import {MasterService} from "./services/master.service";
 import { CardMasterComponent } from './components/card-master/card-master.component';
+=======
+import {OrderFilterPipe} from "./pipe/orderFilter.pipe";
+>>>>>>> 9d2141f93d09a6064cac8e5e899c38fb5d97133f
 
 const routes: Routes = [
     {path: '', component: AuthorizationPageComponent},
@@ -46,8 +50,12 @@ const routes: Routes = [
     ProfilePageComponent,
     NotFoundPageComponent,
     CardOrderComponent,
+<<<<<<< HEAD
     CardMasterComponent,
 
+=======
+    OrderFilterPipe
+>>>>>>> 9d2141f93d09a6064cac8e5e899c38fb5d97133f
   ],
   imports: [
     BrowserModule,

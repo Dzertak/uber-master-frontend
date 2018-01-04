@@ -14,16 +14,20 @@
               <div class="divider"></div>
               <div class="header">
                 <i class="tags icon"></i>
-                Tag Label
+                Tag status
               </div>
               <div class="scrolling menu">
-                <div class="item" data-value="news">
-                  <div class="ui purple empty circular label"></div>
-                  News
+                <div class="item" data-value="New" (click)="getSelectedTextValue()">
+                  <div class="ui green empty circular label"></div>
+                  New
                 </div>
-                <div class="item" data-value="skill">
+                <div class="item" data-value="In processing" (click)="getSelectedTextValue()">
                   <div class="ui orange empty circular label"></div>
-                  Enhancement
+                  In processing
+                </div>
+                <div class="item" data-value="Completed" (click)="getSelectedTextValue()">
+                  <div class="ui grey empty circular label"></div>
+                  Completed
                 </div>
               </div>
             </div>
@@ -34,10 +38,11 @@
           <!--<h2 style="margin-top: 5px; margin-bottom: 0">Order List</h2>
           <span class="toolbar-spacer"></span>
           -->
-          <button class="ui basic button">
+          <button class="ui basic button" (click)="getSelectedTextValue()">
             <i class="icon plus"></i>
             Add Order
           </button>
+
         </div>
         <div class="ui divider" style="width: 100%; margin: 0; padding-left: 14px; padding-right: 14px">
           <!-- Divider -->
@@ -58,7 +63,7 @@
               <!-- Four Books -->
 
               <app-card-order
-                      *ngFor="let ord of orders"
+                      *ngFor="let ord of orders | orderFilter:tag"
                       [order]="ord"
               ></app-card-order>
 
