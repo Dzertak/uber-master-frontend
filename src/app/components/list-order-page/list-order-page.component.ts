@@ -11,7 +11,7 @@ declare var $:any;
 })
 export class ListOrderPageComponent implements OnInit {
 
-
+  tag: string = '';
   isLoad: boolean = true;
 
   orders = [];
@@ -23,10 +23,16 @@ export class ListOrderPageComponent implements OnInit {
 
   ngOnInit() {
     $('.ui.dropdown').dropdown();
+
     this.orderService.getOrderList().subscribe(orders => {
       this.loading(false);
       this.orders = orders;
     })
   }
+
+   getSelectedTextValue() {
+       this.tag = $('.ui.dropdown').dropdown('get value');
+  }
+
 
 }

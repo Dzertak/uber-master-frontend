@@ -22,6 +22,7 @@ import {AuthguardGuard} from "./authguard.guard";
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { CardOrderComponent } from './components/card-order/card-order.component';
 import {OrderService} from "./services/order.service";
+import {OrderFilterPipe} from "./pipe/orderFilter.pipe";
 
 const routes: Routes = [
     {path: '', component: AuthorizationPageComponent},
@@ -44,7 +45,7 @@ const routes: Routes = [
     ProfilePageComponent,
     NotFoundPageComponent,
     CardOrderComponent,
-
+    OrderFilterPipe
   ],
   imports: [
     BrowserModule,
