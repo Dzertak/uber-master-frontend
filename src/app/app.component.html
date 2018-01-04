@@ -1,8 +1,10 @@
 <div class="ui pointing menu" style="font-size: 1.2em;">
     <a class="item" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" *ngIf="isCorrectStatus()" id="ordersRouterLink" [routerLink]="['/orders']">
+        <i class="list icon"></i>
         Orders
     </a>
     <a class="item" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" *ngIf="isCorrectStatus()" id="mastersRouterLink" [routerLink]="['/masters']">
+        <i class="configure icon"></i>
         Masters
     </a>
 

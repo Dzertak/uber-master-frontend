@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AuthorizeService} from "../../services/authorize.service";
 import {Order} from "../../index";
 import {OrderService} from "../../services/order.service";
+declare var $:any;
 
 @Component({
   selector: 'app-list-order-page',
@@ -21,6 +22,7 @@ export class ListOrderPageComponent implements OnInit {
   constructor(private authorizeService: AuthorizeService, private orderService:OrderService) { }
 
   ngOnInit() {
+    $('.ui.dropdown').dropdown();
     this.orderService.getOrderList().subscribe(orders => {
       this.loading(false);
       this.orders = orders;

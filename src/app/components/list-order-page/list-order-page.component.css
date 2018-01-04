@@ -6,3 +6,12 @@
 #tools{
     border-right: 1px solid lightgrey;
 }
+
+.toolbar-spacer{
+    flex: 1 1 auto;
+}
+
+#toolbar{
+    text-align: center;
+    display: flex;
+}
