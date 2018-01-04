@@ -22,6 +22,8 @@ import {AuthguardGuard} from "./authguard.guard";
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { CardOrderComponent } from './components/card-order/card-order.component';
 import {OrderService} from "./services/order.service";
+import {MasterService} from "./services/master.service";
+import { CardMasterComponent } from './components/card-master/card-master.component';
 
 const routes: Routes = [
     {path: '', component: AuthorizationPageComponent},
@@ -44,6 +46,7 @@ const routes: Routes = [
     ProfilePageComponent,
     NotFoundPageComponent,
     CardOrderComponent,
+    CardMasterComponent,
 
   ],
   imports: [
@@ -54,7 +57,7 @@ const routes: Routes = [
       HttpClientModule,
       RouterModule.forRoot(routes)
   ],
-    providers: [AuthorizeService, AuthguardGuard, OrderService],
+    providers: [AuthorizeService, AuthguardGuard, OrderService, MasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

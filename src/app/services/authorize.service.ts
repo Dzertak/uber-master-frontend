@@ -11,7 +11,7 @@ export class AuthorizeService {
     private isUserLoggedIn;
     public username;
 
-    constructor(/*public jwtHelper: JwtHelperService*/) {
+    constructor(/*public jwtHelper: JwtHelperService*/private http: Http) {
         this.isUserLoggedIn = false;
     };
 
@@ -34,16 +34,16 @@ export class AuthorizeService {
 
 
 
-    /*public getAuthorizeUser() {
-        return this.http.get('http://localhost:8090/entities/getUser?phone=380456111789&password=easy_password3')
+   /* public getAuthorizeUser() {
+        return this.http.get('http://localhost:8090/entities/getUser?phone=500282531872&password=yGypB4E2WUH')
             .map(response => response.json())
-            .map(response => {
+            /*.map(response => {
                 return {
                     name: response.name,
                     location: response.location
                 }
             })
-           /* .map(users => {
+            .map(users => {
                 return users.map(u => {
                     return {
                         name: u.name,
