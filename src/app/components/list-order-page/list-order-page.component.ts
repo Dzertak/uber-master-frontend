@@ -13,7 +13,8 @@ export class ListOrderPageComponent implements OnInit {
 
   tag: string = '';
   isLoad: boolean = true;
-
+  curPage : number;
+  pageSize : number;
   orders = [];
 
   loading(status: boolean){
@@ -28,11 +29,17 @@ export class ListOrderPageComponent implements OnInit {
       this.loading(false);
       this.orders = orders;
     })
+	this.curPage = 1;
+    this.pageSize = 4;
   }
 
    getSelectedTextValue() {
        this.tag = $('.ui.dropdown').dropdown('get value');
   }
+  
+  numberOfPages(){
+    return Math.ceil(this.orders.length / this.pageSize);
+  };
 
 
 }

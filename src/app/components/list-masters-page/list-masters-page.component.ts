@@ -14,7 +14,8 @@ export class ListMastersPageComponent implements OnInit {
 
     //userName: string;
 	isLoad: boolean = true;
-	
+	curPage : number;
+    pageSize : number;
 	masters = [];
 	
 	loading(status: boolean){
@@ -29,9 +30,14 @@ export class ListMastersPageComponent implements OnInit {
       this.loading(false);
       this.masters = masters;
     })
-
+	this.curPage = 1;
+    this.pageSize = 6;
         /*this.authorizeService.getAuthorizeUser().subscribe(masters => {
           this.masters = masters;
         })*/
     }
+	
+	numberOfPages(){
+    return Math.ceil(this.masters.length / this.pageSize);
+  };
 }
