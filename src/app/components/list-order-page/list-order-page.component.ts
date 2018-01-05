@@ -13,20 +13,9 @@ export class ListOrderPageComponent implements OnInit {
 
   tag: string = '';
   isLoad: boolean = true;
-
-  //orders = [];
-  orders = [
-      {"name":"Daily cleaning","description":"DESCR : 30","object_id":30,"master":12,"masterName":null,"masterProfession":"Cleaner","startDate":-61599024840000,"dueDate":-61597988040000,"bigDescription":"Daily cleaning","smallDescription":"Daily cleaning","status":"Completed"},
-      {"name":"Laptop repairing","description":"DESCR : 31","object_id":31,"master":22,"masterName":null,"masterProfession":"Computer foreman","startDate":-61599024840000,"dueDate":-61598160840000,"bigDescription":"Laptop repairing","smallDescription":"Laptop repairing","status":"Completed"},
-      {"name":"Installation of two-rate counters","description":"DESCR : 32","object_id":32,"master":18,"masterName":null,"masterProfession":"Electrician","startDate":-61599024840000,"dueDate":-61597815240000,"bigDescription":"Installation of two-rate counters","smallDescription":"Installation of two-rate counters","status":"Completed"},
-      {"name":"Installation of two-rate counters","description":"DESCR : 33","object_id":33,"master":18,"masterName":null,"masterProfession":"Electrician","startDate":-61599024840000,"dueDate":-61598852040000,"bigDescription":"Installation of two-rate counters","smallDescription":"Installation of two-rate counters","status":"In processing"},
-      {"name":"Cleaning the yard from snow","description":"DESCR : 34","object_id":34,"master":-1,"masterName":null,"masterProfession":"Cleaner","startDate":-61599024840000,"dueDate":-61597296840000,"bigDescription":"Cleaning the yard from snow","smallDescription":"Cleaning the yard from snow","status":"New"},
-      {"name":"Installation a gas cooker.","description":"DESCR : 35","object_id":35,"master":16,"masterName":null,"masterProfession":"Locksmith","startDate":-61599024840000,"dueDate":-61597124040000,"bigDescription":"Installation a gas cooker.","smallDescription":"Installation a gas cooker.","status":"In processing"},
-      {"name":"Unloading of trucks","description":"DESCR : 36","object_id":36,"master":17,"masterName":null,"masterProfession":"Handyman","startDate":-61599024840000,"dueDate":-61596778440000,"bigDescription":"Unloading of trucks","smallDescription":"Unloading of trucks","status":"Completed"},
-      {"name":"Water and sewer cleaning","description":"DESCR : 37","object_id":37,"master":26,"masterName":null,"masterProfession":"Plumber","startDate":-61599024840000,"dueDate":-61596692040000,"bigDescription":"Water and sewer cleaning","smallDescription":"Water and sewer cleaning","status":"Completed"},
-      {"name":"Replacement of electrical wiring","description":"DESCR : 38","object_id":38,"master":18,"masterName":null,"masterProfession":"Electrician","startDate":-61599024840000,"dueDate":-61598679240000,"bigDescription":"Replacement of electrical wiring","smallDescription":"Replacement of electrical wiring","status":"In processing"},
-      {"name":"Repairing of rosette","description":"DESCR : 39","object_id":39,"master":16,"masterName":null,"masterProfession":"Locksmith","startDate":-61599024840000,"dueDate":-61597210440000,"bigDescription":"Repairing of rosette","smallDescription":"Repairing of rosette","status":"In processing"}
-      ];
+  curPage : number;
+  pageSize : number;
+  orders = [];
 
   loading(status: boolean){
     this.isLoad=status;
@@ -34,20 +23,23 @@ export class ListOrderPageComponent implements OnInit {
   constructor(private authorizeService: AuthorizeService, private orderService:OrderService) { }
 
   ngOnInit() {
-      $('.ui.dropdown').dropdown();
-    //$('.ui.dropdown').dropdown({on: 'click',action: this.getSelectedTextValue()});
-      //for hide loading
-    //this.loading(false);
+    $('.ui.dropdown').dropdown();
 
     this.orderService.getOrderList().subscribe(orders => {
       this.loading(false);
       this.orders = orders;
     })
+	this.curPage = 1;
+    this.pageSize = 4;
   }
 
    getSelectedTextValue() {
        this.tag = $('.ui.dropdown').dropdown('get value');
   }
+
+  numberOfPages(){
+    return Math.ceil(this.orders.length / this.pageSize);
+  };
 
 
 }

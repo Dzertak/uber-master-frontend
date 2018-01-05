@@ -18,7 +18,8 @@
                 Tag status
               </div>
               <div class="scrolling menu">
-                <div class="item" data-value="New" (click)="getSelectedTextValue()">
+			 
+                <div class="item" data-value="New"  (click)="getSelectedTextValue()">
                   <div class="ui green empty circular label"></div>
                   New
                 </div>
@@ -65,12 +66,16 @@
                 </div>
               </div> -->
               <!-- Four Books -->
-
-              <app-card-order
-                      *ngFor="let ord of orders | orderFilter:tag"
+				<app-card-order
+                      *ngFor="let ord of orders | orderFilter:tag | slice: (curPage * pageSize) - pageSize :curPage * pageSize"
                       [order]="ord"
               ></app-card-order>
-
+			   <div class="pagination">
+					<button class="ui basic button" [disabled] ="curPage == 1" (click)="curPage = curPage - 1">PREV</button>
+						<span>Page {{curPage}} of {{ numberOfPages() }}</span>
+					<button class="ui basic button" [disabled] = "curPage >= orders.length/pageSize" 
+							(click) ="curPage = curPage + 1">NEXT</button>
+			   </div>
               <!--[order]="ord"-->
               <!--"
                            -->

@@ -52,9 +52,15 @@
               <!-- Four Books -->
 
               <app-card-master
-                      *ngFor="let mast of masters"
+                      *ngFor="let mast of masters | slice: (curPage * pageSize) - pageSize :curPage * pageSize"
                       [master]="mast"
               ></app-card-master>
+			  <div class="pagination">
+					<button class="ui basic button" [disabled] ="curPage == 1" (click)="curPage = curPage - 1">PREV</button>
+						<span>Page {{curPage}} of {{ numberOfPages() }}</span>
+					<button class="ui basic button" [disabled] = "curPage >= masters.length/pageSize" 
+							(click) ="curPage = curPage + 1">NEXT</button>
+			   </div>
 
               <!--[order]="ord"-->
               <!--"
