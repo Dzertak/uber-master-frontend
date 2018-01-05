@@ -7,10 +7,11 @@ export class Order extends BaseEntity {
     private _dueDate: Date;
     private _status: string;
     private _master: number;
+    private _masterProfession: string;
 
 
     constructor(name: string, description: string, object_id: number, smallDescription: string, bigDescription: string,
-                startDate: Date, dueDate: Date, status: string, master: number) {
+                startDate: Date, dueDate: Date, status: string, master: number, masterProfession: string) {
         super(name, description, object_id);
         this._smallDescription = smallDescription;
         this._bigDescription = bigDescription;
@@ -18,6 +19,7 @@ export class Order extends BaseEntity {
         this._dueDate = dueDate;
         this._status = status;
         this._master = master;
+        this._masterProfession = masterProfession
     }
 
 
@@ -67,5 +69,13 @@ export class Order extends BaseEntity {
 
     set master(value: number) {
         this._master = value;
+    }
+
+    get masterProfession(): string {
+        return this._masterProfession;
+    }
+
+    set masterProfession(value: string) {
+        this._masterProfession = value;
     }
 }

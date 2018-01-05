@@ -23,6 +23,12 @@ export class AuthorizationPageComponent implements OnInit {
   constructor(private router: Router, private authorizeService: AuthorizeService) { }
 
   ngOnInit() {
+
+      $('.message .close').on('click', function () {
+          $(this)
+              .closest('.message')
+              .transition('fade');
+      });
    /* this.authorizeService.getAuthorizeUser().subscribe(user => {
 
       this.masterTest.location = user.location;

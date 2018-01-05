@@ -12,11 +12,11 @@ export class Master extends User {
 
 
     constructor(name: string, description: string, object_id: number, location: string, userDescription: string,
-                phoneNumber: string, password: string, picture: string,
+                phoneNumber: string, password: string, picture: string, isUserBlocked: boolean,
                 profession: string, skills: string, experience: string, payment: number, smoke: boolean,
                 tools: string, start_time: Date, end_time: Date) {
         super(name, description, object_id, location, userDescription,
-            phoneNumber, password, picture);
+            phoneNumber, password, picture, isUserBlocked);
         this._profession = profession;
         this._skills = skills;
         this._experience = experience;

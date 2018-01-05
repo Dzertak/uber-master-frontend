@@ -6,15 +6,17 @@ export class User extends BaseEntity {
    private _phoneNumber: string;
    private _password: string;
    private _picture: string;
+   private _isUserBlocked: boolean;
 
    constructor(name: string, description: string, object_id: number, location: string, userDescription: string,
-                phoneNumber: string, password: string, picture: string) {
+                phoneNumber: string, password: string, picture: string, isUserBlocked: boolean) {
         super(name, description, object_id);
         this._location = location;
         this._userDescription = userDescription;
         this._phoneNumber = phoneNumber;
         this._password = password;
         this._picture = picture;
+        this._isUserBlocked = this._isUserBlocked;
     }
 
 
@@ -56,5 +58,14 @@ export class User extends BaseEntity {
 
     set picture(value: string) {
         this._picture = value;
+    }
+
+
+    get isUserBlocked(): boolean {
+        return this._isUserBlocked;
+    }
+
+    set isUserBlocked(value: boolean) {
+        this._isUserBlocked = value;
     }
 }

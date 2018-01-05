@@ -1,5 +1,6 @@
 <div class="ui bottom attached segment" style="height: 100%">
 
+
       <div class="ui one column centered grid">
         <div class="column" id="toolbar">
           <div class="ui multiple dropdown" id="filter-order">
@@ -49,7 +50,10 @@
         </div>
         <div class="two column centered row">
           <div class="column">
-              <!--<div style="width:100%; height: 100%; text-align: center; display: inline-block;" >
+
+
+            <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
+                          <!--<div style="width:100%; height: 100%; text-align: center; display: inline-block;" >
                 <i class="circle notched big loading icon" style="position: relative; top: 50%; transform: translateY(-50%);"
                    [ngClass]="{'hidden':!isLoad}"></i>
               </div>
