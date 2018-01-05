@@ -22,7 +22,8 @@ export class Convertator {
             object.tools,
             object.start_time,
             object.end_time,
-            object.isUserBlocked()
+            object.classType,
+            object.isUserBlocked
         );
         return master;
     }
@@ -37,7 +38,8 @@ export class Convertator {
             object.phoneNumber,
             object.password,
             object.picture,
-            object.isUserBlocked()
+            object.classType,
+            object.isUserBlocked
         );
         return poke;
     }
@@ -51,7 +53,8 @@ export class Convertator {
             object.userDescription,
             object.phoneNumber,
             object.password,
-            object.picture
+            object.picture,
+            object.classType
         );
         return admin;
     }
