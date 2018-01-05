@@ -21,7 +21,8 @@ export class Convertator {
             object.smoke,
             object.tools,
             object.start_time,
-            object.end_time
+            object.end_time,
+            object.isUserBlocked()
         );
         return master;
     }
@@ -35,7 +36,8 @@ export class Convertator {
             object.userDescription,
             object.phoneNumber,
             object.password,
-            object.picture
+            object.picture,
+            object.isUserBlocked()
         );
         return poke;
     }
@@ -64,7 +66,8 @@ export class Convertator {
             object.startDate,
             object.dueDate,
             object.status,
-            object.master
+            object.master,
+            object.masterProfession
         );
         return order;
     }

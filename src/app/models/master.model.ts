@@ -1,6 +1,7 @@
 import {User} from './user.model';
+import {BlockeduserModel} from "./blockeduser.model";
 
-export class Master extends User {
+export class Master extends BlockeduserModel {
     private _profession: string;
     private _skills: string;
     private _experience: string;
