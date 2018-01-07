@@ -19,21 +19,20 @@
               <div class="scrolling menu">
 			 
                 <div class="item" data-value="New" >
-                  <div class="ui green empty circular label"></div>
+                  <div class="ui green empty circular label" (click)="getSelectedTextValue()"></div>
                   New
                 </div>
-                <div class="item" data-value="In processing">
+                <div class="item" data-value="In processing" (click)="getSelectedTextValue()">
                   <div class="ui yellow empty circular label"></div>
                   In processing
                 </div>
                 <div class="item" data-value="Completed" >
-                  <div class="ui grey empty circular label"></div>
+                  <div class="ui grey empty circular label" (click)="getSelectedTextValue()"></div>
                   Completed
                 </div>
               </div>
             </div>
           </div>
-
 
           <span class="toolbar-spacer"></span>
           <!--<h2 style="margin-top: 5px; margin-bottom: 0">Order List</h2>
@@ -65,16 +64,46 @@
                 </div>
               </div> -->
               <!-- Four Books -->
-				<app-card-order
-                      *ngFor="let ord of orders | orderFilter:tag | slice: (curPage * pageSize) - pageSize :curPage * pageSize"
-                      [order]="ord"
-              ></app-card-order>
-			   <div class="pagination">
-					<button class="ui basic button" [disabled] ="curPage == 1" (click)="curPage = curPage - 1">PREV</button>
-						<span>Page {{curPage}} of {{ numberOfPages() }}</span>
-					<button class="ui basic button" [disabled] = "curPage >= orders.length/pageSize" 
-							(click) ="curPage = curPage + 1">NEXT</button>
-			   </div>
+			   
+			   
+<div class="columns" style="text-align:left-side">
+	Orders on page
+    <div class="column">
+        <label class="control">
+            <input type="number" class="input"  min="1" [(ngModel)]="config.itemsPerPage" id="number">
+        </label>
+    </div>
+	Page 
+    <div class="column">
+        <label class="control">
+            <input type="number" class="input" min="1" [(ngModel)]="config.currentPage" id="number">
+        </label>
+    </div>
+</div>
+
+<div class="ui divider" style="width: 100%; margin: 1; padding-left: 14px; padding-right: 14px">
+          <!-- Divider  -->
+         </div>
+
+<app-card-order 
+                      *ngFor="let ord of orders  | orderFilter:tag | paginate: config" 
+                       [order]="ord" 
+              ></app-card-order> 
+
+		
+<div class="has-text-centered">
+    <pagination-controls class="myPagination"
+						 [id]="config.id"
+                         [maxSize]="maxSize"
+                         [directionLinks]="directionLinks"
+                         [autoHide]="autoHide"
+                         [previousLabel]="labels.previousLabel"
+                         [nextLabel]="labels.nextLabel"
+                         [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                         [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                         [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                         (pageChange)="onPageChange($event)"></pagination-controls>
+</div>
               <!--[order]="ord"-->
               <!--"
                            -->

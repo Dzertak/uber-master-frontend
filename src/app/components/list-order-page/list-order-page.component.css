@@ -15,3 +15,7 @@
     text-align: center;
     display: flex;
 }
+
+#number{
+  width: 10em;
+}

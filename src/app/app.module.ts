@@ -3,6 +3,7 @@ import {Component, NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -56,7 +57,8 @@ const routes: Routes = [
       BrowserAnimationsModule,
       HttpModule,
       HttpClientModule,
-      RouterModule.forRoot(routes)
+      RouterModule.forRoot(routes),
+	  NgxPaginationModule// <-- include it in your app module
   ],
     providers: [AuthorizeService, AuthguardGuard, OrderService, MasterService],
   bootstrap: [AppComponent]

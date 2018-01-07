@@ -51,17 +51,54 @@
               </div> -->
               <!-- Four Books -->
 
-              <app-card-master
-                      *ngFor="let mast of masters | slice: (curPage * pageSize) - pageSize :curPage * pageSize"
-                      [master]="mast"
-              ></app-card-master>
-			  <div class="pagination">
-					<button class="ui basic button" [disabled] ="curPage == 1" (click)="curPage = curPage - 1">PREV</button>
-						<span>Page {{curPage}} of {{ numberOfPages() }}</span>
-					<button class="ui basic button" [disabled] = "curPage >= masters.length/pageSize" 
-							(click) ="curPage = curPage + 1">NEXT</button>
-			   </div>
+              <!-- <app-card-master -->
+                      <!-- *ngFor="let mast of masters | slice: (curPage * pageSize) - pageSize :curPage * pageSize" -->
+                      <!-- [master]="mast" -->
+              <!-- ></app-card-master> -->
+			  <!-- <div class="pagination"> -->
+					<!-- <button class="ui basic button" [disabled] ="curPage == 1" (click)="curPage = curPage - 1">PREV</button> -->
+						<!-- <span>Page {{curPage}} of {{ numberOfPages() }}</span> -->
+					<!-- <button class="ui basic button" [disabled] = "curPage >= masters.length/pageSize"  -->
+							<!-- (click) ="curPage = curPage + 1">NEXT</button> -->
+			   <!-- </div> -->
+<div class="columns" style="text-align:left-side">
+	Masters on page
+    <div class="column">
+        <label class="control">
+            <input type="number" class="input"  min="1" [(ngModel)]="config.itemsPerPage" id="number">
+        </label>
+    </div>
+	Page 
+    <div class="column">
+        <label class="control">
+            <input type="number" class="input" min="1" [(ngModel)]="config.currentPage" id="number">
+        </label>
+    </div>
+</div>
 
+<div class="ui divider" style="width: 100%; margin: 1; padding-left: 14px; padding-right: 14px">
+          <!-- Divider  -->
+         </div>
+
+<app-card-master
+                      *ngFor="let mast of masters  | orderFilter:tag | paginate: config" 
+                       [master]="mast" 
+              ></app-card-master> 
+
+		
+<div class="has-text-centered">
+    <pagination-controls class="myPagination"
+						 [id]="config.id"
+                         [maxSize]="maxSize"
+                         [directionLinks]="directionLinks"
+                         [autoHide]="autoHide"
+                         [previousLabel]="labels.previousLabel"
+                         [nextLabel]="labels.nextLabel"
+                         [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                         [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                         [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                         (pageChange)="onPageChange($event)"></pagination-controls>
+</div>
               <!--[order]="ord"-->
               <!--"
                            -->

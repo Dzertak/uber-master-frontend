@@ -1,20 +1,21 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {PaginationInstance} from "../../../../src/ngx-pagination/dist/ngx-pagination.module";
 import {AuthorizeService} from "../../services/authorize.service";
 import {Order} from "../../index";
 import {OrderService} from "../../services/order.service";
+
 declare var $:any;
 
 @Component({
   selector: 'app-list-order-page',
   templateUrl: './list-order-page.component.html',
-  styleUrls: ['./list-order-page.component.css']
+  styleUrls: ['./list-order-page.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class ListOrderPageComponent implements OnInit {
 
   tag: string = '';
   isLoad: boolean = true;
-  curPage : number;
-  pageSize : number;
   orders = [
       {"name":"Daily cleaning","description":"DESCR : 30","object_id":30,"master":12,"masterName":null,"masterProfession":"Cleaner","startDate":-61599024840000,"dueDate":-61597988040000,"bigDescription":"Daily cleaning","smallDescription":"Daily cleaning","status":"Completed"},
       {"name":"Laptop repairing","description":"DESCR : 31","object_id":31,"master":22,"masterName":null,"masterProfession":"Computer foreman","startDate":-61599024840000,"dueDate":-61598160840000,"bigDescription":"Laptop repairing","smallDescription":"Laptop repairing","status":"Completed"},
@@ -28,6 +29,26 @@ export class ListOrderPageComponent implements OnInit {
       {"name":"Repairing of rosette","description":"DESCR : 39","object_id":39,"master":16,"masterName":null,"masterProfession":"Locksmith","startDate":-61599024840000,"dueDate":-61597210440000,"bigDescription":"Repairing of rosette","smallDescription":"Repairing of rosette","status":"In processing"}
       ];
 
+	public filter: string = '';
+    public maxSize: number = 7;
+    public directionLinks: boolean = true;
+    public autoHide: boolean = false;
+    public config: PaginationInstance = {
+        id: 'app-list-order-page',
+        itemsPerPage: 5,
+        currentPage: 1
+    };
+	
+    public labels: any = {
+        previousLabel: 'Previous',
+        nextLabel: 'Next',
+        screenReaderPaginationLabel: 'Pagination',
+        screenReaderPageLabel: 'page',
+        screenReaderCurrentLabel: `You're on page`
+    };
+	
+	
+	  
   loading(status: boolean){
     this.isLoad=status;
   }
@@ -41,17 +62,17 @@ export class ListOrderPageComponent implements OnInit {
       this.loading(false);
       this.orders = orders;
     })*/
-	this.curPage = 1;
-    this.pageSize = 4;
+
   }
 
    getSelectedTextValue() {
        this.tag = $('.ui.dropdown').dropdown('get value');
   }
-
-  numberOfPages(){
-    return Math.ceil(this.orders.length / this.pageSize);
-  };
-
+  
+	onPageChange(number: number) {
+        console.log('change to page', number);
+        this.config.currentPage = number;
+    }
+	
 
 }
