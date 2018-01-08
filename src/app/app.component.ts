@@ -8,7 +8,7 @@ declare var $:any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
 
     swipe: number = 0;
 
@@ -28,17 +28,7 @@ export class AppComponent implements AfterViewInit {
     swipeTab(tab: number){
         this.swipe = tab;
     }
-    ngAfterViewInit(): void {
-
-        $(document).ready(function () {
 
 
-
-            //$("#filter-order").dropdown();
-
-            $('.ui.dropdown').dropdown();
-
-        });
-    }
 
 }

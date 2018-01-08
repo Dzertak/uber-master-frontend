@@ -2,6 +2,7 @@ import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map'
 import { JwtHelperService } from '@auth0/angular-jwt';
+import any = jasmine.any;
 
 
 @Injectable()
@@ -11,14 +12,21 @@ export class AuthorizeService {
     private isUserLoggedIn;
     public username;
 
-    constructor(/*public jwtHelper: JwtHelperService*/private http: Http) {
-        this.isUserLoggedIn = false;
+    constructor(private http: Http) {
+
+        const mySanya = sessionStorage.getItem('userStatus');
+        if (mySanya){
+            const outSession = JSON.parse(mySanya);
+            this.isUserLoggedIn = outSession.status || '';
+            this.username = outSession.username || '';
+        }
     };
 
 
     setUserLoggedIn(status: boolean) {
         this.isUserLoggedIn = status;
         this.username = 'admin';
+        sessionStorage.setItem('userStatus', JSON.stringify({status:this.isUserLoggedIn,username:this.username}));
     }
 
     getUserLoggedIn() {

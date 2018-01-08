@@ -1,4 +1,4 @@
-<div class="ui bottom attached segment" style="height: 100%">
+<div class="ui bottom attached segment">
 
       <div class="ui one column centered grid">
         <div class="column" id="toolbar">
@@ -91,19 +91,7 @@
               ></app-card-order> 
 
 		
-<div class="has-text-centered">
-    <pagination-controls class="myPagination"
-						 [id]="config.id"
-                         [maxSize]="maxSize"
-                         [directionLinks]="directionLinks"
-                         [autoHide]="autoHide"
-                         [previousLabel]="labels.previousLabel"
-                         [nextLabel]="labels.nextLabel"
-                         [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
-                         [screenReaderPageLabel]="labels.screenReaderPageLabel"
-                         [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
-                         (pageChange)="onPageChange($event)"></pagination-controls>
-</div>
+
               <!--[order]="ord"-->
               <!--"
                            -->
@@ -115,6 +103,21 @@
                </div>-->
 
           </div>
+
+            <div class="has-text-centered">
+                <pagination-controls class="myPagination"
+                                     [id]="config.id"
+                                     [maxSize]="maxSize"
+                                     [directionLinks]="directionLinks"
+                                     [autoHide]="autoHide"
+                                     [previousLabel]="labels.previousLabel"
+                                     [nextLabel]="labels.nextLabel"
+                                     [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                                     [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                                     [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                                     (pageChange)="onPageChange($event)"></pagination-controls>
+            </div>
+
         </div>
      <!-- Book Catalog -->
 

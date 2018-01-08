@@ -28,14 +28,13 @@ import { CardMasterComponent } from './components/card-master/card-master.compon
 import {OrderFilterPipe} from "./pipe/orderFilter.pipe";
 
 const routes: Routes = [
-    {path: '', component: AuthorizationPageComponent},
-     //{path: '**', component: NotFoundPageComponent},
+    {path: '', pathMatch:'full', component: AuthorizationPageComponent},
      { path: 'masters',canActivate: [AuthguardGuard], component: ListMastersPageComponent },
      { path: 'orders', canActivate: [AuthguardGuard], component: ListOrderPageComponent },
     {path: 'profile', canActivate: [AuthguardGuard],component: ProfilePageComponent},
-    {path: 'registration', component: RegistrationPageComponent}
-
-    ];
+    {path: 'registration', component: RegistrationPageComponent},
+    {path: '**', component: NotFoundPageComponent}
+];
 
 @NgModule({
   declarations: [

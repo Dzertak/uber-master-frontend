@@ -11,9 +11,12 @@ export class AuthguardGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  boolean {
-      //this.router.navigate(['/']);
-      //console.log('You are not authenticated');
-      return this.authorizeService.getUserLoggedIn();
+      if (this.authorizeService.getUserLoggedIn()){
+          return true;
+      }
+      this.router.navigate(['/']);
+      console.log('You are not authenticated');
+      return false;
 /*
      // this will be passed from the route config
      // on the data property

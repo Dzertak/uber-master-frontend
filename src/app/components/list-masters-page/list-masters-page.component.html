@@ -1,4 +1,4 @@
-<div class="ui bottom attached segment" style="height: 100%">
+<div class="ui bottom attached segment">
 
 <div class="ui one column centered grid">
         <div class="column" id="toolbar">
@@ -76,12 +76,12 @@
     </div>
 </div>
 
-<div class="ui divider" style="width: 100%; margin: 1; padding-left: 14px; padding-right: 14px">
+<div class="ui divider" style="width: 100%; margin: 1px; padding-left: 14px; padding-right: 14px">
           <!-- Divider  -->
          </div>
 
 <app-card-master
-                      *ngFor="let mast of masters  | orderFilter:tag | paginate: config" 
+                      *ngFor="let mast of masters  |  paginate: config"
                        [master]="mast" 
               ></app-card-master> 
 
