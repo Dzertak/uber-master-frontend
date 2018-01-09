@@ -29,15 +29,16 @@ import {OrderFilterPipe} from "./pipe/orderFilter.pipe";
 import { ProfilePokeComponent } from './components/profile-poke/profile-poke.component';
 
 const routes: Routes = [
-    {path: '', component: AuthorizationPageComponent},
-     //{path: '**', component: NotFoundPageComponent},
+    {path: '', pathMatch:'full', component: AuthorizationPageComponent},
      { path: 'masters',canActivate: [AuthguardGuard], component: ListMastersPageComponent },
      { path: 'orders', canActivate: [AuthguardGuard], component: ListOrderPageComponent },
     {path: 'profile/master', canActivate: [AuthguardGuard],component: ProfileMasterComponent},
 	{path: 'profile/poke', canActivate: [AuthguardGuard],component: ProfilePokeComponent},
-    {path: 'registration', component: RegistrationPageComponent}
+    {path: 'registration', component: RegistrationPageComponent},
+    {path: 'registration', component: RegistrationPageComponent},
+    {path: '**', component: NotFoundPageComponent}
+];
 
-    ];
 
 @NgModule({
   declarations: [

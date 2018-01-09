@@ -1,4 +1,4 @@
-<div class="ui bottom attached segment" style="height: 100%">
+<div class="ui bottom attached segment">
 
 <div class="ui one column centered grid">
         <div class="column" id="toolbar">
@@ -83,9 +83,8 @@
 </div>
 
 
-
 <app-card-master
-                      *ngFor="let mast of masters  | paginate: config" 
+                      *ngFor="let mast of masters  |  paginate: config"
                        [master]="mast" 
               ></app-card-master> 
 

@@ -1,8 +1,9 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {PaginationInstance} from "../../../../src/ngx-pagination/dist/ngx-pagination.module";
+
 import {AuthorizeService} from "../../services/authorize.service";
 import {Order} from "../../index";
 import {OrderService} from "../../services/order.service";
+import {PaginationInstance} from "ngx-pagination";
 
 declare var $:any;
 
