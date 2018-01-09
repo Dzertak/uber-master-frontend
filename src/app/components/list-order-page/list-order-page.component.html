@@ -66,24 +66,22 @@
               <!-- Four Books -->
 			   
 			   
-<div class="columns" style="text-align:left-side">
+<div class="columns" style="text-align:left-side;margin-bottom:10px">
 	Orders on page
     <div class="column">
         <label class="control">
-            <input type="number" class="input"  min="1" [(ngModel)]="config.itemsPerPage" id="number">
+            <!-- <input type="number readonly" class="input readonly" min="1" [(ngModel)]="config.itemsPerPage" id="number" list="defaultNumbers"> -->
+			<select class="ui compact section dropdown" [(ngModel)]="config.itemsPerPage" id="number">
+  <option value="5">5</option>
+  <option value="10">10</option>
+  <option value="15">15</option>
+  </select>
+
         </label>
     </div>
-	Page 
-    <div class="column">
-        <label class="control">
-            <input type="number" class="input" min="1" [(ngModel)]="config.currentPage" id="number">
-        </label>
-    </div>
+	
 </div>
 
-<div class="ui divider" style="width: 100%; margin: 1; padding-left: 14px; padding-right: 14px">
-          <!-- Divider  -->
-         </div>
 
 <app-card-order 
                       *ngFor="let ord of orders  | orderFilter:tag | paginate: config" 

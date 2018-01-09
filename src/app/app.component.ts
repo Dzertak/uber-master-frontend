@@ -17,6 +17,11 @@ export class AppComponent implements AfterViewInit {
     isCorrectStatus(): boolean {
         return this.authService.getUserLoggedIn();
     }
+	
+	//check if Poke or Master is authorized(for Profile page)
+	isPoke(): boolean {
+        return false;
+    }
 
     logout(): void {
         console.log("Logged out");

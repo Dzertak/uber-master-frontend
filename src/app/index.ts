@@ -19,6 +19,7 @@ export * from "./components/authorization-page/authorization-page.component";
 export * from "./components/list-masters-page/list-masters-page.component";
 export * from "./components/list-order-page/list-order-page.component";
 export * from "./components/not-found-page/not-found-page.component";
-export * from "./components/profile-page/profile-page.component";
+export * from "./components/profile-master/profile-master.component";
+export * from "./components/profile-poke/profile-poke.component";
 export * from "./components/registration-page/registration-page.component";
 export * from "./components/start-page/start-page.component";

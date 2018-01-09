@@ -14,10 +14,14 @@
     <span class="toolbar-spacer"></span>
 
     <div class="right menu">
-        <a class="item" [ngClass]="{'active':swipe===2}" (click)="swipeTab(2)" *ngIf="isCorrectStatus()" [routerLink]="['/profile']">
+        <a class="item" [ngClass]="{'active':swipe===2}" (click)="swipeTab(2)" *ngIf="isCorrectStatus() && isPoke()" [routerLink]="['/profile/poke']">
             <i class="user icon"></i>
             Profile
-        </a>
+		</a>
+		<a class="item" [ngClass]="{'active':swipe===2}" (click)="swipeTab(2)" *ngIf="isCorrectStatus() && !isPoke()" [routerLink]="['/profile/master']">
+            <i class="user icon"></i>
+            Profile
+		</a>
         <a class="item" *ngIf="isCorrectStatus()" (click)="logout()" >
             <i class="sign out icon"></i>
             Log out
