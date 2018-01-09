@@ -61,47 +61,37 @@
 					<!-- <button class="ui basic button" [disabled] = "curPage >= masters.length/pageSize"  -->
 							<!-- (click) ="curPage = curPage + 1">NEXT</button> -->
 			   <!-- </div> -->
-<div class="columns" style="text-align:left-side;margin-bottom:10px">
-	Masters on page
-    <div class="column">
-       
-            <!-- <input type="number readonly" class="input readonly" min="1" [(ngModel)]="config.itemsPerPage" id="number" list="defaultNumbers"> -->
-			<select class="ui compact section dropdown" [(ngModel)]="config.itemsPerPage" id="number">
-  <option value="5">5</option>
-  <option value="10">10</option>
-  <option value="15">15</option>
-  </select>
+              <div class="ui one column centered grid">
 
-     
-    </div>
-	<!-- Page  -->
-    <!-- <div class="column"> -->
-        <!-- <label class="control"> -->
-            <!-- <input type="number" class="input" min="1" [(ngModel)]="config.currentPage" id="number"> -->
-        <!-- </label> -->
-    <!-- </div> -->
-</div>
+                  <div class="column" id="outbar">
 
+                      <form class="ui form" style="width: 30%; margin-bottom: 5px">
+                          <div class="field">
+                              <input type="text" name="first-name" placeholder="search...">
+                          </div>
+                      </form>
+
+                      <span class="toolbar-spacer"></span>
+
+                      <label class="control">
+
+                          <!-- <input type="number readonly" class="input readonly" min="1" [(ngModel)]="config.itemsPerPage" id="number" list="defaultNumbers"> -->
+                          <select class="ui compact section dropdown" [(ngModel)]="config.itemsPerPage" id="number">
+                              <option value="5">5</option>
+                              <option value="10">10</option>
+                              <option value="15">15</option>
+                          </select>
+
+                      </label>
+                  </div>
+
+              </div>
 
 <app-card-master
                       *ngFor="let mast of masters  |  paginate: config"
                        [master]="mast" 
-              ></app-card-master> 
+              ></app-card-master>
 
-		
-<div class="has-text-centered">
-    <pagination-controls class="myPagination"
-						 [id]="config.id"
-                         [maxSize]="maxSize"
-                         [directionLinks]="directionLinks"
-                         [autoHide]="autoHide"
-                         [previousLabel]="labels.previousLabel"
-                         [nextLabel]="labels.nextLabel"
-                         [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
-                         [screenReaderPageLabel]="labels.screenReaderPageLabel"
-                         [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
-                         (pageChange)="onPageChange($event)"></pagination-controls>
-</div>
               <!--[order]="ord"-->
               <!--"
                            -->
@@ -113,6 +103,23 @@
                </div>-->
 
           </div>
+
+            <div class="paginationPadding" style="padding-right: 40px">
+                <div class="has-text-centered">
+                    <pagination-controls class="myPagination"
+                                         [id]="config.id"
+                                         [maxSize]="maxSize"
+                                         [directionLinks]="directionLinks"
+                                         [autoHide]="autoHide"
+                                         [previousLabel]="labels.previousLabel"
+                                         [nextLabel]="labels.nextLabel"
+                                         [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                                         [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                                         [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                                         (pageChange)="onPageChange($event)"></pagination-controls>
+                </div>
+            </div>
+
         </div>
      <!-- Book Catalog -->
 

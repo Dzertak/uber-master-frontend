@@ -16,8 +16,8 @@ import 'rxjs/add/operator/finally';
 export class AuthorizationPageComponent implements OnInit {
 
     isFail: boolean = true;
-    phone: String;
-    pass: String;
+    phone: string;
+    pass: string;
 
 
   constructor(private router: Router, private authorizeService: AuthorizeService) { }
@@ -43,13 +43,27 @@ export class AuthorizationPageComponent implements OnInit {
 
   loginUser(){
 
-    if(this.phone == 'admin' && this.pass == 'admin') {
-        this.isFail=false;
-        this.authorizeService.setUserLoggedIn(true);
-        this.router.navigate(['orders']);
-    }
-    else {
-        this.showFailedAuthorization();
-    }
-}
+     /* this.authorizeService.auth(this.phone,this.pass).subscribe( authPair => {
+          AuthorizeService.setToken(authPair.first,authPair.second);
+          if (AuthorizeService.getStatus()==200){*/
+                  this.isFail=false;
+                  this.authorizeService.setUserLoggedIn(true);
+                  this.router.navigate(['orders']);
+          /*}  else {
+              this.showFailedAuthorization();
+          }
+      });*/
+  /*finally(() => {
+          if (AuthorizeService.status == 200)
+              $('#authorization-modal').modal('hideDimmer');
+
+          else
+              $('#authorization-fail-message').removeClass('hidden');
+      }).subscribe(value => {
+          AuthorizeService.status = value.first;
+          if (AuthorizeService.status == 200) {
+              AuthorizeService.token = value.second;
+          }
+      });*/
+  }
 }

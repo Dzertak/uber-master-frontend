@@ -4,7 +4,7 @@ import { Master, Poke, Admin, Order } from "../index";
 @Injectable()
 export class Convertator {
 
-    public toMaster(object: any) : Master {
+    public static toMaster(object: any) : Master {
         let master: Master = new Master(
             object.name,
             object.description,
@@ -12,7 +12,6 @@ export class Convertator {
             object.location,
             object.userDescription,
             object.phoneNumber,
-            object.password,
             object.picture,
             object.profession,
             object.skills,
@@ -28,7 +27,7 @@ export class Convertator {
         return master;
     }
 
-    public toPoke(object: any) : Poke {
+    public static toPoke(object: any) : Poke {
         let poke: Poke = new Poke(
             object.name,
             object.description,
@@ -36,7 +35,6 @@ export class Convertator {
             object.location,
             object.userDescription,
             object.phoneNumber,
-            object.password,
             object.picture,
             object.classType,
             object.isUserBlocked
@@ -44,7 +42,7 @@ export class Convertator {
         return poke;
     }
 
-    public toAdmin(object: any) : Admin {
+    public static toAdmin(object: any) : Admin {
         let admin: Admin = new Admin(
             object.name,
             object.description,
@@ -52,14 +50,13 @@ export class Convertator {
             object.location,
             object.userDescription,
             object.phoneNumber,
-            object.password,
             object.picture,
             object.classType
         );
         return admin;
     }
 
-    public toOrder(object: any) : Order {
+    public static toOrder(object: any) : Order {
         let order: Order = new Order(
             object.name,
             object.description,

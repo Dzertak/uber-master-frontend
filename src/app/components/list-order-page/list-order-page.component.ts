@@ -17,6 +17,8 @@ export class ListOrderPageComponent implements OnInit {
 
   tag: string = '';
   isLoad: boolean = true;
+  curPage : number;
+  pageSize : number;
   orders = [
       {"name":"Daily cleaning","description":"DESCR : 30","object_id":30,"master":12,"masterName":null,"masterProfession":"Cleaner","startDate":-61599024840000,"dueDate":-61597988040000,"bigDescription":"Daily cleaning","smallDescription":"Daily cleaning","status":"Completed"},
       {"name":"Laptop repairing","description":"DESCR : 31","object_id":31,"master":22,"masterName":null,"masterProfession":"Computer foreman","startDate":-61599024840000,"dueDate":-61598160840000,"bigDescription":"Laptop repairing","smallDescription":"Laptop repairing","status":"Completed"},
@@ -39,7 +41,7 @@ export class ListOrderPageComponent implements OnInit {
         itemsPerPage: 5,
         currentPage: 1
     };
-	
+
     public labels: any = {
         previousLabel: 'Previous',
         nextLabel: 'Next',
@@ -47,9 +49,9 @@ export class ListOrderPageComponent implements OnInit {
         screenReaderPageLabel: 'page',
         screenReaderCurrentLabel: `You're on page`
     };
-	
-	
-	  
+
+
+
   loading(status: boolean){
     this.isLoad=status;
   }
@@ -69,11 +71,11 @@ export class ListOrderPageComponent implements OnInit {
    getSelectedTextValue() {
        this.tag = $('.ui.dropdown').dropdown('get value');
   }
-  
+
 	onPageChange(number: number) {
         console.log('change to page', number);
         this.config.currentPage = number;
     }
-	
+
 
 }

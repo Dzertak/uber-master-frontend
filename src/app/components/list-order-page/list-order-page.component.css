@@ -16,6 +16,11 @@
     display: flex;
 }
 
+#outbar{
+    text-align: center;
+    display: flex;
+}
+
 #number{
   width: 3em;
 }

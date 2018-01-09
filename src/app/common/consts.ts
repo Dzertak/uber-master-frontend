@@ -1,1 +1,1 @@
-export let url = 'https://jsonplaceholder.typicode.com/users';
+export let url = 'http://localhost:8090/';
