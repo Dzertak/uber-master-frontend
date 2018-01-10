@@ -43,9 +43,7 @@ export class AuthorizationPageComponent implements OnInit {
 
       this.authorizeService.auth(this.phone,this.pass).subscribe( authPair => {
           if (authPair.first==200){
-              console.log(authPair);
-              this.authorizeService.login(authPair,"753119477325","9kmDM77InARDap6IHsDXKy1c").subscribe(user => {
-                  console.log(this.phone,this.pass);
+              this.authorizeService.login(authPair,this.phone,this.pass).subscribe(user => {
                   this.authorizeService.signIn(authPair,user);
                   this.isFail=false;
                   this.router.navigate(['orders']);
