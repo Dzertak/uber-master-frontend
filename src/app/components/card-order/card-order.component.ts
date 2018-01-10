@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Order} from "../../models/order.model";
+import {Order} from "../../index";
 
 @Component({
   selector: 'app-card-order',

@@ -1,6 +1,6 @@
-import {AfterViewInit, Component} from '@angular/core';
-import {AuthorizeService} from "./services/authorize.service";
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {User, AuthorizeService} from "./index";
 declare var $:any;
 
 @Component({
@@ -25,7 +25,7 @@ export class AppComponent {
 
     logout(): void {
         console.log("Logged out");
-        this.authService.setUserLoggedIn(false);
+        this.authService.logout();
         this.router.navigate(['/']);
     }
 

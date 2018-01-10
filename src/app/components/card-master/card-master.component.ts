@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Master} from "../../models/master.model";
+import {Master} from "../../index";
 
 @Component({
   selector: 'app-card-master',
