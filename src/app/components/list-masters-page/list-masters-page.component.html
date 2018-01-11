@@ -68,9 +68,9 @@
               </div>
 
 
-                <app-card-master
-                      *ngFor="let mast of masters  |  paginate: config | masterSearch: searchStr"
-                       [master]="mast"
+<app-card-master
+                      *ngFor="let mast of masters  | masterSearch: searchStr|  paginate: config "
+                       [master]="mast" 
               ></app-card-master>
 
 
