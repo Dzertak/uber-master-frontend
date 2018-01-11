@@ -48,6 +48,15 @@ export class AuthorizeService {
         return this.isUserLoggedIn;
     }
 
+    getUser(){
+    return this.user;
+    }
+
+    //return entity format "ubermaster.entity.model.Master"
+    getUserType(){
+        return this.user.classType;
+    }
+
     signIn(authPair: Pair, user:User){
         this.user = user;
         this.authPair = authPair;
