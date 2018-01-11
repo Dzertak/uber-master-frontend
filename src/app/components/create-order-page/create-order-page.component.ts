@@ -1,6 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {Order} from '../../models/order.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DatePipe} from '@angular/common/src/pipes';
+
+
+class ValidationErrors {
+  constructor(s: string) {
+
+  }
+
+}
 
 @Component({
   selector: 'app-create-order-page',
@@ -16,7 +25,7 @@ export class CreateOrderPageComponent implements OnInit {
   private _name: string;
   private _smallDescription: string;
   private _bigDescription: string;
-  private _startDate: Date ;
+  private _startDate: Date;
   private _dueDate: Date;
 
   constructor(private fb: FormBuilder) {
@@ -31,13 +40,11 @@ export class CreateOrderPageComponent implements OnInit {
 
   createOrder(create) {
     this.order = new Order(create._name, null, null,
-      create._smallDescription, create._bigDescription, create._startDate,
-      create._dueDate, 'New', null, null);
+      create._smallDescription, create._bigDescription, new Date(create._startDate),
+      new Date(create._dueDate), 'New', null, null);
   }
 
-
   ngOnInit() {
-
   }
 
 }
