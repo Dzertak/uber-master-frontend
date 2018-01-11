@@ -13,6 +13,7 @@ declare var $:any;
 })
 export class ListMastersPageComponent implements OnInit {
 
+    searchStr = '';
     //userName: string;
 	isLoad: boolean = true;
 	//curPage : number;

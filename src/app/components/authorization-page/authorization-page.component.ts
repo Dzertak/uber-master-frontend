@@ -41,7 +41,8 @@ export class AuthorizationPageComponent implements OnInit {
 
   loginUser(){
 
-      this.authorizeService.auth(this.phone,this.pass).subscribe( authPair => {
+      //work
+      /*this.authorizeService.auth(this.phone,this.pass).subscribe( authPair => {
           if (authPair.first==200){
               this.authorizeService.login(authPair,this.phone,this.pass).subscribe(user => {
                   this.authorizeService.signIn(authPair,user);
@@ -51,18 +52,10 @@ export class AuthorizationPageComponent implements OnInit {
           }  else {
               this.showFailedAuthorization();
           }
-      });
-  /*finally(() => {
-          if (AuthorizeService.status == 200)
-              $('#authorization-modal').modal('hideDimmer');
-
-          else
-              $('#authorization-fail-message').removeClass('hidden');
-      }).subscribe(value => {
-          AuthorizeService.status = value.first;
-          if (AuthorizeService.status == 200) {
-              AuthorizeService.token = value.second;
-          }
       });*/
+
+      //for test
+      this.authorizeService.setUserLoggedIn(true);
+      this.router.navigate(['orders']);
   }
 }

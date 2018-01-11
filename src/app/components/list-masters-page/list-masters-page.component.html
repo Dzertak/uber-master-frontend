@@ -67,7 +67,7 @@
 
                       <form class="ui form" style="width: 30%; margin-bottom: 5px">
                           <div class="field">
-                              <input type="text" name="first-name" placeholder="search...">
+                              <input type="text" name="first-name" placeholder="search..." [(ngModel)]="searchStr">
                           </div>
                       </form>
 
@@ -88,7 +88,7 @@
               </div>
 
 <app-card-master
-                      *ngFor="let mast of masters  |  paginate: config"
+                      *ngFor="let mast of masters  |  paginate: config | masterSearch: searchStr"
                        [master]="mast" 
               ></app-card-master>
 
