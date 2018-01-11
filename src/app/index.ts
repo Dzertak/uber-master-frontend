@@ -6,13 +6,16 @@ export * from "./common/consts";
 export * from "./models/master.model";
 export * from "./models/poke.model";
 export * from "./models/order.model";
-export * from "./models/admin.model";
+export * from "./models/user.model";
+export * from "./models/blockeduser.model";
 export * from "./models/baseentity.model";
 export * from "./models/admin.model";
 
 /* Services */
 export * from "./services/convertator.service";
 export * from "./services/authorize.service";
+export * from "./services/master.service";
+export * from "./services/order.service";
 
 /* Components */
 export * from "./components/authorization-page/authorization-page.component";

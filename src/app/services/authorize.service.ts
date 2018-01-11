@@ -1,47 +1,60 @@
 import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map'
-import any = jasmine.any;
-import {Pair} from "../common/pair";
-import { url } from "./../common/consts";
-import {User} from "../models/user.model";
-import {Observable} from "rxjs/Observable";
-import {Convertator} from "./convertator.service";
+import {Convertator, User, Pair, url} from "../index";
+import {Router} from "@angular/router";
 declare var $:any;
 
 @Injectable()
 export class AuthorizeService {
 
-    private isUserLoggedIn;
+    private isUserLoggedIn = false;
     public username;
+    private authPair: Pair;
+    private user: User;
 
-    private static token: string;
-    private static status: number = 0;
+    private token: string;
+    private status: number = 0;
 
     private static http: Http;
 
-    constructor(private http: Http) {
-
+    constructor(private http: Http, private router: Router) {
         AuthorizeService.http = http;
-
-        const mySanya = sessionStorage.getItem('userStatus');
+        const mySanya = sessionStorage.getItem('userState');
         if (mySanya){
             const outSession = JSON.parse(mySanya);
-            this.isUserLoggedIn = outSession.status || '';
-            this.username = outSession.username || '';
+            this.authPair = outSession.authPair || '';
+            this.user = outSession.user || '';
+            this.isUserLoggedIn = outSession.isUserLoggedIn || '';
+            if (this.isUserLoggedIn){
+                this.router.navigate(['/orders']);
+            }
+           /* if (this.authPair!=''){
+                if (this.authPair!=null){
+                    if (this.authPair.first==200){
+                        this.router.navigate(['/orders'])
+                    }
+                }
+            }*/
         }
     };
 
 
     setUserLoggedIn(status: boolean) {
         this.isUserLoggedIn = status;
-        this.username = 'admin';
-        sessionStorage.setItem('userStatus', JSON.stringify({status:this.isUserLoggedIn,username:this.username}));
     }
 
-    getUserLoggedIn() {
+    getUserLoggedIn(){
         return this.isUserLoggedIn;
     }
+
+    signIn(authPair: Pair, user:User){
+        this.user = user;
+        this.authPair = authPair;
+        this.isUserLoggedIn = true;
+        sessionStorage.setItem('userState', JSON.stringify({isUserLoggedIn:this.isUserLoggedIn,authPair:authPair, user:user}));
+    }
+
 
 
     public auth(phone: string, password: string) {
@@ -55,7 +68,8 @@ export class AuthorizeService {
             });
     }
 
-    /*public login(phone: string, password: string): Observable<any> {
+    public login(authPair: Pair, phone: string, password: string) {
+        this.setAuthPair(authPair);
         return this.http.post(url+"login",{phoneNumber: phone, password: password})
             .map(response => response.json())
             .map(response => {
@@ -68,9 +82,9 @@ export class AuthorizeService {
                 if (response.classType == 'ubermaster.entity.model.Admin'){
                     return Convertator.toAdmin(response)
                 }
+            });
 
-            })
-    }*/
+    }
    /* static refreshToken(): void {
         if (AuthorizeService.token != null) {
             let headers = new Headers();
@@ -94,25 +108,29 @@ export class AuthorizeService {
         }
     }
 */
-    static logout(): void {
+     logout(): void {
+         this.isUserLoggedIn = false;
         this.token = null;
         this.status = 0;
+        this.authPair = null;
+        this.user = null;
+        sessionStorage.setItem('userState', JSON.stringify({isUserLoggedIn:this.isUserLoggedIn,authPair:this.authPair, user:this.user}));
+
+     }
+
+     getToken(): string {
+        return this.authPair.second;
     }
 
-    static getToken(): string {
-        return AuthorizeService.token;
+     getStatus(): number {
+        return this.authPair.first;
     }
 
-    static getStatus(): number {
-        return AuthorizeService.status;
+     setAuthPair(authPair: Pair){
+        this.authPair = authPair;
     }
 
-    static setToken(status: number, token: string){
-        AuthorizeService.status = status;
-        if (AuthorizeService.status == 200) {
-            AuthorizeService.token = token;
-        }
-    }
+
 
     /*public isAuthenticated(): boolean {
         const token = localStorage.getItem('token');

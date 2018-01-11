@@ -1,8 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
-import {AuthorizeService} from "../../services/authorize.service";
-import {Order} from "../../index";
-import {OrderService} from "../../services/order.service";
+import {Order, OrderService, AuthorizeService} from "../../index";
 import {PaginationInstance} from "ngx-pagination";
 
 declare var $:any;
@@ -31,7 +29,9 @@ export class ListOrderPageComponent implements OnInit {
       {"name":"Replacement of electrical wiring","description":"DESCR : 38","object_id":38,"master":18,"masterName":null,"masterProfession":"Electrician","startDate":-61599024840000,"dueDate":-61598679240000,"bigDescription":"Replacement of electrical wiring","smallDescription":"Replacement of electrical wiring","status":"In processing"},
       {"name":"Repairing of rosette","description":"DESCR : 39","object_id":39,"master":16,"masterName":null,"masterProfession":"Locksmith","startDate":-61599024840000,"dueDate":-61597210440000,"bigDescription":"Repairing of rosette","smallDescription":"Repairing of rosette","status":"In processing"}
       ];
+  //orders = [];
 
+    public searchStr = '';
 	public filter: string = '';
     public maxSize: number = 7;
     public directionLinks: boolean = true;
@@ -61,7 +61,7 @@ export class ListOrderPageComponent implements OnInit {
     $('.ui.dropdown').dropdown();
       this.loading(false);
 
-    /*this.orderService.getOrderList().subscribe(orders => {
+   /* this.orderService.getOrderList().subscribe(orders => {
       this.loading(false);
       this.orders = orders;
     })*/

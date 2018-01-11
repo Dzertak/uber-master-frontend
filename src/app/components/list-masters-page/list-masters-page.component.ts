@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component,Input, OnInit } from '@angular/core';
+import {Master, AuthorizeService, MasterService} from "../../index";
 
-import {AuthorizeService} from '../../services/authorize.service';
-import {Master} from "../../index";
-import {MasterService} from "../../services/master.service";
 import {PaginationInstance} from "ngx-pagination";
 declare var $:any;
 
@@ -15,6 +13,7 @@ declare var $:any;
 })
 export class ListMastersPageComponent implements OnInit {
 
+    searchStr = '';
     //userName: string;
 	isLoad: boolean = true;
 	//curPage : number;
@@ -73,6 +72,7 @@ export class ListMastersPageComponent implements OnInit {
     //})
 
     $('.ui.dropdown').dropdown();
+        this.loading(false);
    /* this.masterService.getMasterList().subscribe(masters => {
       this.loading(false);
       this.masters = masters;

@@ -25,3 +25,9 @@
   width: 3em;
 }
 
+#orderList{
+    text-align: center;
+    display: flex;
+    width: 60%;
+}
+

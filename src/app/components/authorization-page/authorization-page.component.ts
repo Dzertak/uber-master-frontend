@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthorizeService} from '../../services/authorize.service';
-
-
+import {AuthorizeService} from "../../index";
 import {Router} from "@angular/router";
+import 'rxjs/add/operator/finally';
 
 declare var $:any;
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-authorization-page',
@@ -43,27 +41,21 @@ export class AuthorizationPageComponent implements OnInit {
 
   loginUser(){
 
-     /* this.authorizeService.auth(this.phone,this.pass).subscribe( authPair => {
-          AuthorizeService.setToken(authPair.first,authPair.second);
-          if (AuthorizeService.getStatus()==200){*/
+      //work
+      /*this.authorizeService.auth(this.phone,this.pass).subscribe( authPair => {
+          if (authPair.first==200){
+              this.authorizeService.login(authPair,this.phone,this.pass).subscribe(user => {
+                  this.authorizeService.signIn(authPair,user);
                   this.isFail=false;
-                  this.authorizeService.setUserLoggedIn(true);
                   this.router.navigate(['orders']);
-          /*}  else {
+              });
+          }  else {
               this.showFailedAuthorization();
           }
       });*/
-  /*finally(() => {
-          if (AuthorizeService.status == 200)
-              $('#authorization-modal').modal('hideDimmer');
 
-          else
-              $('#authorization-fail-message').removeClass('hidden');
-      }).subscribe(value => {
-          AuthorizeService.status = value.first;
-          if (AuthorizeService.status == 200) {
-              AuthorizeService.token = value.second;
-          }
-      });*/
+      //for test
+      this.authorizeService.setUserLoggedIn(true);
+      this.router.navigate(['orders']);
   }
 }
