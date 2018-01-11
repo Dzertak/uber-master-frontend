@@ -44,13 +44,15 @@
         </div>
         <div class="fields">
           <div class="field mat-calendar">
-            <label>Start Date<input type="date" ngModel="_startDate" formControlName="_startDate"></label>
+            <label>Start Date<input type="date" [ngModel]="_startDate" name="_startDate"
+                                    formControlName="_startDate"></label>
           </div>
           <div class="field">
-            <label>Due Date<input type="date"  formControlName="_dueDate"></label>
+            <label>Due Date<input type="date" [ngModel]="_dueDate" formControlName="_dueDate"></label>
           </div>
         </div>
-        <input type="submit" class="button ui" value="Create order" [disabled]="!rForm.valid">
+        <input type="submit" class="button ui" value="Create order"
+               [disabled]="!rForm.valid || rForm.controls['_dueDate'].value <= rForm.controls['_startDate'].value">
       </div>
     </div>
   </form>
