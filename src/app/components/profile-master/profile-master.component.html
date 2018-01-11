@@ -1,36 +1,65 @@
- <div class="ui one column centered grid" style = "font-size:120%;">
-<!-- <table class="ui red table" style="width: 60%; margin-top:20px;">
-    
+ <div class="ui one column centered grid" style = "font-size:120%">
 
-  <tbody> -->
 	<tr>
 		<th class="five wide" ><div class="header" style = "font-size:160%;margin-top:10px;margin-right:180px">{{master.name}}</div></th>
 	</tr>
 	
 	  <div id="container">
-	<tr >
-		<td ><!-- colspan="2" -->
+	<div id="leftcol">
 			<img class="ui medium rounded left floated image" style = "margin-top:10px;margin-left:20px;" src="https://semantic-ui.com/images/avatar/large/matt.jpg">
+	<div  class="ui primary basic button" style="height:55px;width:300px;font-size:120%;margin-left:15px">
+Edit Personal Information
+</div>
+<table class="ui red table" style="margin-left:20px;width:90%">
+  <tbody>
+	<tr>
+      <td><i class="configure icon" ></i>Profession</td>
+      <td style="padding-left:20px">{{master.profession}}</td>
+    </tr>
+    <tr>
+      <td><i class="marker icon"></i>Location</td>
+      <td style="padding-left:20px">{{master.location}}</td>
+    </tr>
+    <tr>
+      <td><i class="call icon"></i>Phone Number</td>
+      <td style="padding-left:20px">{{master.phoneNumber}}</td>
+    </tr>
+	<!-- <tr> -->
+		<!-- <td>Skills</td> -->
+		<!-- <td>{{master.skills}}</td> -->
+	<!-- </tr> -->
+	<tr>
+		<td>Tools</td>
+		<td>{{master.tools}}</td>
+    </tr>
+	<tr>
+		<td>Payment</td>
+		<td>{{master.payment}}</td>
+    </tr>
+	<tr>
+		<td>Smoking</td>
+		<td >
+			<div *ngIf="isSmoking()">Yes</div>
+			<div *ngIf="!isSmoking()">No</div>
 		</td>
-		<td class="layer" ><!--rowspan="6"-->
+    </tr>
+	</tbody>
+ </table> 
+		
+		</div>
+		<div id="rightcol" style="margin-left:350px;margin-top:-700px"><!--rowspan="6"--> 
 		<div class="two column centered row">
           <div class="column">
 
 
             <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
-                          <!--<div style="width:100%; height: 100%; text-align: center; display: inline-block;" >
-                <i class="circle notched big loading icon" style="position: relative; top: 50%; transform: translateY(-50%);"
-                   [ngClass]="{'hidden':!isLoad}"></i>
-              </div>
-
-              <!--<div style="padding-bottom: 1em;">
-                <div class="ui field">
-                  <button class="ui button fluid" [ngClass]="{'green': currentPage != 1, 'grey': currentPage == 1}"
-                          ><i class="arrow up icon"></i></button>
-                </div>
-              </div> -->
-              <!-- Four Books -->
-            <div class="ui one column centered grid">
+    
+           
+	<div class="ui top attached tabular menu">
+	<a class="item "  [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" data-tab="first">Orders in process</a>
+	<a class="item " [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" data-tab="second">Orders completed</a></div>
+	<div class="ui bottom attached tab segment active" data-tab="first" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)">
+	 <div class="ui one column centered grid">
 
               <div class="column" id="outbar">
 
@@ -46,27 +75,10 @@
               </div>
 
     </div>
-	
-
-
-<app-card-order 
+	<app-card-order 
                       *ngFor="let ord of orders  | orderFilter:tag | masterSearch: searchStr| paginate: config " 
                        [order]="ord" 
               ></app-card-order> 
-
-		
-
-              <!--[order]="ord"-->
-              <!--"
-                           -->
-              <!-- <div style="padding-top: 1em;">
-                 <div class="ui field fluid">
-                   <button class="ui button fluid" [ngClass]="{'green': currentPage != pageCount, 'grey': currentPage == pageCount}"
-                           ><i class="arrow down icon"></i></button>
-                 </div>
-               </div>-->
-
-          </div>
 
             <div class="paginationPadding" style="padding-right: 40px;">
 
@@ -86,104 +98,10 @@
             </div>
 
             </div>
-
-        </div></td></tr></div>
-		<!-- </tbody>
-		</table> -->
-	<!-- </tr> -->
-	<!-- <tr> -->
-		<!-- <td>Skills</td> -->
-		<!-- <td>{{master.skills}}</td> -->
-	<!-- </tr> -->
-	<!-- <tr> -->
-		<!-- <td>Tools</td> -->
-		<!-- <td>{{master.tools}}</td> -->
-    <!-- </tr> -->
-	<!-- <tr> -->
-		<!-- <td>Payment</td> -->
-		<!-- <td>{{master.payment}}</td> -->
-    <!-- </tr> -->
-	<!-- <tr> -->
-		<!-- <td>Smoking</td> -->
-		<!-- <td > -->
-			<!-- <div *ngIf="isSmoking()">Yes</div> -->
-			<!-- <div *ngIf="!isSmoking()">No</div> -->
-		<!-- </td> -->
-    <!-- </tr> -->
-	
-  <!-- <tr> -->
-    <!-- <td> -->
-    <!-- <tr> -->
-      <!-- <td><i class="configure icon" ></i>Profession</td> -->
-      <!-- <td>{{master.profession}}</td> -->
-    <!-- </tr> -->
-    <!-- <tr> -->
-      <!-- <td><i class="marker icon"></i>Location</td> -->
-      <!-- <td>{{master.location}}</td> -->
-    <!-- </tr> -->
-    <!-- <tr> -->
-      <!-- <td><i class="call icon"></i>Phone Number</td> -->
-      <!-- <td>{{master.phoneNumber}}</td> -->
-    <!-- </tr> -->
-  <!-- </td> -->
-  
-  <!-- </tr> -->
-<!-- </table> -->
-
-
-<div id="container">
- 
-<tr>
-<td >
-<div  class="ui primary basic button" style="height:55px;width:290px;font-size:120%">
-Edit Personal Information
-</div>
-<table class="ui red table" style="margin-left:20px;width:90%">
-  <tbody>
-	<tr>
-      <td><i class="configure icon" ></i>Profession</td>
-      <td style="padding-left:20px">{{master.profession}}</td>
-    </tr>
-    <tr>
-      <td><i class="marker icon"></i>Location</td>
-      <td style="padding-left:20px">{{master.location}}</td>
-    </tr>
-    <tr>
-      <td><i class="call icon"></i>Phone Number</td>
-      <td style="padding-left:20px">{{master.phoneNumber}}</td>
-    </tr>
-	<tr>
-		<td>Skills</td>
-		<td>{{master.skills}}</td>
-	</tr>
-	<tr>
-		<td>Tools</td>
-		<td>{{master.tools}}</td>
-    </tr>
-	<tr>
-		<td>Payment</td>
-		<td>{{master.payment}}</td>
-    </tr>
-	<tr>
-		<td>Smoking</td>
-		<td >
-			<div *ngIf="isSmoking()">Yes</div>
-			<div *ngIf="!isSmoking()">No</div>
-		</td>
-    </tr>
-	</tbody>
- </table> 
-</td>
-
-
-<td ><!--rowspan="6"-->
-		<div class="two column centered row" style="margin-left:10px;height:40%" >
-          <div class="column">
-
-
-            <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
-                
-            <div class="ui one column centered grid">
+			
+			</div>
+			<div class="ui bottom attached tab segment" data-tab="second" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" >
+			 <div class="ui one column centered grid">
 
               <div class="column" id="outbar">
 
@@ -199,18 +117,12 @@ Edit Personal Information
               </div>
 
     </div>
-
-<app-card-order 
+	<app-card-order 
                       *ngFor="let ord of orders  | orderFilter:tag2 | masterSearch: searchStr2| paginate: config2 " 
                        [order]="ord" 
               ></app-card-order> 
 
-		
-
-          </div>
-
             <div class="paginationPadding" style="padding-right: 40px;">
-
 
             <div class="has-text-centered">
                 <pagination-controls class="myPagination"
@@ -227,9 +139,13 @@ Edit Personal Information
             </div>
 
             </div>
+			
+			</div>
+			</div>
+			</div>
+	</div>
+	
 
-        </div>
-		</td>
-</tr>
   </div>
   </div>
+ 
