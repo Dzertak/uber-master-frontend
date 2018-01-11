@@ -15,7 +15,6 @@ export class OrderService {
 
 
     public getOrderList() {
-
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization", "UberToken "+this.authorizeSerice.getToken());
