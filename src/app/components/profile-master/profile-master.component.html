@@ -4,15 +4,15 @@
 
   <tbody> -->
 	<tr>
-		<th class="five wide" ><div class="header" style = "font-size:160%;margin-top:10px;margin-right:150px">{{master.name}}</div></th>
+		<th class="five wide" ><div class="header" style = "font-size:160%;margin-top:10px;margin-right:180px">{{master.name}}</div></th>
 	</tr>
 	
-	 
+	  <div id="container">
 	<tr >
-		<td colspan="2"><!--  rowspan="5" -->
+		<td ><!-- colspan="2" -->
 			<img class="ui medium rounded left floated image" style = "margin-top:10px;margin-left:20px;" src="https://semantic-ui.com/images/avatar/large/matt.jpg">
 		</td>
-		<td class="layer" rowspan="6">
+		<td class="layer" ><!--rowspan="6"-->
 		<div class="two column centered row">
           <div class="column">
 
@@ -36,7 +36,7 @@
 
                 <form class="ui form" style="width: 30%; margin-bottom: 5px">
                   <div class="field">
-                    <input type="text" name="first-name" placeholder="search...">
+                    <input type="text" name="first-name" placeholder="search..." [(ngModel)]="searchStr">
                   </div>
                 </form>
 
@@ -50,7 +50,7 @@
 
 
 <app-card-order 
-                      *ngFor="let ord of orders  | orderFilter:tag | paginate: config" 
+                      *ngFor="let ord of orders  | orderFilter:tag | masterSearch: searchStr| paginate: config " 
                        [order]="ord" 
               ></app-card-order> 
 
@@ -87,7 +87,7 @@
 
             </div>
 
-        </div></td>
+        </div></td></tr></div>
 		<!-- </tbody>
 		</table> -->
 	<!-- </tr> -->
@@ -129,13 +129,17 @@
   
   <!-- </tr> -->
 <!-- </table> -->
+
+
+<div id="container">
+ 
+<tr>
+<td >
+<div  class="ui primary basic button" style="height:55px;width:290px;font-size:120%">
+Edit Personal Information
 </div>
-
-<table class="ui red table" style="width: 19%;margin-left:435px; margin-top:20px;">
-    
-
+<table class="ui red table" style="margin-left:20px;width:90%">
   <tbody>
-
 	<tr>
       <td><i class="configure icon" ></i>Profession</td>
       <td style="padding-left:20px">{{master.profession}}</td>
@@ -167,6 +171,65 @@
 			<div *ngIf="!isSmoking()">No</div>
 		</td>
     </tr>
+	</tbody>
+ </table> 
+</td>
 
-  </tbody>
-  </table>
+
+<td ><!--rowspan="6"-->
+		<div class="two column centered row" style="margin-left:10px;height:40%" >
+          <div class="column">
+
+
+            <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
+                
+            <div class="ui one column centered grid">
+
+              <div class="column" id="outbar">
+
+                <form class="ui form" style="width: 30%; margin-bottom: 5px">
+                  <div class="field">
+                    <input type="text" name="first-name" placeholder="search..." [(ngModel)]="searchStr2">
+                  </div>
+                </form>
+
+                <span class="toolbar-spacer"></span>
+
+               
+              </div>
+
+    </div>
+
+<app-card-order 
+                      *ngFor="let ord of orders  | orderFilter:tag2 | masterSearch: searchStr2| paginate: config2 " 
+                       [order]="ord" 
+              ></app-card-order> 
+
+		
+
+          </div>
+
+            <div class="paginationPadding" style="padding-right: 40px;">
+
+
+            <div class="has-text-centered">
+                <pagination-controls class="myPagination"
+                                     [id]="config2.id"
+                                     [maxSize]="maxSize"
+                                     [directionLinks]="directionLinks"
+                                     [autoHide]="autoHide"
+                                     [previousLabel]="labels.previousLabel"
+                                     [nextLabel]="labels.nextLabel"
+                                     [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                                     [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                                     [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                                     (pageChange)="onPageChange2($event)"></pagination-controls>
+            </div>
+
+            </div>
+
+        </div>
+		</td>
+</tr>
+  </div>
+  </div>

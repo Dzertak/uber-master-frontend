@@ -93,7 +93,7 @@
 
 
 <app-card-order 
-                      *ngFor="let ord of orders  | orderFilter:tag | paginate: config | orderSearch:searchStr"
+                      *ngFor="let ord of orders  | orderFilter:tag | orderSearch:searchStr| paginate: config "
                        [order]="ord" 
               ></app-card-order> 
 

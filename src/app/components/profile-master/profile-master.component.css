@@ -26,12 +26,17 @@
 #number{
   width: 3em;
 }
-
- /* .layer { */
+ #container {
+    width: 850px; /* Общая ширина колонок */ 
+	height: 320px;
+   }
    
-    /* width: 500px; /* Ширина блока */ 
-    /* background: white; /* Цвет фона */ 
-    /* padding: 7px; /* Поля вокруг текста */ 
+
+/* 
+ .layer {
+   
+    width: 500px; 
+    background: white; 
+     padding: 7px; /* Поля вокруг текста */
   
-   /* } */
 
