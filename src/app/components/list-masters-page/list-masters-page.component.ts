@@ -72,6 +72,7 @@ export class ListMastersPageComponent implements OnInit {
     //})
 
     $('.ui.dropdown').dropdown();
+        this.loading(false);
    /* this.masterService.getMasterList().subscribe(masters => {
       this.loading(false);
       this.masters = masters;
