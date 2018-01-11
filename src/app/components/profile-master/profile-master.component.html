@@ -75,10 +75,10 @@ Edit Personal Information
               </div>
 
     </div>
-	<app-card-order 
+	<app-master-profile-card
                       *ngFor="let ord of orders  | orderFilter:tag | masterSearch: searchStr| paginate: config " 
                        [order]="ord" 
-              ></app-card-order> 
+              ></app-master-profile-card> 
 
             <div class="paginationPadding" style="padding-right: 40px;">
 

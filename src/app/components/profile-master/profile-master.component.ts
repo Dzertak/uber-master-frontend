@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component,Input, OnInit } from '@angular/core';
 import {Master} from "../../index";
-import {Order} from "../../index"; //new
-import {OrderService} from "../../services/order.service"; //new
-import {PaginationInstance} from "ngx-pagination";//new
+import {Order} from "../../index"; 
+import {OrderService} from "../../services/order.service"; 
+import {PaginationInstance} from "ngx-pagination";
 declare var $:any;
 
 
@@ -74,12 +74,12 @@ export class ProfileMasterComponent implements OnInit {
   isSmoking() {
 	  return this.master.smoke;
   }
-  //new
+  
   getSelectedTextValue() {
        this.tag = "In processing";
   }
  
-  //new
+  
   onPageChange(number: number) {
         console.log('change to page', number);
         this.config.currentPage = number;

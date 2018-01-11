@@ -1,3 +1,133 @@
-<p>
-  profile-poke works!
-</p>
+ <div class="ui one column centered grid" style = "font-size:120%">
+
+	<tr>
+		<th class="five wide" ><div class="header" style = "font-size:160%;margin-top:10px;margin-right:180px">{{poke.name}}</div></th>
+	</tr>
+	
+	  <div id="container">
+	<div id="leftcol">
+			<img class="ui medium rounded left floated image" style = "margin-top:10px;margin-left:20px;" src="https://semantic-ui.com/images/avatar/large/matt.jpg">
+	<div  class="ui primary basic button" style="height:55px;width:300px;font-size:120%;margin-left:15px">
+Edit Personal Information
+</div>
+<table class="ui red table" style="margin-left:20px;width:90%">
+  <tbody>
+	
+    <tr>
+      <td><i class="marker icon"></i>Location</td>
+      <td style="padding-left:20px">{{poke.location}}</td>
+    </tr>
+    <tr>
+      <td><i class="call icon"></i>Phone Number</td>
+      <td style="padding-left:20px">{{poke.phoneNumber}}</td>
+    </tr>
+	<!-- <tr>
+      <td><i class="configure icon" ></i>User Description</td>
+      <td style="padding-left:20px">{{poke.userDescription}}</td>
+    </tr> -->
+	</tbody>
+ </table> 
+		
+		</div>
+		<div id="rightcol" style="margin-left:350px;margin-top:-500px"><!--rowspan="6"--> 
+		<div class="two column centered row">
+          <div class="column">
+
+
+            <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
+    
+           
+	<div class="ui top attached tabular menu">
+	<a class="item "  [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" data-tab="first">Orders in process</a>
+	<a class="item " [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" data-tab="second">Orders hanging</a></div>
+	<div class="ui bottom attached tab segment active" data-tab="first" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)">
+	 <div class="ui one column centered grid">
+
+              <div class="column" id="outbar">
+
+                <form class="ui form" style="width: 30%; margin-bottom: 5px">
+                  <div class="field">
+                    <input type="text" name="first-name" placeholder="search..." [(ngModel)]="searchStr">
+                  </div>
+                </form>
+
+                <span class="toolbar-spacer"></span>
+
+               
+              </div>
+
+    </div>
+	<app-master-profile-card
+                      *ngFor="let ord of orders  | orderFilter:tag | masterSearch: searchStr| paginate: config " 
+                       [order]="ord" 
+              ></app-master-profile-card> 
+
+            <div class="paginationPadding" style="padding-right: 40px;">
+
+
+            <div class="has-text-centered">
+                <pagination-controls class="myPagination"
+                                     [id]="config.id"
+                                     [maxSize]="maxSize"
+                                     [directionLinks]="directionLinks"
+                                     [autoHide]="autoHide"
+                                     [previousLabel]="labels.previousLabel"
+                                     [nextLabel]="labels.nextLabel"
+                                     [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                                     [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                                     [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                                     (pageChange)="onPageChange($event)"></pagination-controls>
+            </div>
+
+            </div>
+			
+			</div>
+			<div class="ui bottom attached tab segment" data-tab="second" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" >
+			 <div class="ui one column centered grid">
+
+              <div class="column" id="outbar">
+
+                <form class="ui form" style="width: 30%; margin-bottom: 5px">
+                  <div class="field">
+                    <input type="text" name="first-name" placeholder="search..." [(ngModel)]="searchStr2">
+                  </div>
+                </form>
+
+                <span class="toolbar-spacer"></span>
+
+               
+              </div>
+
+    </div>
+	<app-card-order 
+                      *ngFor="let ord of orders  | orderFilter:tag2 | masterSearch: searchStr2| paginate: config2 " 
+                       [order]="ord" 
+              ></app-card-order> 
+
+            <div class="paginationPadding" style="padding-right: 40px;">
+
+            <div class="has-text-centered">
+                <pagination-controls class="myPagination"
+                                     [id]="config2.id"
+                                     [maxSize]="maxSize"
+                                     [directionLinks]="directionLinks"
+                                     [autoHide]="autoHide"
+                                     [previousLabel]="labels.previousLabel"
+                                     [nextLabel]="labels.nextLabel"
+                                     [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                                     [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                                     [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                                     (pageChange)="onPageChange2($event)"></pagination-controls>
+            </div>
+
+            </div>
+			
+			</div>
+			</div>
+			</div>
+	</div>
+	
+
+  </div>
+  </div>
+ 

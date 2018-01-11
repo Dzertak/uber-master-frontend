@@ -30,6 +30,7 @@ import {ProfilePokeComponent} from './components/profile-poke/profile-poke.compo
 import {OrderSearchPipe} from './pipe/orderSearch.pipe';
 import {MasterSearchPipe} from './pipe/masterSearch.pipe';
 import {CreateOrderPageComponent} from './components/create-order-page/create-order-page.component';
+import { MasterProfileCardComponent } from './components/master-profile-card/master-profile-card.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: AuthorizationPageComponent},
@@ -60,7 +61,8 @@ const routes: Routes = [
     OrderSearchPipe,
     ProfilePokeComponent,
     MasterSearchPipe,
-    CreateOrderPageComponent
+    CreateOrderPageComponent,
+    MasterProfileCardComponent
   ],
   imports: [
     BrowserModule,

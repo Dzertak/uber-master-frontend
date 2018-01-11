@@ -20,7 +20,7 @@ export class AppComponent {
 	
 	//check if Poke or Master is authorized(for Profile page)
 	isPoke(): boolean {
-        return false;
+        return true;
     }
 
     logout(): void {
