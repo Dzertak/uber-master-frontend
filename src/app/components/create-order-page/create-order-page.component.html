@@ -1,0 +1,58 @@
+<div class="ui small form segment">
+  <form [formGroup]="rForm" (ngSubmit)="createOrder(rForm.value)">
+    <div class="ui form-container">
+      <div class="ui columns">
+        <h1>Create new Order</h1>
+
+        <div class="field">
+
+          <label>Order Name
+            <div class="alert ui red message"
+                 *ngIf="!rForm.controls['_name'].valid && rForm.controls['_name'].touched">
+              <div class="header">
+                This is required
+              </div>
+              <p>Enter from 10 to 50 symbols</p>
+            </div>
+          </label><input type="text" class="input text" formControlName="_name"/>
+
+        </div>
+        <div class="field">
+          <label>Small Description
+            <div class="alert ui red message"
+                 *ngIf="!rForm.controls['_smallDescription'].valid && rForm.controls['_smallDescription'].touched">
+              <div class="header">
+                This is required
+              </div>
+              <p>Enter from 25 to 280 symbols</p>
+            </div>
+            <textarea rows="2" formControlName="_smallDescription"></textarea>
+          </label>
+        </div>
+
+        <div class="field">
+          <label>Big Description
+            <div class="alert ui red message"
+                 *ngIf="!rForm.controls['_bigDescription'].valid && rForm.controls['_bigDescription'].touched">
+              <div class="header">
+                This is required
+              </div>
+              <p>Enter from 25 to 580 symbols</p>
+            </div>
+            <textarea formControlName="_bigDescription"></textarea>
+          </label>
+        </div>
+        <div class="fields">
+          <div class="field mat-calendar">
+            <label>Start Date<input type="date" ngModel="_startDate" formControlName="_startDate"></label>
+          </div>
+          <div class="field">
+            <label>Due Date<input type="date"  formControlName="_dueDate"></label>
+          </div>
+        </div>
+        <input type="submit" class="button ui" value="Create order" [disabled]="!rForm.valid">
+      </div>
+    </div>
+  </form>
+</div>
+
