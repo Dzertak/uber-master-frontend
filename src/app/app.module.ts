@@ -27,6 +27,8 @@ import {MasterService} from "./services/master.service";
 import { CardMasterComponent } from './components/card-master/card-master.component';
 import {OrderFilterPipe} from "./pipe/orderFilter.pipe";
 import { ProfilePokeComponent } from './components/profile-poke/profile-poke.component';
+import { OrderSearchPipe } from "./pipe/orderSearch.pipe";
+import { MasterSearchPipe } from "./pipe/masterSearch.pipe";
 
 const routes: Routes = [
     {path: '', pathMatch:'full', component: AuthorizationPageComponent},
@@ -53,7 +55,9 @@ const routes: Routes = [
     CardOrderComponent,
     CardMasterComponent,
     OrderFilterPipe,
-    ProfilePokeComponent
+      OrderSearchPipe,
+    ProfilePokeComponent,
+      MasterSearchPipe
   ],
   imports: [
     BrowserModule,

@@ -70,7 +70,7 @@
 
                 <form class="ui form" style="width: 30%; margin-bottom: 5px">
                   <div class="field">
-                    <input type="text" name="first-name" placeholder="search...">
+                    <input type="text" name="first-name" placeholder="search..." [(ngModel)]="searchStr">
                   </div>
                 </form>
 
@@ -93,7 +93,7 @@
 
 
 <app-card-order 
-                      *ngFor="let ord of orders  | orderFilter:tag | paginate: config" 
+                      *ngFor="let ord of orders  | orderFilter:tag | paginate: config | orderSearch:searchStr"
                        [order]="ord" 
               ></app-card-order> 
 
