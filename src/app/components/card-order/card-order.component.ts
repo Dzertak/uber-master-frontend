@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Order} from "../../index";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-card-order',
@@ -12,10 +13,11 @@ export class CardOrderComponent implements OnInit {
   @Input() order: Order;
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
 
   }
+
 
 }

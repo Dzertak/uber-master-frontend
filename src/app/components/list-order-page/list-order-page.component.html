@@ -16,9 +16,9 @@
                 <i class="tags icon"></i>
                 Tag status
               </div>
-              <div class="scrolling menu">
-			 
-                <div class="item" data-value="New" >
+              <div class="scrolling menu" (submit)="showChoice($event)">
+
+                <div class="item" data-value="New" (click)="getSelectedTextValue()">
                   <div class="ui green empty circular label"></div>
                   New
                 </div>
@@ -92,9 +92,10 @@
 	
 
 
-<app-card-order 
+<app-card-order
                       *ngFor="let ord of orders  | orderFilter:tag | orderSearch:searchStr| paginate: config "
-                       [order]="ord" 
+                       [order]="ord"
+                      [routerLink]="['/order',ord.object_id]"
               ></app-card-order> 
 
 		

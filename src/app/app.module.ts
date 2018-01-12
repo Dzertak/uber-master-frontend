@@ -31,6 +31,7 @@ import {OrderSearchPipe} from './pipe/orderSearch.pipe';
 import {MasterSearchPipe} from './pipe/masterSearch.pipe';
 import {CreateOrderPageComponent} from './components/create-order-page/create-order-page.component';
 import { MasterProfileCardComponent } from './components/master-profile-card/master-profile-card.component';
+import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: AuthorizationPageComponent},
@@ -39,8 +40,8 @@ const routes: Routes = [
   {path: 'profile/master', canActivate: [AuthguardGuard], component: ProfileMasterComponent},
   {path: 'profile/poke', canActivate: [AuthguardGuard], component: ProfilePokeComponent},
   {path: 'registration', component: RegistrationPageComponent},
-  {path: 'registration', component: RegistrationPageComponent},
-  {path: 'create-order', component: CreateOrderPageComponent},
+  {path: 'create-order', canActivate: [AuthguardGuard], component: CreateOrderPageComponent},
+  {path: 'order/:id', canActivate: [AuthguardGuard], component: OrderComponent },
   {path: '**', component: NotFoundPageComponent}
 ];
 
@@ -62,7 +63,8 @@ const routes: Routes = [
     ProfilePokeComponent,
     MasterSearchPipe,
     CreateOrderPageComponent,
-    MasterProfileCardComponent
+    MasterProfileCardComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

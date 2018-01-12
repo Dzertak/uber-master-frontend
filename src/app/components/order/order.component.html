@@ -1,0 +1,48 @@
+<div class="ui bottom attached segment">
+ <div class="ui two column centered grid">
+  <div class="column" id="toolbar">
+
+   <div class="ui card" *ngIf="!isLoad" style="width: 100%;">
+    <div class="content">
+     <div class="header">{{order.name}}</div>
+    </div>
+    <div class="content">
+     <h4 class="ui sub header">
+      <i class="checkmark icon"></i>
+      {{order.status}}</h4>
+
+     <h4 class="ui header">
+      <i class="checked calendar icon"></i>
+      <div class="content">
+       To Date:
+      </div>
+     </h4>
+      <p style="text-align: left">{{order.dueDate}}</p>
+
+    <h4 class="ui header">
+     <i class="plug icon"></i>
+     <div class="content">
+      Small Description
+     </div>
+    </h4>
+    <p style="text-align: left">{{order.smallDescription}}</p>
+
+   <h4 class="ui header">
+    <i class="power icon"></i>
+    <div class="content">
+     Big Description
+    </div>
+   </h4>
+   <p style="text-align: left">{{order.bigDescription}}</p>
+
+    </div>
+
+    <div class="extra content">
+     <button class="ui green labeled icon button">
+      <i class="configure icon"></i>
+      Join It</button>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

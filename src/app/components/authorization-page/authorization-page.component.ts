@@ -42,7 +42,7 @@ export class AuthorizationPageComponent implements OnInit {
   loginUser(){
 
       //work
-      /*this.authorizeService.auth(this.phone,this.pass).subscribe( authPair => {
+      this.authorizeService.auth(this.phone,this.pass).subscribe( authPair => {
           if (authPair.first==200){
               this.authorizeService.login(authPair,this.phone,this.pass).subscribe(user => {
                   this.authorizeService.signIn(authPair,user);
@@ -52,10 +52,10 @@ export class AuthorizationPageComponent implements OnInit {
           }  else {
               this.showFailedAuthorization();
           }
-      });*/
+      });
 
       //for test
-      this.authorizeService.setUserLoggedIn(true);
-      this.router.navigate(['orders']);
+      /*this.authorizeService.setUserLoggedIn(true);
+      this.router.navigate(['orders']);*/
   }
 }
