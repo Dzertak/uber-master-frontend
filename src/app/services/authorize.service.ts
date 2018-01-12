@@ -54,7 +54,8 @@ export class AuthorizeService {
 
     //return entity format "ubermaster.entity.model.Master"
     getUserType(){
-        return this.user.classType;
+        //return this.user.classType;
+		return "ubermaster.entity.model.Poke";//!!!!!!!!!
     }
 
     signIn(authPair: Pair, user:User){

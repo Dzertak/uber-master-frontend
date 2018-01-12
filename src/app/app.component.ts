@@ -11,7 +11,7 @@ declare var $:any;
 export class AppComponent {
 
     swipe: number = 0;
-
+	notAdmin = true;
     constructor(private authService: AuthorizeService, private router: Router){}
 
     isCorrectStatus(): boolean {
@@ -20,7 +20,13 @@ export class AppComponent {
 	
 	//check if Poke or Master is authorized(for Profile page)
 	isPoke(): boolean {
-        return true;
+		if(this.authService.getUserType() == "ubermaster.entity.model.Poke"){
+        return true;}
+		else if(this.authService.getUserType() == "ubermaster.entity.model.Master"){
+        return false;}
+		else if(this.authService.getUserType() == "ubermaster.entity.model.Admin"){
+		this.notAdmin = false;
+		return true;}
     }
 
     logout(): void {

@@ -10,7 +10,13 @@
   </div>
   <div class="extra content">
     <div class="right floated author">
-      <button class="left floated ui positive basic button" style="margin-bottom: 0px" >Confirm Completion </button>
+	<div *ngIf="isPoke() && notAdmin ">
+      <button class="left floated ui positive basic button" style="margin-bottom: 0px"  >Confirm Completion </button>
+	  <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" > Matt
+	  </div>
+	  <div *ngIf="!isPoke() && notAdmin ">
+	  <button class="left floated ui positive basic button" style="margin-bottom: 0px"  >Confirm Completion </button>
+	  </div>
     </div>
   </div>
 </div>
