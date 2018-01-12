@@ -42,6 +42,28 @@ export class OrderComponent implements OnInit {
     }
 
     joinIt(){
+      this.orderService.updateOrderByMaster(this.order,this.user);
+    }
+
+    convertMillisecondsToDigitalClock(ms) {
+        /*const hours = Math.floor(ms / 3600000), // 1 Hour = 36000 Milliseconds
+            minutes = Math.floor((ms % 3600000) / 60000), // 1 Minutes = 60000 Milliseconds
+            seconds = Math.floor(((ms % 360000) % 60000) / 1000) // 1 Second = 1000 Milliseconds
+        return {
+            hours : hours,
+            minutes : minutes,
+            seconds : seconds,
+            clock : hours + ":" + minutes + ":" + seconds
+        };*/
+        var d, h, m, s;
+        s = Math.floor(ms / 1000);
+        m = Math.floor(s / 60);
+        s = s % 60;
+        h = Math.floor(m / 60);
+        m = m % 60;
+        d = Math.floor(h / 24);
+        h = h % 24;
+        d = Math.floor(h / 24);
 
     }
 
