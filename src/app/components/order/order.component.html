@@ -11,13 +11,18 @@
       <i class="checkmark icon"></i>
       {{order.status}}</h4>
 
-     <h4 class="ui header">
-      <i class="checked calendar icon"></i>
-      <div class="content">
-       To Date:
+     <div class="ui four column grid">
+      <div class="row" id="row">
+       <h4 class="ui header">
+        <i class="checked calendar icon"></i>
+        <div class="content">
+         To Date:
+        </div>
+       </h4>
+       <p style="text-align: left">{{order.dueDate}}</p>
       </div>
-     </h4>
-      <p style="text-align: left">{{order.dueDate}}</p>
+     </div>
+
 
     <h4 class="ui header">
      <i class="plug icon"></i>
@@ -37,7 +42,7 @@
 
     </div>
 
-    <div class="extra content">
+    <div class="extra content" *ngIf="order.status=='New' && isMaster()">
      <button class="ui green labeled icon button">
       <i class="configure icon"></i>
       Join It</button>

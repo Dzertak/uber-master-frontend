@@ -4,35 +4,42 @@ import 'rxjs/add/operator/map'
 import {AuthorizeService, url} from "../index";
 import {Headers} from '@angular/http';
 import {Convertator} from "./convertator.service";
+import {Master} from "../models/master.model";
+import {Order} from "../models/order.model";
 
 
 
 @Injectable()
 export class OrderService {
 
+    options: RequestOptions;
 
-
-    constructor(private http:Http, private authorizeSerice:AuthorizeService) {};
-
-
-    public getOrderList() {
+    constructor(private http:Http, private authorizeSerice:AuthorizeService) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization", "UberToken "+this.authorizeSerice.getToken());
-        const options = new RequestOptions({headers: headers});
-        return this.http.get('http://localhost:8090/entities/getTypedEntity?class=Order', options)
+        this.options = new RequestOptions({headers: headers});
+    };
+
+
+    public getOrderList() {
+
+        return this.http.get('http://localhost:8090/entities/getTypedEntity?class=Order', this.options)
             .map(response => response.json())
     }
 
     public getOrder(id: string){
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append("Authorization", "UberToken "+this.authorizeSerice.getToken());
-        const options = new RequestOptions({headers: headers});
-        return this.http.get(url+"entities/getEntity?id="+id+"&class=Order", options)
+        return this.http.get(url+"entities/getEntity?id="+id+"&class=Order", this.options)
             .map(response => response.json())
             .map(response => {
                 return Convertator.toOrder(response);
             });
+    }
+
+    public updateOrderByMaster(order: Order, master: Master){
+        order.master=master.object_id;
+        this.http.post(url+"entity/updateOrder", order).subscribe(result =>{
+            alert(result)
+        })
     }
 }

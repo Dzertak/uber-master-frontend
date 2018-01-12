@@ -54,8 +54,8 @@ export class AuthorizeService {
 
     //return entity format "ubermaster.entity.model.Master"
     getUserType(){
-        //return this.user.classType;
-		return "ubermaster.entity.model.Poke";//!!!!!!!!!
+        return this.user.classType;
+		//return "ubermaster.entity.model.Poke";//!!!!!!!!!
     }
 
     signIn(authPair: Pair, user:User){
@@ -83,15 +83,7 @@ export class AuthorizeService {
         return this.http.post(url+"login",{phoneNumber: phone, password: password})
             .map(response => response.json())
             .map(response => {
-                if (response.classType == 'ubermaster.entity.model.Poke'){
-                    return Convertator.toPoke(response)
-                }
-                if (response.classType == 'ubermaster.entity.model.Master'){
-                    return Convertator.toMaster(response)
-                }
-                if (response.classType == 'ubermaster.entity.model.Admin'){
-                    return Convertator.toAdmin(response)
-                }
+               return response;
             });
 
     }

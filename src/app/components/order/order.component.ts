@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Order} from "../../models/order.model";
 import {ActivatedRoute} from "@angular/router";
 import {OrderService} from "../../services/order.service";
+import {AuthorizeService} from "../../services/authorize.service";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-order',
@@ -13,11 +15,15 @@ export class OrderComponent implements OnInit {
   order: Order;
   id:string;
   isLoad: boolean = true;
-  constructor(private router: ActivatedRoute, private orderService: OrderService) { }
+
+
+  user: User;
+
+  constructor(private router: ActivatedRoute, private orderService: OrderService, private authorizeService: AuthorizeService) { }
 
   ngOnInit() {
-    console.log(this.router);
     this.id = this.router.snapshot.params.id;
+    this.user = this.authorizeService.getUser();
       this.orderService.getOrder(this.id).subscribe(order => {
         this.order = order;
         this.loading(false);
@@ -28,5 +34,15 @@ export class OrderComponent implements OnInit {
         this.isLoad=status;
     }
 
+    isMaster(){
+      if (this.user.classType=='Master'){
+        return true;
+      }
+      return false;
+    }
+
+    joinIt(){
+
+    }
 
 }
