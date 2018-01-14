@@ -16,6 +16,7 @@ export * from "./services/convertator.service";
 export * from "./services/authorize.service";
 export * from "./services/master.service";
 export * from "./services/order.service";
+export * from "./services/poke.service";
 
 /* Components */
 export * from "./components/authorization-page/authorization-page.component";

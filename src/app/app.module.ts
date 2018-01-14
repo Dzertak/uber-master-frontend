@@ -24,6 +24,7 @@ import {NotFoundPageComponent} from './components/not-found-page/not-found-page.
 import {CardOrderComponent} from './components/card-order/card-order.component';
 import {OrderService} from './services/order.service';
 import {MasterService} from './services/master.service';
+import {PokeService} from './services/poke.service';
 import {CardMasterComponent} from './components/card-master/card-master.component';
 import {OrderFilterPipe} from './pipe/orderFilter.pipe';
 import {ProfilePokeComponent} from './components/profile-poke/profile-poke.component';
@@ -37,8 +38,8 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', component: AuthorizationPageComponent},
   {path: 'masters', canActivate: [AuthguardGuard], component: ListMastersPageComponent},
   {path: 'orders', canActivate: [AuthguardGuard], component: ListOrderPageComponent},
-  {path: 'profile/master', canActivate: [AuthguardGuard], component: ProfileMasterComponent},
-  {path: 'profile/poke', canActivate: [AuthguardGuard], component: ProfilePokeComponent},
+  {path: 'profileMaster/:id', canActivate: [AuthguardGuard], component: ProfileMasterComponent},
+  {path: 'profilePoke/:id', canActivate: [AuthguardGuard], component: ProfilePokeComponent},
   {path: 'registration', component: RegistrationPageComponent},
   {path: 'create-order', canActivate: [AuthguardGuard], component: CreateOrderPageComponent},
   {path: 'order/:id', canActivate: [AuthguardGuard], component: OrderComponent },
@@ -76,7 +77,7 @@ const routes: Routes = [
     NgxPaginationModule,
     ReactiveFormsModule
   ],
-  providers: [AuthorizeService, AuthguardGuard, OrderService, MasterService],
+  providers: [AuthorizeService, AuthguardGuard, OrderService, MasterService, PokeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
