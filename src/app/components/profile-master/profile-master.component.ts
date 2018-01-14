@@ -1,8 +1,14 @@
 import { ChangeDetectionStrategy, Component,Input, OnInit } from '@angular/core';
-import {Master} from "../../index";
-import {Order} from "../../index"; 
+import {Master} from "../../models/master.model";
+//import {Order} from "../../index"; 
+import {Order} from "../../models/order.model";//new
 import {OrderService} from "../../services/order.service"; 
 import {PaginationInstance} from "ngx-pagination";
+import {ActivatedRoute} from "@angular/router";
+
+import {MasterService} from "../../services/master.service";
+import {AuthorizeService} from "../../services/authorize.service";
+//import {User} from "../../models/user.model";
 declare var $:any;
 
 
@@ -12,16 +18,22 @@ declare var $:any;
   styleUrls: ['./profile-master.component.css']
 })
 export class ProfileMasterComponent implements OnInit {
+	
+	master: Master;
+	idM: string;
+	//user: User;
+	orders = [];
+	
 	swipe: number = 0;
-  //@Input() master: Master;
    searchStr = '';
    searchStr2 = '';
   tag: string = '';
   tag2: string = '';
   isLoad: boolean = true;
-  master = {"name":"Dirty Harry","description":"DESCR : 30","object_id":30,"location":"Primorskyy","userDescription":"USERDESCR","phoneNumber":"380754832658","password":"pass1","picture":"pic1","classType":"Master","isUserBlocked":false,"profession":"Cleaner","skills":"Cool Guy","experience":"4 years","payment":250,"smoke":false,"tools":"axe","start_time":-61599024840000,"end_time":-61597815240000};
+  //master = {"name":"Dirty Harry","description":"DESCR : 30","object_id":30,"location":"Primorskyy","userDescription":"USERDESCR","phoneNumber":"380754832658","password":"pass1","picture":"pic1","classType":"Master","isUserBlocked":false,"profession":"Cleaner","skills":"Cool Guy","experience":"4 years","payment":250,"smoke":false,"tools":"axe","start_time":-61599024840000,"end_time":-61597815240000};
+  
   //new
-  orders = [
+ /*  orders = [
       {"name":"Daily cleaning","description":"DESCR : 30","object_id":30,"master":12,"masterName":null,"masterProfession":"Cleaner","startDate":-61599024840000,"dueDate":-61597988040000,"bigDescription":"Daily cleaning","smallDescription":"Daily cleaning","status":"Completed"},
       {"name":"Laptop repairing","description":"DESCR : 31","object_id":31,"master":22,"masterName":null,"masterProfession":"Computer foreman","startDate":-61599024840000,"dueDate":-61598160840000,"bigDescription":"Laptop repairing","smallDescription":"Laptop repairing","status":"Completed"},
       {"name":"Installation of two-rate counters","description":"DESCR : 32","object_id":32,"master":18,"masterName":null,"masterProfession":"Electrician","startDate":-61599024840000,"dueDate":-61597815240000,"bigDescription":"Installation of two-rate counters","smallDescription":"Installation of two-rate counters","status":"Completed"},
@@ -32,7 +44,7 @@ export class ProfileMasterComponent implements OnInit {
       {"name":"Water and sewer cleaning","description":"DESCR : 37","object_id":37,"master":26,"masterName":null,"masterProfession":"Plumber","startDate":-61599024840000,"dueDate":-61596692040000,"bigDescription":"Water and sewer cleaning","smallDescription":"Water and sewer cleaning","status":"Completed"},
       {"name":"Replacement of electrical wiring","description":"DESCR : 38","object_id":38,"master":18,"masterName":null,"masterProfession":"Electrician","startDate":-61599024840000,"dueDate":-61598679240000,"bigDescription":"Replacement of electrical wiring","smallDescription":"Replacement of electrical wiring","status":"In processing"},
       {"name":"Repairing of rosette","description":"DESCR : 39","object_id":39,"master":16,"masterName":null,"masterProfession":"Locksmith","startDate":-61599024840000,"dueDate":-61597210440000,"bigDescription":"Repairing of rosette","smallDescription":"Repairing of rosette","status":"In processing"}
-      ];
+      ]; */
 	  
 	  public filter: string = '';
     public maxSize: number = 7;
@@ -62,18 +74,33 @@ export class ProfileMasterComponent implements OnInit {
   }
   
   
-  constructor() { }
+  constructor(private router: ActivatedRoute, private masterService: MasterService, private authorizeService: AuthorizeService) { }
 
   ngOnInit() {
-	   $('.ui.dropdown').dropdown();
-      this.loading(false);
+	 
+	//$('.ui.dropdown').dropdown();
+	this.idM = this.router.snapshot.params.id;
+	//this.user = this.authorizeService.getUser();
+	//this.idM = this.user.object_id.toString();
+	this.masterService.getMasterOrders(this.idM).subscribe(orders => {  
+	   this.orders = orders;
+		//this.loading(false);
+        
+       });
+    this.masterService.getMaster(this.idM).subscribe(master => {  
+	   this.master = master;
+		this.loading(false);
+        
+       });
+	   
 	   this.tag = "In processing";
 	   this.tag2 = "Completed";
+	 
   }
   
-  isSmoking() {
+   isSmoking() {
 	  return this.master.smoke;
-  }
+  } 
   
   getSelectedTextValue() {
        this.tag = "In processing";
@@ -95,6 +122,6 @@ export class ProfileMasterComponent implements OnInit {
         this.swipe = tab;
     }
 	
-	
+	  
 
 }

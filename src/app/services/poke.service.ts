@@ -4,11 +4,11 @@ import 'rxjs/add/operator/map'
 import {ActivatedRoute} from "@angular/router";
 import {AuthorizeService, url} from  "../index";
 import {Convertator} from "./convertator.service";
-import {Master} from "../models/master.model";
+import {Poke} from "../models/poke.model";
 
 
 @Injectable()
-export class MasterService {
+export class PokeService {
 
 	options: RequestOptions;
 
@@ -20,25 +20,26 @@ export class MasterService {
 		};
 
 
-    public getMasterList() {
-        return this.http.get('http://localhost:8090/entities/getTypedEntity?class=Master', this.options)
+    public getPokeList() {
+        return this.http.get('http://localhost:8090/entities/getTypedEntity?class=Poke', this.options)
             .map(response => response.json())
     }
 	
-	public getMaster(id: string){
-        return this.http.get(url+"entities/getEntity?id="+id+"&class=Master", this.options)
+	public getPoke(id: string){
+        return this.http.get(url+"entities/getEntity?id="+id+"&class=Poke", this.options)
             .map(response => response.json())
             .map(response => {
-                return Convertator.toMaster(response);
+                return Convertator.toPoke(response);
             });
     }
 	
-	public getMasterOrders(id: string){
-        return this.http.get(url+"entities/getMasterOrders?id="+id, this.options)
+	public getPokeOrders(id: string){
+        return this.http.get(url+"entities/getPokeOrders?id="+id, this.options)
             .map(response => response.json())
            /*  .map(response => {
                 return Convertator.toOr(resderponse);
             }); */
     }
+	
 
 }

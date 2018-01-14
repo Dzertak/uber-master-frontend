@@ -1,8 +1,12 @@
 import { ChangeDetectionStrategy, Component,Input, OnInit } from '@angular/core';
-import {Poke} from "../../index";
+import {Poke} from "../../models/poke.model";
 import {Order} from "../../index"; 
 import {OrderService} from "../../services/order.service"; 
 import {PaginationInstance} from "ngx-pagination";
+import {ActivatedRoute} from "@angular/router";
+
+import {PokeService} from "../../services/poke.service";
+import {AuthorizeService} from "../../services/authorize.service";
 declare var $:any;
 
 @Component({
@@ -12,18 +16,19 @@ declare var $:any;
 })
 export class ProfilePokeComponent implements OnInit {
 
-swipe: number = 0;
-  //@Input() master: Master;
-   searchStr = '';
-   searchStr2 = '';
-  tag: string = '';
-  tag2: string = '';
-  isLoad: boolean = true;
 
-poke = {"name":"SR","description":"SRDESCR","object_id":0,"location":"Primorskyy","userDescription":"SRUSERDESCR","phoneNumber":"99999999","picture":"SRpic1","classType":"Poke","isUserBlocked":false
-};
+	poke: Poke;
+	idP: string;
+	swipe: number = 0;
+	searchStr = '';
+	searchStr2 = '';
+	tag: string = '';
+	tag2: string = '';
+	isLoad: boolean = true;
+	
+//poke = {"name":"SR","description":"SRDESCR","object_id":0,"location":"Primorskyy","userDescription":"SRUSERDESCR","phoneNumber":"99999999","picture":"SRpic1","classType":"Poke","isUserBlocked":false};
 
- orders = [
+ /* orders = [
       {"name":"Daily cleaning","description":"DESCR : 30","object_id":30,"master":12,"masterName":null,"masterProfession":"Cleaner","startDate":-61599024840000,"dueDate":-61597988040000,"bigDescription":"Daily cleaning","smallDescription":"Daily cleaning","status":"Completed"},
       {"name":"Laptop repairing","description":"DESCR : 31","object_id":31,"master":22,"masterName":null,"masterProfession":"Computer foreman","startDate":-61599024840000,"dueDate":-61598160840000,"bigDescription":"Laptop repairing","smallDescription":"Laptop repairing","status":"Completed"},
       {"name":"Installation of two-rate counters","description":"DESCR : 32","object_id":32,"master":18,"masterName":null,"masterProfession":"Electrician","startDate":-61599024840000,"dueDate":-61597815240000,"bigDescription":"Installation of two-rate counters","smallDescription":"Installation of two-rate counters","status":"Completed"},
@@ -34,7 +39,9 @@ poke = {"name":"SR","description":"SRDESCR","object_id":0,"location":"Primorskyy
       {"name":"Water and sewer cleaning","description":"DESCR : 37","object_id":37,"master":26,"masterName":null,"masterProfession":"Plumber","startDate":-61599024840000,"dueDate":-61596692040000,"bigDescription":"Water and sewer cleaning","smallDescription":"Water and sewer cleaning","status":"Completed"},
       {"name":"Replacement of electrical wiring","description":"DESCR : 38","object_id":38,"master":18,"masterName":null,"masterProfession":"Electrician","startDate":-61599024840000,"dueDate":-61598679240000,"bigDescription":"Replacement of electrical wiring","smallDescription":"Replacement of electrical wiring","status":"In processing"},
       {"name":"Repairing of rosette","description":"DESCR : 39","object_id":39,"master":16,"masterName":null,"masterProfession":"Locksmith","startDate":-61599024840000,"dueDate":-61597210440000,"bigDescription":"Repairing of rosette","smallDescription":"Repairing of rosette","status":"In processing"}
-      ];
+      ]; */
+	  
+	  orders = [];
 
 
  public filter: string = '';
@@ -65,11 +72,20 @@ poke = {"name":"SR","description":"SRDESCR","object_id":0,"location":"Primorskyy
   }
   
   
-  constructor() { }
+  constructor(private router: ActivatedRoute, private pokeService: PokeService, private authorizeService: AuthorizeService) { }
 
   ngOnInit() {
-	   $('.ui.dropdown').dropdown();
-      this.loading(false);
+	  this.idP = this.router.snapshot.params.id;	  
+	  this.pokeService.getPokeOrders(this.idP).subscribe(orders => {  
+	   this.orders = orders;
+		//this.loading(false);
+        
+       });
+    this.pokeService.getPoke(this.idP).subscribe(poke => {  
+	   this.poke = poke;
+		this.loading(false);
+        
+       });
 	   this.tag = "In processing";
 	   this.tag2 = "New";
   }

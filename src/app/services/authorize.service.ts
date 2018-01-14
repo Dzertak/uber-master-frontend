@@ -52,10 +52,10 @@ export class AuthorizeService {
     return this.user;
     }
 
-    //return entity format "ubermaster.entity.model.Master"
+    //return entity format "Master"
     getUserType(){
         return this.user.classType;
-		//return "ubermaster.entity.model.Poke";//!!!!!!!!!
+		//return "Poke";//!!!!!!!!!
     }
 
     signIn(authPair: Pair, user:User){

@@ -17,11 +17,11 @@ notAdmin = true;
   constructor(private authService: AuthorizeService) { }
 
   isPoke(): boolean {
-		if(this.authService.getUserType() == "ubermaster.entity.model.Poke"){
+		if(this.authService.getUserType() == "Poke"){
         return true;}
-		else if(this.authService.getUserType() == "ubermaster.entity.model.Master"){
+		else if(this.authService.getUserType() == "Master"){
         return false;}
-		else if(this.authService.getUserType() == "ubermaster.entity.model.Admin"){
+		else if(this.authService.getUserType() == "Admin"){
 		this.notAdmin = false;
 		return true;}
     }
