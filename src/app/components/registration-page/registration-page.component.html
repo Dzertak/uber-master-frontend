@@ -1,3 +1,113 @@
-<p>
-  registration-page works!
-</p>
+<div id="main">
+  <p></p>
+  <div class="ui top attached tabular menu">
+    <a class="item" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" data-tab="poke">I am Poke</a>
+    <a class="item" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" data-tab="master">I am Master</a>
+  </div>
+  <div class="ui bottom attached tab segment active" data-tab="poke" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)">
+    <div class="ui one column centered grid">
+      <div class="column" id="outbar">
+        <form class="ui form" style="width: 50%; margin-left:110px">
+          <p>All fields must be filled</p>
+          <div class="field">
+            <label>First name</label>
+            <input type="text" name="first-name" placeholder="First name...">
+          </div>
+          <div class="field">
+            <label>Last name</label>
+            <input type="text" name="last-name" placeholder="Last name...">
+          </div>
+          <div class="field">
+            <label>Phone</label>
+            <input type="text" name="phone" placeholder="380679999999...">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Password...">
+          </div>
+          <div class="field">
+            <label>Confirm password</label>
+            <input type="password" name="confirm-password" placeholder="Confirm password...">
+          </div>
+          <div class="field" style="margin-left: -15px; width: 270px;">
+          <div class="ui green labeled icon button"><!--(click)="loginUser()"-->
+            <i class="signup icon"></i>
+            Sign Up
+          </div>
+          <div class="ui blue submit button" (click)="authorization()">Back to Login</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="ui bottom attached tab segment" style="margin-bottom: 50px;" data-tab="master" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" >
+    <div class="ui one column centered grid">
+      <div class="column" id="outbar">
+        <form class="ui form" style="width: 50%; margin-left:110px">
+          <p>* all fields must be filled</p>
+          <div class="field">
+            <label>First name *</label>
+            <input type="text" name="first-name" placeholder="First name...">
+          </div>
+          <div class="field">
+            <label>Last name *</label>
+            <input type="text" name="last-name" placeholder="Last name...">
+          </div>
+          <div class="field">
+            <label>Phone *</label>
+            <input type="text" name="phone" placeholder="380679999999...">
+          </div>
+          <div class="field">
+            <label>Password *</label>
+            <input type="password" name="password" placeholder="Password...">
+          </div>
+          <div class="field">
+            <label>Confirm password *</label>
+            <input type="password" name="confirm-password" placeholder="Confirm password...">
+          </div>
+          <div class="field">
+            <label>Profession *</label>
+            <select name="profession">
+              <option>Locksmith</option>
+              <option>Plumber</option>
+              <option>Electrician</option>
+              <option>Cleaner</option>
+              <option>Computer foreman</option>
+              <option>Handyman</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Location *</label>
+            <select name="location">
+              <option>Primorskyi</option>
+              <option>Malinovskyi</option>
+              <option>Kyevskyi</option>
+              <option>Suvorovskyi</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Tools</label>
+            <input type="text" name="tools" placeholder="Enter separated by commas...">
+          </div>
+          <div class="field" style="margin-left:30px; width:160px;">
+            <label for="payment" style="float:left;">Payment *</label>
+            <input type="number" name="payment" id="payment" step="10" min="0" style="width:90px; height:10px;">
+            <label for="payment" style="float:right;">$</label>
+          </div>
+          <div class="field" style="margin-left:30px; width:160px;">
+            <label for="smoking" style="float:left;">Smoking *</label>
+            <input type="radio" name="smoking" id="smoking" value="yes">Yes
+            <input type="radio" name="smoking" value="no">No
+          </div>
+          <div class="field" style="margin-left: -15px; width: 270px;"><!--(click)="loginUser()"-->
+          <div class="ui green labeled icon button">
+            <i class="signup icon"></i>
+            Sign Up
+          </div>
+          <div class="ui blue submit button" (click)="authorization()">Back to Login</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

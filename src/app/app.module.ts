@@ -40,6 +40,7 @@ const routes: Routes = [
   {path: 'profile/master', canActivate: [AuthguardGuard], component: ProfileMasterComponent},
   {path: 'profile/poke', canActivate: [AuthguardGuard], component: ProfilePokeComponent},
   {path: 'registration', component: RegistrationPageComponent},
+  {path: 'authorization', component: AuthorizationPageComponent},
   {path: 'create-order', canActivate: [AuthguardGuard], component: CreateOrderPageComponent},
   {path: 'order/:id', canActivate: [AuthguardGuard], component: OrderComponent },
   {path: '**', component: NotFoundPageComponent}
