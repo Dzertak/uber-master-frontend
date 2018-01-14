@@ -6,6 +6,7 @@ import {Headers} from '@angular/http';
 import {Convertator} from "./convertator.service";
 import {Master} from "../models/master.model";
 import {Order} from "../models/order.model";
+import {User} from "../models/user.model";
 
 
 
@@ -36,8 +37,9 @@ export class OrderService {
             });
     }
 
-    public updateOrderByMaster(order: Order, master: Master){
-        order.master=master.object_id;
+    public updateOrderByMaster(order: Order, user: User){
+        order.master=user.object_id;
+        order.status="In processing";
         this.http.post(url+"entity/updateOrder", order).subscribe(result =>{
             alert(result)
         })

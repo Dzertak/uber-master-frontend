@@ -43,7 +43,7 @@
     </div>
 
     <div class="extra content" *ngIf="order.status=='New' && isMaster()">
-     <button class="ui green labeled icon button">
+     <button class="ui green labeled icon button" (click)="joinIt()">
       <i class="configure icon"></i>
       Join It</button>
     </div>
