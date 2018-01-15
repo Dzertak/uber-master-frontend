@@ -60,6 +60,7 @@ Edit Personal Information
 	<app-master-profile-card
                       *ngFor="let ord of orders  | orderFilter:tag | masterSearch: searchStr| paginate: config " 
                        [order]="ord" 
+					   [routerLink]="['/order',ord.object_id]"
               ></app-master-profile-card> 
 
             <div class="paginationPadding" style="padding-right: 40px;">
@@ -102,6 +103,7 @@ Edit Personal Information
 	<app-master-profile-card
                       *ngFor="let ord of orders  | orderFilter:tag2 | masterSearch: searchStr2| paginate: config2 " 
                        [order]="ord" 
+					   [routerLink]="['/order',ord.object_id]"
               ></app-master-profile-card> 
 
             <div class="paginationPadding" style="padding-right: 40px;">

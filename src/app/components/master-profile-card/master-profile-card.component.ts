@@ -1,7 +1,9 @@
 import { Component,Input, OnInit } from '@angular/core';
 import {Order} from "../../index";
 //import {AppComponent} from "../../app.component";
-import {User, AuthorizeService} from "../../index";
+import {User, AuthorizeService,OrderService} from "../../index";
+import {ActivatedRoute} from "@angular/router";
+
 
 @Component({
   selector: 'app-master-profile-card',
@@ -11,10 +13,11 @@ import {User, AuthorizeService} from "../../index";
 export class MasterProfileCardComponent implements OnInit {
 
  //appcomponent: AppComponent ;
+ //id: string;
 notAdmin = true;
 	 @Input() order: Order;
 
-  constructor(private authService: AuthorizeService) { }
+  constructor(private router: ActivatedRoute,private authService: AuthorizeService, private orderService: OrderService) { }
 
   isPoke(): boolean {
 		if(this.authService.getUserType() == "Poke"){
@@ -27,6 +30,10 @@ notAdmin = true;
     }
   
   ngOnInit() {
+  }
+  
+  deleteOrder(){
+	  
   }
 
 }

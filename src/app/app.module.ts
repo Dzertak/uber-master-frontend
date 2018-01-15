@@ -44,6 +44,7 @@ const routes: Routes = [
   {path: 'authorization', component: AuthorizationPageComponent},
   {path: 'create-order', canActivate: [AuthguardGuard], component: CreateOrderPageComponent},
   {path: 'order/:id', canActivate: [AuthguardGuard], component: OrderComponent },
+  //{path: 'delete/:id', canActivate: [AuthguardGuard], component: ProfilePokeComponent },
   {path: '**', component: NotFoundPageComponent}
 ];
 

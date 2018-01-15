@@ -9,20 +9,27 @@
     </div>
   </div>
   <div class="extra content">
-    <div class="right floated author">
 	<div *ngIf="isPoke() && notAdmin && order.status!='New'">
+	<div class="left floated suthor ">
+	<button class="ui negative button" style="margin-bottom: 0px" [routerLink]="['/create-order']">Delete</button>
+	</div>
+	<div class="right floated author">
       <button class="left floated ui positive basic button" style="margin-bottom: 0px"  >Confirm Completion </button>
 	  <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" > Matt
 	  </div>
+	  </div>
+	  <div class="right floated author">
 	  <div *ngIf="!isPoke() && notAdmin ">
 	  <button class="left floated ui positive basic button" style="margin-bottom: 0px"  >Confirm Completion </button>
 	<!--   <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" > Matt -->
 	  </div>
 	  <div *ngIf="isPoke() && notAdmin && order.status=='New' ">
+	  <!--  <button class="ui negative button" style="margin-bottom: 0px" [routerLink]="['/create-order']">Delete</button> -->
+	      <input class="ui negative button"  type='submit' value='Delete' onclick="return confirm('Вы точно хотите удалить заказ?')">
 	<!--   <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" > Matt -->
 	  </div>
-    </div>
-  </div>
+   </div>
+</div>
 </div>
 
 

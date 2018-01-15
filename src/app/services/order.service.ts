@@ -44,4 +44,9 @@ export class OrderService {
             alert(result)
         })
     }
+	
+	/* public deleteOrder(id: string){
+        return this.http.delete(url+"deleteEntity?id="+id, this.options)
+            .map(response => response.json())
+    } */
 }
