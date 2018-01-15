@@ -24,6 +24,8 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "@auth0/angular-jwt": "^1.0.0-beta.9",
+    "@cloudinary/angular-4.x": "^1.1.0",
+    "cloudinary-core": "^2.4.0",
     "core-js": "^2.5.3",
     "hammerjs": "^2.0.8",
     "jwt-decode": "^2.2.0",

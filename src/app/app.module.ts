@@ -7,6 +7,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import { CloudinaryModule } from '@cloudinary/angular-4.x';
+import * as  Cloudinary from 'cloudinary-core';
+CloudinaryModule.forRoot(Cloudinary,
+  {cloud_name: 'ubermaster', private_cdn: true, cname: 'ubermaster.images.com'});
+
+
 //import 'hammerjs';
 
 import {AppComponent} from './app.component';
