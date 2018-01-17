@@ -2,8 +2,9 @@ import {Http} from "@angular/http";
 import {User} from "../models/user.model";
 import {url} from "../common/consts";
 import {Router} from "@angular/router";
+import {Injectable} from "@angular/core";
 
-
+@Injectable()
 export class RegistrationService{
 
 
@@ -11,14 +12,10 @@ export class RegistrationService{
     }
 
     reg(user: User){
-        this.http.post(url,user);
-
-        /*
-        * .subscribe(response => {
-            if (response.status==200){
-                this.router.navigate(['/'])
-            }
-        })
-        * */
+        this.http.post(url + "/addEntity", user).subscribe(response => {
+          if (response.status==200){
+            this.router.navigate(['authorization']);
+          }
+        });
     }
 }

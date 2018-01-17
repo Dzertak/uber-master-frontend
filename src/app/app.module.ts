@@ -7,10 +7,14 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { CloudinaryModule } from '@cloudinary/angular-4.x';
+import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-4.x';
 import * as  Cloudinary from 'cloudinary-core';
-CloudinaryModule.forRoot(Cloudinary,
-  {cloud_name: 'ubermaster', private_cdn: true, cname: 'ubermaster.images.com'});
+NgModule({
+  imports: [
+    CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'ubermaster' } as CloudinaryConfiguration),
+    //FileUploadModule,
+  ],
+})
 
 
 //import 'hammerjs';
@@ -39,6 +43,8 @@ import {MasterSearchPipe} from './pipe/masterSearch.pipe';
 import {CreateOrderPageComponent} from './components/create-order-page/create-order-page.component';
 import { MasterProfileCardComponent } from './components/master-profile-card/master-profile-card.component';
 import { OrderComponent } from './components/order/order.component';
+import {RegistrationService} from "./services/registration.service";
+import {FileUploadModule} from "ng2-file-upload";
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: AuthorizationPageComponent},
@@ -84,7 +90,7 @@ const routes: Routes = [
     NgxPaginationModule,
     ReactiveFormsModule
   ],
-  providers: [AuthorizeService, AuthguardGuard, OrderService, MasterService, PokeService],
+  providers: [AuthorizeService, RegistrationService, AuthguardGuard, OrderService, MasterService, PokeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

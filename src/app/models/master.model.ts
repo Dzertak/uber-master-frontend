@@ -8,16 +8,16 @@ export class Master extends BlockeduserModel {
     private _payment: number;
     private _smoke: boolean;
     private _tools: string;
-    private _start_time: Date;
-    private _end_time: Date;
+    private _start_time: number;
+    private _end_time: number;
 
 
     constructor(name: string, description: string, object_id: number, location: string, userDescription: string,
-                phoneNumber: string, picture: string, classType: string, isUserBlocked: boolean,
+                phoneNumber: string, password:string, picture: string, isUserBlocked: boolean,
                 profession: string, skills: string, experience: string, payment: number, smoke: boolean,
-                tools: string, start_time: Date, end_time: Date) {
+                tools: string, start_time: number, end_time: number) {
         super(name, description, object_id, location, userDescription,
-            phoneNumber, picture, classType, isUserBlocked);
+            phoneNumber, password, picture, "Master", isUserBlocked);
         this._profession = profession;
         this._skills = skills;
         this._experience = experience;
@@ -77,19 +77,19 @@ export class Master extends BlockeduserModel {
         this._tools = value;
     }
 
-    get start_time(): Date {
+    get start_time(): number {
         return this._start_time;
     }
 
-    set start_time(value: Date) {
+    set start_time(value: number) {
         this._start_time = value;
     }
 
-    get end_time(): Date {
+    get end_time(): number {
         return this._end_time;
     }
 
-    set end_time(value: Date) {
+    set end_time(value: number) {
         this._end_time = value;
     }
 }
