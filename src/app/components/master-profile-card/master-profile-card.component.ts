@@ -16,7 +16,7 @@ export class MasterProfileCardComponent implements OnInit {
  //id: string;
 notAdmin = true;
 	 @Input() order: Order;
-
+	
   constructor(private router: ActivatedRoute,private authService: AuthorizeService, private orderService: OrderService) { }
 
   isPoke(): boolean {
@@ -32,8 +32,8 @@ notAdmin = true;
   ngOnInit() {
   }
   
-  deleteOrder(){
-	  
+  deleteOrder(id: string){
+	  this.orderService.deleteOrder(id);
   }
 
 }

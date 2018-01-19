@@ -40,5 +40,11 @@ export class MasterService {
                 return Convertator.toOr(resderponse);
             }); */
     }
+	
+	public updateMaster(master: Master){
+		this.http.post(url+"entities/updateMaster", master).subscribe(result =>{
+            alert(result)
+        })
+	}
 
 }

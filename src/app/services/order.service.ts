@@ -15,7 +15,7 @@ export class OrderService {
 
     options: RequestOptions;
 
-    constructor(private http:Http, private authorizeSerice:AuthorizeService) {
+    constructor(private http: Http, private authorizeSerice:AuthorizeService) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append("Authorization", "UberToken "+this.authorizeSerice.getToken());
@@ -44,9 +44,11 @@ export class OrderService {
             alert(result)
         })
     }
-	
-	/* public deleteOrder(id: string){
-        return this.http.delete(url+"deleteEntity?id="+id, this.options)
-            .map(response => response.json())
-    } */
+
+	 public deleteOrder(id: string){
+        this.http.delete(url+"entities/deleteEntity?id="+id, this.options).subscribe(result =>{
+            alert(result)
+        })
+    }
+
 }

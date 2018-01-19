@@ -9,12 +9,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-4.x';
 import * as  Cloudinary from 'cloudinary-core';
-NgModule({
+/* NgModule({
   imports: [
     CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'ubermaster' } as CloudinaryConfiguration),
     //FileUploadModule,
   ],
-})
+}) */
 
 
 //import 'hammerjs';
@@ -45,6 +45,8 @@ import { MasterProfileCardComponent } from './components/master-profile-card/mas
 import { OrderComponent } from './components/order/order.component';
 import {RegistrationService} from "./services/registration.service";
 import {FileUploadModule} from "ng2-file-upload";
+import { PokeInfoComponent } from './poke-info/poke-info.component';
+import { MasterInfoComponent } from './components/master-info/master-info.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: AuthorizationPageComponent},
@@ -56,6 +58,7 @@ const routes: Routes = [
   {path: 'authorization', component: AuthorizationPageComponent},
   {path: 'create-order', canActivate: [AuthguardGuard], component: CreateOrderPageComponent},
   {path: 'order/:id', canActivate: [AuthguardGuard], component: OrderComponent },
+  {path: 'master-info', canActivate: [AuthguardGuard], component: MasterInfoComponent},
   //{path: 'delete/:id', canActivate: [AuthguardGuard], component: ProfilePokeComponent },
   {path: '**', component: NotFoundPageComponent}
 ];
@@ -79,7 +82,9 @@ const routes: Routes = [
     MasterSearchPipe,
     CreateOrderPageComponent,
     MasterProfileCardComponent,
-    OrderComponent
+    OrderComponent,
+    PokeInfoComponent,
+    MasterInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +94,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     NgxPaginationModule,
+  	CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'ubermaster' } as CloudinaryConfiguration),
     ReactiveFormsModule
   ],
   providers: [AuthorizeService, RegistrationService, AuthguardGuard, OrderService, MasterService, PokeService],
