@@ -41,5 +41,11 @@ export class PokeService {
             }); */
     }
 	
+	public updatePoke(poke: Poke){
+		this.http.post(url+"entities/updatePoke", poke).subscribe(result =>{
+            alert(result)
+        })
+	}
+	
 
 }

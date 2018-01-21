@@ -38,18 +38,13 @@ public uploader:FileUploader = new FileUploader({url: URL});
   payment: number;
   smoke: boolean;
 
-  variable: {phoneNumber, pass}
 
   constructor(private router: Router,private masterService: MasterService, private authorizeService: AuthorizeService) { }
 
-  isLoad: boolean = true;
-  
-  loading(status: boolean){
-    this.isLoad=status;
-  }
+ 
   
   ngOnInit() {
-	  this.loading(false);
+	 
 	  this.user = this.authorizeService.getUser();
 	  this.masterService.getMaster(this.user.object_id.toString()).subscribe(master => {  
 	   this.master = master;
@@ -67,16 +62,13 @@ public uploader:FileUploader = new FileUploader({url: URL});
 	   this.payment = this.master.payment;
 	   this.smoke = this.master.smoke;
 	   this.pictureMaster = this.master.picture;
-		//this.loading(false);
+	
        });
-	  //this.master.object_id = this.user.object_id;
+	  
 	  var str = this.user.name.split(" ",2);
 	  this.firstNameMaster = str[0];
 	  this.lastNameMaster = str[1];
-	  //this.profession = this.master.profession;
-	  
-	  //this.master.object_id = this.user.object_id;
-	  //this.master.profession = this.user.profession;
+	 
 	  
   }
   
@@ -84,7 +76,6 @@ public uploader:FileUploader = new FileUploader({url: URL});
   
   confirmChanges(){
 	  
-	  //this.master.object_id = this.user.object_id;
     if (this.firstNameMaster != "" && this.lastNameMaster != "" && this.phoneNumberMaster != ""
       && this.passwordMaster != "" && this.confirmPasswordMaster != "" && this.locationMaster != ""
       && this.profession != "" && this.experience != "") {

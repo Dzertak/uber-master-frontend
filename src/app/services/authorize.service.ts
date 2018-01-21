@@ -78,13 +78,14 @@ export class AuthorizeService {
     }
 
     public login(authPair: Pair, phone: string, password: string) {
-        this.setAuthPair(authPair);
-        return this.http.post(url+"login",{phoneNumber: phone, password: password})
-            .map(response => response.json())
-            .map(response => {
-               return response;
-            });
-
+      this.setAuthPair(authPair);
+      return this.http.post(url + "login", {phoneNumber: phone, password: password})
+        .map(response =>
+          response.json()
+        )
+        .map(response => {
+          return response;
+        });
     }
    /* static refreshToken(): void {
         if (AuthorizeService.token != null) {

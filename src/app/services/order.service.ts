@@ -25,7 +25,7 @@ export class OrderService {
 
     public getOrderList() {
 
-        return this.http.get('http://localhost:8090/entities/getTypedEntity?class=Order', this.options)
+        return this.http.get('http://localhost:8090/entities/getTypedEntities?class=Order', this.options)
             .map(response => response.json())
     }
 

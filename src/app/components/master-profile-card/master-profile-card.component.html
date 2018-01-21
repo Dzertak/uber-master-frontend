@@ -24,7 +24,7 @@
 	<!--   <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" > Matt -->
 	  </div>
 	  <div *ngIf="isPoke() && notAdmin && order.status=='New' ">
-	    <button class="ui negative button" style="margin-bottom: 0px" (click)="deleteOrder(order.object_id)">Delete</button> 
+	    <button class="ui negative button" style="margin-bottom: 0px" (click)="deleteOrder(order.object_id)"  >Delete</button> 
 	 <!--      <input class="ui negative button"  type='submit' value='Delete' onclick="return confirm('Вы точно хотите удалить заказ?')"> -->
 	  </div>
    </div>

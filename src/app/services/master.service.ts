@@ -21,7 +21,7 @@ export class MasterService {
 
 
     public getMasterList() {
-        return this.http.get('http://localhost:8090/entities/getTypedEntity?class=Master', this.options)
+        return this.http.get('http://localhost:8090/entities/getTypedEntities?class=Master', this.options)
             .map(response => response.json())
     }
 	

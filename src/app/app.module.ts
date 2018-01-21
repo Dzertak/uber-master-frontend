@@ -45,8 +45,10 @@ import { MasterProfileCardComponent } from './components/master-profile-card/mas
 import { OrderComponent } from './components/order/order.component';
 import {RegistrationService} from "./services/registration.service";
 import {FileUploadModule} from "ng2-file-upload";
-import { PokeInfoComponent } from './poke-info/poke-info.component';
+
+import { PokeInfoComponent } from './components/poke-info/poke-info.component';
 import { MasterInfoComponent } from './components/master-info/master-info.component';
+
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: AuthorizationPageComponent},
@@ -59,6 +61,7 @@ const routes: Routes = [
   {path: 'create-order', canActivate: [AuthguardGuard], component: CreateOrderPageComponent},
   {path: 'order/:id', canActivate: [AuthguardGuard], component: OrderComponent },
   {path: 'master-info', canActivate: [AuthguardGuard], component: MasterInfoComponent},
+  {path: 'poke-info', canActivate: [AuthguardGuard], component: PokeInfoComponent},
   //{path: 'delete/:id', canActivate: [AuthguardGuard], component: ProfilePokeComponent },
   {path: '**', component: NotFoundPageComponent}
 ];

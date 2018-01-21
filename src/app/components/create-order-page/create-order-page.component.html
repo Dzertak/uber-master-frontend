@@ -1,4 +1,4 @@
-<div class="ui small form segment">
+<div class="ui small form segment" xmlns="">
   <form [formGroup]="rForm" (ngSubmit)="createOrder(rForm.value)">
     <div class="ui form-container">
       <div class="ui columns">
@@ -15,7 +15,17 @@
               <p>Enter from 10 to 50 symbols</p>
             </div>
           </label><input type="text" class="input text" formControlName="_name"/>
+        </div>
 
+        <div class="fields">
+          <div class="field">
+            <label> Master's Profession
+              <select class="ui dropdown" formControlName="_masterProfession">
+                <option *ngFor="let c of professions" [value]="c.id">{{c.name}}</option>
+
+              </select>
+            </label>
+          </div>
         </div>
         <div class="field">
           <label>Small Description
@@ -42,19 +52,27 @@
             <textarea formControlName="_bigDescription"></textarea>
           </label>
         </div>
+
+
         <div class="fields">
-          <div class="field mat-calendar">
-            <label>Start Date<input type="date" [ngModel]="_startDate" name="_startDate"
-                                    formControlName="_startDate"></label>
-          </div>
+
           <div class="field">
-            <label>Due Date<input type="date" [ngModel]="_dueDate" formControlName="_dueDate"></label>
+            <label>Start date<input type="text" formControlName="_startDate"></label>
+          </div>
+
+          <div class="field">
+            <label>Due Date<input type="date" formControlName="_dueDate" min={{today}}></label>
           </div>
         </div>
-        <input type="submit" class="button ui" value="Create order"
-               [disabled]="!rForm.valid || rForm.controls['_dueDate'].value <= rForm.controls['_startDate'].value">
+        <input type="submit" class="button  ui" value="Create order"
+               [disabled]="!rForm.valid">
       </div>
     </div>
   </form>
 </div>
+
+
+
+
+
 

@@ -12,9 +12,11 @@ export class RegistrationService{
     }
 
     reg(user: User){
-        this.http.post(url + "/addEntity", user).subscribe(response => {
-          if (response.status==200){
+        this.http.post(url + "register", user).subscribe(response => {
+          if (response.status == 200){
             this.router.navigate(['authorization']);
+          } else if (response.status == 500) {
+            alert(response.statusText);
           }
         });
     }
