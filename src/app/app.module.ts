@@ -45,6 +45,7 @@ import { MasterProfileCardComponent } from './components/master-profile-card/mas
 import { OrderComponent } from './components/order/order.component';
 import {RegistrationService} from "./services/registration.service";
 import {FileUploadModule} from "ng2-file-upload";
+//import {FileUploadModule} from "ng2-file-upload";
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: AuthorizationPageComponent},

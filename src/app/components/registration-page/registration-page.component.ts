@@ -18,8 +18,7 @@ declare var $:any;
 })
 export class RegistrationPageComponent implements OnInit {
   public uploader:FileUploader = new FileUploader({url: URL});
-  swipe: number = 0;
-  poke: Poke;
+  swipe: number = 0
   picturePoke: string;
   firstNamePoke: string;
   lastNamePoke: string;
@@ -29,7 +28,6 @@ export class RegistrationPageComponent implements OnInit {
   passwordPoke: string;
   confirmPasswordPoke: string;
 
-  master: Master;
   pictureMaster: string;
   firstNameMaster: string;
   lastNameMaster: string;
@@ -65,61 +63,38 @@ export class RegistrationPageComponent implements OnInit {
   signUpPoke() {
     if (this.firstNamePoke != "" && this.lastNamePoke != "" && this.phoneNumberPoke != ""
       && this.passwordPoke != "" && this.confirmPasswordPoke != "" && this.locationPoke != "") {
-      this.poke.name = this.firstNamePoke + " " + this.lastNamePoke;
-      this.poke.picture = this.picturePoke;
-      this.uploadImage(this.picturePoke);
-      this.poke.phoneNumber = this.phoneNumberPoke;
-      this.poke.location = this.locationPoke;
-      this.poke.userDescription = this.userDescriptionPoke;
-      this.poke.isUserBlocked = false;
       if (this.passwordPoke == this.confirmPasswordPoke) {
-        this.poke.password = this.passwordPoke;
+        let poke = new Poke(this.firstNamePoke + " " + this.lastNamePoke, null, null, this.locationPoke,
+          this.userDescriptionPoke, this.phoneNumberPoke, this.passwordPoke, this.picturePoke, false);
+        this.registrationService.reg(poke);
       } else {
         //error
       }
     } else {
       //error
     }
-
-    this.registrationService.reg(this.poke);
     /*.subscribe(response => {
       if (response.status==200){
         this.router.navigate(['authorization']);
       }
     });*/
-    this.authorization();
   }
 
   signUpMaster(){
     if (this.firstNameMaster != "" && this.lastNameMaster != "" && this.phoneNumberMaster != ""
       && this.passwordMaster != "" && this.confirmPasswordMaster != "" && this.locationMaster != ""
       && this.profession != "" && this.experience != "") {
-      this.master.name = this.firstNameMaster + " " + this.lastNameMaster;
-      this.master.picture = this.pictureMaster;
-      this.uploadImage(this.pictureMaster);
-      this.master.phoneNumber = this.phoneNumberMaster;
-      this.master.location = this.locationMaster;
-      this.master.userDescription = this.userDescriptionMaster;
-      this.master.isUserBlocked = false;
-      this.master.profession = this.profession;
-      this.master.tools = this.tools;
-      this.master.skills = this.skills;
-      this.master.experience = this.experience;
-      this.master.start_time = this.startTime;
-      this.master.end_time = this.endTime;
-      this.master.payment = this.payment;
-      this.master.smoke = this.smoke;
       if (this.passwordMaster == this.confirmPasswordMaster) {
-        this.master.password = this.passwordMaster;
+        let master = new Master(this.firstNameMaster + " " + this.lastNameMaster, null, null, this.locationMaster,
+          this.userDescriptionMaster, this.phoneNumberMaster, this.passwordMaster, this.pictureMaster, false,
+          this.profession, this.skills, this.experience, this.payment, this.smoke, this.tools, this.startTime, this.endTime);
+        this.registrationService.reg(master);
       } else {
         //error
       }
     } else {
       //error
     }
-
-    this.registrationService.reg(this.master);
-    this.authorization();
   }
 
   uploadImage(nameImage: String){
