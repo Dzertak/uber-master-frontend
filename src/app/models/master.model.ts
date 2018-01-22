@@ -2,94 +2,104 @@ import {User} from './user.model';
 import {BlockeduserModel} from "./blockeduser.model";
 
 export class Master extends BlockeduserModel {
-    private _profession: string;
-    private _skills: string;
-    private _experience: string;
-    private _payment: number;
-    private _smoke: boolean;
-    private _tools: string;
-    private _start_time: number;
-    private _end_time: number;
-
+    private profession: string;
+    private skills: string;
+    private experience: string;
+    private payment: number;
+    private smoke: boolean;
+    private tools: string;
+    private start_time: number;
+    private end_time: number;
+    private averMark: number;
 
     constructor(name: string, description: string, object_id: number, location: string, userDescription: string,
-                phoneNumber: string, password:string, picture: string, isUserBlocked: boolean,
+                phoneNumber: string, password:string, picture: string, blocked: boolean,
                 profession: string, skills: string, experience: string, payment: number, smoke: boolean,
-                tools: string, start_time: number, end_time: number) {
+                tools: string, start_time: number, end_time: number, averMark: number) {
         super(name, description, object_id, location, userDescription,
-            phoneNumber, password, picture, "Master", isUserBlocked);
-        this._profession = profession;
-        this._skills = skills;
-        this._experience = experience;
-        this._payment = payment;
-        this._smoke = smoke;
-        this._tools = tools;
-        this._start_time = start_time;
-        this._end_time = end_time;
+            phoneNumber, password, picture, "Master", blocked);
+        this.profession = profession;
+        this.skills = skills;
+        this.experience = experience;
+        this.payment = payment;
+        this.smoke = smoke;
+        this.tools = tools;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.averMark = averMark;
     }
 
 
-    get profession(): string {
-        return this._profession;
+    get getProfession(): string {
+        return this.profession;
     }
 
-    set profession(value: string) {
-        this._profession = value;
+    set setProfession(value: string) {
+        this.profession = value;
     }
 
-    get skills(): string {
-        return this._skills;
+    get getSkills(): string {
+        return this.skills;
     }
 
-    set skills(value: string) {
-        this._skills = value;
+    set setSkills(value: string) {
+        this.skills = value;
     }
 
-    get experience(): string {
-        return this._experience;
+    get getExperience(): string {
+        return this.experience;
     }
 
-    set experience(value: string) {
-        this._experience = value;
+    set setExperience(value: string) {
+        this.experience = value;
     }
 
-    get payment(): number {
-        return this._payment;
+    get getPayment(): number {
+        return this.payment;
     }
 
-    set payment(value: number) {
-        this._payment = value;
+    set setPayment(value: number) {
+        this.payment = value;
     }
 
-    get smoke(): boolean {
-        return this._smoke;
+    get getSmoke(): boolean {
+        return this.smoke;
     }
 
-    set smoke(value: boolean) {
-        this._smoke = value;
+    set setSmoke(value: boolean) {
+        this.smoke = value;
     }
 
-    get tools(): string {
-        return this._tools;
+    get getTools(): string {
+        return this.tools;
     }
 
-    set tools(value: string) {
-        this._tools = value;
+    set setTools(value: string) {
+        this.tools = value;
     }
 
-    get start_time(): number {
-        return this._start_time;
+    get getStart_time(): number {
+        return this.start_time;
     }
 
-    set start_time(value: number) {
-        this._start_time = value;
+    set setStart_time(value: number) {
+        this.start_time = value;
     }
 
-    get end_time(): number {
-        return this._end_time;
+    get getEnd_time(): number {
+        return this.end_time;
     }
 
-    set end_time(value: number) {
-        this._end_time = value;
+    set setEnd_time(value: number) {
+        this.end_time = value;
+    }
+
+
+    get getAverMark(): number {
+        return this.averMark;
+    }
+
+    set setAverMark(value: number) {
+        this.averMark = value;
     }
 }

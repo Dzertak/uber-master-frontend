@@ -44,6 +44,7 @@ export class RegistrationPageComponent implements OnInit {
   endTime: number;
   payment: number;
   smoke: boolean;
+  averMark: number;
 
   variable: {phoneNumber, pass}
 
@@ -87,7 +88,7 @@ export class RegistrationPageComponent implements OnInit {
       if (this.passwordMaster == this.confirmPasswordMaster) {
         let master = new Master(this.firstNameMaster + " " + this.lastNameMaster, null, null, this.locationMaster,
           this.userDescriptionMaster, this.phoneNumberMaster, this.passwordMaster, this.pictureMaster, false,
-          this.profession, this.skills, this.experience, this.payment, this.smoke, this.tools, this.startTime, this.endTime);
+          this.profession, this.skills, this.experience, this.payment, this.smoke, this.tools, this.startTime, this.endTime, this.averMark);
         this.registrationService.reg(master);
       } else {
         //error

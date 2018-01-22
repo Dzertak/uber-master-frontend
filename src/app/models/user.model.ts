@@ -1,66 +1,71 @@
 import {BaseEntity} from './baseentity.model';
 
 export class User extends BaseEntity {
-   private _location: string;
-   private _userDescription: string;
-   private _phoneNumber: string;
-   private _password: string;
-   private _picture: string;
-   private _classType: string;
+   private location: string;
+   private userDescription: string;
+   private phoneNumber: string;
+   private password: string;
+   private picture: string;
+   private classType: string;
 
    constructor(name: string, description: string, object_id: number, location: string, userDescription: string,
                 phoneNumber: string, password: string, picture: string, classType: string) {
         super(name, description, object_id);
-        this._location = location;
-        this._userDescription = userDescription;
-        this._phoneNumber = phoneNumber;
-        this._password = password;
-        this._picture = picture;
-        this._classType = classType;
+        this.location = location;
+        this.userDescription = userDescription;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.picture = picture;
+        this.classType = classType;
     }
 
 
-    get location(): string {
-        return this._location;
+    get getLocation(): string {
+        return this.location;
     }
 
-    set location(value: string) {
-        this._location = value;
+    set setLocation(value: string) {
+        this.location = value;
     }
 
-    get userDescription(): string {
-        return this._userDescription;
+    get getUserDescription(): string {
+        return this.userDescription;
     }
 
-    set userDescription(value: string) {
-        this._userDescription = value;
+    set setUserDescription(value: string) {
+        this.userDescription = value;
     }
 
-    get phoneNumber(): string {
-        return this._phoneNumber;
+    get getPhoneNumber(): string {
+        return this.phoneNumber;
     }
 
-    set phoneNumber(value: string) {
-        this._phoneNumber = value;
+    set setPhoneNumber(value: string) {
+        this.phoneNumber = value;
     }
 
-    set password(value: string) {
-      this._password = value;
+
+    get getPassword(): string {
+        return this.password;
     }
 
-    get picture(): string {
-        return this._picture;
+    set setPassword(value: string) {
+      this.password = value;
     }
 
-    set picture(value: string) {
-        this._picture = value;
+    get getPicture(): string {
+        return this.picture;
     }
 
-    get classType(): string {
-        return this._classType;
+    set setPicture(value: string) {
+        this.picture = value;
     }
 
-    set classType(value: string) {
-        this._classType = value;
+    get getClassType(): string {
+        return this.classType;
+    }
+
+    set setClassType(value: string) {
+        this.classType = value;
     }
 }

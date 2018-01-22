@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Order} from '../../models/order.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthorizeService} from "../../services/authorize.service";
 
 
 @Component({
@@ -25,29 +26,29 @@ export class CreateOrderPageComponent implements OnInit {
   private order: Order;
   public rForm: FormGroup;
   private create: any;
-  protected _startDate = new Date();
+  protected startDate = new Date();
   protected today;
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthorizeService) {
     this.today = this.getToday();
 
     this.rForm = fb.group({
-      '_name': [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(60)])],
-      '_smallDescription': [null, Validators.compose([Validators.required, Validators.minLength(25), Validators.maxLength(280)])],
-      '_bigDescription': [null, Validators.compose([Validators.required, Validators.minLength(25), Validators.maxLength(500)])],
-      '_dueDate': [null, Validators.required],
-      '_startDate': [{value: this._startDate.toLocaleDateString(), disabled: true}],
-      '_masterProfession' : [0, Validators.required]
+      'name': [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(60)])],
+      'smallDescription': [null, Validators.compose([Validators.required, Validators.minLength(25), Validators.maxLength(280)])],
+      'bigDescription': [null, Validators.compose([Validators.required, Validators.minLength(25), Validators.maxLength(500)])],
+      'dueDate': [null, Validators.required],
+      'startDate': [{value: this.startDate.toLocaleDateString(), disabled: true}],
+      'masterProfession' : [0, Validators.required]
     })
   }
 
 
   createOrder(create) {
 
-    this.order = new Order(create._name, null, null,
-      create._smallDescription, create._bigDescription, this._startDate,
-      new Date(create._dueDate), 'New', null, create._masterProfession.id);
+    this.order = new Order(create.name, null, null,
+      create.smallDescription, create.bigDescription, this.startDate,
+      new Date(create.dueDate), 'New', null, null, create.masterProfession.id,null,null,this.authService.getUser().getObject_id);
 
     console.log(this.order)
   }
@@ -62,9 +63,9 @@ export class CreateOrderPageComponent implements OnInit {
     let mm;
     let yyyy;
 
-    dd = this._startDate.getDate();
-    mm = this._startDate.getMonth() + 1;
-    yyyy = this._startDate.getFullYear();
+    dd = this.startDate.getDate();
+    mm = this.startDate.getMonth() + 1;
+    yyyy = this.startDate.getFullYear();
 
     if (dd < 10) {
       dd = '0' + dd;

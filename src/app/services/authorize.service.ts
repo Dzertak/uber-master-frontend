@@ -54,7 +54,7 @@ export class AuthorizeService {
 
    
     getUserType(){
-        return this.user.classType;
+        return this.user.getClassType;
     }
 
     signIn(authPair: Pair, user:User){

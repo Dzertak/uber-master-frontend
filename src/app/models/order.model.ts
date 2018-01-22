@@ -1,81 +1,123 @@
 import {BaseEntity} from './baseentity.model';
 
 export class Order extends BaseEntity {
-    private _smallDescription: string;
-    private _bigDescription: string;
-    private _startDate: Date;
-    private _dueDate: Date;
-    private _status: string;
-    private _master: number;
-    private _masterProfession: string;
+    private smallDescription: string;
+    private bigDescription: string;
+    private startDate: Date;
+    private dueDate: Date;
+    private status: string;
+    private master: number;
+    private masterName: string;
+    private masterProfession: string;
+    private mark: number;
+    private masterEndDate: Date;
+    private pokeId: number;
 
 
     constructor(name: string, description: string, object_id: number, smallDescription: string, bigDescription: string,
-                startDate: Date, dueDate: Date, status: string, master: number, masterProfession: string) {
+                startDate: Date, dueDate: Date, status: string, master: number, masterName: string, masterProfession: string,
+                mark: number, masterEndDate: Date, pokeId: number) {
         super(name, description, object_id);
-        this._smallDescription = smallDescription;
-        this._bigDescription = bigDescription;
-        this._startDate = startDate;
-        this._dueDate = dueDate;
-        this._status = status;
-        this._master = master;
-        this._masterProfession = masterProfession
+        this.smallDescription = smallDescription;
+        this.bigDescription = bigDescription;
+        this.startDate = startDate;
+        this.dueDate = dueDate;
+        this.status = status;
+        this.master = master;
+        this.masterProfession = masterProfession;
+        this.masterName = masterName;
+        this.mark = mark;
+        this.masterEndDate = masterEndDate;
+        this.pokeId = pokeId;
     }
 
 
-    get smallDescription(): string {
-        return this._smallDescription;
+    get getSmallDescription(): string {
+        return this.smallDescription;
     }
 
-    set smallDescription(value: string) {
-        this._smallDescription = value;
+    set setSmallDescription(value: string) {
+        this.smallDescription = value;
     }
 
-    get bigDescription(): string {
-        return this._bigDescription;
+    get getBigDescription(): string {
+        return this.bigDescription;
     }
 
-    set bigDescription(value: string) {
-        this._bigDescription = value;
+    set setBigDescription(value: string) {
+        this.bigDescription = value;
     }
 
-    get startDate(): Date {
-        return this._startDate;
+    get getStartDate(): Date {
+        return this.startDate;
     }
 
-    set startDate(value: Date) {
-        this._startDate = value;
+    set setStartDate(value: Date) {
+        this.startDate = value;
     }
 
-    get dueDate(): Date {
-        return this._dueDate;
+    get getDueDate(): Date {
+        return this.dueDate;
     }
 
-    set dueDate(value: Date) {
-        this._dueDate = value;
+    set setDueDate(value: Date) {
+        this.dueDate = value;
     }
 
-    get status(): string {
-        return this._status;
+    get getStatus(): string {
+        return this.status;
     }
 
-    set status(value: string) {
-        this._status = value;
+    set setStatus(value: string) {
+        this.status = value;
     }
 
-    get master(): number {
-        return this._master;
+    get getMaster(): number {
+        return this.master;
     }
 
-    set master(value: number) {
-        this._master = value;
+    set setMaster(value: number) {
+        this.master = value;
     }
 
-    get masterProfession(): string {
-        return this._masterProfession;
+    get getMasterProfession(): string {
+        return this.masterProfession;
     }
 
-    set masterProfession(value: string) {
-        this._masterProfession = value;
+    set setMasterProfession(value: string) {
+        this.masterProfession = value;
+    }
+
+
+    get getMasterName(): string {
+        return this.masterName;
+    }
+
+    set setMasterName(value: string) {
+        this.masterName = value;
+    }
+
+    get getMark(): number {
+        return this.mark;
+    }
+
+    set setMark(value: number) {
+        this.mark = value;
+    }
+
+    get getMasterEndDate(): Date {
+        return this.masterEndDate;
+    }
+
+    set setMasterEndDate(value: Date) {
+        this.masterEndDate = value;
+    }
+
+    get getPokeId(): number {
+        return this.pokeId;
+    }
+
+    set setPokeId(value: number) {
+        this.pokeId = value;
     }
 }

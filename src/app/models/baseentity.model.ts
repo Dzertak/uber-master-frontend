@@ -1,37 +1,37 @@
 export class BaseEntity {
-    private _name: string;
-    private _description: string;
-    private _object_id: number;
+    private name: string;
+    private description: string;
+    private object_id: number;
 
 
     constructor(name: string, description: string, object_id: number) {
-        this._name = name;
-        this._description = description;
-        this._object_id = object_id;
+        this.name = name;
+        this.description = description;
+        this.object_id = object_id;
     }
 
 
-    get name(): string {
-        return this._name;
+    get getName(): string {
+        return this.name;
     }
 
-    set name(value: string) {
-        this._name = value;
+    set setName(value: string) {
+        this.name = value;
     }
 
-    get description(): string {
-        return this._description;
+    get getDescription(): string {
+        return this.description;
     }
 
-    set description(value: string) {
-        this._description = value;
+    set setDescription(value: string) {
+        this.description = value;
     }
 
-    get object_id(): number {
-        return this._object_id;
+    get getObject_id(): number {
+        return this.object_id;
     }
 
-    set object_id(value: number) {
-        this._object_id = value;
+    set setObject_id(value: number) {
+        this.object_id = value;
     }
 }
