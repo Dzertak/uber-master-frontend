@@ -85,7 +85,7 @@ export class ProfileMasterComponent implements OnInit {
   }
   
    isSmoking() {
-	  return this.master.getSmoke;
+	  return this.master.smoke;
   } 
   
   getSelectedTextValue() {

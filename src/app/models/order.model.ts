@@ -1,17 +1,17 @@
 import {BaseEntity} from './baseentity.model';
 
 export class Order extends BaseEntity {
-    private smallDescription: string;
-    private bigDescription: string;
-    private startDate: Date;
-    private dueDate: Date;
-    private status: string;
-    private master: number;
-    private masterName: string;
-    private masterProfession: string;
-    private mark: number;
-    private masterEndDate: Date;
-    private pokeId: number;
+    smallDescription: string;
+    bigDescription: string;
+    startDate: Date;
+    dueDate: Date;
+    status: string;
+    master: number;
+    masterName: string;
+    masterProfession: string;
+    mark: number;
+    masterEndDate: Date;
+    pokeId: number;
 
 
     constructor(name: string, description: string, object_id: number, smallDescription: string, bigDescription: string,
@@ -32,7 +32,7 @@ export class Order extends BaseEntity {
     }
 
 
-    get getSmallDescription(): string {
+    /*get getSmallDescription(): string {
         return this.smallDescription;
     }
 
@@ -119,5 +119,5 @@ export class Order extends BaseEntity {
 
     set setPokeId(value: number) {
         this.pokeId = value;
-    }
+    }*/
 }

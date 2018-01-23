@@ -9,7 +9,7 @@ declare var $:any;
 export class AuthorizeService {
 
     private isUserLoggedIn = false;
-    public username;
+    private username;
     private authPair: Pair;
     private user: User;
 
@@ -54,7 +54,7 @@ export class AuthorizeService {
 
    
     getUserType(){
-        return this.user.getClassType;
+        return this.user.classType;
     }
 
     signIn(authPair: Pair, user:User){

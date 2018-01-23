@@ -2,15 +2,15 @@ import {User} from './user.model';
 import {BlockeduserModel} from "./blockeduser.model";
 
 export class Master extends BlockeduserModel {
-    private profession: string;
-    private skills: string;
-    private experience: string;
-    private payment: number;
-    private smoke: boolean;
-    private tools: string;
-    private start_time: number;
-    private end_time: number;
-    private averMark: number;
+    profession: string;
+    skills: string;
+    experience: string;
+    payment: number;
+    smoke: boolean;
+    tools: string;
+    start_time: number;
+    end_time: number;
+    averMark: number;
 
     constructor(name: string, description: string, object_id: number, location: string, userDescription: string,
                 phoneNumber: string, password:string, picture: string, blocked: boolean,
@@ -30,7 +30,7 @@ export class Master extends BlockeduserModel {
     }
 
 
-    get getProfession(): string {
+    /*get getProfession(): string {
         return this.profession;
     }
 
@@ -101,5 +101,5 @@ export class Master extends BlockeduserModel {
 
     set setAverMark(value: number) {
         this.averMark = value;
-    }
+    }*/
 }

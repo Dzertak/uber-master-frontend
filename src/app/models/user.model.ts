@@ -1,12 +1,12 @@
 import {BaseEntity} from './baseentity.model';
 
 export class User extends BaseEntity {
-   private location: string;
-   private userDescription: string;
-   private phoneNumber: string;
-   private password: string;
-   private picture: string;
-   private classType: string;
+   location: string;
+   userDescription: string;
+   phoneNumber: string;
+   password: string;
+   picture: string;
+   classType: string;
 
    constructor(name: string, description: string, object_id: number, location: string, userDescription: string,
                 phoneNumber: string, password: string, picture: string, classType: string) {
@@ -20,7 +20,7 @@ export class User extends BaseEntity {
     }
 
 
-    get getLocation(): string {
+   /* get getLocation(): string {
         return this.location;
     }
 
@@ -67,5 +67,5 @@ export class User extends BaseEntity {
 
     set setClassType(value: string) {
         this.classType = value;
-    }
+    }*/
 }

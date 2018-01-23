@@ -2,7 +2,7 @@ import {User} from "./user.model";
 
 export class BlockeduserModel extends User{
 
-    private blocked: boolean;
+    blocked: boolean;
     constructor(name: string, description: string, object_id: number, location: string, userDescription: string,
                 phoneNumber: string, password: string, picture: string, classType: string, blocked: boolean){
         super(name,description,object_id,location,userDescription,
@@ -11,11 +11,11 @@ export class BlockeduserModel extends User{
     }
 
 
-    get getIsBlocked(): boolean {
+  /*  get getIsBlocked(): boolean {
         return this.blocked;
     }
 
     set setIsBlocked(value: boolean) {
         this.blocked = value;
-    }
+    }*/
 }

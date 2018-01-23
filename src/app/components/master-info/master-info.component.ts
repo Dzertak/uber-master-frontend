@@ -47,26 +47,26 @@ public uploader:FileUploader = new FileUploader({url: URL});
   ngOnInit() {
 	 
 	  this.user = this.authorizeService.getUser();
-	  this.masterService.getMaster(this.user.getObject_id.toString()).subscribe(master => {
+	  this.masterService.getMaster(this.user.object_id.toString()).subscribe(master => {
 	   this.master = master;
-	   this.phoneNumberMaster = this.master.getPhoneNumber;
-	   this.locationMaster = this.master.getLocation;
-	   this.userDescriptionMaster = this.master.getUserDescription;
-	   this.passwordMaster = this.user.getPassword;
-	   this.confirmPasswordMaster = this.user.getPassword;
-	   this.profession = this.master.getProfession;
-	   this.tools = this.master.getTools;
-	   this.skills = this.master.getSkills;
-	   this.experience = this.master.getExperience;
-	   this.startTime = this.master.getStart_time;
-	   this.endTime = this.master.getEnd_time;
-	   this.payment = this.master.getPayment;
-	   this.smoke = this.master.getSmoke;
-	   this.pictureMaster = this.master.getPicture;
-	   this.averMark = this.master.getAverMark;
+	   this.phoneNumberMaster = this.master.phoneNumber;
+	   this.locationMaster = this.master.location;
+	   this.userDescriptionMaster = this.master.userDescription;
+	   this.passwordMaster = this.user.password;
+	   this.confirmPasswordMaster = this.user.password;
+	   this.profession = this.master.profession;
+	   this.tools = this.master.tools;
+	   this.skills = this.master.skills;
+	   this.experience = this.master.experience;
+	   this.startTime = this.master.start_time;
+	   this.endTime = this.master.end_time;
+	   this.payment = this.master.payment;
+	   this.smoke = this.master.smoke;
+	   this.pictureMaster = this.master.picture;
+	   this.averMark = this.master.averMark;
        });
 	  
-	  var str = this.user.getName.split(" ",2);
+	  var str = this.user.name.split(" ",2);
 	  this.firstNameMaster = str[0];
 	  this.lastNameMaster = str[1];
 	 
@@ -78,23 +78,23 @@ public uploader:FileUploader = new FileUploader({url: URL});
     if (this.firstNameMaster != "" && this.lastNameMaster != "" && this.phoneNumberMaster != ""
       && this.passwordMaster != "" && this.confirmPasswordMaster != "" && this.locationMaster != ""
       && this.profession != "" && this.experience != "") {
-      this.master.setName = this.firstNameMaster + " " + this.lastNameMaster;
-      this.master.setPicture = this.pictureMaster;
+      this.master.name = this.firstNameMaster + " " + this.lastNameMaster;
+      this.master.picture = this.pictureMaster;
       //this.uploadImage(this.pictureMaster);
-      this.master.setPhoneNumber = this.phoneNumberMaster;
-      this.master.setLocation = this.locationMaster;
-      this.master.setUserDescription = this.userDescriptionMaster;
-      this.master.setIsBlocked = false;
-      this.master.setProfession = this.profession;
-      this.master.setTools = this.tools;
-      this.master.setSkills = this.skills;
-      this.master.setExperience = this.experience;
-      this.master.setStart_time = this.startTime;
-      this.master.setEnd_time = this.endTime;
-      this.master.setPayment = this.payment;
-      this.master.setSmoke = this.smoke;
+      this.master.phoneNumber = this.phoneNumberMaster;
+      this.master.location = this.locationMaster;
+      this.master.userDescription = this.userDescriptionMaster;
+      this.master.blocked = false;
+      this.master.profession = this.profession;
+      this.master.tools = this.tools;
+      this.master.skills = this.skills;
+      this.master.experience = this.experience;
+      this.master.start_time = this.startTime;
+      this.master.end_time = this.endTime;
+      this.master.payment = this.payment;
+      this.master.smoke = this.smoke;
       if (this.passwordMaster == this.confirmPasswordMaster) {
-        this.master.setPassword = this.passwordMaster;
+        this.master.password = this.passwordMaster;
       } else {
         //error
       }

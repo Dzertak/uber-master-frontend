@@ -1,7 +1,7 @@
 export class BaseEntity {
-    private name: string;
-    private description: string;
-    private object_id: number;
+    name: string;
+    description: string;
+    object_id: number;
 
 
     constructor(name: string, description: string, object_id: number) {
@@ -11,7 +11,7 @@ export class BaseEntity {
     }
 
 
-    get getName(): string {
+ /*   get getName(): string {
         return this.name;
     }
 
@@ -33,5 +33,5 @@ export class BaseEntity {
 
     set setObject_id(value: number) {
         this.object_id = value;
-    }
+    }*/
 }

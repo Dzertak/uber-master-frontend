@@ -38,16 +38,16 @@ public uploader:FileUploader = new FileUploader({url: URL});
   ngOnInit() {
 	  
 	  this.user = this.authorizeService.getUser();
-	  this.pokeService.getPoke(this.user.getObject_id.toString()).subscribe(poke => {
+	  this.pokeService.getPoke(this.user.object_id.toString()).subscribe(poke => {
 	   this.poke = poke;
-	   this.phoneNumberPoke = this.poke.getPhoneNumber;
-	   this.locationPoke = this.poke.getLocation;
-	   this.userDescriptionPoke = this.poke.getUserDescription;
-	   this.passwordPoke = this.user.getPassword;
-	   this.confirmPasswordPoke = this.user.getPassword;
-	   this.picturePoke = this.poke.getPicture;
+	   this.phoneNumberPoke = this.poke.phoneNumber;
+	   this.locationPoke = this.poke.location;
+	   this.userDescriptionPoke = this.poke.userDescription;
+	   this.passwordPoke = this.user.password;
+	   this.confirmPasswordPoke = this.user.password;
+	   this.picturePoke = this.poke.picture;
        });
-	  var str = this.user.getName.split(" ",2);
+	  var str = this.user.name.split(" ",2);
 	  this.firstNamePoke = str[0];
 	  this.lastNamePoke = str[1];
 	  
@@ -57,15 +57,15 @@ public uploader:FileUploader = new FileUploader({url: URL});
 	  
     if (this.firstNamePoke != "" && this.lastNamePoke != "" && this.phoneNumberPoke != ""
       && this.passwordPoke != "" && this.confirmPasswordPoke != "" && this.locationPoke != "") {
-      this.poke.setName = this.firstNamePoke + " " + this.lastNamePoke;
-      this.poke.setPicture = this.picturePoke;
+      this.poke.name = this.firstNamePoke + " " + this.lastNamePoke;
+      this.poke.picture = this.picturePoke;
       //this.uploadImage(this.picturePoke);
-      this.poke.setPhoneNumber = this.phoneNumberPoke;
-      this.poke.setLocation = this.locationPoke;
-      this.poke.setUserDescription = this.userDescriptionPoke;
-      this.poke.setIsBlocked = false;
+      this.poke.phoneNumber = this.phoneNumberPoke;
+      this.poke.location = this.locationPoke;
+      this.poke.userDescription = this.userDescriptionPoke;
+      this.poke.blocked = false;
       if (this.passwordPoke == this.confirmPasswordPoke) {
-        this.poke.setPassword = this.passwordPoke;
+        this.poke.password = this.passwordPoke;
       } else {
         //error
       }
