@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Order} from '../../models/order.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthorizeService} from "../../services/authorize.service";
+import {OrderService} from "../../services/order.service";
 
 
 @Component({
@@ -15,12 +16,13 @@ export class CreateOrderPageComponent implements OnInit {
 
 
   professions = [
-    {id: 0, name: 'Profession'},
-    {id: 1, name: 'Profession 1'},
-    {id: 2, name: 'Profession 2'},
-    {id: 3, name: 'Profession 3'},
-    {id: 4, name: 'Profession 4'},
-    {id: 5, name: 'Profession 5'}
+    {id: 0, name: 'Profession...'},
+    {id: 1, name: 'Locksmith'},
+    {id: 2, name: 'Plumber'},
+    {id: 3, name: 'Electrician'},
+    {id: 4, name: 'Cleaner'},
+    {id: 5, name: 'Computer foreman'},
+    {id: 6, name: 'Handyman'}
   ];
 
   private order: Order;
@@ -30,7 +32,7 @@ export class CreateOrderPageComponent implements OnInit {
   protected today;
 
 
-  constructor(private fb: FormBuilder, private authService: AuthorizeService) {
+  constructor(private fb: FormBuilder, private authService: AuthorizeService, private orderService: OrderService) {
     this.today = this.getToday();
 
     this.rForm = fb.group({
@@ -51,6 +53,9 @@ export class CreateOrderPageComponent implements OnInit {
       new Date(create.dueDate), 'New', null, null, create.masterProfession.id,null,null,this.authService.getUser().object_id);
 
     console.log(this.order)
+      this.orderService.createOder(this.order).subscribe(result => {
+        console.log(result);
+      });
   }
 
   ngOnInit(): void {

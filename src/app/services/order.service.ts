@@ -38,8 +38,8 @@ export class OrderService {
     }
 
     public updateOrderByMaster(order: Order, user: User){
-        order.setMaster=user.getObject_id;
-        order.setStatus="In processing";
+        order.master=user.object_id;
+        order.status="In processing";
         this.http.post(url+"entities/updateOrder", order).subscribe(result =>{
             alert(result)
         })
@@ -49,6 +49,11 @@ export class OrderService {
         this.http.delete(url+"entities/deleteEntity?id="+id, this.options).subscribe(result =>{
             alert(result)
         })
+    }
+
+    public createOder(order: Order){
+	     return this.http.post(url+"entities/addEntity",order,this.options)
+             .map(response => response.json());
     }
 
 }
