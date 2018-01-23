@@ -66,4 +66,9 @@ export class OrderService {
         })
     }
 
+    public createOder(order: Order){
+	     return this.http.post(url+"entities/addEntity",order,this.options)
+             .map(response => response.json());
+    }
+
 }
