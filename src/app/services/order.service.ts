@@ -38,8 +38,23 @@ export class OrderService {
     }
 
     public updateOrderByMaster(order: Order, user: User){
-        order.setMaster=user.getObject_id;
-        order.setStatus="In processing";
+        order.master=user.object_id;
+        order.status="In processing";
+        this.http.post(url+"entities/updateOrder", order).subscribe(result =>{
+            alert(result)
+        })
+    }
+	
+	public updateOrderByPoke(order: Order, user: User){
+		order.pokeId=user.object_id;
+        order.status="Completed";
+        this.http.post(url+"entities/updateOrder", order).subscribe(result =>{
+            alert(result)
+        })
+    }
+	
+	public completeOrderByMaster(order: Order){
+        order.status="Master done";
         this.http.post(url+"entities/updateOrder", order).subscribe(result =>{
             alert(result)
         })

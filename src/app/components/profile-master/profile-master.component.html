@@ -57,7 +57,8 @@ Edit Personal Information
            
 	<div class="ui top attached tabular menu">
 	<a class="item "  [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" data-tab="first">Orders in process</a>
-	<a class="item " [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" data-tab="second">Orders completed</a></div>
+	<a class="item " [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" data-tab="second">Orders completed</a>
+	<a class="item " [ngClass]="{'active':swipe===2}" (click)="swipeTab(2)" data-tab="third">Waiting...</a></div>
 	<div class="ui bottom attached tab segment active" data-tab="first" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)">
 	 <div class="ui one column centered grid">
 
@@ -78,6 +79,7 @@ Edit Personal Information
 	<app-master-profile-card
                       *ngFor="let ord of orders  | orderFilter:tag | masterSearch: searchStr| paginate: config " 
                        [order]="ord" 
+					     [routerLink]="['/order',ord.object_id]"
               ></app-master-profile-card> 
 
             <div class="paginationPadding" style="padding-right: 40px;">
@@ -120,6 +122,7 @@ Edit Personal Information
 	<app-card-order 
                       *ngFor="let ord of orders  | orderFilter:tag2 | masterSearch: searchStr2| paginate: config2 " 
                        [order]="ord" 
+					     [routerLink]="['/order',ord.object_id]"
               ></app-card-order> 
 
             <div class="paginationPadding" style="padding-right: 40px;">
@@ -136,6 +139,48 @@ Edit Personal Information
                                      [screenReaderPageLabel]="labels.screenReaderPageLabel"
                                      [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
                                      (pageChange)="onPageChange2($event)"></pagination-controls>
+            </div>
+
+            </div>
+			
+			</div>
+			<div class="ui bottom attached tab segment" data-tab="third" [ngClass]="{'active':swipe===2}" (click)="swipeTab(2)" >
+			 <div class="ui one column centered grid">
+
+              <div class="column" id="outbar">
+
+                <form class="ui form" style="width: 30%; margin-bottom: 5px">
+                  <div class="field">
+                    <input type="text" name="first-name" placeholder="search..." [(ngModel)]="searchStr3">
+                  </div>
+                </form>
+
+                <span class="toolbar-spacer"></span>
+
+               
+              </div>
+
+    </div>
+	<app-card-order 
+                      *ngFor="let ord of orders  | orderFilter:tag3 | masterSearch: searchStr3| paginate: config3 " 
+                       [order]="ord" 
+					    [routerLink]="['/order',ord.object_id]"
+              ></app-card-order> 
+
+            <div class="paginationPadding" style="padding-right: 40px;">
+
+            <div class="has-text-centered">
+                <pagination-controls class="myPagination"
+                                     [id]="config3.id"
+                                     [maxSize]="maxSize"
+                                     [directionLinks]="directionLinks"
+                                     [autoHide]="autoHide"
+                                     [previousLabel]="labels.previousLabel"
+                                     [nextLabel]="labels.nextLabel"
+                                     [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                                     [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                                     [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                                     (pageChange)="onPageChange3($event)"></pagination-controls>
             </div>
 
             </div>

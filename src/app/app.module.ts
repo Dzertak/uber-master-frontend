@@ -48,6 +48,7 @@ import {FileUploadModule} from "ng2-file-upload";
 
 import { PokeInfoComponent } from './components/poke-info/poke-info.component';
 import { MasterInfoComponent } from './components/master-info/master-info.component';
+import { MasterComponent } from './components/master/master.component';
 
 
 const routes: Routes = [
@@ -60,6 +61,7 @@ const routes: Routes = [
   {path: 'authorization', component: AuthorizationPageComponent},
   {path: 'create-order', canActivate: [AuthguardGuard], component: CreateOrderPageComponent},
   {path: 'order/:id', canActivate: [AuthguardGuard], component: OrderComponent },
+  {path: 'master/:id', canActivate: [AuthguardGuard], component: MasterComponent },
   {path: 'master-info', canActivate: [AuthguardGuard], component: MasterInfoComponent},
   {path: 'poke-info', canActivate: [AuthguardGuard], component: PokeInfoComponent},
   //{path: 'delete/:id', canActivate: [AuthguardGuard], component: ProfilePokeComponent },
@@ -87,7 +89,8 @@ const routes: Routes = [
     MasterProfileCardComponent,
     OrderComponent,
     PokeInfoComponent,
-    MasterInfoComponent
+    MasterInfoComponent,
+    MasterComponent
   ],
   imports: [
     BrowserModule,

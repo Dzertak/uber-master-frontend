@@ -13,24 +13,22 @@ declare var $:any;
 
 
 @Component({
-  selector: 'app-profile-master',
-  templateUrl: './profile-master.component.html',
-  styleUrls: ['./profile-master.component.css']
+  selector: 'app-master',
+  templateUrl: './master.component.html',
+  styleUrls: ['./master.component.css']
 })
-export class ProfileMasterComponent implements OnInit {
+export class MasterComponent implements OnInit {
 	
 	master: Master;
 	idM: string;
 	//user: User;
 	orders = [];
 	
-	swipe: number = 0;
+	swipe: number = 1;
    searchStr = '';
    searchStr2 = '';
-   searchStr3 = '';
   tag: string = '';
   tag2: string = '';
-  tag3: string = '';
   isLoad: boolean = true;
   
 	  
@@ -45,11 +43,6 @@ export class ProfileMasterComponent implements OnInit {
     };
 	public config2: PaginationInstance = {
         id: 'master-completed',
-        itemsPerPage: 3,
-        currentPage: 1
-    };
-	public config3: PaginationInstance = {
-        id: 'master-done',
         itemsPerPage: 3,
         currentPage: 1
     };
@@ -88,7 +81,6 @@ export class ProfileMasterComponent implements OnInit {
 	   
 	   this.tag = "In processing";
 	   this.tag2 = "Completed";
-	   this.tag3 = "Master done";
 	 
   }
   
@@ -110,11 +102,6 @@ export class ProfileMasterComponent implements OnInit {
 	onPageChange2(number: number) {
         console.log('change to page', number);
 		this.config2.currentPage = number;
-    }
-	
-	onPageChange3(number: number) {
-        console.log('change to page', number);
-		this.config3.currentPage = number;
     }
 	
 	swipeTab(tab: number){

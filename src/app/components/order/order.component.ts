@@ -35,7 +35,7 @@ export class OrderComponent implements OnInit {
     }
 
     isMaster(){
-      if (this.user.getClassType=='Master'){
+      if (this.user.classType=='Master'){
         return true;
       }
       return false;

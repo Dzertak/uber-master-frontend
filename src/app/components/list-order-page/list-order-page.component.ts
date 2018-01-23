@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
-import {Order, OrderService, AuthorizeService} from "../../index";
+import {User,Order, OrderService, AuthorizeService} from "../../index";
 import {PaginationInstance} from "ngx-pagination";
 
 declare var $:any;
@@ -13,6 +13,7 @@ declare var $:any;
 })
 export class ListOrderPageComponent implements OnInit {
 
+user:User;
   tag: string = '';
   isLoad: boolean = true;
   //curPage : number;
@@ -83,6 +84,12 @@ export class ListOrderPageComponent implements OnInit {
 	onPageChange(number: number) {
         console.log('change to page', number);
         this.config.currentPage = number;
+    }
+	
+	isPoke(): boolean {
+		this.user = this.authorizeService.getUser();
+		if(this.authorizeService.getUserType() == "Poke"){
+        return true;}
     }
 
 }

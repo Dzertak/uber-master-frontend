@@ -12,10 +12,10 @@ export class PokeService {
 
 	options: RequestOptions;
 
-    constructor(private http:Http, private authorizeSerice:AuthorizeService) { 
+    constructor(private http:Http, private authorizeService:AuthorizeService) { 
 		const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append("Authorization", "UberToken "+this.authorizeSerice.getToken());
+        headers.append("Authorization", "UberToken "+this.authorizeService.getToken());
         this.options = new RequestOptions({headers: headers});
 		};
 

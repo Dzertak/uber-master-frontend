@@ -71,6 +71,7 @@
 <app-card-master
                       *ngFor="let mast of masters  | masterSearch: searchStr|  paginate: config "
                        [master]="mast" 
+					   [routerLink]="['/master',mast.object_id]"
               ></app-card-master>
 
 

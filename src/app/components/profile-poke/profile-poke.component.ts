@@ -22,8 +22,10 @@ export class ProfilePokeComponent implements OnInit {
 	swipe: number = 0;
 	searchStr = '';
 	searchStr2 = '';
+	searchStr3 = '';
 	tag: string = '';
 	tag2: string = '';
+	tag3: string = '';
 	isLoad: boolean = true;
 	
 //poke = {"name":"SR","description":"SRDESCR","object_id":0,"location":"Primorskyy","userDescription":"SRUSERDESCR","phoneNumber":"99999999","picture":"SRpic1","classType":"Poke","isUserBlocked":false};
@@ -58,6 +60,11 @@ export class ProfilePokeComponent implements OnInit {
         itemsPerPage: 3,
         currentPage: 1
     };
+	public config3: PaginationInstance = {
+        id: 'master-done',
+        itemsPerPage: 3,
+        currentPage: 1
+    };
 
     public labels: any = {
         previousLabel: 'Previous',
@@ -88,6 +95,7 @@ export class ProfilePokeComponent implements OnInit {
        });
 	   this.tag = "In processing";
 	   this.tag2 = "New";
+	   this.tag3 = "Master done";
   }
   
 
@@ -106,6 +114,11 @@ export class ProfilePokeComponent implements OnInit {
 	onPageChange2(number: number) {
         console.log('change to page', number);
 		this.config2.currentPage = number;
+    }
+	
+	onPageChange3(number: number) {
+        console.log('change to page', number);
+		this.config3.currentPage = number;
     }
 	
 	swipeTab(tab: number){

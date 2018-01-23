@@ -9,18 +9,27 @@
     </div>
   </div>
   <div class="extra content">
-	<div *ngIf="isPoke() && notAdmin && order.status!='New'">
+	<div *ngIf="isPoke() && notAdmin && order.status=='Master done'">
 	<div class="left floated suthor ">
-	<button class="ui negative button" style="margin-bottom: 0px" (click)="deleteOrder(order.object_id)">Delete</button>
+	<button class="ui positive button" style="margin-bottom: 0px" (click)="confirmOrder(order)">Confirm Complation</button>
 	</div>
 	<div class="right floated author">
-      <button class="left floated ui positive basic button" style="margin-bottom: 0px"  >Confirm Completion </button>
+      <div class="left floated aughtor" style="margin-bottom: 0px"  >
 	  <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" > Matt
+	  </div>
+	
+	  </div>
+	  </div>
+	  <div *ngIf="isPoke() && notAdmin && order.status=='In processing'">
+	<div class="right floated author">
+      <div class="left floated aughtor" style="margin-bottom: 0px"  >
+	  <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" > Matt
+	  </div>
 	  </div>
 	  </div>
 	  <div class="right floated author">
 	  <div *ngIf="!isPoke() && notAdmin ">
-	  <button class="left floated ui positive basic button" style="margin-bottom: 0px"  >Confirm Completion </button>
+	  <button class="left floated ui positive basic button" style="margin-bottom: 0px"  (click)="confirmCompletionByMaster(order)">Confirm Completion </button>
 	<!--   <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" > Matt -->
 	  </div>
 	  <div *ngIf="isPoke() && notAdmin && order.status=='New' ">
