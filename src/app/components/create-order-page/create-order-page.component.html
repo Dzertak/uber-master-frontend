@@ -8,19 +8,19 @@
 
           <label>Order Name
             <div class="alert ui red message"
-                 *ngIf="!rForm.controls['_name'].valid && rForm.controls['_name'].touched">
+                 *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">
               <div class="header">
                 This is required
               </div>
               <p>Enter from 10 to 50 symbols</p>
             </div>
-          </label><input type="text" class="input text" formControlName="_name"/>
+          </label><input type="text" class="input text" formControlName="name"/>
         </div>
 
         <div class="fields">
           <div class="field">
             <label> Master's Profession
-              <select class="ui dropdown" formControlName="_masterProfession">
+              <select class="ui dropdown" formControlName="masterProfession">
                 <option *ngFor="let c of professions" [value]="c.id">{{c.name}}</option>
 
               </select>
@@ -30,26 +30,26 @@
         <div class="field">
           <label>Small Description
             <div class="alert ui red message"
-                 *ngIf="!rForm.controls['_smallDescription'].valid && rForm.controls['_smallDescription'].touched">
+                 *ngIf="!rForm.controls['smallDescription'].valid && rForm.controls['smallDescription'].touched">
               <div class="header">
                 This is required
               </div>
               <p>Enter from 25 to 280 symbols</p>
             </div>
-            <textarea rows="2" formControlName="_smallDescription"></textarea>
+            <textarea rows="2" formControlName="smallDescription"></textarea>
           </label>
         </div>
 
         <div class="field">
           <label>Big Description
             <div class="alert ui red message"
-                 *ngIf="!rForm.controls['_bigDescription'].valid && rForm.controls['_bigDescription'].touched">
+                 *ngIf="!rForm.controls['bigDescription'].valid && rForm.controls['bigDescription'].touched">
               <div class="header">
                 This is required
               </div>
               <p>Enter from 25 to 580 symbols</p>
             </div>
-            <textarea formControlName="_bigDescription"></textarea>
+            <textarea formControlName="bigDescription"></textarea>
           </label>
         </div>
 
@@ -57,11 +57,11 @@
         <div class="fields">
 
           <div class="field">
-            <label>Start date<input type="text" formControlName="_startDate"></label>
+            <label>Start date<input type="text" formControlName="startDate"></label>
           </div>
 
           <div class="field">
-            <label>Due Date<input type="date" formControlName="_dueDate" min={{today}}></label>
+            <label>Due Date<input type="date" formControlName="dueDate" min={{today}}></label>
           </div>
         </div>
         <input type="submit" class="button  ui" value="Create order"
