@@ -14,21 +14,33 @@
               <div class="divider"></div>
               <div class="header">
                 <i class="tags icon"></i>
-                Tag status
+                Tag professions
               </div>
               <div class="scrolling menu">
 
-                <div class="item" data-value="New">
+                <div class="item" data-value="Locksmith" (click)="showChoice('Locksmith')">
                   <div class="ui green empty circular label"></div>
-                  New
+                  Locksmith
                 </div>
-                <div class="item" data-value="In processing">
+                <div class="item" data-value="Plumber" (click)="showChoice('Plumber')">
                   <div class="ui yellow empty circular label"></div>
-                  In processing
+                  Plumber
                 </div>
-                <div class="item" data-value="Completed" >
-                  <div class="ui grey empty circular label"></div>
-                  Completed
+                <div class="item" data-value="Electrician" (click)="showChoice('Electrician')">
+                  <div class="ui red empty circular label"></div>
+                  Electrician
+                </div>
+                <div class="item" data-value="Cleaner" (click)="showChoice('Cleaner')">
+                  <div class="ui blue empty circular label"></div>
+                  Cleaner
+                </div>
+                <div class="item" data-value="Computer foreman" (click)="showChoice('Computer foreman')">
+                  <div class="ui pink empty circular label"></div>
+                  Computer foreman
+                </div>
+                <div class="item" data-value="Handyman" (click)="showChoice('Handyman')">
+                  <div class="ui orange empty circular label"></div>
+                  Handyman
                 </div>
               </div>
             </div>
@@ -68,11 +80,24 @@
 
               <div class="column" id="outbar">
 
-                <form class="ui form" style="width: 30%; margin-bottom: 5px">
+                <form class="ui form" style="width: 40%; margin-bottom: 5px">
                   <div class="field">
                     <input type="text" name="first-name" placeholder="search..." [(ngModel)]="searchStr">
                   </div>
                 </form>
+
+               <!-- <div class="ui selection dropdown">
+                  <input name="gender" type="hidden">
+                  <div class="default text">Select a value</div>
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <div class="item" data-value="0">Value</div>
+                    <div class="item" data-value="1">Another Value</div>
+                  </div>
+                </div>
+                <div class="ui button">
+                  Clear
+                </div> -->
 
                 <span class="toolbar-spacer"></span>
 

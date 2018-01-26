@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
 import {User,Order, OrderService, AuthorizeService} from "../../index";
 import {PaginationInstance} from "ngx-pagination";
+import {professions, url} from "../../common/consts";
 
 declare var $:any;
 
@@ -13,6 +14,7 @@ declare var $:any;
 })
 export class ListOrderPageComponent implements OnInit {
 
+    prof : {} = professions;
 user:User;
   tag: string = '';
   isLoad: boolean = true;
@@ -60,7 +62,14 @@ user:User;
 
   ngOnInit() {
     $('.ui.dropdown').dropdown();
+    //$('.ui.dropdown').dropdown();
    //   this.loading(false);
+
+      /*$('.clear.example .button')
+          .on('click', function() {
+              $('.clear.example .ui.dropdown')
+                  .dropdown('clear');
+          });*/
 
     this.orderService.getOrderList().subscribe(orders => {
       this.loading(false);
@@ -69,12 +78,10 @@ user:User;
 
   }
 
-  showChoice(e){
-      e.preventDefault();
-      console.log(e);
-      var username = e.target.elements[0].value;
-      var password = e.target.elements[1].value;
-      console.log(username,password);
+  showChoice(tag: string){
+      //console.log($('.ui.dropdown').dropdown('get value'));
+      console.log($('.ui.dropdown').find(':selected').get().value);
+    this.tag = tag;
   }
    getSelectedTextValue() {
        this.tag = $('.ui.dropdown').dropdown('get value');

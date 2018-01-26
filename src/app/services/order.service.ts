@@ -24,7 +24,7 @@ export class OrderService {
 
 
     public getOrderList() {
-        return this.http.post(url+'entities/getOrdersByStatus?status='+'New', this.options)
+        return this.http.get(url+'entities/getOrdersByStatus?status='+'New', this.options)
             .map(response => response.json())
     }
 
