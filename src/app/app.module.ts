@@ -4,8 +4,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+//import {L_SEMANTIC_UI_MODULE} from "angular2-semantic-ui";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SuiModule} from 'ng2-semantic-ui';
 
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-4.x';
 import * as  Cloudinary from 'cloudinary-core';
@@ -49,6 +50,7 @@ import {FileUploadModule} from "ng2-file-upload";
 import { PokeInfoComponent } from './components/poke-info/poke-info.component';
 import { MasterInfoComponent } from './components/master-info/master-info.component';
 import { MasterComponent } from './components/master/master.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 const routes: Routes = [
@@ -90,7 +92,8 @@ const routes: Routes = [
     OrderComponent,
     PokeInfoComponent,
     MasterInfoComponent,
-    MasterComponent
+    MasterComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +103,8 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     NgxPaginationModule,
+	//L_SEMANTIC_UI_MODULE,
+	SuiModule,
   	CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'ubermaster' } as CloudinaryConfiguration),
     ReactiveFormsModule
   ],

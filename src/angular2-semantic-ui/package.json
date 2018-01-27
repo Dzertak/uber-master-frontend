@@ -1,0 +1,70 @@
+{
+  "_from": "angular2-semantic-ui",
+  "_id": "angular2-semantic-ui@2.0.9",
+  "_inBundle": false,
+  "_integrity": "sha512-47V8mivN8+DWf1tPCbopLnEVw8oXkIM5Uy1cnDYziQPKjh+KYwZI1zCSzfHjoB1kA7lqqshqTiZ/DR7bqeFxhQ==",
+  "_location": "/angular2-semantic-ui",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "angular2-semantic-ui",
+    "name": "angular2-semantic-ui",
+    "escapedName": "angular2-semantic-ui",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular2-semantic-ui/-/angular2-semantic-ui-2.0.9.tgz",
+  "_shasum": "6e095e46c3cb8cd7e9a92fee07bca9a940dc11e0",
+  "_spec": "angular2-semantic-ui",
+  "_where": "D:\\UBF",
+  "author": {
+    "name": "Lon.L.Yang"
+  },
+  "bugs": {
+    "url": "https://github.com/lon-yang/angular2-semantic-ui/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Angular2 Directives for Semantic UI",
+  "devDependencies": {
+    "@angular/animations": "^4.3.1",
+    "@angular/common": "^4.3.1",
+    "@angular/core": "^4.3.1",
+    "@angular/forms": "^4.3.1",
+    "@angular/platform-browser": "^4.3.1",
+    "rxjs": "^5.4.2"
+  },
+  "homepage": "https://github.com/lon-yang/angular2-semantic-ui#readme",
+  "keywords": [
+    "angular2",
+    "semantic",
+    "ui",
+    "semantic-ui"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "angular2-semantic-ui",
+  "peerDependencies": {
+    "@angular/animations": "^4.3.1",
+    "@angular/common": "^4.3.1",
+    "@angular/core": "^4.3.1",
+    "@angular/forms": "^4.3.1",
+    "@angular/platform-browser": "^4.3.1",
+    "rxjs": "^5.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lon-yang/angular2-semantic-ui.git"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w"
+  },
+  "version": "2.0.9"
+}

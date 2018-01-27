@@ -21,6 +21,10 @@
       <td><i class="call icon"></i>Phone Number</td>
       <td style="padding-left:20px">{{master.phoneNumber}}</td>
     </tr>
+	<tr>
+		<td>Rating</td>
+		<td><sui-rating class="star" [ngModel]="mastersRate()" [maximum]="5"></sui-rating></td>
+	</tr>
 	<!-- <tr> -->
 		<!-- <td>Skills</td> -->
 		<!-- <td>{{master.skills}}</td> -->
