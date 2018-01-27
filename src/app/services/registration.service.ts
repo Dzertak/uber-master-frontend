@@ -11,13 +11,24 @@ export class RegistrationService{
     constructor(private http: Http, private router: Router){
     }
 
-    reg(user: User){
-        this.http.post(url + "register", user).subscribe(response => {
-          if (response.status == 200){
-            this.router.navigate(['authorization']);
-          } else if (response.status == 500) {
-            alert(response.statusText);
-          }
-        });
+    reg(user: User, userType: string){
+        if (userType == 'Poke'){
+            this.http.post(url + "registerPoke", user).subscribe(response => {
+                if (response.status == 200){
+                    this.router.navigate(['authorization']);
+                } else if (response.status == 500) {
+                    alert(response.statusText);
+                }
+            });
+        } else {
+            this.http.post(url + "registerMaster", user).subscribe(response => {
+                if (response.status == 200){
+                    this.router.navigate(['authorization']);
+                } else if (response.status == 500) {
+                    alert(response.statusText);
+                }
+            });
+        }
+
     }
 }

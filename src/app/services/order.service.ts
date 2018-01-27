@@ -24,8 +24,7 @@ export class OrderService {
 
 
     public getOrderList() {
-
-        return this.http.get('http://localhost:8090/entities/getTypedEntities?class=Order', this.options)
+        return this.http.get(url+'entities/getOrdersByStatus?status='+'New', this.options)
             .map(response => response.json())
     }
 
@@ -40,7 +39,7 @@ export class OrderService {
     public updateOrderByMaster(order: Order, user: User){
         order.master=user.object_id;
         order.status="In processing";
-        this.http.post(url+"entities/updateOrder", order).subscribe(result =>{
+        this.http.post(url+"entities/updateOrder", order, this.options).subscribe(result =>{
             alert(result)
         })
     }
@@ -48,14 +47,14 @@ export class OrderService {
 	public updateOrderByPoke(order: Order, user: User){
 		order.pokeId=user.object_id;
         order.status="Completed";
-        this.http.post(url+"entities/updateOrder", order).subscribe(result =>{
+        this.http.post(url+"entities/updateOrder", order, this.options).subscribe(result =>{
             alert(result)
         })
     }
 	
 	public completeOrderByMaster(order: Order){
         order.status="Master done";
-        this.http.post(url+"entities/updateOrder", order).subscribe(result =>{
+        this.http.post(url+"entities/updateOrder", order, this.options).subscribe(result =>{
             alert(result)
         })
     }

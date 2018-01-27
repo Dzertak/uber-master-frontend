@@ -67,7 +67,7 @@ export class RegistrationPageComponent implements OnInit {
       if (this.passwordPoke == this.confirmPasswordPoke) {
         let poke = new Poke(this.firstNamePoke + " " + this.lastNamePoke, null, null, this.locationPoke,
           this.userDescriptionPoke, this.phoneNumberPoke, this.passwordPoke, this.picturePoke, false);
-        this.registrationService.reg(poke);
+        this.registrationService.reg(poke,'Poke');
       } else {
         //error
       }
@@ -89,7 +89,7 @@ export class RegistrationPageComponent implements OnInit {
         let master = new Master(this.firstNameMaster + " " + this.lastNameMaster, null, null, this.locationMaster,
           this.userDescriptionMaster, this.phoneNumberMaster, this.passwordMaster, this.pictureMaster, false,
           this.profession, this.skills, this.experience, this.payment, this.smoke, this.tools, this.startTime, this.endTime, this.averMark);
-        this.registrationService.reg(master);
+        this.registrationService.reg(master,'Master');
       } else {
         //error
       }

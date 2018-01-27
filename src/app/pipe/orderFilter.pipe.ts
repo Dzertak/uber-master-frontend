@@ -7,7 +7,7 @@ import {Pipe, PipeTransform} from "@angular/core";
 export class OrderFilterPipe implements PipeTransform{
     transform(orders, value): any {
         return orders.filter(order => {
-            return order.status.includes(value);
+            return order.masterProfession.includes(value);
         });
     }
 
