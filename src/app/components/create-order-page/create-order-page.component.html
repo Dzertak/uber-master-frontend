@@ -21,14 +21,14 @@
           <div class="field">
             <label> Master's Profession
               <select class="ui dropdown" formControlName="masterProfession">
-                <option *ngFor="let c of professions" [value]="c.id">{{c.name}}</option>
+                <option *ngFor="let c of professions" [value]="c.name">{{c.name}}</option>
 
               </select>
             </label>
           </div>
         </div>
         <div class="field">
-          <label>Small Description
+          <label>Summary
             <div class="alert ui red message"
                  *ngIf="!rForm.controls['smallDescription'].valid && rForm.controls['smallDescription'].touched">
               <div class="header">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="field">
-          <label>Big Description
+          <label>Details
             <div class="alert ui red message"
                  *ngIf="!rForm.controls['bigDescription'].valid && rForm.controls['bigDescription'].touched">
               <div class="header">
@@ -62,9 +62,13 @@
 
           <div class="field">
             <label>Due Date<input type="date" formControlName="dueDate" min={{today}}></label>
+           <!-- <div>
+              <input type="date" [ngModel] ="dt | date:'yyyy-MM-dd'" (ngModelChange)="dt = $event" [value]="datee | date:'yyyy-MM-dd'">
+              {{dt| date:'yyyy-MM-dd'}}
+            </div> -->
           </div>
         </div>
-        <input type="submit" class="button  ui" value="Create order"
+        <input type="submit" class="button green ui" value="Create order"
                [disabled]="!rForm.valid">
       </div>
     </div>
