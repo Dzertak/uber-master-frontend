@@ -49,10 +49,13 @@ export class CreateOrderPageComponent implements OnInit {
 
 
   createOrder(create) {
-    this.dueDate = new Date(create.dueDate);
+    let dueDate = new Date(create.dueDate);
     this.time = create.time;
 
-    this.dueDate = new Date(this.dueDate.getFullYear(), this.dueDate.getMonth(), this.dueDate.getDay(),
+    // console.log(new Date(this.dueDate.getFullYear(), this.dueDate.getMonth(), this.dueDate.getDay(),
+    //   this.time.split(':')[0], this.time.split(':')[1]));
+
+    this.dueDate = new Date(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate(),
       this.time.split(':')[0], this.time.split(':')[1])
 
     this.order = new Order(create.name, '', -1,
@@ -60,10 +63,10 @@ export class CreateOrderPageComponent implements OnInit {
       this.dueDate, 'New', -1, '-1', create.masterProfession,
       -1, null, this.authService.getUser().object_id);
 
-    console.log(this.order)
-    // this.orderService.createOder(this.order).subscribe(result => {
-    //   console.log(result);
-    // });
+    console.log(this.dueDate)
+    this.orderService.createOder(this.order).subscribe(result => {
+      console.log(result);
+    });
   }
 
   ngOnInit(): void {
