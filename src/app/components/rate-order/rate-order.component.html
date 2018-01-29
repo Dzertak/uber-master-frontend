@@ -2,22 +2,21 @@
 
       <div class="column">
         
-         
-		<div>Rating</div>
-		<sui-rating class="star" [ngModel]="rating"  [maximum]="5"></sui-rating>
-	    <div class="left floated author ">
+		<div>Rate Order</div>
+		<sui-rating class="star" [(ngModel)]="rating" [maximum]="5"></sui-rating> 
+	    <!-- <div class="left floated author ">
 	<button class="ui positive button" style="margin-bottom: 0px" (click)="rateOrder()" >Rate</button>
-	</div>
-	
+	</div> -->
+
 	 <div class="field" style="size:200px;">
-        <label>Commet Order</label>
-        <textarea style="height:200px; width:300px" [(ngModel)]="comment" ></textarea>
+        <label>Comment Order</label>
+        <textarea style="height:200px; width:300px" [(ngModel)]="comment"  [disabled]="disabling()" ></textarea>
     </div>
-	<div class="left floated author ">
+	<!-- <div class="left floated author ">
 	<button class="ui positive button" style="margin-bottom: 0px" (click)="commentOrder()" >Comment</button>
-	</div>
+	</div> -->
           <div class="left floated author ">
-	<button class="ui positive button" style="margin-bottom: 0px" (click)="confirmOrder(order)"  [routerLink]="['/profilePoke',this.user.object_id]">Confirm Complation</button>
+	<button class="ui positive button" style="margin-bottom: 0px" (click)="confirmOrder()"  [routerLink]="['/profilePoke',this.user.object_id]">Confirm Complation</button>
 	</div>
         </div>
       </div>

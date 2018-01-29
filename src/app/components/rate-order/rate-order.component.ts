@@ -15,9 +15,9 @@ export class RateOrderComponent implements OnInit {
   markByPoke: number;
   order: Order;
   id:string;
-  action: number;
   user:User;
   rating: number; 
+  //disabling: boolean;
 
   constructor(private router2: Router, private router: ActivatedRoute,private authService: AuthorizeService, private orderService: OrderService) { }
 
@@ -26,26 +26,21 @@ export class RateOrderComponent implements OnInit {
 	  this.user = this.authService.getUser();
       this.orderService.getOrder(this.id).subscribe(order => {
         this.order = order;
-        //this.loading(false);
       })
-	  this.action = 1;
   }
-  
-  rateOrder(){
-	  this.order.mark = this.rating;
-	  this.action = 2;
-  }
-  
-  commentOrder(){
-	  this.order.comment = this.commentByPoke;
-  }
+ 
 
-  confirmOrder(order: Order){
-	  if(this.action == 2)
-	  {
-		this.orderService.updateOrderByPoke(order, this.user);
-		
-	  }
+  confirmOrder(){
+	    this.order.mark = this.rating;
+		this.order.comment = this.commentByPoke;
+		this.orderService.updateOrderByPoke(this.order, this.user);
 	  //this.router2.navigate("['/profilePoke',this.user.object_id]");
+  }
+  
+  disabling(): boolean{
+	  if(this.rating==null)
+		return true;
+	  else return false;
+  
   }
 }
