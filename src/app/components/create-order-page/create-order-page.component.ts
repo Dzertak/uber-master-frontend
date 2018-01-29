@@ -31,6 +31,8 @@ export class CreateOrderPageComponent implements OnInit {
   protected startDate = new Date();
   protected today;
   prof: string;
+  private dueDate: Date;
+  private time: any;
 
   constructor(private fb: FormBuilder, private authService: AuthorizeService, private orderService: OrderService) {
     this.today = this.getToday();
@@ -40,21 +42,28 @@ export class CreateOrderPageComponent implements OnInit {
       'bigDescription': [null, Validators.compose([Validators.required, Validators.minLength(25), Validators.maxLength(500)])],
       'dueDate': [this.today, Validators.required],
       'startDate': [{value: this.startDate.toLocaleDateString(), disabled: true}],
-      'masterProfession': ['Profession...', Validators.required]
+      'masterProfession': ['Profession...', Validators.required],
+      'time': ['23:59', Validators.required]
     })
   }
 
 
   createOrder(create) {
+    this.dueDate = new Date(create.dueDate);
+    this.time = create.time;
+
+    this.dueDate = new Date(this.dueDate.getFullYear(), this.dueDate.getMonth(), this.dueDate.getDay(),
+      this.time.split(':')[0], this.time.split(':')[1])
 
     this.order = new Order(create.name, '', -1,
       create.smallDescription, create.bigDescription, this.startDate,
-      new Date(create.dueDate), 'New', -1, '-1', create.masterProfession, -1, null, this.authService.getUser().object_id);
+      this.dueDate, 'New', -1, '-1', create.masterProfession,
+      -1, null, this.authService.getUser().object_id);
 
     console.log(this.order)
-    this.orderService.createOder(this.order).subscribe(result => {
-      console.log(result);
-    });
+    // this.orderService.createOder(this.order).subscribe(result => {
+    //   console.log(result);
+    // });
   }
 
   ngOnInit(): void {
