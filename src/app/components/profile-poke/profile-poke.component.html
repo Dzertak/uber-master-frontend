@@ -1,7 +1,8 @@
  <div class="ui one column centered grid" style = "font-size:120%" *ngIf="!isLoad">
 
 	<tr>
-		<th class="five wide" ><div class="header" style = "font-size:160%;margin-top:10px;margin-right:180px">{{poke.name}}</div></th>
+		<th class="five wide" ><div class="header" style = "font-size:160%;margin-top:10px;margin-right:180px">{{poke.name}}
+	</div></th>
 	</tr>
 	
 	  <div id="container">
@@ -29,7 +30,7 @@ Edit Personal Information
  </table> 
 		
 		</div>
-		<div id="rightcol" style="margin-left:350px;margin-top:-500px"><!--rowspan="6"--> 
+		<div id="rightcol" style="margin-left:350px;margin-top:-200px"><!--rowspan="6"--> 
 		<div class="two column centered row">
           <div class="column">
 
@@ -60,7 +61,7 @@ Edit Personal Information
 
     </div>
 	<app-master-profile-card
-                      *ngFor="let ord of orders  | orderFilter:tag | masterSearch: searchStr| paginate: config " 
+                      *ngFor="let ord of orders  | orderFilter2:tag | masterSearch: searchStr| paginate: config " 
                        [order]="ord" 
 					   [routerLink]="['/order',ord.object_id]"
               ></app-master-profile-card> 
@@ -103,7 +104,7 @@ Edit Personal Information
 
     </div>
 	<app-master-profile-card
-                      *ngFor="let ord of orders  | orderFilter:tag2 | masterSearch: searchStr2| paginate: config2 " 
+                      *ngFor="let ord of orders  | orderFilter2:tag2 | masterSearch: searchStr2| paginate: config2 " 
                        [order]="ord" 
 					   [routerLink]="['/order',ord.object_id]"
               ></app-master-profile-card> 
@@ -145,7 +146,7 @@ Edit Personal Information
 
     </div>
 	<app-master-profile-card
-                      *ngFor="let ord of orders  | orderFilter:tag3 | masterSearch: searchStr3| paginate: config3 " 
+                      *ngFor="let ord of orders  | orderFilter2:tag3 | masterSearch: searchStr3| paginate: config3 " 
                        [order]="ord" 
 					    [routerLink]="['/order',ord.object_id]"
               ></app-master-profile-card> 

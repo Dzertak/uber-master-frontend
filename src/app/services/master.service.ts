@@ -42,7 +42,7 @@ export class MasterService {
     }
 	
 	public updateMaster(master: Master){
-		this.http.post(url+"entities/updateMaster", master).subscribe(result =>{
+		this.http.post(url+"entities/updateMaster", master,this.options).subscribe(result =>{
             alert(result)
         })
 	}

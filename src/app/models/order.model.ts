@@ -12,11 +12,12 @@ export class Order extends BaseEntity {
     mark: number;
     masterEndDate: Date;
     pokeId: number;
+	comment: string;
 
 
     constructor(name: string, description: string, object_id: number, smallDescription: string, bigDescription: string,
                 startDate: Date, dueDate: Date, status: string, master: number, masterName: string, masterProfession: string,
-                mark: number, masterEndDate: Date, pokeId: number) {
+                mark: number, masterEndDate: Date, pokeId: number, comment: string) {
         super(name, description, object_id);
         this.smallDescription = smallDescription;
         this.bigDescription = bigDescription;
@@ -29,6 +30,7 @@ export class Order extends BaseEntity {
         this.mark = mark;
         this.masterEndDate = masterEndDate;
         this.pokeId = pokeId;
+		this.comment = comment;
     }
 
 

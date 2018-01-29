@@ -9,6 +9,7 @@ import {PokeService} from "../../services/poke.service";
 import {AuthorizeService} from "../../services/authorize.service";
 declare var $:any;
 
+
 @Component({
   selector: 'app-profile-poke',
   templateUrl: './profile-poke.component.html',
@@ -44,6 +45,7 @@ export class ProfilePokeComponent implements OnInit {
       ]; */
 	  
 	  orders = [];
+	  
 
 
  public filter: string = '';

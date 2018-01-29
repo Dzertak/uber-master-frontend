@@ -9,6 +9,8 @@ import {ActivatedRoute} from "@angular/router";
 import {MasterService} from "../../services/master.service";
 import {AuthorizeService} from "../../services/authorize.service";
 //import {User} from "../../models/user.model";
+import {SuiRatingModule} from 'ng2-semantic-ui';
+
 declare var $:any;
 
 
@@ -23,7 +25,8 @@ export class MasterComponent implements OnInit {
 	idM: string;
 	//user: User;
 	orders = [];
-	
+	avg:number;
+	sum:number;
 	swipe: number = 1;
    searchStr = '';
    searchStr2 = '';
@@ -107,6 +110,17 @@ export class MasterComponent implements OnInit {
 	swipeTab(tab: number){
         this.swipe = tab;
     }
+	
+	mastersRate(){
+		this.sum = 0;
+		this.avg = 0;
+		for(let ord of this.orders)
+		{
+			this.sum += ord.mark;
+		}
+		this.avg = this.sum/this.orders.length;
+		return Math.round(this.avg);
+	}
 	
 	  
 

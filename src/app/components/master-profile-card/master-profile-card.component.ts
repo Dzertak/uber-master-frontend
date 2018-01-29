@@ -1,9 +1,13 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component,Input, OnInit, ViewChild } from '@angular/core';
 import {Order} from "../../index";
 //import {AppComponent} from "../../app.component";
 import {User, AuthorizeService,OrderService} from "../../index";
 import {ActivatedRoute} from "@angular/router";
+import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
 
+export interface IContext{
+	data:string;
+}
 
 @Component({
   selector: 'app-master-profile-card',
@@ -11,13 +15,16 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./master-profile-card.component.css']
 })
 export class MasterProfileCardComponent implements OnInit {
-
+	
+/* @ViewChild('modalTemplate')
+	public modalTemplate :ModalTemplate<IContext, string, string> */
+	
  //appcomponent: AppComponent ;
  //id: string;
 notAdmin = true;
 	 @Input() order: Order;
 	user: User
-  constructor(private router: ActivatedRoute,private authService: AuthorizeService, private orderService: OrderService) { }
+  constructor(private router: ActivatedRoute,private authService: AuthorizeService, private orderService: OrderService, public modalService:SuiModalService) { }
 
   isPoke(): boolean {
 		if(this.authService.getUserType() == "Poke"){
@@ -46,5 +53,14 @@ notAdmin = true;
 	  this.orderService.completeOrderByMaster(order);
 	  
   }
-
+  
+ /*  open(dynamicContent:string="Example"){
+	  const config = new TemplateModalConfig<IContext,string,string>(this.modalTemplate);
+	  
+	  config.closeResult = "closed!";
+	  config.context = {data: dynamicContent};
+	  
+	  this.modalService.open(config).onApprove(result => {"approve"}).onDeny(result =>{"deny"});
+  } */
+  
 }

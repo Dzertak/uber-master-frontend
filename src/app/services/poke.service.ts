@@ -42,7 +42,7 @@ export class PokeService {
     }
 	
 	public updatePoke(poke: Poke){
-		this.http.post(url+"entities/updatePoke", poke).subscribe(result =>{
+		this.http.post(url+"entities/updatePoke", poke,this.options).subscribe(result =>{
             alert(result)
         })
 	}

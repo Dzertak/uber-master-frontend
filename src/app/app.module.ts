@@ -4,8 +4,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+//import {L_SEMANTIC_UI_MODULE} from "angular2-semantic-ui";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SuiModule} from 'ng2-semantic-ui';
 
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-4.x';
 import * as  Cloudinary from 'cloudinary-core';
@@ -26,6 +27,7 @@ import {MasterService} from './services/master.service';
 import {PokeService} from './services/poke.service';
 import {CardMasterComponent} from './components/card-master/card-master.component';
 import {OrderFilterPipe} from './pipe/orderFilter.pipe';
+import {OrderFilterPipe2} from './pipe/orderFilter2.pipe';
 import {ProfilePokeComponent} from './components/profile-poke/profile-poke.component';
 import {OrderSearchPipe} from './pipe/orderSearch.pipe';
 import {MasterSearchPipe} from './pipe/masterSearch.pipe';
@@ -38,6 +40,7 @@ import {FileUploadModule} from "ng2-file-upload";
 import { PokeInfoComponent } from './components/poke-info/poke-info.component';
 import { MasterInfoComponent } from './components/master-info/master-info.component';
 import { MasterComponent } from './components/master/master.component';
+import { RateOrderComponent } from './components/rate-order/rate-order.component';
 
 
 
@@ -54,6 +57,7 @@ const routes: Routes = [
   {path: 'master/:id', canActivate: [AuthguardGuard], component: MasterComponent },
   {path: 'master-info', canActivate: [AuthguardGuard], component: MasterInfoComponent},
   {path: 'poke-info', canActivate: [AuthguardGuard], component: PokeInfoComponent},
+  {path: 'rate/:id', canActivate: [AuthguardGuard], component: RateOrderComponent},
   //{path: 'delete/:id', canActivate: [AuthguardGuard], component: ProfilePokeComponent },
   {path: '**', component: NotFoundPageComponent}
 ];
@@ -72,6 +76,7 @@ const routes: Routes = [
     CardOrderComponent,
     CardMasterComponent,
     OrderFilterPipe,
+	OrderFilterPipe2,
     OrderSearchPipe,
     ProfilePokeComponent,
     MasterSearchPipe,
@@ -80,7 +85,8 @@ const routes: Routes = [
     OrderComponent,
     PokeInfoComponent,
     MasterInfoComponent,
-    MasterComponent
+    MasterComponent,
+    RateOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +96,8 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     NgxPaginationModule,
+	//L_SEMANTIC_UI_MODULE,
+	SuiModule,
   	CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'ubermaster' } as CloudinaryConfiguration),
     ReactiveFormsModule
   ],
