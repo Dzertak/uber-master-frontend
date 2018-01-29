@@ -16,8 +16,8 @@ export interface IContext{
 })
 export class MasterProfileCardComponent implements OnInit {
 	
-@ViewChild('modalTemplate')
-	public modalTemplate :ModalTemplate<IContext, string, string>
+/* @ViewChild('modalTemplate')
+	public modalTemplate :ModalTemplate<IContext, string, string> */
 	
  //appcomponent: AppComponent ;
  //id: string;
@@ -54,13 +54,13 @@ notAdmin = true;
 	  
   }
   
-  open(dynamicContent:string="Example"){
+ /*  open(dynamicContent:string="Example"){
 	  const config = new TemplateModalConfig<IContext,string,string>(this.modalTemplate);
 	  
 	  config.closeResult = "closed!";
 	  config.context = {data: dynamicContent};
 	  
 	  this.modalService.open(config).onApprove(result => {"approve"}).onDeny(result =>{"deny"});
-  }
+  } */
   
 }

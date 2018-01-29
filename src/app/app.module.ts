@@ -27,6 +27,7 @@ import {MasterService} from './services/master.service';
 import {PokeService} from './services/poke.service';
 import {CardMasterComponent} from './components/card-master/card-master.component';
 import {OrderFilterPipe} from './pipe/orderFilter.pipe';
+import {OrderFilterPipe2} from './pipe/orderFilter2.pipe';
 import {ProfilePokeComponent} from './components/profile-poke/profile-poke.component';
 import {OrderSearchPipe} from './pipe/orderSearch.pipe';
 import {MasterSearchPipe} from './pipe/masterSearch.pipe';
@@ -39,7 +40,7 @@ import {FileUploadModule} from "ng2-file-upload";
 import { PokeInfoComponent } from './components/poke-info/poke-info.component';
 import { MasterInfoComponent } from './components/master-info/master-info.component';
 import { MasterComponent } from './components/master/master.component';
-import { ModalComponent } from './modal/modal.component';
+import { RateOrderComponent } from './components/rate-order/rate-order.component';
 
 
 
@@ -56,6 +57,7 @@ const routes: Routes = [
   {path: 'master/:id', canActivate: [AuthguardGuard], component: MasterComponent },
   {path: 'master-info', canActivate: [AuthguardGuard], component: MasterInfoComponent},
   {path: 'poke-info', canActivate: [AuthguardGuard], component: PokeInfoComponent},
+  {path: 'rate/:id', canActivate: [AuthguardGuard], component: RateOrderComponent},
   //{path: 'delete/:id', canActivate: [AuthguardGuard], component: ProfilePokeComponent },
   {path: '**', component: NotFoundPageComponent}
 ];
@@ -74,6 +76,7 @@ const routes: Routes = [
     CardOrderComponent,
     CardMasterComponent,
     OrderFilterPipe,
+	OrderFilterPipe2,
     OrderSearchPipe,
     ProfilePokeComponent,
     MasterSearchPipe,
@@ -83,7 +86,7 @@ const routes: Routes = [
     PokeInfoComponent,
     MasterInfoComponent,
     MasterComponent,
-    ModalComponent
+    RateOrderComponent
   ],
   imports: [
     BrowserModule,

@@ -72,7 +72,8 @@ export class Convertator {
             object.masterName,
             object.mark,
             object.masterEndDate,
-            object.pokeId
+            object.pokeId,
+			object.comment
         );
         return order;
     }
