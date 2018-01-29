@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Order} from '../../models/order.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthorizeService} from "../../services/authorize.service";
-import {OrderService} from "../../services/order.service";
+import {AuthorizeService} from '../../services/authorize.service';
+import {OrderService} from '../../services/order.service';
 
 
 @Component({
@@ -31,41 +31,39 @@ export class CreateOrderPageComponent implements OnInit {
   protected startDate = new Date();
   protected today;
   prof: string;
-    dt;
 
   constructor(private fb: FormBuilder, private authService: AuthorizeService, private orderService: OrderService) {
     this.today = this.getToday();
-      this.dt = new Date();
     this.rForm = fb.group({
       'name': [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(60)])],
       'smallDescription': [null, Validators.compose([Validators.required, Validators.minLength(25), Validators.maxLength(280)])],
       'bigDescription': [null, Validators.compose([Validators.required, Validators.minLength(25), Validators.maxLength(500)])],
-      'dueDate': [null, Validators.required],
+      'dueDate': [this.today, Validators.required],
       'startDate': [{value: this.startDate.toLocaleDateString(), disabled: true}],
-      'masterProfession' : ['Profession...', Validators.required]
+      'masterProfession': ['Profession...', Validators.required]
     })
-
   }
 
 
   createOrder(create) {
 
-    this.order = new Order(create.name, "", -1,
+    this.order = new Order(create.name, '', -1,
       create.smallDescription, create.bigDescription, this.startDate,
-      new Date(create.dueDate), 'New', -1, "-1", create.masterProfession,-1,null,this.authService.getUser().object_id);
+      new Date(create.dueDate), 'New', -1, '-1', create.masterProfession, -1, null, this.authService.getUser().object_id);
 
     console.log(this.order)
-      this.orderService.createOder(this.order).subscribe(result => {
-        console.log(result);
-      });
+    this.orderService.createOder(this.order).subscribe(result => {
+      console.log(result);
+    });
   }
 
   ngOnInit(): void {
 
   }
-    setProfession(prof: string){
-      this.prof=prof;
-    }
+
+  setProfession(prof: string) {
+    this.prof = prof;
+  }
 
   getToday(): string {
     let today;

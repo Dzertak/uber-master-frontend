@@ -62,14 +62,10 @@
 
           <div class="field">
             <label>Due Date<input type="date" formControlName="dueDate" min={{today}}></label>
-           <!-- <div>
-              <input type="date" [ngModel] ="dt | date:'yyyy-MM-dd'" (ngModelChange)="dt = $event" [value]="datee | date:'yyyy-MM-dd'">
-              {{dt| date:'yyyy-MM-dd'}}
-            </div> -->
           </div>
         </div>
         <input type="submit" class="button green ui" value="Create order"
-               [disabled]="!rForm.valid">
+               [disabled]="!rForm.valid || rForm.controls['masterProfession'].value == 'Profession...'">
       </div>
     </div>
   </form>
