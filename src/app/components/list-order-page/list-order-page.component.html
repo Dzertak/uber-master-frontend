@@ -60,7 +60,7 @@
           <!-- Divider -->
         </div>
         <div class="two column centered row">
-          <div class="column">
+          <div class="column" id="listOrders">
 
 
             <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
@@ -80,11 +80,12 @@
 
               <div class="column" id="outbar">
 
-                <form class="ui form" style="width: 40%; margin-bottom: 5px">
+                <form class="ui form" style="width: 30%; margin-bottom: 5px">
                   <div class="field">
                     <input type="text" name="first-name" placeholder="search..." [(ngModel)]="searchStr">
                   </div>
                 </form>
+
 
                <!-- <div class="ui selection dropdown">
                   <input name="gender" type="hidden">

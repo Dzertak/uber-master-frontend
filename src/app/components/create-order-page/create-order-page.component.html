@@ -21,14 +21,14 @@
           <div class="field">
             <label> Master's Profession
               <select class="ui dropdown" formControlName="masterProfession">
-                <option *ngFor="let c of professions" [value]="c.id">{{c.name}}</option>
+                <option *ngFor="let c of professions" [value]="c.name">{{c.name}}</option>
 
               </select>
             </label>
           </div>
         </div>
         <div class="field">
-          <label>Small Description
+          <label>Summary
             <div class="alert ui red message"
                  *ngIf="!rForm.controls['smallDescription'].valid && rForm.controls['smallDescription'].touched">
               <div class="header">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="field">
-          <label>Big Description
+          <label>Details
             <div class="alert ui red message"
                  *ngIf="!rForm.controls['bigDescription'].valid && rForm.controls['bigDescription'].touched">
               <div class="header">
@@ -54,18 +54,21 @@
         </div>
 
 
-        <div class="fields">
+        <div class="fields ui">
 
           <div class="field">
             <label>Start date<input type="text" formControlName="startDate"></label>
           </div>
 
-          <div class="field">
+          <div class="field ui">
             <label>Due Date<input type="date" formControlName="dueDate" min={{today}}></label>
           </div>
+          <div class="field ui">
+            <label>Time<input type="time" formControlName="time"></label>
+          </div>
         </div>
-        <input type="submit" class="button  ui" value="Create order"
-               [disabled]="!rForm.valid">
+        <input type="submit" class="button green ui" value="Create order">
+               [disabled]="!rForm.valid || rForm.controls['masterProfession'].value == 'Profession...'">
       </div>
     </div>
   </form>

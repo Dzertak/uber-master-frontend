@@ -10,18 +10,7 @@ import {SuiModule} from 'ng2-semantic-ui';
 
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-4.x';
 import * as  Cloudinary from 'cloudinary-core';
-/* NgModule({
-  imports: [
-    CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'ubermaster' } as CloudinaryConfiguration),
-    //FileUploadModule,
-  ],
-}) */
-
-
-//import 'hammerjs';
-
 import {AppComponent} from './app.component';
-
 import {RouterModule, Routes} from '@angular/router';
 import {StartPageComponent} from './components/start-page/start-page.component';
 import {ListOrderPageComponent} from './components/list-order-page/list-order-page.component';
@@ -51,6 +40,7 @@ import { PokeInfoComponent } from './components/poke-info/poke-info.component';
 import { MasterInfoComponent } from './components/master-info/master-info.component';
 import { MasterComponent } from './components/master/master.component';
 import { ModalComponent } from './modal/modal.component';
+
 
 
 const routes: Routes = [

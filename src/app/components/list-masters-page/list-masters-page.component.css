@@ -26,3 +26,7 @@
 #number{
   width: 3em;
 }
+
+#listOrders{
+    width: 65%!important;
+}

@@ -16,7 +16,7 @@ export class ListOrderPageComponent implements OnInit {
 
     prof : {} = professions;
 user:User;
-  tag: string = '';
+  tag: string;
   isLoad: boolean = true;
   //curPage : number;
   //pageSize : number;
@@ -61,6 +61,7 @@ user:User;
   constructor(private authorizeService: AuthorizeService, private orderService:OrderService) { }
 
   ngOnInit() {
+      this.tag = '';
     $('.ui.dropdown').dropdown();
     //$('.ui.dropdown').dropdown();
    //   this.loading(false);
