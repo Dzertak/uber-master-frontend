@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {AuthorizeService} from "../../index";
 import {Router} from "@angular/router";
 import 'rxjs/add/operator/finally';
+import {Observable} from "rxjs/Observable";
+import 'rxjs/add/operator/catch';
 
 declare var $:any;
 
@@ -16,6 +18,7 @@ export class AuthorizationPageComponent implements OnInit {
     isFail: boolean = true;
     phone: string;
     pass: string;
+    isLoading: boolean = false;
 
 
   constructor(private router: Router, private authorizeService: AuthorizeService) { }
@@ -40,16 +43,18 @@ export class AuthorizationPageComponent implements OnInit {
 
 
   loginUser(){
-
+      this.isLoading = true;
       //work
       this.authorizeService.auth(this.phone,this.pass).subscribe( authPair => {
-          if (authPair.first==200){
+          if (authPair.first==200 && authPair.first != null){
               this.authorizeService.login(authPair,this.phone,this.pass).subscribe(user => {
                   this.authorizeService.signIn(authPair,user);
                   this.isFail=false;
+                  this.isLoading = false;
                   this.router.navigate(['orders']);
               });
           }  else {
+              this.isLoading = false;
               this.showFailedAuthorization();
           }
       });

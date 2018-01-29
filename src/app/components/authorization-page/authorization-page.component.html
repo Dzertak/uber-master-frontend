@@ -9,15 +9,17 @@
 </div> -->
 
 
-<div class="ui message">
-  <div class="header">
-    Welcome to UberMaster
+<div class="ui segment" [ngClass]="{'loading':isLoading}">
+  <div style="color: black">
+    <h3>
+      Welcome to UberMaster
+    </h3>
+    <p>Ubermaster is an excellent service for finding masters for your tasks.</p>
+    <p>To get started, log in or register</p>
   </div>
-  <p>Ubermaster is an excellent service for finding masters for your tasks.</p>
-  <p>To get started, log in or register</p>
-
 
   <div class="containerMy">
+
     <div class="ui negative message transition hidden" id="authorization-fail-message">
       <i class="close icon"></i>
       <div class="header">Authorization has failed</div>

@@ -1,160 +1,173 @@
-<div id="main">
-  <p></p>
-  <div class="ui top attached tabular menu">
-    <a class="item" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" data-tab="poke">I am Poke</a>
-    <a class="item" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" data-tab="master">I am Master</a>
-  </div>
-  <div class="ui bottom attached tab segment active" style="margin-bottom: 50px;" data-tab="poke" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)">
-    <div class="ui one column centered grid">
-      <div class="column" id="outbar">
-        <form class="ui form" style="width: 50%; margin-left:110px">
-          <p>* all fields must be filled</p>
-          <div class="field">
-            <label>Your foto</label>
-            <input name="file" type="file"
-                   class="file-upload" data-cloudinary-field="image_id"
-                   data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}" [(ngModel)]="picturePoke">
-          </div>
-          <div class="field">
-            <label>First name *</label>
-            <input type="text" name="first-name-poke" placeholder="First name..." [(ngModel)]="firstNamePoke">
-          </div>
-          <div class="field">
-            <label>Last name *</label>
-            <input type="text" name="last-name" placeholder="Last name..." [(ngModel)]="lastNamePoke">
-          </div>
-          <div class="field">
-            <label>Phone *</label>
-            <input type="text" name="phone" placeholder="380679999999..." [(ngModel)]="phoneNumberPoke">
-          </div>
-          <div class="field">
-            <label>Location *</label>
-            <select name="location" [(ngModel)]="locationPoke">
-              <option>Primorskyy</option>
-              <option>Malinovskyy</option>
-              <option>Kievskyy</option>
-              <option>Suvorovskyy</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Description</label>
-            <input type="text" name="description" placeholder="Tell some about you..." [(ngModel)]="userDescriptionPoke">
-          </div>
-          <div class="field">
-            <label>Password *</label>
-            <input type="password" name="password" placeholder="Password..." [(ngModel)]="passwordPoke">
-          </div>
-          <div class="field">
-            <label>Confirm password *</label>
-            <input type="password" name="confirm-password" placeholder="Confirm password..." [(ngModel)]="confirmPasswordPoke">
-          </div>
-          <div class="field" style="margin-left: -15px; width: 270px;">
-          <div class="ui green labeled icon button" (click)="signUpPoke()">
-            <i class="signup icon"></i>
-            Sign Up
-          </div>
-          <div class="ui blue submit button" (click)="authorization()">Back to Login</div>
-          </div>
-        </form>
+<div class="ui one column stackable grid container">
+  <div class="column" style="padding-left: 100px; padding-right: 100px;">
+    <div class="ui top attached tabular menu">
+      <a class="item" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" data-tab="poke">I am Poke</a>
+      <a class="item" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" data-tab="master">I am Master</a>
+    </div>
+    <div class="ui bottom attached tab segment active" style="margin-bottom: 50px;" data-tab="poke" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)">
+      <div class="ui one column centered grid">
+        <div class="column">
+          <form class="ui form" style="width: 50%; margin-left:110px">
+            <p>* all fields must be filled</p>
+            <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png">
+            <div class="field">
+              <label>Your photo *</label>
+              <input name="file" type="file"
+                     class="file-upload" data-cloudinary-field="image_id"
+                     data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}" [(ngModel)]="picturePoke">
+            </div>
+            <div class="field">
+              <label>First name *</label>
+              <input type="text" name="first-name-poke" placeholder="First name..." [(ngModel)]="firstNamePoke">
+            </div>
+            <div class="field">
+              <label>Last name *</label>
+              <input type="text" name="last-name" placeholder="Last name..." [(ngModel)]="lastNamePoke">
+            </div>
+            <div class="field">
+              <label>Phone *</label>
+              <input type="text" name="phone" placeholder="380679999999..." [(ngModel)]="phoneNumberPoke">
+            </div>
+            <div class="field">
+              <label>Location *</label>
+              <select name="location" [(ngModel)]="locationPoke">
+                <option>Primorskyy</option>
+                <option>Malinovskyy</option>
+                <option>Kievskyy</option>
+                <option>Suvorovskyy</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Description</label>
+              <input type="text" name="description" placeholder="Tell some about you..." [(ngModel)]="userDescriptionPoke">
+            </div>
+            <div class="field">
+              <label>Password *</label>
+              <input type="password" name="password" placeholder="Password..." [(ngModel)]="passwordPoke">
+            </div>
+            <div class="field">
+              <label>Confirm password *</label>
+              <input type="password" name="confirm-password" placeholder="Confirm password..." [(ngModel)]="confirmPasswordPoke">
+            </div>
+            <div class="ui one column stackable grid container">
+              <div class="column">
+                <div class="field">
+                  <div class="ui green labeled icon button" (click)="signUpPoke()">
+                    <i class="signup icon"></i>
+                    Sign Up
+                  </div>
+                  <div class="ui blue submit button" (click)="authorization()">Back to Login</div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="ui bottom attached tab segment" style="margin-bottom: 50px;" data-tab="master" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" >
-    <div class="ui one column centered grid">
-      <div class="column" id="outbar">
-        <form class="ui form" style="width: 50%; margin-left:110px">
-          <p>* all fields must be filled</p>
-          <div class="field">
-            <label>Your foto</label>
-            <input name="file" type="file"
-                   class="file-upload" data-cloudinary-field="image_id"
-                   data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}" [(ngModel)]="pictureMaster">
-          </div>
-          <div class="field">
-            <label>First name *</label>
-            <input type="text" name="first-name" placeholder="First name..." [(ngModel)]="firstNameMaster">
-          </div>
-          <div class="field">
-            <label>Last name *</label>
-            <input type="text" name="last-name" placeholder="Last name..." [(ngModel)]="lastNameMaster">
-          </div>
-          <div class="field">
-            <label>Phone *</label>
-            <input type="text" name="phone" placeholder="380679999999..." [(ngModel)]="phoneNumberMaster">
-          </div>
-          <div class="field">
-            <label>Location *</label>
-            <select name="location" [(ngModel)]="locationMaster">
-              <option>Primorskyy</option>
-              <option>Malinovskyy</option>
-              <option>Kievskyy</option>
-              <option>Suvorovskyy</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Description</label>
-            <input type="text" name="description" placeholder="Tell some about you..." [(ngModel)]="userDescriptionMaster">
-          </div>
-          <div class="field">
-            <label>Password *</label>
-            <input type="password" name="password" placeholder="Password..." [(ngModel)]="passwordMaster">
-          </div>
-          <div class="field">
-            <label>Confirm password *</label>
-            <input type="password" name="confirm-password" placeholder="Confirm password..." [(ngModel)]="confirmPasswordMaster">
-          </div>
-          <div class="field">
-            <label>Profession *</label>
-            <select name="profession" [(ngModel)]="profession">
-              <option>Locksmith</option>
-              <option>Plumber</option>
-              <option>Electrician</option>
-              <option>Cleaner</option>
-              <option>Computer foreman</option>
-              <option>Handyman</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Tools</label>
-            <input type="text" name="tools" placeholder="Enter separated by commas..." [(ngModel)]="tools">
-          </div>
-          <div class="field">
-            <label>Skills</label>
-            <input type="text" name="skills" placeholder="Enter separated by commas..." [(ngModel)]="skills">
-          </div>
-          <div class="field">
-            <label>Experience *</label>
-            <input type="text" name="experience" placeholder="Your experience..." [(ngModel)]="experience">
-          </div>
-          <div class="field"> <!--style="margin-left:30px; width:160px;"-->
-            <label>Work time *</label>
-            <div style="margin-left:20px; width:190px;">
-            <label for="start_time" style="float:left;">From</label>
-            <input type="number" name="start_time" for="to" id="start_time" step="1" min="0" max="23" value="0"
-                   style="float:left; width:62px; height:10px;" [(ngModel)]="startTime">
-            <label for="end_time" id="to" style="float:left;">To</label>
-            <input type="number" name="end_time" id="end_time" step="1" min="0" max="23" value="0"
-                   style="width:62px; height:10px;" [(ngModel)]="endTime">
+    <div class="ui bottom attached tab segment" style="margin-bottom: 50px;" data-tab="master" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" >
+      <div class="ui one column centered grid">
+        <div class="column">
+          <form class="ui form" style="width: 50%; margin-left:110px">
+            <p>* all fields must be filled</p>
+            <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png">
+            <div class="field">
+              <label>Your photo *</label>
+              <input name="file" type="file"
+                     class="file-upload" data-cloudinary-field="image_id"
+                     data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}" [(ngModel)]="pictureMaster">
             </div>
-          </div>
-          <div class="field" style="margin-left:30px; width:160px;">
-            <label for="payment" style="float:left;">Payment *</label>
-            <input type="number" name="payment" id="payment" step="10" min="0" value="0" style="width:90px; height:10px;" [(ngModel)]="payment">
-            <label for="payment" style="float:right;">$</label>
-          </div>
-          <div class="field" style="margin-left:30px; width:160px;">
-            <label for="smoking" style="float:left;">Smoking *</label>
-            <input type="radio" name="smoking" id="smoking" value="yes" [(ngModel)]="smoke">Yes
-            <input type="radio" name="smoking" value="no" checked>No
-          </div>
-          <div class="field" style="margin-left: -15px; width: 270px;" (click)="signUpMaster()">
-          <div class="ui green labeled icon button">
-            <i class="signup icon"></i>
-            Sign Up
-          </div>
-          <div class="ui blue submit button" (click)="authorization()">Back to Login</div>
-          </div>
-        </form>
+            <div class="field">
+              <label>First name *</label>
+              <input type="text" name="first-name" placeholder="First name..." [(ngModel)]="firstNameMaster">
+            </div>
+            <div class="field">
+              <label>Last name *</label>
+              <input type="text" name="last-name" placeholder="Last name..." [(ngModel)]="lastNameMaster">
+            </div>
+            <div class="field">
+              <label>Phone *</label>
+              <input type="text" name="phone" placeholder="380679999999..." [(ngModel)]="phoneNumberMaster">
+            </div>
+            <div class="field">
+              <label>Location *</label>
+              <select name="location" [(ngModel)]="locationMaster">
+                <option>Primorskyy</option>
+                <option>Malinovskyy</option>
+                <option>Kievskyy</option>
+                <option>Suvorovskyy</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Description</label>
+              <input type="text" name="description" placeholder="Tell some about you..." [(ngModel)]="userDescriptionMaster">
+            </div>
+            <div class="field">
+              <label>Password *</label>
+              <input type="password" name="password" placeholder="Password..." [(ngModel)]="passwordMaster">
+            </div>
+            <div class="field">
+              <label>Confirm password *</label>
+              <input type="password" name="confirm-password" placeholder="Confirm password..." [(ngModel)]="confirmPasswordMaster">
+            </div>
+            <div class="field">
+              <label>Profession *</label>
+              <select name="profession" [(ngModel)]="profession">
+                <option>Locksmith</option>
+                <option>Plumber</option>
+                <option>Electrician</option>
+                <option>Cleaner</option>
+                <option>Computer foreman</option>
+                <option>Handyman</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Tools</label>
+              <input type="text" name="tools" placeholder="Enter separated by commas..." [(ngModel)]="tools">
+            </div>
+            <div class="field">
+              <label>Skills</label>
+              <input type="text" name="skills" placeholder="Enter separated by commas..." [(ngModel)]="skills">
+            </div>
+            <div class="field">
+              <label>Experience *</label>
+              <input type="text" name="experience" placeholder="Your experience..." [(ngModel)]="experience">
+            </div>
+            <div class="field"> <!--style="margin-left:30px; width:160px;"-->
+              <label>Work time *</label>
+              <div style="margin-left:20px; width:190px;">
+                <label for="start_time" style="float:left;">From</label>
+                <input type="number" name="start_time" for="to" id="start_time" step="1" min="0" max="23" value="0"
+                       style="float:left; width:62px; height:10px;" [(ngModel)]="startTime">
+                <label for="end_time" id="to" style="float:left;">To</label>
+                <input type="number" name="end_time" id="end_time" step="1" min="0" max="23" value="0"
+                       style="width:62px; height:10px;" [(ngModel)]="endTime">
+              </div>
+            </div>
+            <div class="field" style="margin-left:30px; width:160px;">
+              <label for="payment" style="float:left;">Payment *</label>
+              <input type="number" name="payment" id="payment" step="10" min="0" value="0" style="width:90px; height:10px;" [(ngModel)]="payment">
+              <label for="payment" style="float:right;">$</label>
+            </div>
+            <div class="field" style="margin-left:30px; width:160px;">
+              <label for="smoking" style="float:left;">Smoking *</label>
+              <input type="radio" name="smoking" id="smoking" value="yes" [(ngModel)]="smoke">Yes
+              <input type="radio" name="smoking" value="no" checked>No
+            </div>
+            <div class="ui one column stackable grid container">
+              <div class="column">
+                <div class="field" style="margin-left: -15px; width: 270px;" (click)="signUpMaster()">
+                  <div class="ui green labeled icon button">
+                    <i class="signup icon"></i>
+                    Sign Up
+                  </div>
+                  <div class="ui blue submit button" (click)="authorization()">Back to Login</div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
       </div>
     </div>
   </div>

@@ -3,6 +3,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {User,Order, OrderService, AuthorizeService} from "../../index";
 import {PaginationInstance} from "ngx-pagination";
 import {professions, url} from "../../common/consts";
+import {Master} from "../../models/master.model";
 
 declare var $:any;
 
@@ -34,6 +35,8 @@ user:User;
       ];*/
   orders = [];
 
+    isCheckForMe: boolean = true;
+    master: any;
     public searchStr = '';
 	public filter: string = '';
     public maxSize: number = 7;
@@ -58,11 +61,23 @@ user:User;
   loading(status: boolean){
     this.isLoad=status;
   }
+
+  checkForMe(status: boolean){
+      this.isCheckForMe = status;
+      if (!status) {
+          this.tag = '';
+          //console.log(this.tag+' '+this.master.profession)
+      } else {
+          this.tag = this.master.profession;
+          //console.log(this.tag+' '+this.master.profession)
+      }
+  }
+
   constructor(private authorizeService: AuthorizeService, private orderService:OrderService) { }
 
   ngOnInit() {
       this.tag = '';
-    $('.ui.dropdown').dropdown();
+   // $('.ui.dropdown').dropdown();
     //$('.ui.dropdown').dropdown();
    //   this.loading(false);
 
@@ -72,6 +87,15 @@ user:User;
                   .dropdown('clear');
           });*/
 
+      /*if (this.authorizeService.getUserType() == "Master"){
+          this.master = this.authorizeService.getUser();
+          if (!this.isCheckForMe) {
+              this.tag = '';
+          } else {
+              this.tag = this.master.profession;
+          }
+      }*/
+
     this.orderService.getOrderList().subscribe(orders => {
       this.loading(false);
       this.orders = orders;
@@ -79,7 +103,7 @@ user:User;
 
   }
 
-  showChoice(tag: string){
+  /*showChoice(tag: string){
       //console.log($('.ui.dropdown').dropdown('get value'));
       console.log($('.ui.dropdown').find(':selected').get().value);
     this.tag = tag;
@@ -87,7 +111,7 @@ user:User;
    getSelectedTextValue() {
        this.tag = $('.ui.dropdown').dropdown('get value');
        alert(this.tag);
-  }
+  }*/
 
 	onPageChange(number: number) {
         console.log('change to page', number);
@@ -97,7 +121,15 @@ user:User;
 	isPoke(): boolean {
 		this.user = this.authorizeService.getUser();
 		if(this.authorizeService.getUserType() == "Poke"){
-        return true;}
+            return true;
+		} else if (this.authorizeService.getUserType() == "Master") {
+            this.master = this.authorizeService.getUser();
+            if (!this.isCheckForMe) {
+                this.tag = '';
+            } else {
+                this.tag = this.master.profession;
+            }
+        }
     }
 
 }

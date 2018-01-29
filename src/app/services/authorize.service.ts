@@ -3,6 +3,9 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map'
 import {Convertator, User, Pair, url} from "../index";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs/Observable";
+import 'rxjs/add/operator/catch';
+
 declare var $:any;
 
 @Injectable()
@@ -74,7 +77,15 @@ export class AuthorizeService {
                 if (authPair.first == 200)
                     authPair.setSecond(response.json().token);
                 return authPair;
-            });
+            })
+           /*.catch((err) => {
+
+               let authPair: Pair = new Pair();
+               authPair.setFirst(err.status);
+               if (authPair.first == 200)
+                   authPair.setSecond(null);
+               return authPair;
+           })*/
     }
 
     public login(authPair: Pair, phone: string, password: string) {

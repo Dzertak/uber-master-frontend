@@ -1,7 +1,7 @@
 <div class="ui bottom attached segment" style="padding-right: 0px; padding-left: 0px">
 
 <div class="ui one column centered grid">
-        <div class="column" id="toolbar">
+       <!-- <div class="column" id="toolbar">
           <div class="ui multiple dropdown" id="filter-order">
             <input type="hidden" name="filters">
             <i class="filter icon"></i>
@@ -28,14 +28,13 @@
 
 
           <span class="toolbar-spacer"></span>
-          <!--<h2 style="margin-top: 5px; margin-bottom: 0">Order List</h2>
-          <span class="toolbar-spacer"></span>
-          -->
+
         </div>
+    <div class="ui divider" style="width: 100%; margin: 0; padding-left: 14px; padding-right: 14px">
+    </div>
+    -->
       <div class="ui one column centered grid">
-        <div class="ui divider" style="width: 100%; margin: 0; padding-left: 14px; padding-right: 14px">
-          <!-- Divider -->
-        </div>
+
         <div class="two column centered row">
           <div class="column" id="listOrders">
 
@@ -47,9 +46,13 @@
 
                       <form class="ui form" style="width: 30%; margin-bottom: 5px">
                           <div class="field">
-                              <input type="text" name="first-name" placeholder="search..." [(ngModel)]="searchStr">
+                              <div class="ui icon input">
+                                  <input type="text" name="search" placeholder="search..." [(ngModel)]="searchStr">
+                                  <i class="search icon"></i>
+                              </div>
                           </div>
                       </form>
+
 
                       <span class="toolbar-spacer"></span>
 
