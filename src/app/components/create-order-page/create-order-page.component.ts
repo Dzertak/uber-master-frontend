@@ -60,10 +60,10 @@ export class CreateOrderPageComponent implements OnInit {
 
     this.order = new Order(create.name, '', -1,
       create.smallDescription, create.bigDescription, this.startDate,
-      this.dueDate, 'New', -1, '-1', create.masterProfession,
+      this.dueDate, 'New', -1, null, create.masterProfession,
       -1, null, this.authService.getUser().object_id, null);
 
-    console.log(this.dueDate)
+    console.log(this.order)
     this.orderService.createOder(this.order).subscribe(result => {
       console.log(result);
     });

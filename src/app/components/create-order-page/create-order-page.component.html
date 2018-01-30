@@ -67,7 +67,7 @@
             <label>Time<input type="time" formControlName="time"></label>
           </div>
         </div>
-        <input type="submit" class="button green ui" value="Create order">
+        <input type="submit" class="button green ui" value="Create order"
                [disabled]="!rForm.valid || rForm.controls['masterProfession'].value == 'Profession...'">
       </div>
     </div>

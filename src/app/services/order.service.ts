@@ -39,6 +39,7 @@ export class OrderService {
     public updateOrderByMaster(order: Order, user: User){
         order.master=user.object_id;
         order.status="In processing";
+        console.log(order);
         this.http.post(url+"entities/updateOrder", order, this.options).subscribe(result =>{
             alert(result)
         })

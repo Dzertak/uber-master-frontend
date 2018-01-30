@@ -25,8 +25,8 @@ export class Order extends BaseEntity {
         this.dueDate = dueDate;
         this.status = status;
         this.master = master;
-        this.masterProfession = masterProfession;
         this.masterName = masterName;
+        this.masterProfession = masterProfession;
         this.mark = mark;
         this.masterEndDate = masterEndDate;
         this.pokeId = pokeId;

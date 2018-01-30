@@ -1,35 +1,33 @@
- <div class="ui one column centered grid" style = "font-size:120%" *ngIf="!isLoad">
-
-	<tr>
-		<th class="five wide" ><div class="header" style = "font-size:160%;margin-top:10px;margin-right:180px">{{master.name}}</div>
-		</th>
-	</tr>
-	
-	  <div id="container">
-	<div id="leftcol">
-			<img class="ui medium rounded left floated image" style = "margin-top:10px;margin-left:20px;" src="https://semantic-ui.com/images/avatar/large/matt.jpg">
-	<div  class="ui primary basic button" style="height:55px;width:300px;font-size:120%;margin-left:15px" [routerLink]="['/master-info']">
-Edit Personal Information
-</div>
-<table class="ui red table" style="margin-left:20px;width:90%">
+<div class="ui bottom attached segment" *ngIf="!isLoad">
+    <div class="ui one column centered grid">
+        <div class="two column centered row">
+            <div class="column" style="width: 65%!important;">
+                <div class="ui grid">
+                    <div class="six wide column">
+                        <img class="ui medium rounded left floated image" src="https://semantic-ui.com/images/avatar/large/matt.jpg" style="width: 100%">
+                        <h2 style="text-align: center">{{master.name}}</h2>
+	                    <div  class="ui primary basic button" style="width: 100%" [routerLink]="['/master-info']">
+                            Edit Personal Information
+                        </div>
+<table class="ui red table" style="width:100%">
   <tbody>
   <!-- <tr> <lsu-rating [(ngModel)]="rating" [maxRating]="'5'" [type]="'star'" [size]="'large '"></lsu-rating></tr> -->
 	
 	<tr>
       <td><i class="configure icon" ></i>Profession</td>
-      <td style="padding-left:20px">{{master.profession}}</td>
+      <td style="padding-left:11px">{{master.profession}}</td>
     </tr>
     <tr>
       <td><i class="marker icon"></i>Location</td>
-      <td style="padding-left:20px">{{master.location}}</td>
+      <td style="padding-left:11px">{{master.location}}</td>
     </tr>
     <tr>
       <td><i class="call icon"></i>Phone Number</td>
-      <td style="padding-left:20px">{{master.phoneNumber}}</td>
+      <td style="padding-left:11px">{{master.phoneNumber}}</td>
     </tr>
 	<tr>
 		<td>Rating</td>
-		<td ><sui-rating class="star" [ngModel]="mastersRate()" [maximum]="5" ></sui-rating></td>
+		<td disabled="true"><sui-rating class="star" [ngModel]="mastersRate()" [maximum]="5" ></sui-rating></td>
 	</tr>
 	<!-- <tr> -->
 		<!-- <td>Skills</td> -->
@@ -54,9 +52,10 @@ Edit Personal Information
  </table> 
 		
 		</div>
-		<div id="rightcol" style="margin-left:350px;margin-top:-700px"><!--rowspan="6"--> 
-		<div class="two column centered row">
-          <div class="column">
+                    <div class="ten wide column" style="padding-top: 0px">
+                        <div class="two column centered row">
+                            <div class="column">
+
 
 
             <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
@@ -196,8 +195,8 @@ Edit Personal Information
 			</div>
 			</div>
 	</div>
-	
-
   </div>
   </div>
- 
+        </div>
+    </div>
+</div>

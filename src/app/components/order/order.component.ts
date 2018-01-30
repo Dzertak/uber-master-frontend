@@ -46,13 +46,16 @@ export class OrderComponent implements OnInit {
 
   joinIt() {
     this.orderService.getOrder(this.order.object_id.toString()).subscribe(order => {
-      this.resultOrder
+      this.resultOrder = order
+        if (this.resultOrder.status == 'New') {
+        console.log(this.order);
+        console.log(this.user)
+            this.orderService.updateOrderByMaster(this.order, this.user);
+        } else {
+            this.isNew = false;
+        }
     });
-    if (this.resultOrder.status == 'New') {
-      this.orderService.updateOrderByMaster(this.order, this.user);
-    } else {
-      this.isNew = false;
-    }
+
 
   }
 

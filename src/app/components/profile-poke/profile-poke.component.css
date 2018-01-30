@@ -38,9 +38,10 @@
    }
  #rightcol { 
 	width: 500px;
-   
-   
-   } 
+   }
 
+.toolbar-spacer{
+    flex: 1 1 auto;
+}
   
 
