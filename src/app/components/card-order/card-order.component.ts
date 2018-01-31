@@ -25,6 +25,6 @@ export class CardOrderComponent implements OnInit {
   }
 
   showPoke(){
-    console.log(this.order.pokeId);
+      this.router.navigate(['/poke',this.order.pokeId])
   }
 }

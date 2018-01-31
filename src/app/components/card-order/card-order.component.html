@@ -1,11 +1,15 @@
 <div class="ui raised link card" style="width: 100%; margin-bottom: 14px">
   <div class="content">
+    <div class="right floated author" style="text-align: right; color: darkgray">
+      <p style="margin-bottom: 0px">{{order.startDate | date :'dd-MM-yyyy'}}</p>
+      <p>{{order.startDate | date :'HH:mm'}}</p>
+    </div>
     <div class="header" id="meta"><p>{{order.name}}</p></div>
     <div>
       <span class="category">{{order.status}}</span>
     </div>
     <div class="description">
-      <p style="position: relative; white-space: pre-wrap">{{order.bigDescription}}</p>
+      <p>{{order.smallDescription}}</p>
     </div>
   </div>
   <div class="extra content">

@@ -1,3 +1,82 @@
-<p>
-  poke works!
-</p>
+<div class="ui bottom attached segment" *ngIf="!isLoad">
+  <div class="ui one column centered grid">
+    <div class="two column centered row">
+      <div class="column" style="width: 65%!important;">
+        <div class="ui grid">
+          <div class="six wide column">
+            <img class="ui medium rounded left floated image" src="https://semantic-ui.com/images/avatar/large/matt.jpg" style="width: 100%">
+            <h2 style="text-align: center">{{poke.name}}</h2>
+
+            <table class="ui red table" style="width: 100%">
+              <tbody>
+              <tr>
+                <td><i class="marker icon"></i>Location</td>
+                <td style="padding-left:11px">{{poke.location}}</td>
+              </tr>
+              <tr>
+                <td><i class="call icon"></i>Phone Number</td>
+                <td style="padding-left:11px">{{poke.phoneNumber}}</td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+          <div class="ten wide column" style="padding-top: 0px">
+            <div class="two column centered row">
+              <div class="column">
+
+
+                <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
+
+
+                <div class="ui top attached segment" style = "margin-top: 14px">
+                  <a class="item " [ngClass]="{'active':swipe===1}"  >Orders</a></div>
+
+                <div class="ui bottom attached tab segment" [ngClass]="{'active':swipe===1}"  >
+                  <div class="ui one column centered grid">
+
+                    <div class="column" id="outbar">
+
+                      <form class="ui form" style="width: 30%; margin-bottom: 5px">
+                        <div class="field">
+                          <input type="text" name="first-name" placeholder="search..." [(ngModel)]="searchStr2">
+                        </div>
+                      </form>
+                    </div>
+
+                  </div>
+                  <app-card-order
+                          *ngFor="let ord of orders | pokeOrderFilter: tag | orderFilter: searchStr2| paginate: config2 "
+                          [order]="ord"
+
+                  ></app-card-order>
+
+                  <div class="paginationPadding" style="padding-right: 40px;">
+
+                    <div class="has-text-centered">
+                      <pagination-controls class="myPagination"
+                                           [id]="config2.id"
+                                           [maxSize]="maxSize"
+                                           [directionLinks]="directionLinks"
+                                           [autoHide]="autoHide"
+                                           [previousLabel]="labels.previousLabel"
+                                           [nextLabel]="labels.nextLabel"
+                                           [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                                           [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                                           [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                                           (pageChange)="onPageChange2($event)"></pagination-controls>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
