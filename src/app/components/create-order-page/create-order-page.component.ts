@@ -38,7 +38,7 @@ export class CreateOrderPageComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthorizeService, private orderService: OrderService, private router: Router) {
     this.today = this.getToday();
     this.rForm = fb.group({
-      'name': [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(60)])],
+      'name': [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(30)])],
       'smallDescription': [null, Validators.compose([Validators.required, Validators.minLength(25), Validators.maxLength(280)])],
       'bigDescription': [null, Validators.compose([Validators.required, Validators.minLength(25), Validators.maxLength(500)])],
       'dueDate': [this.today, Validators.required],
@@ -67,8 +67,9 @@ export class CreateOrderPageComponent implements OnInit {
     console.log(this.order)
     this.orderService.createOder(this.order).subscribe(result => {
       console.log(result);
-        this.router.navigate(['orders']);
     });
+
+      this.router.navigate(['orders']);
   }
 
   ngOnInit(): void {

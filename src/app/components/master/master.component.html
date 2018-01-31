@@ -74,7 +74,7 @@
 
     </div>
 	<app-card-order 
-                      *ngFor="let ord of orders | masterSearch: searchStr2| paginate: config2 "
+                      *ngFor="let ord of orders | orderFilter: searchStr2| paginate: config2 "
                        [order]="ord"
 
               ></app-card-order> 

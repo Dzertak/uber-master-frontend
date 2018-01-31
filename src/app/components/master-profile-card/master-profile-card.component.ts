@@ -61,7 +61,7 @@ notAdmin = true;
     }
 
     showPoke(){
-        console.log(this.order.pokeId);
+        this.justRouter.navigate(['/poke',this.order.pokeId])
     }
   
  /*  open(dynamicContent:string="Example"){

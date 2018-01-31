@@ -43,6 +43,7 @@ import { MasterComponent } from './components/master/master.component';
 import { RateOrderComponent } from './components/rate-order/rate-order.component';
 import {HoverCardOrderDirective} from "./directive/hover-card-order.directive";
 import { PokeComponent } from './components/poke/poke.component';
+import {PokeOrderFilterPipe} from "./pipe/pokeOrderFilter.pipe";
 
 
 
@@ -57,6 +58,7 @@ const routes: Routes = [
   {path: 'create-order', canActivate: [AuthguardGuard], component: CreateOrderPageComponent},
   {path: 'order/:id', canActivate: [AuthguardGuard], component: OrderComponent },
   {path: 'master/:id', canActivate: [AuthguardGuard], component: MasterComponent },
+  {path: 'poke/:id', canActivate: [AuthguardGuard], component: PokeComponent },
   {path: 'master-info', canActivate: [AuthguardGuard], component: MasterInfoComponent},
   {path: 'poke-info', canActivate: [AuthguardGuard], component: PokeInfoComponent},
   {path: 'rate/:id', canActivate: [AuthguardGuard], component: RateOrderComponent},
@@ -90,7 +92,8 @@ const routes: Routes = [
     MasterComponent,
     RateOrderComponent,
       HoverCardOrderDirective,
-      PokeComponent
+      PokeComponent,
+      PokeOrderFilterPipe
   ],
   imports: [
     BrowserModule,

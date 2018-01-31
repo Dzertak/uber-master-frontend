@@ -53,7 +53,7 @@
 
                                         </div>
                                         <app-master-profile-card
-                                                *ngFor="let ord of orders  | orderFilter2:tag | masterSearch: searchStr| paginate: config "
+                                                *ngFor="let ord of orders  | orderFilter2:tag | orderFilter: searchStr| paginate: config "
                                                 [order]="ord"
 
                                         ></app-master-profile-card>
@@ -96,7 +96,7 @@
 
                                         </div>
                                         <app-master-profile-card
-                                                *ngFor="let ord of orders  | orderFilter2:tag2 | masterSearch: searchStr2| paginate: config2 "
+                                                *ngFor="let ord of orders  | orderFilter2:tag2 | orderFilter: searchStr2| paginate: config2 "
                                                 [order]="ord"
 
                                         ></app-master-profile-card>
@@ -134,7 +134,7 @@
 
                                         </div>
                                         <app-master-profile-card
-                                                *ngFor="let ord of orders  | orderFilter2:tag3 | masterSearch: searchStr3| paginate: config3 "
+                                                *ngFor="let ord of orders  | orderFilter2:tag3 | orderFilter: searchStr3| paginate: config3 "
                                                 [order]="ord"
 
                                         ></app-master-profile-card>
