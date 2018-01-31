@@ -13,11 +13,18 @@ export class CardOrderComponent implements OnInit {
   @Input() order: Order;
 
 
+
   constructor(private router: Router) { }
 
   ngOnInit() {
 
   }
 
+  showOrder(){
+    this.router.navigate(['/order',this.order.object_id])
+  }
 
+  showPoke(){
+    console.log(this.order.pokeId);
+  }
 }

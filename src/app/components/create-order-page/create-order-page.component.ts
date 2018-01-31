@@ -3,6 +3,7 @@ import {Order} from '../../models/order.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthorizeService} from '../../services/authorize.service';
 import {OrderService} from '../../services/order.service';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -34,7 +35,7 @@ export class CreateOrderPageComponent implements OnInit {
   private dueDate: Date;
   private time: any;
 
-  constructor(private fb: FormBuilder, private authService: AuthorizeService, private orderService: OrderService) {
+  constructor(private fb: FormBuilder, private authService: AuthorizeService, private orderService: OrderService, private router: Router) {
     this.today = this.getToday();
     this.rForm = fb.group({
       'name': [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(60)])],
@@ -58,14 +59,15 @@ export class CreateOrderPageComponent implements OnInit {
     this.dueDate = new Date(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate(),
       this.time.split(':')[0], this.time.split(':')[1])
 
-    this.order = new Order(create.name, '', -1,
+    this.order = new Order(create.name, 'Order', null,
       create.smallDescription, create.bigDescription, this.startDate,
       this.dueDate, 'New', -1, null, create.masterProfession,
-      -1, null, this.authService.getUser().object_id, null);
+      0, null, this.authService.getUser().object_id, null);
 
     console.log(this.order)
     this.orderService.createOder(this.order).subscribe(result => {
       console.log(result);
+        this.router.navigate(['orders']);
     });
   }
 

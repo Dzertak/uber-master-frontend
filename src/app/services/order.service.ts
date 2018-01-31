@@ -48,12 +48,14 @@ export class OrderService {
 	public updateOrderByPoke(order: Order, user: User){
 		order.pokeId=user.object_id;
         order.status="Completed";
+        console.log(order);
         this.http.post(url+"entities/updateOrder", order, this.options).subscribe(result =>{
             alert(result)
         })
     }
 	
 	public completeOrderByMaster(order: Order){
+	    console.log(order)
         order.status="Master done";
         this.http.post(url+"entities/updateOrder", order, this.options).subscribe(result =>{
             alert(result)

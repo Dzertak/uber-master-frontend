@@ -38,7 +38,7 @@
         <div class="two column centered row">
           <div class="column" id="listOrders">
 
-              <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
+
 
               <div class="ui one column centered grid">
 
@@ -70,7 +70,7 @@
 
               </div>
 
-
+              <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
 <app-card-master
                       *ngFor="let mast of masters  | masterSearch: searchStr|  paginate: config "
                        [master]="mast" 

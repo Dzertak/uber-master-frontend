@@ -2,7 +2,7 @@ import { Component,Input, OnInit, ViewChild } from '@angular/core';
 import {Order} from "../../index";
 //import {AppComponent} from "../../app.component";
 import {User, AuthorizeService,OrderService} from "../../index";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
 
 export interface IContext{
@@ -24,7 +24,9 @@ export class MasterProfileCardComponent implements OnInit {
 notAdmin = true;
 	 @Input() order: Order;
 	user: User
-  constructor(private router: ActivatedRoute,private authService: AuthorizeService, private orderService: OrderService, public modalService:SuiModalService) { }
+  constructor(private router: ActivatedRoute,private authService: AuthorizeService,
+              private orderService: OrderService, public modalService:SuiModalService,
+              private justRouter: Router) { }
 
   isPoke(): boolean {
 		if(this.authService.getUserType() == "Poke"){
@@ -53,6 +55,14 @@ notAdmin = true;
 	  this.orderService.completeOrderByMaster(order);
 	  
   }
+
+    showOrder(){
+        this.justRouter.navigate(['/order',this.order.object_id])
+    }
+
+    showPoke(){
+        console.log(this.order.pokeId);
+    }
   
  /*  open(dynamicContent:string="Example"){
 	  const config = new TemplateModalConfig<IContext,string,string>(this.modalTemplate);

@@ -41,6 +41,8 @@ import { PokeInfoComponent } from './components/poke-info/poke-info.component';
 import { MasterInfoComponent } from './components/master-info/master-info.component';
 import { MasterComponent } from './components/master/master.component';
 import { RateOrderComponent } from './components/rate-order/rate-order.component';
+import {HoverCardOrderDirective} from "./directive/hover-card-order.directive";
+import { PokeComponent } from './components/poke/poke.component';
 
 
 
@@ -86,7 +88,9 @@ const routes: Routes = [
     PokeInfoComponent,
     MasterInfoComponent,
     MasterComponent,
-    RateOrderComponent
+    RateOrderComponent,
+      HoverCardOrderDirective,
+      PokeComponent
   ],
   imports: [
     BrowserModule,

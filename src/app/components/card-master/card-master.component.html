@@ -4,6 +4,9 @@
         <div class="ui raised link card" style="width: 100%;">
         <div class="content" style="padding: 0px">
             <img class="left floated small ui image" style="margin-bottom: 0px" src="https://semantic-ui.com/images/avatar/large/steve.jpg">
+            <div class="right floated author" style="padding: 14px">
+                <sui-rating class="star big" [ngModel]="mastersRate()" [maximum]="5" isReadonly="false"></sui-rating>
+            </div>
             <div style="padding: 14px">
                 <div class="header">
                     <h3>{{master.name}}</h3>
@@ -15,7 +18,9 @@
                     <h5>{{master.skills}}</h5>
                 </div>
             </div>
+
         </div>
+
     </div>
 </div>
 </div>

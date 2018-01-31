@@ -1,16 +1,19 @@
 <div class="ui raised link card" style="width: 100%; margin-bottom: 14px">
   <div class="content">
-    <div class="header" id="meta">{{order.name}}</div>
-    <div class="meta">
+    <div class="header" id="meta"><p>{{order.name}}</p></div>
+    <div>
       <span class="category">{{order.status}}</span>
     </div>
     <div class="description">
-      <p id="meta">{{order.bigDescription}}</p>
+      <p style="position: relative; white-space: pre-wrap">{{order.bigDescription}}</p>
     </div>
   </div>
   <div class="extra content">
-    <div class="right floated author">
+    <div class="right floated author" (click)="showPoke()">
       <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg"> Matt
+    </div>
+    <div class="left floated button">
+      <button class="ui blue button" (click)="showOrder()">Details</button>
     </div>
   </div>
 </div>
