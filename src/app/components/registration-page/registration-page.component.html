@@ -4,58 +4,62 @@
       <a class="item" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" data-tab="poke">I am Poke</a>
       <a class="item" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" data-tab="master">I am Master</a>
     </div>
-    <div class="ui bottom attached tab segment active" style="margin-bottom: 50px;" data-tab="poke" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)">
+    <div class="ui bottom attached tab segment active" style="margin-bottom: 50px;" data-tab="poke"
+         [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)">
       <div class="ui one column centered grid">
         <div class="column">
-          <form class="ui form" style="width: 50%; margin-left:110px">
+
+          <form [formGroup]="rPokeForm" (ngSubmit)="signUpPoke(rPokeForm.value)" class="ui form"
+                style="width: 50%; margin-left:110px">
             <p>* all fields must be filled</p>
             <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png">
+            <br>
             <div class="field">
               <label>Your photo *</label>
               <input name="file" type="file"
                      class="file-upload" data-cloudinary-field="image_id"
-                     data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}" [(ngModel)]="picturePoke">
+                     data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}">
+                     <!--[(ngModel)]="picturePoke">-->
             </div>
             <div class="field">
               <label>First name *</label>
-              <input type="text" name="first-name-poke" placeholder="First name..." [(ngModel)]="firstNamePoke">
+              <input type="text" name="first-name-poke" placeholder="First name" formControlName="firstNamePoke">
             </div>
             <div class="field">
               <label>Last name *</label>
-              <input type="text" name="last-name" placeholder="Last name..." [(ngModel)]="lastNamePoke">
+              <input type="text" name="last-name" placeholder="Last name" formControlName="lastNamePoke">
             </div>
             <div class="field">
               <label>Phone *</label>
-              <input type="text" name="phone" placeholder="380679999999..." [(ngModel)]="phoneNumberPoke">
+              <input type="text" name="phone" placeholder="3808800225353" formControlName="phoneNumberPoke">
             </div>
             <div class="field">
               <label>Location *</label>
-              <select name="location" [(ngModel)]="locationPoke">
-                <option>Primorskyy</option>
-                <option>Malinovskyy</option>
-                <option>Kievskyy</option>
-                <option>Suvorovskyy</option>
+              <select class="ui dropdown" name="location" formControlName="locationPoke">
+                <option *ngFor="let c of locations" [value]="c.name">{{c.name}}</option>
               </select>
             </div>
             <div class="field">
               <label>Description</label>
-              <input type="text" name="description" placeholder="Tell some about you..." [(ngModel)]="userDescriptionPoke">
+              <input type="text" name="description" placeholder="Tell something about you..."
+                     formControlName="userDescriptionPoke">
             </div>
             <div class="field">
               <label>Password *</label>
-              <input type="password" name="password" placeholder="Password..." [(ngModel)]="passwordPoke">
+              <input type="password" name="password" placeholder="Password..." formControlName="passwordPoke">
             </div>
             <div class="field">
               <label>Confirm password *</label>
-              <input type="password" name="confirm-password" placeholder="Confirm password..." [(ngModel)]="confirmPasswordPoke">
+              <input type="password" name="confirm-password" placeholder="Confirm password..."
+                     formControlName="confirmPasswordPoke">
             </div>
             <div class="ui one column stackable grid container">
               <div class="column">
                 <div class="field">
-                  <div class="ui green labeled icon button" (click)="signUpPoke()">
-                    <i class="signup icon"></i>
-                    Sign Up
-                  </div>
+                  <input type="submit" class="ui green button" value="Sign Up"
+                         [disabled]="!rPokeForm.valid ||
+                         rPokeForm.controls['passwordPoke'].value != rPokeForm.controls['confirmPasswordPoke'].value ||
+                         rPokeForm.controls['locationPoke'].value == 'Location...'">
                   <div class="ui blue submit button" (click)="authorization()">Back to Login</div>
                 </div>
               </div>
@@ -65,102 +69,101 @@
         </div>
       </div>
     </div>
-    <div class="ui bottom attached tab segment" style="margin-bottom: 50px;" data-tab="master" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" >
+    <div class="ui bottom attached tab segment" style="margin-bottom: 50px;" data-tab="master"
+         [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)">
       <div class="ui one column centered grid">
         <div class="column">
-          <form class="ui form" style="width: 50%; margin-left:110px">
+          <form [formGroup]="rMasterForm" (ngSubmit)="signUpMaster(rMasterForm.value)" class="ui form" style="width: 50%; margin-left:110px">
             <p>* all fields must be filled</p>
             <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png">
+            <br>
             <div class="field">
               <label>Your photo *</label>
               <input name="file" type="file"
                      class="file-upload" data-cloudinary-field="image_id"
-                     data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}" [(ngModel)]="pictureMaster">
+                     data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}">
+                     <!--[(ngModel)]="pictureMaster">-->
             </div>
             <div class="field">
               <label>First name *</label>
-              <input type="text" name="first-name" placeholder="First name..." [(ngModel)]="firstNameMaster">
+              <input type="text" name="first-name" placeholder="First name" formControlName="firstNameMaster">
             </div>
             <div class="field">
               <label>Last name *</label>
-              <input type="text" name="last-name" placeholder="Last name..." [(ngModel)]="lastNameMaster">
+              <input type="text" name="last-name" placeholder="Last name" formControlName="lastNameMaster">
             </div>
             <div class="field">
               <label>Phone *</label>
-              <input type="text" name="phone" placeholder="380679999999..." [(ngModel)]="phoneNumberMaster">
+              <input type="text" name="phone" placeholder="3808800225353" formControlName="phoneNumberMaster">
             </div>
             <div class="field">
               <label>Location *</label>
-              <select name="location" [(ngModel)]="locationMaster">
-                <option>Primorskyy</option>
-                <option>Malinovskyy</option>
-                <option>Kievskyy</option>
-                <option>Suvorovskyy</option>
+              <select class="ui dropdown" name="location" formControlName="locationMaster">
+                <option *ngFor="let c of locations" [value]="c.name">{{c.name}}</option>
               </select>
             </div>
             <div class="field">
               <label>Description</label>
-              <input type="text" name="description" placeholder="Tell some about you..." [(ngModel)]="userDescriptionMaster">
+              <input type="text" name="description" placeholder="Tell something about you..."
+                     formControlName="userDescriptionMaster">
             </div>
             <div class="field">
               <label>Password *</label>
-              <input type="password" name="password" placeholder="Password..." [(ngModel)]="passwordMaster">
+              <input type="password" name="password" placeholder="Password" formControlName="passwordMaster">
             </div>
             <div class="field">
               <label>Confirm password *</label>
-              <input type="password" name="confirm-password" placeholder="Confirm password..." [(ngModel)]="confirmPasswordMaster">
+              <input type="password" name="confirm-password" placeholder="Confirm password..."
+                     formControlName="confirmPasswordMaster">
             </div>
             <div class="field">
               <label>Profession *</label>
-              <select name="profession" [(ngModel)]="profession">
-                <option>Locksmith</option>
-                <option>Plumber</option>
-                <option>Electrician</option>
-                <option>Cleaner</option>
-                <option>Computer foreman</option>
-                <option>Handyman</option>
+              <select class="ui dropdown" name="profession" formControlName="profession">
+                <option *ngFor="let c of professions" [value]="c.name">{{c.name}}</option>
               </select>
             </div>
             <div class="field">
               <label>Tools</label>
-              <input type="text" name="tools" placeholder="Enter separated by commas..." [(ngModel)]="tools">
+              <input type="text" name="tools" placeholder="Enter separated by commas..." formControlName="tools">
             </div>
             <div class="field">
               <label>Skills</label>
-              <input type="text" name="skills" placeholder="Enter separated by commas..." [(ngModel)]="skills">
+              <input type="text" name="skills" placeholder="Enter separated by commas..." formControlName="skills">
             </div>
             <div class="field">
               <label>Experience *</label>
-              <input type="text" name="experience" placeholder="Your experience..." [(ngModel)]="experience">
+              <input type="text" name="experience" placeholder="Your experience..." formControlName="experience">
             </div>
             <div class="field"> <!--style="margin-left:30px; width:160px;"-->
               <label>Work time *</label>
               <div style="margin-left:20px; width:190px;">
                 <label for="start_time" style="float:left;">From</label>
                 <input type="number" name="start_time" for="to" id="start_time" step="1" min="0" max="23" value="0"
-                       style="float:left; width:62px; height:10px;" [(ngModel)]="startTime">
+                       style="float:left; width:62px; height:10px;" formControlName="startTime">
                 <label for="end_time" id="to" style="float:left;">To</label>
                 <input type="number" name="end_time" id="end_time" step="1" min="0" max="23" value="0"
-                       style="width:62px; height:10px;" [(ngModel)]="endTime">
+                       style="width:62px; height:10px;" formControlName="endTime">
               </div>
             </div>
             <div class="field" style="margin-left:30px; width:160px;">
-              <label for="payment" style="float:left;">Payment *</label>
-              <input type="number" name="payment" id="payment" step="10" min="0" value="0" style="width:90px; height:10px;" [(ngModel)]="payment">
+              <label for="payment" style="float:left;">Payment * </label>
+              <input type="number" name="payment" id="payment" step="10" min="0" value="0"
+                     style="width:90px; height:10px;" formControlName="payment">
               <label for="payment" style="float:right;">$</label>
             </div>
             <div class="field" style="margin-left:30px; width:160px;">
-              <label for="smoking" style="float:left;">Smoking *</label>
-              <input type="radio" name="smoking" id="smoking" value="yes" [(ngModel)]="smoke">Yes
-              <input type="radio" name="smoking" value="no" checked>No
+              <label for="smoking" style="float:left;">Smoking * </label>
+              <input type="radio" name="smoke" id="smoking" value="true" formControlName="smoke"> Yes
+              <input type="radio" name="smoke" value="false" checked formControlName="smoke"> No
             </div>
             <div class="ui one column stackable grid container">
               <div class="column">
-                <div class="field" style="margin-left: -15px; width: 270px;" (click)="signUpMaster()">
-                  <div class="ui green labeled icon button">
-                    <i class="signup icon"></i>
-                    Sign Up
-                  </div>
+                <div class="field" style="margin-left: -15px; width: 270px;">
+                  <input type="submit" class="ui green button" value="Sign Up"
+                         [disabled]="!rMasterForm.valid ||
+                         rMasterForm.controls['passwordMaster'].value != rMasterForm.controls['confirmPasswordMaster'].value ||
+                         rMasterForm.controls['locationMaster'].value == 'Location...' ||
+                         rMasterForm.controls['profession'].value == 'Profession...'">
                   <div class="ui blue submit button" (click)="authorization()">Back to Login</div>
                 </div>
               </div>
