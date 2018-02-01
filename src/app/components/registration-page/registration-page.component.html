@@ -7,13 +7,12 @@
     <div class="ui bottom attached tab segment active" style="margin-bottom: 50px;" data-tab="poke"
          [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)">
       <div class="ui one column centered grid">
-        <div class="column">
+        <div class="column" style="justify-content: center; display: flex">
 
           <form [formGroup]="rPokeForm" (ngSubmit)="signUpPoke(rPokeForm.value)" class="ui form"
-                style="width: 50%; margin-left:110px">
+                style="width: 50%;">
+              <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
             <p>* all fields must be filled</p>
-            <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png">
-            <br>
             <div class="field">
               <label>Your photo *</label>
               <input name="file" type="file"
@@ -55,7 +54,7 @@
             </div>
             <div class="ui one column stackable grid container">
               <div class="column">
-                <div class="field">
+                <div class="field" style="justify-content: center; display: flex">
                   <input type="submit" class="ui green button" value="Sign Up"
                          [disabled]="!rPokeForm.valid ||
                          rPokeForm.controls['passwordPoke'].value != rPokeForm.controls['confirmPasswordPoke'].value ||
@@ -72,11 +71,11 @@
     <div class="ui bottom attached tab segment" style="margin-bottom: 50px;" data-tab="master"
          [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)">
       <div class="ui one column centered grid">
-        <div class="column">
-          <form [formGroup]="rMasterForm" (ngSubmit)="signUpMaster(rMasterForm.value)" class="ui form" style="width: 50%; margin-left:110px">
+        <div class="column" style="justify-content: center; display: flex">
+          <form [formGroup]="rMasterForm" (ngSubmit)="signUpMaster(rMasterForm.value)" class="ui form" style="width: 50%;">
+            <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
+
             <p>* all fields must be filled</p>
-            <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png">
-            <br>
             <div class="field">
               <label>Your photo *</label>
               <input name="file" type="file"
@@ -145,6 +144,7 @@
                        style="width:62px; height:10px;" formControlName="endTime">
               </div>
             </div>
+            <div></div>
             <div class="field" style="margin-left:30px; width:160px;">
               <label for="payment" style="float:left;">Payment * </label>
               <input type="number" name="payment" id="payment" step="10" min="0" value="0"
@@ -158,7 +158,7 @@
             </div>
             <div class="ui one column stackable grid container">
               <div class="column">
-                <div class="field" style="margin-left: -15px; width: 270px;">
+                <div class="field" style="justify-content: center; display: flex">
                   <input type="submit" class="ui green button" value="Sign Up"
                          [disabled]="!rMasterForm.valid ||
                          rMasterForm.controls['passwordMaster'].value != rMasterForm.controls['confirmPasswordMaster'].value ||

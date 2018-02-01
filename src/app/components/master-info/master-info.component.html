@@ -1,12 +1,11 @@
-<div id="main" >
-  <p></p>
-
-    <div class="ui one column centered grid" style="margin-bottom: 50px;" >
-      <div class="column" id="outbar">
-        <form class="ui form" style="width: 50%; margin-left:110px">
+<div class="ui bottom attached segment" *ngIf="!isLoad">
+  <div class="ui one column centered grid">
+    <div class="two column centered row">
+      <div class="column" style="width: 65%!important; border: 1px solid darkgray">
+        <form class="ui form" style="width: 50%; margin: 0 auto; display: block">
           <p>* Fields must be filled</p>
           <div class="field">
-            <label>Your foto</label>
+            <label>Your photo</label>
             <input name="file" type="file"
                    class="file-upload" data-cloudinary-field="image_id"
                    data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}" [(ngModel)]="pictureMaster">
@@ -88,7 +87,7 @@
             <input type="radio" name="smoking" id="smoking" value="yes" [(ngModel)]="smoke">Yes
             <input type="radio" name="smoking" value="no" checked>No
           </div>
-          <div class="field" style="margin-left: -15px; width: 270px;" (click)="confirmChanges()">
+          <div class="field" style="justify-content: center; display: flex" (click)="confirmChanges()">
           <div class="ui green labeled icon button">
             <i class="signup icon"></i>
             Confirm Changes
@@ -98,3 +97,4 @@
       </div>
     </div>
   </div>
+</div>

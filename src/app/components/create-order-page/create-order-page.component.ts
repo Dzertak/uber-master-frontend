@@ -11,8 +11,6 @@ import {Router} from "@angular/router";
   templateUrl: './create-order-page.component.html',
   styleUrls: ['./create-order-page.component.css']
 })
-
-
 export class CreateOrderPageComponent implements OnInit {
 
 
@@ -34,6 +32,7 @@ export class CreateOrderPageComponent implements OnInit {
   prof: string;
   private dueDate: Date;
   private time: any;
+    isLoading: boolean = false;
 
   constructor(private fb: FormBuilder, private authService: AuthorizeService, private orderService: OrderService, private router: Router) {
     this.today = this.getToday();
@@ -50,6 +49,7 @@ export class CreateOrderPageComponent implements OnInit {
 
 
   createOrder(create) {
+    this.isLoading = true;
     let dueDate = new Date(create.dueDate);
     this.time = create.time;
 
@@ -66,11 +66,18 @@ export class CreateOrderPageComponent implements OnInit {
 
     console.log(this.order)
     this.orderService.createOder(this.order).subscribe(result => {
-      console.log(result);
+
     });
 
-      this.router.navigate(['orders']);
+    setTimeout(() => {
+        this.isLoading = false;
+        this.router.navigate(['orders']);
+    },1000)
+
+
+
   }
+
 
   ngOnInit(): void {
 

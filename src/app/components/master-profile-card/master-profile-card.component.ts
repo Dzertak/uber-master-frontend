@@ -4,6 +4,8 @@ import {Order} from "../../index";
 import {User, AuthorizeService,OrderService} from "../../index";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
+import {PokeService} from "../../services/poke.service";
+import {Poke} from "../../models/poke.model";
 
 export interface IContext{
 	data:string;
@@ -23,10 +25,12 @@ export class MasterProfileCardComponent implements OnInit {
  //id: string;
 notAdmin = true;
 	 @Input() order: Order;
-	user: User
+	user: User;
+    isLoading: boolean = true;
+    poke: Poke;
   constructor(private router: ActivatedRoute,private authService: AuthorizeService,
               private orderService: OrderService, public modalService:SuiModalService,
-              private justRouter: Router) { }
+              private justRouter: Router, private pokeService: PokeService) { }
 
   isPoke(): boolean {
 		if(this.authService.getUserType() == "Poke"){
@@ -40,6 +44,10 @@ notAdmin = true;
   
   ngOnInit() {
 	  this.user = this.authService.getUser();
+      this.pokeService.getPoke(this.order.pokeId.toString()).subscribe(poke =>{
+          this.poke = poke;
+          this.isLoading = false;
+      });
   }
   
   deleteOrder(id: string){
@@ -72,5 +80,9 @@ notAdmin = true;
 	  
 	  this.modalService.open(config).onApprove(result => {"approve"}).onDeny(result =>{"deny"});
   } */
+
+    getNamePoke(){
+        return this.poke.name.substring(0,this.poke.name.indexOf(' '));
+    }
   
 }

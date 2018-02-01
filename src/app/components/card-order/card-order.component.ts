@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Order} from "../../index";
 import {Router} from "@angular/router";
+import {PokeService} from "../../services/poke.service";
+import {Poke} from "../../models/poke.model";
 
 @Component({
   selector: 'app-card-order',
@@ -12,12 +14,16 @@ export class CardOrderComponent implements OnInit {
 
   @Input() order: Order;
 
+  poke: Poke;
+  isLoading: boolean = true;
 
-
-  constructor(private router: Router) { }
+  constructor(private router: Router, private pokeService: PokeService) { }
 
   ngOnInit() {
-
+    this.pokeService.getPoke(this.order.pokeId.toString()).subscribe(poke =>{
+      this.poke = poke;
+      this.isLoading = false;
+    });
   }
 
   showOrder(){
@@ -26,5 +32,9 @@ export class CardOrderComponent implements OnInit {
 
   showPoke(){
       this.router.navigate(['/poke',this.order.pokeId])
+  }
+
+  getNamePoke(){
+    return this.poke.name.substring(0,this.poke.name.indexOf(' '));
   }
 }

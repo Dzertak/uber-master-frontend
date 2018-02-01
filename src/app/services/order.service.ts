@@ -55,6 +55,7 @@ export class OrderService {
 	public completeOrderByMaster(order: Order){
 	    console.log(order)
         order.status="Master done";
+	    order.masterEndDate = new Date();
         this.http.post(url+"entities/updateOrder", order, this.options).subscribe(result =>{
             alert(result)
         })
