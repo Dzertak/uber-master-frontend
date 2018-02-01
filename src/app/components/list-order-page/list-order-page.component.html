@@ -88,12 +88,13 @@
                   </div>
                 </form>
 
-                <div class="ui left floated compact segment" id="checkbox" *ngIf="!isPoke()">
+                <div class="ui left floated compact segment" id="checkbox" *ngIf="!isPoke() && !isAdmin()">
                   <div class="ui checked checkbox"  [ngClass]="{'checked':isCheckForMe}" (click)=checkForMe(!isCheckForMe)>
                     <input type="checkbox" checked="">
                     <label>    For me</label>
                   </div>
                 </div>
+
 
                <!-- <div class="ui selection dropdown">
                   <input name="gender" type="hidden">
@@ -110,7 +111,7 @@
 
                 <span class="toolbar-spacer"></span>
 
-                <button class="ui basic button" *ngIf="isPoke()" [routerLink]="['/create-order']" style="margin-bottom: 5px">
+                <button class="ui basic button" *ngIf="isPoke() && !isAdmin()" [routerLink]="['/create-order']" style="margin-bottom: 5px">
                   <i class="icon green plus"></i>
                   Add Order
                 </button>
@@ -129,12 +130,13 @@
     </div>
 
             <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
-
+			
 <app-card-order
-                      *ngFor="let ord of orders  | orderFilter:tag | orderSearch:searchStr| paginate: config "
+                      *ngFor="let ord of orders  | orderFilter:tag | orderSearchAdmin:searchStr | paginate: config "
                        [order]="ord"
 
               ></app-card-order> 
+			  
 
 		
 

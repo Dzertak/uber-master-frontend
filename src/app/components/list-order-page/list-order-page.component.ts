@@ -95,12 +95,18 @@ user:User;
               this.tag = this.master.profession;
           }
       }*/
-
-    this.orderService.getOrderList().subscribe(orders => {
+	if(this.authorizeService.getUserType() == "Admin"){
+		this.orderService.getWholeOrderList().subscribe(orders => { 
       this.loading(false);
       this.orders = orders;
     })
-
+	}
+	else{
+    this.orderService.getOrderList().subscribe(orders => { 
+      this.loading(false);
+      this.orders = orders;
+    })
+  }
   }
 
   /*showChoice(tag: string){
@@ -120,7 +126,7 @@ user:User;
 	
 	isPoke(): boolean {
 		this.user = this.authorizeService.getUser();
-		if(this.authorizeService.getUserType() == "Poke"){
+		if(this.authorizeService.getUserType() == "Poke" || this.authorizeService.getUserType() == "Admin"){
             return true;
 		} else if (this.authorizeService.getUserType() == "Master") {
             this.master = this.authorizeService.getUser();
@@ -130,6 +136,12 @@ user:User;
                 this.tag = this.master.profession;
             }
         }
+		
+		
     }
+	
+	isAdmin(): boolean{
+		return (this.authorizeService.getUserType() == "Admin");
+	}
 
 }

@@ -15,6 +15,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {StartPageComponent} from './components/start-page/start-page.component';
 import {ListOrderPageComponent} from './components/list-order-page/list-order-page.component';
 import {ListMastersPageComponent} from './components/list-masters-page/list-masters-page.component';
+import {ListPokePageComponent} from './components/list-poke-page/list-poke-page.component';
 import {AuthorizationPageComponent} from './components/authorization-page/authorization-page.component';
 import {RegistrationPageComponent} from './components/registration-page/registration-page.component';
 import {ProfileMasterComponent} from './components/profile-master/profile-master.component';
@@ -26,10 +27,12 @@ import {OrderService} from './services/order.service';
 import {MasterService} from './services/master.service';
 import {PokeService} from './services/poke.service';
 import {CardMasterComponent} from './components/card-master/card-master.component';
+import {CardPokeComponent} from './components/card-poke/card-poke.component';
 import {OrderFilterPipe} from './pipe/orderFilter.pipe';
 import {OrderFilterPipe2} from './pipe/orderFilter2.pipe';
 import {ProfilePokeComponent} from './components/profile-poke/profile-poke.component';
 import {OrderSearchPipe} from './pipe/orderSearch.pipe';
+import {OrderSearchAdminPipe} from './pipe/orderSearchAdmin.pipe';
 import {MasterSearchPipe} from './pipe/masterSearch.pipe';
 import {CreateOrderPageComponent} from './components/create-order-page/create-order-page.component';
 import { MasterProfileCardComponent } from './components/master-profile-card/master-profile-card.component';
@@ -51,6 +54,7 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', component: AuthorizationPageComponent},
   {path: 'masters', canActivate: [AuthguardGuard], component: ListMastersPageComponent},
   {path: 'orders', canActivate: [AuthguardGuard], component: ListOrderPageComponent},
+  {path: 'pokes', canActivate: [AuthguardGuard], component: ListPokePageComponent},
   {path: 'profileMaster/:id', canActivate: [AuthguardGuard], component: ProfileMasterComponent},
   {path: 'profilePoke/:id', canActivate: [AuthguardGuard], component: ProfilePokeComponent},
   {path: 'registration', component: RegistrationPageComponent},
@@ -73,15 +77,18 @@ const routes: Routes = [
     StartPageComponent,
     ListOrderPageComponent,
     ListMastersPageComponent,
+	ListPokePageComponent,
     AuthorizationPageComponent,
     RegistrationPageComponent,
     ProfileMasterComponent,
     NotFoundPageComponent,
     CardOrderComponent,
     CardMasterComponent,
+	CardPokeComponent,
     OrderFilterPipe,
 	OrderFilterPipe2,
     OrderSearchPipe,
+	OrderSearchAdminPipe,
     ProfilePokeComponent,
     MasterSearchPipe,
     CreateOrderPageComponent,

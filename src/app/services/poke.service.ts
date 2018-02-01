@@ -21,7 +21,7 @@ export class PokeService {
 
 
     public getPokeList() {
-        return this.http.get('http://localhost:8090/entities/getTypedEntity?class=Poke', this.options)
+        return this.http.get('http://localhost:8090/entities/getTypedEntities?class=Poke', this.options)
             .map(response => response.json())
     }
 	

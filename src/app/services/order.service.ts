@@ -27,6 +27,11 @@ export class OrderService {
         return this.http.get(url+'entities/getOrdersByStatus?status='+'New', this.options)
             .map(response => response.json())
     }
+	
+	public getWholeOrderList() {
+        return this.http.get(url+'entities/getTypedEntities?class=Order', this.options)
+            .map(response => response.json())
+    }
 
     public getOrder(id: string){
         return this.http.get(url+"entities/getEntity?id="+id+"&class=Order", this.options)

@@ -7,6 +7,10 @@
         <i class="configure icon"></i>
         Masters
     </a>
+	<a class="item" [ngClass]="{'active':swipe===2}" (click)="swipeTab(2)" *ngIf="isCorrectStatus() && isAdmin()" id="pokesRouterLink" [routerLink]="['/pokes']">
+        <i class="configure icon"></i>
+        Pokes
+    </a>
 
     <span class="toolbar-spacer"></span>
     <a><h1 style="margin-top: 5px">UberMaster</h1></a>
@@ -14,11 +18,11 @@
     <span class="toolbar-spacer"></span>
 
     <div class="right menu">
-        <a class="item" [ngClass]="{'active':swipe===2}" (click)="swipeTab(2)" *ngIf="isCorrectStatus() && isPoke() && notAdmin " [routerLink]="['/profilePoke',user.object_id]">
+        <a class="item" [ngClass]="{'active':swipe===3}" (click)="swipeTab(3)" *ngIf="isCorrectStatus() && isPoke() && !isAdmin() " [routerLink]="['/profilePoke',user.object_id]">
             <i class="user icon"></i>
             Profile
 		</a>
-		<a class="item" [ngClass]="{'active':swipe===2}" (click)="swipeTab(2)" *ngIf="isCorrectStatus() && !isPoke() && notAdmin" [routerLink]="['/profileMaster',user.object_id]">
+		<a class="item" [ngClass]="{'active':swipe===3}" (click)="swipeTab(3)" *ngIf="isCorrectStatus() && !isPoke() && !isAdmin()" [routerLink]="['/profileMaster',user.object_id]">
             <i class="user icon"></i>
             Profile 
 		</a>

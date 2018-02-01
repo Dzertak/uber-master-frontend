@@ -41,6 +41,9 @@ export class AppComponent {
         this.swipe = tab;
     }
 
+	isAdmin(): boolean{
+		return (this.authService.getUserType() == "Admin");
+	}
 
 
 }
