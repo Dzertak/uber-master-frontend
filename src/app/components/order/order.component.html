@@ -11,49 +11,59 @@
             </div>
             <p>Please choose the other order</p>
           </div>
-          <div class="header">{{order.name}}</div>
+          <div class="header" style="word-wrap: break-word; text-align: center">{{order.name}}</div>
         </div>
         <div class="content">
-          <h4 class="ui sub header">
-            <i class="checkmark icon"></i>
-            {{order.status}}</h4>
+          <div class="ui sub header" style="margin-bottom: 14px">
+            <h4>
+              <i class="checkmark icon"></i>
+              {{order.status}}</h4>
+            <h4 class="ui sub header" *ngIf="order.masterEndDate!==null">
+              <i class="checkmark icon"></i>
+              {{order.masterEndDate | date :'dd-MM-yyyy HH:mm' }}</h4>
+          </div>
 
+
+          <div class="right floated author" style="text-align: right; color: darkgray">
+            <p style="margin-bottom: 0px">{{order.startDate | date :'dd-MM-yyyy'}}</p>
+            <p>{{order.startDate | date :'HH:mm'}}</p>
+          </div>
           <div class="ui four column grid">
-            <div class="row" id="row">
+            <div class="row" id="row" style="margin-top: 14px;">
               <h4 class="ui header">
                 <i class="checked calendar icon"></i>
                 <div class="content">
                   To Date:
                 </div>
               </h4>
-              <p style="text-align: left; padding-left: 14px">{{order.dueDate | date :'dd-MM-yyyy HH:mm'}}</p>
+              <p style="text-align: left; padding-left: 14px;">{{order.dueDate | date :'dd-MM-yyyy HH:mm'}}</p>
             </div>
           </div>
 
 
-          <h4 class="ui header">
+          <h4 class="ui header" style="margin-top: 14px; margin-bottom: 0px">
             <i class="plug icon"></i>
             <div class="content">
               Summary
             </div>
           </h4>
-          <p style="text-align: left">{{order.smallDescription}}</p>
+          <p style="text-align: left; word-wrap: break-word;">{{order.smallDescription}}</p>
 
-          <h4 class="ui header">
+          <h4 class="ui header" style="margin-top: 14px; margin-bottom: 0px">
             <i class="power icon"></i>
             <div class="content">
               Details
             </div>
           </h4>
-          <p style="text-align: left">{{order.bigDescription}}</p>
+          <p style="text-align: left; word-wrap: break-word;">{{order.bigDescription}}</p>
         </div>
 
         <div class="extra content" >
-          <div class="right floated aughtor" (click)="showPoke()">
-            <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" > Matt
+          <div class="right floated aughtor" (click)="showPoke()" *ngIf="!isLoading">
+            <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" >{{getNamePoke()}}
           </div>
 
-          <div class="left floated aughtor" *ngIf="order.status=='New' && isMaster()">
+          <div class="left floated aughtor" *ngIf="order.status=='New' && isMasterAndProfession()">
             <button class="ui green labeled icon button" (click)="joinIt()">
               <i class="configure icon"></i>
               Join It

@@ -23,6 +23,7 @@
 
 #number{
   width: 4em;
+    border-radius: 5px;
 }
 
 #orderList{

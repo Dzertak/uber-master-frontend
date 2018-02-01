@@ -4,12 +4,12 @@
       <p style="margin-bottom: 0px">{{order.startDate | date :'dd-MM-yyyy'}}</p>
       <p>{{order.startDate | date :'HH:mm'}}</p>
     </div>
-    <div class="header" id="meta"><p>{{order.name}}</p></div>
+    <div class="header" style="word-wrap: break-word"><p>{{order.name}}</p></div>
     <div>
       <span class="category">{{order.status}}</span>
     </div>
     <div class="description">
-      <p>{{order.smallDescription}}</p>
+      <p style="word-wrap: break-word">{{order.smallDescription}}</p>
     </div>
   </div>
   <div class="extra content">

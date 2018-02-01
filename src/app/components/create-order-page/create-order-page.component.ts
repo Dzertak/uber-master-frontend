@@ -36,6 +36,9 @@ export class CreateOrderPageComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private authService: AuthorizeService, private orderService: OrderService, private router: Router) {
     this.today = this.getToday();
+    //this.startDate = this.today;
+      /*this.startDate = new Date(this.today.getFullYear, this.today.getMonth(), this.today.getDay(),
+          this.today.getHours(), this.today.getMinutes());*/
     this.rForm = fb.group({
       'name': [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(30)])],
       'smallDescription': [null, Validators.compose([Validators.required, Validators.minLength(25), Validators.maxLength(280)])],

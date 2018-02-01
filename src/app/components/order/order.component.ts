@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {OrderService} from '../../services/order.service';
 import {AuthorizeService} from '../../services/authorize.service';
 import {User} from '../../models/user.model';
+import {PokeService} from "../../services/poke.service";
+import {Poke} from "../../models/poke.model";
 
 @Component({
   selector: 'app-order',
@@ -16,13 +18,15 @@ export class OrderComponent implements OnInit {
   id: string;
   isLoad: boolean = true;
   isNew: boolean = true;
+  isLoading: boolean = true;
+  poke: Poke;
 
-
-  user: User;
+  user: any;
   private resultOrder: Order;
 
   constructor(private router: ActivatedRoute, private orderService: OrderService,
-              private authorizeService: AuthorizeService, private justRouter: Router) {
+              private authorizeService: AuthorizeService, private justRouter: Router,
+              private pokeService: PokeService) {
   }
 
   ngOnInit() {
@@ -31,6 +35,10 @@ export class OrderComponent implements OnInit {
     this.orderService.getOrder(this.id).subscribe(order => {
       this.order = order;
       this.loading(false);
+      this.pokeService.getPoke(order.pokeId.toString()).subscribe(poke => {
+        this.poke = poke;
+        this.isLoading = false;
+      })
     })
   }
 
@@ -38,9 +46,11 @@ export class OrderComponent implements OnInit {
     this.isLoad = status;
   }
 
-  isMaster() {
+  isMasterAndProfession() {
     if (this.user.classType == 'Master') {
-      return true;
+      if (this.order.masterProfession == this.user.profession){
+          return true;
+      }
     }
     return false;
   }
@@ -56,12 +66,11 @@ export class OrderComponent implements OnInit {
             this.isNew = false;
         }
     });
-
-
-
-
   }
 
+    getNamePoke(){
+        return this.poke.name.substring(0,this.poke.name.indexOf(' '));
+    }
     showPoke(){
         this.justRouter.navigate(['/poke',this.order.pokeId])
     }

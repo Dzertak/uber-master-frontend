@@ -89,8 +89,8 @@
                 </form>
 
                 <div class="ui left floated compact segment" id="checkbox" *ngIf="!isPoke() && !isAdmin()">
-                  <div class="ui checked checkbox"  [ngClass]="{'checked':isCheckForMe}" (click)=checkForMe(!isCheckForMe)>
-                    <input type="checkbox" checked="">
+                  <div class="ui checked checkbox"  [ngClass]="{'checked':isCheckForMe}">
+                    <input type="checkbox" checked="" (click)=checkForMe(!isCheckForMe)>
                     <label>    For me</label>
                   </div>
                 </div>
