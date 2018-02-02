@@ -28,6 +28,7 @@ notAdmin = true;
 	user: User;
     isLoading: boolean = true;
     poke: Poke;
+
   constructor(private router: ActivatedRoute,private authService: AuthorizeService,
               private orderService: OrderService, public modalService:SuiModalService,
               private justRouter: Router, private pokeService: PokeService) { }
@@ -45,6 +46,7 @@ notAdmin = true;
   ngOnInit() {
 	  this.user = this.authService.getUser();
       this.pokeService.getPoke(this.order.pokeId.toString()).subscribe(poke =>{
+          console.log(this.order.pokeId.toString())
           this.poke = poke;
           this.isLoading = false;
       });
@@ -55,13 +57,17 @@ notAdmin = true;
   }
   
   confirmOrder(order: Order){
-	  this.orderService.updateOrderByPoke(order, this.user);
+	  this.orderService.updateOrderByPoke(order, this.user).subscribe(result => {
+          order.status="Completed";
+      });
 	  
   }
   
   confirmCompletionByMaster(order: Order){
-	  this.orderService.completeOrderByMaster(order);
-	  
+      order.masterEndDate = new Date();
+	  this.orderService.completeOrderByMaster(order).subscribe(result => {
+	      order.status = 'Master done';
+      });
   }
 
     showOrder(){
@@ -81,7 +87,7 @@ notAdmin = true;
 	  this.modalService.open(config).onApprove(result => {"approve"}).onDeny(result =>{"deny"});
   } */
 
-    getNamePoke(){
+    getPokeName(){
         return this.poke.name.substring(0,this.poke.name.indexOf(' '));
     }
   

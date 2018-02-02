@@ -50,21 +50,13 @@ export class OrderService {
     }
 	
 	public updateOrderByPoke(order: Order, user: User){
-		order.pokeId=user.object_id;
         order.status="Completed";
-        console.log(order);
-        this.http.post(url+"entities/updateOrder", order, this.options).subscribe(result =>{
-            alert(result)
-        })
+        return this.http.post(url+"entities/updateOrder", order, this.options);
     }
 	
 	public completeOrderByMaster(order: Order){
-	    console.log(order)
         order.status="Master done";
-	    order.masterEndDate = new Date();
-        this.http.post(url+"entities/updateOrder", order, this.options).subscribe(result =>{
-            alert(result)
-        })
+        return this.http.post(url+"entities/updateOrder", order, this.options);
     }
 
 	 public deleteOrder(id: string){
@@ -75,10 +67,7 @@ export class OrderService {
 
     public createOder(order: Order){
 	     return this.http.post(url+"entities/addOrder",order,this.options)
-             .map(response => response.json())
-             .catch((err) => {
-                 return Observable.throw(new Error(`${ err.status } ${ err.statusText }`))
-             });
+             .map(response => response.json());
     }
 
 }

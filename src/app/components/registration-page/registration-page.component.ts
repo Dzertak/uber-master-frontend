@@ -41,7 +41,8 @@ export class RegistrationPageComponent implements OnInit {
   smoke: boolean;
 
 
-  constructor(private fb: FormBuilder, private router: Router, private registrationService: RegistrationService) {
+  constructor(private fb: FormBuilder, private router: Router, private registrationService: RegistrationService,
+              private authService: AuthorizeService) {
 
     this.rPokeForm = fb.group({
       'firstNamePoke': [null, Validators.required],
@@ -75,7 +76,7 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (sessionStorage != null) {
+    if (this.authService.getUserLoggedIn()) {
       this.router.navigate(['orders']);
     }
 
