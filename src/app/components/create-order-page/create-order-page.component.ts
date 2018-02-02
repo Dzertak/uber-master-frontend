@@ -77,13 +77,22 @@ export class CreateOrderPageComponent implements OnInit {
         this.router.navigate(['orders']);
     },1000)
 
-
-
   }
 
 
   ngOnInit(): void {
 
+    this.rForm.controls['dueDate'].valueChanges.subscribe(value => {
+      if (value === '' || value < this.today) {
+        this.rForm.controls['dueDate'].setValue(this.today);
+      }
+    });
+
+    this.rForm.controls['time'].valueChanges.subscribe(value => {
+      if (value === '') {
+        this.rForm.controls['time'].setValue('23:59');
+      }
+    });
   }
 
   setProfession(prof: string) {
