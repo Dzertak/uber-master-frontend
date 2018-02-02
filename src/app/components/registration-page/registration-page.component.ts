@@ -75,6 +75,10 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (sessionStorage != null) {
+      this.router.navigate(['orders']);
+    }
+
     this.locations = [
       {id: 0, name: 'Location...'},
       {id: 1, name: 'Primorskyy'},
