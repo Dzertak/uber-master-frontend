@@ -30,7 +30,7 @@ export class AuthorizeService {
             this.user = outSession.user || '';
             this.isUserLoggedIn = outSession.isUserLoggedIn || '';
             if (this.isUserLoggedIn){
-                this.router.navigate(['/orders']);
+                this.router.navigate(['orders']);
             }
            /* if (this.authPair!=''){
                 if (this.authPair!=null){

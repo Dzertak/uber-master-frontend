@@ -72,7 +72,7 @@
 
 
 <app-card-poke
-                      *ngFor="let pok of pokes  |  paginate: config "
+                      *ngFor="let pok of pokes  | pokeSearch:searchStr | paginate: config "
                        [poke]="pok" 
 					   [routerLink]="['/poke',pok.object_id]"
               ></app-card-poke>

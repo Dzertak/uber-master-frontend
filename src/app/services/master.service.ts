@@ -12,10 +12,10 @@ export class MasterService {
 
 	options: RequestOptions;
 
-    constructor(private http:Http, private authorizeSerice:AuthorizeService) { 
+    constructor(private http:Http, private authorizeService:AuthorizeService) { 
 		const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append("Authorization", "UberToken "+this.authorizeSerice.getToken());
+        headers.append("Authorization", "UberToken "+this.authorizeService.getToken());
         this.options = new RequestOptions({headers: headers});
 		};
 
@@ -46,5 +46,12 @@ export class MasterService {
             alert(result)
         })
 	}
+	
+	/* public blockMaster(master: Master){
+		master.blocked = true;
+		this.http.post(url+"entities/updateMaster", master,this.options).subscribe(result =>{
+            alert(result)
+        })
+	} */
 
 }

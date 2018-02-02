@@ -74,11 +74,8 @@ export class ProfileMasterComponent implements OnInit {
   constructor(private router: ActivatedRoute, private masterService: MasterService, private authorizeService: AuthorizeService) { }
 
   ngOnInit() {
-	  //this.stars = 3;
-	//$('.ui.dropdown').dropdown();
 	this.idM = this.router.snapshot.params.id;
 	//this.user = this.authorizeService.getUser();
-	//this.idM = this.user.object_id.toString();
 	this.masterService.getMasterOrders(this.idM).subscribe(orders => {  
 	   this.orders = orders;
 		//this.loading(false);

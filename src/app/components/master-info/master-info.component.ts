@@ -101,7 +101,7 @@ public uploader:FileUploader = new FileUploader({url: URL});
     } else {
       //error
     }
-	this.masterService.updateMaster(this.master);  
+	this.masterService.updateMaster(this.master); 
   }
   
   uploadImage(nameImage: String){

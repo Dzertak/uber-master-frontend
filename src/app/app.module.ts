@@ -34,6 +34,7 @@ import {ProfilePokeComponent} from './components/profile-poke/profile-poke.compo
 import {OrderSearchPipe} from './pipe/orderSearch.pipe';
 import {OrderSearchAdminPipe} from './pipe/orderSearchAdmin.pipe';
 import {MasterSearchPipe} from './pipe/masterSearch.pipe';
+import {PokeSearchPipe} from './pipe/pokeSearch.pipe';
 import {CreateOrderPageComponent} from './components/create-order-page/create-order-page.component';
 import { MasterProfileCardComponent } from './components/master-profile-card/master-profile-card.component';
 import { OrderComponent } from './components/order/order.component';
@@ -91,6 +92,7 @@ const routes: Routes = [
 	OrderSearchAdminPipe,
     ProfilePokeComponent,
     MasterSearchPipe,
+	PokeSearchPipe,
     CreateOrderPageComponent,
     MasterProfileCardComponent,
     OrderComponent,

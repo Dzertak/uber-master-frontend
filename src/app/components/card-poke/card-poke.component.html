@@ -1,7 +1,7 @@
 
 <div class="ui one column centered grid">
     <div class="column" id="toolbar">
-        <div class="ui raised link card" style="width: 100%;">
+       <div class="ui raised link card" style="width: 100%;">
         <div class="content" style="padding: 0px">
             <img class="left floated small ui image" style="margin-bottom: 0px" src="https://semantic-ui.com/images/avatar/large/steve.jpg">
             <div style="padding: 14px">
@@ -16,7 +16,29 @@
                 </div>
             </div>
         </div>
-    </div>
+		
+		<div class="extra content">
+		  <div class="right floated author " style="display: flex;">
+			  <button class="left floated  ui negative basic button" style="margin-bottom: 0px"  (click)="blockUser(poke)"
+					  *ngIf="isAdmin() && !poke.blocked">Block User</button>
+					  
+		  <div style="display: flex;"  *ngIf="isAdmin() && poke.blocked">
+		      <button class="left floated  ui positive basic button" style="margin-bottom: 0px"  (click)="unblockUser(poke)">Unblock User</button>
+		  </div>
+		  </div>
+		  <div class="left floated author " style="display: flex;"  *ngIf="isAdmin() && poke.blocked">
+				<h4 class="ui header">
+					  <i class="lock icon" ></i>
+					  <div class="content">  User is blocked </div>
+					  
+					
+				</h4> 
+		  </div>
+
+		</div>
+	   </div>
+	 
+	
 </div>
 </div>
 
