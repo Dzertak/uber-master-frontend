@@ -69,13 +69,13 @@ export class CreateOrderPageComponent implements OnInit {
 
     console.log(this.order)
     this.orderService.createOder(this.order).subscribe(result => {
-
+        console.log(result);
     });
 
     setTimeout(() => {
         this.isLoading = false;
         this.router.navigate(['orders']);
-    },1000)
+    },1500)
 
 
 

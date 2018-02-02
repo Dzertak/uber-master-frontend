@@ -5,7 +5,7 @@
         <form class="ui form" style="width: 50%; margin: 0 auto; display: block">
           <p>* Fields must be filled</p>
           <div class="field">
-            <label>Your photo</label>
+            <label>Your photo *</label>
             <input name="file" type="file"
                    class="file-upload" data-cloudinary-field="image_id"
                    data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}" [(ngModel)]="pictureMaster">

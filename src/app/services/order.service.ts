@@ -7,6 +7,7 @@ import {Convertator} from "./convertator.service";
 import {Master} from "../models/master.model";
 import {Order} from "../models/order.model";
 import {User} from "../models/user.model";
+import {Observable} from "rxjs/Observable";
 
 
 
@@ -74,7 +75,10 @@ export class OrderService {
 
     public createOder(order: Order){
 	     return this.http.post(url+"entities/addOrder",order,this.options)
-             .map(response => response.json());
+             .map(response => response.json())
+             .catch((err) => {
+                 return Observable.throw(new Error(`${ err.status } ${ err.statusText }`))
+             });
     }
 
 }
