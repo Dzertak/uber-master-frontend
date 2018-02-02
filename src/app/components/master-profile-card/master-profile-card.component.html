@@ -19,10 +19,8 @@
 			  <button class="left floated ui positive basic button" style="margin-bottom: 0px"  (click)="confirmCompletionByMaster(order)"
 					  *ngIf="!isPoke() && notAdmin && order.status=='In processing'">Confirm Completion </button>
 		  </div>
-
-
 			  <div class="right floated aughtor" style="margin-bottom: 0px"  (click)="showPoke()" *ngIf="!isLoading">
-				  <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" > {{getNamePoke()}}
+				  <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" > {{getPokeName()}}
 			  </div>
 
 

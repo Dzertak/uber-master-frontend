@@ -7,7 +7,9 @@
 						<img class="ui medium rounded left floated image" src="https://semantic-ui.com/images/avatar/large/matt.jpg" style="width: 100%">
 						<h2 style="text-align: center">{{master.name}}</h2>
 
-		<table class="ui red table" style="width: 100%">
+
+
+		<table class="ui red fixed table" style="width: 100%">
   <tbody>
 	<tr>
       <td><i class="configure icon" ></i>Profession</td>
@@ -22,7 +24,7 @@
       <td style="padding-left:11px">{{master.phoneNumber}}</td>
     </tr>
 	<tr>
-		<td>Rating</td>
+		<td><i class="star icon"></i>Rating</td>
 		<td><sui-rating class="star" [ngModel]="mastersRate()" [maximum]="5" isReadonly="false"></sui-rating></td>
 	</tr>
 	<!-- <tr> -->
@@ -30,16 +32,16 @@
 		<!-- <td>{{master.skills}}</td> -->
 	<!-- </tr> -->
 	<tr>
-		<td>Tools</td>
-		<td>{{master.tools}}</td>
+		<td><i class="spoon icon"></i>Tools</td>
+		<td style="padding-left:11px">{{master.tools}}</td>
     </tr>
 	<tr>
-		<td>Payment</td>
-		<td>{{master.payment}}</td>
+		<td><i class="dollar icon"></i>Payment</td>
+		<td style="padding-left:11px">{{master.payment}}</td>
     </tr>
 	<tr>
-		<td>Smoking</td>
-		<td >
+		<td><i class="motorcycle icon"></i>Smoking</td>
+		<td style="padding-left:11px">
 			<div *ngIf="isSmoking()">Yes</div>
 			<div *ngIf="!isSmoking()">No</div>
 		</td>

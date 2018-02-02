@@ -23,7 +23,7 @@ export class AuthorizationPageComponent implements OnInit {
   constructor(private router: Router, private authorizeService: AuthorizeService) { }
 
   ngOnInit() {
-    if (sessionStorage != null) {
+    if (this.authorizeService.getUserLoggedIn()) {
       this.router.navigate(['orders']);
     }
 

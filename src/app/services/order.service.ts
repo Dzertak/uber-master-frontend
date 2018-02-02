@@ -7,6 +7,7 @@ import {Convertator} from "./convertator.service";
 import {Master} from "../models/master.model";
 import {Order} from "../models/order.model";
 import {User} from "../models/user.model";
+import {Observable} from "rxjs/Observable";
 
 
 
@@ -49,21 +50,13 @@ export class OrderService {
     }
 	
 	public updateOrderByPoke(order: Order, user: User){
-		order.pokeId=user.object_id;
         order.status="Completed";
-        console.log(order);
-        this.http.post(url+"entities/updateOrder", order, this.options).subscribe(result =>{
-            alert(result)
-        })
+        return this.http.post(url+"entities/updateOrder", order, this.options);
     }
 	
 	public completeOrderByMaster(order: Order){
-	    console.log(order)
         order.status="Master done";
-	    order.masterEndDate = new Date();
-        this.http.post(url+"entities/updateOrder", order, this.options).subscribe(result =>{
-            alert(result)
-        })
+        return this.http.post(url+"entities/updateOrder", order, this.options);
     }
 
 	 public deleteOrder(id: string){

@@ -19,6 +19,7 @@ export class ListOrderPageComponent implements OnInit {
 user:User;
   tag: string;
   isLoad: boolean = true;
+  counterOrder: number;
   //curPage : number;
   //pageSize : number;
  /* orders = [
@@ -77,24 +78,17 @@ user:User;
 
   ngOnInit() {
       this.tag = '';
-   // $('.ui.dropdown').dropdown();
-    //$('.ui.dropdown').dropdown();
-   //   this.loading(false);
-
-      /*$('.clear.example .button')
-          .on('click', function() {
-              $('.clear.example .ui.dropdown')
-                  .dropdown('clear');
-          });*/
-
-      /*if (this.authorizeService.getUserType() == "Master"){
+      if (this.authorizeService.getUserType() == "Master") {
           this.master = this.authorizeService.getUser();
           if (!this.isCheckForMe) {
               this.tag = '';
           } else {
               this.tag = this.master.profession;
           }
-      }*/
+      }
+
+   // $('.ui.dropdown').dropdown();
+    //$('.ui.dropdown').dropdown();
 	if(this.authorizeService.getUserType() == "Admin"){
 		this.orderService.getWholeOrderList().subscribe(orders => { 
       this.loading(false);
@@ -128,14 +122,7 @@ user:User;
 		this.user = this.authorizeService.getUser();
 		if(this.authorizeService.getUserType() == "Poke" || this.authorizeService.getUserType() == "Admin"){
             return true;
-		} else if (this.authorizeService.getUserType() == "Master") {
-            this.master = this.authorizeService.getUser();
-            if (!this.isCheckForMe) {
-                this.tag = '';
-            } else {
-                this.tag = this.master.profession;
-            }
-        }
+		}
 		
 		
     }
@@ -144,4 +131,7 @@ user:User;
 		return (this.authorizeService.getUserType() == "Admin");
 	}
 
+	setCounterOrders(length: number){
+	    this.counterOrder = length;
+    }
 }

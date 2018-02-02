@@ -67,15 +67,16 @@ export class CreateOrderPageComponent implements OnInit {
       this.dueDate, 'New', -1, null, create.masterProfession,
       0, null, this.authService.getUser().object_id, ' ');
 
+	  
     console.log(this.order)
     this.orderService.createOder(this.order).subscribe(result => {
-
+        console.log(result);
     });
 
     setTimeout(() => {
         this.isLoading = false;
         this.router.navigate(['orders']);
-    },1000)
+    },1500)
 
   }
 

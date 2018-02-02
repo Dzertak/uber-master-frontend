@@ -75,7 +75,7 @@
                 </div>
               </div> -->
               <!-- Four Books -->
-            <div class="ui one column centered grid">
+            <div class="ui one column centered grid" *ngIf="!isLoad">
 
               <div class="column" id="outbar">
 
@@ -126,18 +126,23 @@
 
                 </label>
               </div>
-
     </div>
+
+
+             <!-- {{orders.length}} -->
 
             <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
 			
 <app-card-order
-                      *ngFor="let ord of orders  | orderFilter:tag | orderSearchAdmin:searchStr | paginate: config "
+                      *ngFor="let ord of orders  | orderFilter:tag | orderSearchAdmin:searchStr | paginate: config"
                        [order]="ord"
 
-              ></app-card-order> 
-			  
+              ></app-card-order>
 
+              <div  *ngIf="orders.length==0 && !isLoad">
+                  <img style="width: 300px; margin: 0 auto; display: block;" src="https://www.wpclipart.com/page_frames/full_page_signs/coffee_break_ahead_sign.png">
+                  <h2 style="color: black; margin: 0 auto; display: block; width: 250px" >No tasks - you can rest!</h2>
+              </div>
 		
 
               <!--[order]="ord"-->
@@ -152,7 +157,7 @@
 
           </div>
 
-            <div class="paginationPadding" style="padding-right: 40px">
+            <div class="paginationPadding" style="padding-right: 40px" *ngIf="!isLoad && orders.length>5">
 
 
             <div class="has-text-centered">

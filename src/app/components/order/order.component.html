@@ -69,7 +69,16 @@
               Join It
             </button>
           </div>
+          <sui-rating *ngIf="order.status=='Completed'" style="float: left" class="star huge" [ngModel]="order.mark" [maximum]="5" isReadonly="false"></sui-rating>
 
+          <div style="margin-top: 24px" *ngIf="order.status=='Completed' && order.comment!=null">
+            <h4 class="ui header" style="margin-top: 0px; margin-bottom: 0px">
+              <i class="comment icon"></i>
+              <div class="content">
+                Comment
+              </div>
+            </h4>
+            <p style="text-align: left; word-wrap: break-word;">{{order.comment}}</p>
         </div>
       </div>
     </div>

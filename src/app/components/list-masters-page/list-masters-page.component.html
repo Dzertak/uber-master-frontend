@@ -40,7 +40,7 @@
 
 
 
-              <div class="ui one column centered grid">
+              <div class="ui one column centered grid" *ngIf="!isLoad">
 
                   <div class="column" id="outbar">
 
@@ -90,7 +90,7 @@
 
           </div>
 
-            <div class="paginationPadding" style="padding-right: 40px">
+            <div class="paginationPadding" style="padding-right: 40px" *ngIf="!isLoad && masters.length>5">
                 <div class="has-text-centered">
                     <pagination-controls class="myPagination"
                                          [id]="config.id"
