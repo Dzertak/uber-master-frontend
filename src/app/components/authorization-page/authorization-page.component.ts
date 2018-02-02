@@ -20,10 +20,13 @@ export class AuthorizationPageComponent implements OnInit {
     pass: string;
     isLoading: boolean = false;
 
-
   constructor(private router: Router, private authorizeService: AuthorizeService) { }
 
   ngOnInit() {
+    if (sessionStorage != null) {
+      this.router.navigate(['orders']);
+    }
+
       $('.message .close').on('click', function () {
           $(this)
               .closest('.message')
