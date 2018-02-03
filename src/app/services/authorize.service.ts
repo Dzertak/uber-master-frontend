@@ -5,6 +5,7 @@ import {Convertator, User, Pair, url} from "../index";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 declare var $:any;
 
@@ -78,14 +79,31 @@ export class AuthorizeService {
                     authPair.setSecond(response.json().token);
                 return authPair;
             })
-           /*.catch((err) => {
+			// .catch((err) => {
+
+			   // let errMessage : string;
+               // //let authPair: Pair = new Pair();
+               // //authPair.setFirst(err.status);
+			   // if(err instanceof Response){
+				   // let body = err.json() || '';
+				   // let error =JSON.stringify(body);
+				   // errMessage = `${err.status}-${err.statusText} || ''} ${error}`;
+			   // }
+			   // else{
+				   // errMessage = err.message ? err.message : err.toString();
+			   // }
+               // /* if (authPair.first == 200)
+                   // authPair.setSecond(null); */
+               // return Observable.throw(errMessage);
+           // })
+           /* .catch((err) => {
 
                let authPair: Pair = new Pair();
                authPair.setFirst(err.status);
                if (authPair.first == 200)
                    authPair.setSecond(null);
-               return authPair;
-           })*/
+               return Observable.throw(authPair.first);
+           }) */
     }
 
     public login(authPair: Pair, phone: string, password: string) {
@@ -96,8 +114,14 @@ export class AuthorizeService {
         )
         .map(response => {
           return response;
-        });
+        }).catch(this._errorHandler);
     }
+
+	_errorHandler(error: Response){
+		console.error(JSON.parse(JSON.stringify(error.json())));
+		var obj = JSON.parse(JSON.stringify(error.json()));
+		 return Observable.throw(obj.message);
+	}
    /* static refreshToken(): void {
         if (AuthorizeService.token != null) {
             let headers = new Headers();

@@ -9,7 +9,7 @@
 </div> -->
 
 
-<div class="ui segment" [ngClass]="{'loading':isLoading}">
+<div class="ui segment" >
   <div style="color: black">
     <h3>
       Welcome to UberMaster
@@ -20,13 +20,21 @@
 
   <div class="containerMy">
 
+  
+  
+  <div class="ui negative message transition hidden" id="authorization-fail-message">
+      <i class="ui close icon"></i>
+      <div class="header">Authorization has failed</div>
+      <p>{{errMsg}}</p>
+    </div>
+  
     <div class="ui negative message transition hidden" id="authorization-fail-message">
       <i class="close icon"></i>
       <div class="header">Authorization has failed</div>
       <p>Check the input data</p>
     </div>
 
-    <div class="ui one column middle aligned very relaxed stackable grid">
+    <div class="ui one column middle aligned very relaxed stackable grid" [ngClass]="{'loading':isLoading}">
       <div class="column">
         <div class="ui form">
           <div class="field">

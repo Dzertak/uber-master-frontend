@@ -73,6 +73,10 @@ public uploader:FileUploader = new FileUploader({url: URL});
 	  
   }
 
+   showSuccessUpdate() {
+      $('#update-success-message').removeClass('hidden');
+  }
+  
   confirmChanges(){
 	  
     if (this.firstNameMaster != "" && this.lastNameMaster != "" && this.phoneNumberMaster != ""
@@ -102,6 +106,7 @@ public uploader:FileUploader = new FileUploader({url: URL});
       //error
     }
 	this.masterService.updateMaster(this.master); 
+	this.showSuccessUpdate();
   }
   
   uploadImage(nameImage: String){

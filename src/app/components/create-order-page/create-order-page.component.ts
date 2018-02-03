@@ -5,6 +5,7 @@ import {AuthorizeService} from '../../services/authorize.service';
 import {OrderService} from '../../services/order.service';
 import {Router} from "@angular/router";
 
+declare var $:any;
 
 @Component({
   selector: 'app-create-order-page',
@@ -51,6 +52,12 @@ export class CreateOrderPageComponent implements OnInit {
   }
 
 
+
+
+  showSuccessCreation() {
+      $('#creation-success-message').removeClass('hidden');
+  }
+  
   createOrder(create) {
     this.isLoading = true;
     let dueDate = new Date(create.dueDate);
@@ -71,8 +78,9 @@ export class CreateOrderPageComponent implements OnInit {
     console.log(this.order)
     this.orderService.createOder(this.order).subscribe(result => {
         console.log(result);
-    });
-
+  });
+  
+	this.showSuccessCreation();
     setTimeout(() => {
         this.isLoading = false;
         this.router.navigate(['orders']);
@@ -82,6 +90,12 @@ export class CreateOrderPageComponent implements OnInit {
 
 
   ngOnInit(): void {
+	  $('.message .close').on('click', function () {
+          $(this)
+              .closest('.message')
+              .transition('fade');
+      });
+  
 
     this.rForm.controls['dueDate'].valueChanges.subscribe(value => {
       if (value === '' || value < this.today) {

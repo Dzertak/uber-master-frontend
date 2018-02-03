@@ -69,5 +69,7 @@ export class OrderService {
 	     return this.http.post(url+"entities/addOrder",order,this.options)
              .map(response => response.json());
     }
+	
+	
 
 }

@@ -37,6 +37,12 @@ public uploader:FileUploader = new FileUploader({url: URL});
   
   ngOnInit() {
 	  
+	  $('.message .close').on('click', function () {
+          $(this)
+              .closest('.message')
+              .transition('fade');
+      });
+	  
 	  this.user = this.authorizeService.getUser();
 	  this.pokeService.getPoke(this.user.object_id.toString()).subscribe(poke => {
 	   this.poke = poke;
@@ -51,6 +57,10 @@ public uploader:FileUploader = new FileUploader({url: URL});
 	  this.firstNamePoke = str[0];
 	  this.lastNamePoke = str[1];
 	  
+  }
+  
+  showSuccessUpdate() {
+      $('#update-success-message').removeClass('hidden');
   }
   
   confirmChanges(){
@@ -72,7 +82,9 @@ public uploader:FileUploader = new FileUploader({url: URL});
     } else {
       //error
     }
-	this.pokeService.updatePoke(this.poke);  
+	this.pokeService.updatePoke(this.poke); 
+	this.showSuccessUpdate();
+	
   }
   
   uploadImage(nameImage: String){

@@ -44,7 +44,8 @@ export class AuthorizationPageComponent implements OnInit {
       this.router.navigate(['registration']);
   }
 
-
+	errMsg: string;
+	
   loginUser(){
       this.isLoading = true;
       //work
@@ -55,7 +56,7 @@ export class AuthorizationPageComponent implements OnInit {
                   this.isFail=false;
                   this.isLoading = false;
                   this.router.navigate(['orders']);
-              });
+              }, responseErrorMessage => {this.errMsg = responseErrorMessage, this.showFailedAuthorization();});
           }  else {
               this.isLoading = false;
               this.showFailedAuthorization();
