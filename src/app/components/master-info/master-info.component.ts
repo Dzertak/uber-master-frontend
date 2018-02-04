@@ -6,6 +6,7 @@ import {User} from "../../models/user.model";
 import {Master} from "../../models/master.model";
 import {MasterService} from "../../services/master.service";
 import {AuthorizeService} from "../../services/authorize.service";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 const URL = 'https://api.cloudinary.com/v1_1/ubermaster/image/upload';
 
@@ -18,6 +19,11 @@ declare var $:any;
 })
 export class MasterInfoComponent implements OnInit {
 public uploader:FileUploader = new FileUploader({url: URL});
+
+
+public rMasterForm: FormGroup;
+public locations: { id: number; name: string }[];
+public professions: { id: number; name: string }[];
 
   master: Master;
   user:User;
@@ -40,16 +46,60 @@ public uploader:FileUploader = new FileUploader({url: URL});
   averMark: number;
 
 
-  constructor(private router: Router,private masterService: MasterService, private authorizeService: AuthorizeService) { }
+  constructor(private fb: FormBuilder, private router: Router,private masterService: MasterService, private authorizeService: AuthorizeService) {
+	  
+	  this.rMasterForm = fb.group({
+      'firstNameMaster': [null, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(15)])],
+      'lastNameMaster': [null, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(20)])],
+      'phoneNumberMaster': [null, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
+      'locationMaster': ['Location...', Validators.required],
+      'userDescriptionMaster': [null],
+      'passwordMaster': [null, Validators.required],
+      'confirmPasswordMaster': [null, Validators.required],
+      'profession': ['Profession...', Validators.required],
+      'startTime': [null, Validators.required],
+      'endTime': [null, Validators.required],
+      'tools': [null],
+      'experience': [null, Validators.required],
+      'skills': [null],
+      'smoke': [null, Validators.required],
+      'payment': [null, Validators.required]
+
+    }) 
+	
+	}
 
  
   
   ngOnInit() {
-	 
+	  
+	  this.locations = [
+      {id: 0, name: 'Location...'},
+      {id: 1, name: 'Primorskyy'},
+      {id: 2, name: 'Malinovskyy'},
+      {id: 3, name: 'Kievskyy'},
+      {id: 4, name: 'Suvorovskyy'},
+    ];
+
+    this.professions = [
+      {id: 0, name: 'Profession...'},
+      {id: 1, name: 'Locksmith'},
+      {id: 2, name: 'Electrician'},
+      {id: 3, name: 'Cleaner'},
+      {id: 4, name: 'Computer foreman'},
+      {id: 4, name: 'Handyman'}
+    ];
+	  
+	  
 	  this.user = this.authorizeService.getUser();
 	  this.masterService.getMaster(this.user.object_id.toString()).subscribe(master => {
+	   
 	   this.master = master;
-	   this.phoneNumberMaster = this.master.phoneNumber;
+	   var str = this.user.name.split(" ",2);
+	   this.firstNameMaster = str[0];
+	   this.lastNameMaster = str[1];
+	   
+	   /* this.phoneNumberMaster = this.master.phoneNumber;
 	   this.locationMaster = this.master.location;
 	   this.userDescriptionMaster = this.master.userDescription;
 	   this.passwordMaster = this.user.password;
@@ -63,12 +113,16 @@ public uploader:FileUploader = new FileUploader({url: URL});
 	   this.payment = this.master.payment;
 	   this.smoke = this.master.smoke;
 	   this.pictureMaster = this.master.picture;
-	   this.averMark = this.master.averMark;
+	   this.averMark = this.master.averMark; */
+	   
+	   this.rMasterForm.value.phoneNumberMaster = this.master.phoneNumber;
+	   this.rMasterForm.value.locationMaster = this.master.location;
+	   this.rMasterForm.value.firstNameMaster = this.firstNameMaster;
+	   this.rMasterForm.value.lastNameMaster = this.lastNameMaster; 
+	   
        });
 	  
-	  var str = this.user.name.split(" ",2);
-	  this.firstNameMaster = str[0];
-	  this.lastNameMaster = str[1];
+	  
 	 
 	  
   }
@@ -79,6 +133,7 @@ public uploader:FileUploader = new FileUploader({url: URL});
   
   confirmChanges(){
 	  
+	/*   
     if (this.firstNameMaster != "" && this.lastNameMaster != "" && this.phoneNumberMaster != ""
       && this.passwordMaster != "" && this.confirmPasswordMaster != "" && this.locationMaster != ""
       && this.profession != "" && this.experience != "") {
@@ -104,7 +159,24 @@ public uploader:FileUploader = new FileUploader({url: URL});
       }
     } else {
       //error
-    }
+    } */
+      this.master.name = this.rMasterForm.value.firstNameMaster + " " + this.rMasterForm.value.lastNameMaster;
+      //this.uploadImage(this.pictureMaster);
+	  this.master.picture = this.pictureMaster;
+      this.master.phoneNumber = this.rMasterForm.value.phoneNumberMaster;
+      this.master.location = this.rMasterForm.value.locationMaster;
+      this.master.userDescription = this.rMasterForm.value.userDescriptionMaster;
+      this.master.blocked = false;
+      this.master.profession = this.rMasterForm.value.profession;
+      this.master.tools = this.rMasterForm.value.tools;
+      this.master.skills = this.rMasterForm.value.skills;
+      this.master.experience = this.rMasterForm.value.experience;
+      this.master.start_time = this.rMasterForm.value.startTime;
+      this.master.end_time = this.rMasterForm.value.endTime;
+      this.master.payment = this.rMasterForm.value.payment;
+      this.master.smoke = this.rMasterForm.value.smoke;
+      this.passwordMaster == this.rMasterForm.value.confirmPasswordMaster;
+      this.master.password = this.rMasterForm.value.passwordMaster;
 	this.masterService.updateMaster(this.master); 
 	this.showSuccessUpdate();
   }

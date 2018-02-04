@@ -45,9 +45,9 @@ export class RegistrationPageComponent implements OnInit {
               private authService: AuthorizeService) {
 
     this.rPokeForm = fb.group({
-      'firstNamePoke': [null, Validators.required],
-      'lastNamePoke': [null, Validators.required],
-      'phoneNumberPoke': [null, Validators.pattern('^380[0-9]{9}$')],
+      'firstNamePoke': [null, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(15)])],
+      'lastNamePoke': [null, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(20)])],
+      'phoneNumberPoke': [null, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationPoke': ['Location...', Validators.required],
       'userDescriptionPoke': [null],
       'passwordPoke': [null, Validators.required],
@@ -55,9 +55,9 @@ export class RegistrationPageComponent implements OnInit {
     })
 
     this.rMasterForm = fb.group({
-      'firstNameMaster': [null, Validators.required],
-      'lastNameMaster': [null, Validators.required],
-      'phoneNumberMaster': [null, Validators.pattern('^380[0-9]{9}$')],
+      'firstNameMaster': [null, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(15)])],
+      'lastNameMaster': [null, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(20)])],
+      'phoneNumberMaster': [null, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationMaster': ['Location...', Validators.required],
       'userDescriptionMaster': [null],
       'passwordMaster': [null, Validators.required],
