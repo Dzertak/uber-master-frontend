@@ -79,6 +79,12 @@ export class RegistrationPageComponent implements OnInit {
     if (this.authService.getUserLoggedIn()) {
       this.router.navigate(['orders']);
     }
+	
+	 $('.message .close').on('click', function () {
+          $(this)
+              .closest('.message')
+              .transition('fade');
+      });
 
     this.locations = [
       {id: 0, name: 'Location...'},
@@ -105,12 +111,27 @@ export class RegistrationPageComponent implements OnInit {
   swipeTab(tab: number) {
     this.swipe = tab;
   }
-
+  
+  showFailedAuthorization1() {
+      $('#authorization1-fail-message').removeClass('hidden');
+  }
+  showFailedAuthorization2() {
+      $('#authorization2-fail-message').removeClass('hidden');
+  }
+  showGood() {
+      $('#good-message').removeClass('hidden');
+  }
+  
+  errMsg: string;
+	
   signUpPoke(create) {
     let poke = new Poke(create.firstNamePoke + ' ' + create.lastNamePoke,
       null, null, create.locationPoke, create.userDescriptionPoke,
       create.phoneNumberPoke, create.passwordPoke, ' ', false);
-    this.registrationService.reg(poke, 'Poke');
+    this.registrationService.reg(poke, 'Poke').subscribe( user => {
+		//this.showGood();
+		this.router.navigate(['authorization']);		
+	} , responseErrorMessage => {this.errMsg = responseErrorMessage, this.showFailedAuthorization1();});
 
     /*.subscribe(response => {
       if (response.status==200){
@@ -131,7 +152,11 @@ export class RegistrationPageComponent implements OnInit {
       create.phoneNumberMaster, create.passwordMaster, create.pictureMaster, false,
       create.profession, create.skills, create.experience, create.payment, create.smoke,
       create.tools, create.startTime, create.endTime, create.averMark);
-    this.registrationService.reg(master, 'Master');
+	  
+    this.registrationService.reg(master, 'Master').subscribe( response => {
+	this.router.navigate(['authorization']);} , responseErrorMessage => {this.errMsg = responseErrorMessage, this.showFailedAuthorization2();});
+            
+	  
   }
 
   uploadImage(nameImage: String) {

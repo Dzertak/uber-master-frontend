@@ -3,6 +3,9 @@ import {User} from "../models/user.model";
 import {url} from "../common/consts";
 import {Router} from "@angular/router";
 import {Injectable} from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class RegistrationService{
@@ -13,22 +16,27 @@ export class RegistrationService{
 
     reg(user: User, userType: string){
         if (userType == 'Poke'){
-            this.http.post(url + "registerPoke", user).subscribe(response => {
-                if (response.status == 200){
-                    this.router.navigate(['authorization']);
-                } else if (response.status == 500) {
-                    alert(response.statusText);
-                }
-            });
-        } else {
-            this.http.post(url + "registerMaster", user).subscribe(response => {
-                if (response.status == 200){
-                    this.router.navigate(['authorization']);
-                } else if (response.status == 500) {
-                    alert(response.statusText);
-                }
-            });
+            return this.http.post(url + "registerPoke", user).map(response =>
+          response.json()
+        )
+        .map(response => {
+          return response;
+        }).catch(this._errorHandler);
+            }
+		else {
+           return this.http.post(url + "registerMaster", user).map(response =>
+          response.json()
+        )
+        .map(response => {
+          return response;
+        }).catch(this._errorHandler);
         }
 
     }
+	
+	_errorHandler(error: Response){
+		console.error(JSON.parse(JSON.stringify(error.json())));
+		var obj = JSON.parse(JSON.stringify(error.json()));
+		 return Observable.throw(obj.message);
+	}
 }

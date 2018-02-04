@@ -1,4 +1,4 @@
-<div class="ui one column stackable grid container">
+<div class="ui one column stackable grid container" >
   <div class="column" style="padding-left: 100px; padding-right: 100px;">
     <div class="ui top attached tabular menu">
       <a class="item" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" data-tab="poke">I am Poke</a>
@@ -9,8 +9,21 @@
       <div class="ui one column centered grid">
         <div class="column" style="justify-content: center; display: flex">
 
+		
+		
           <form [formGroup]="rPokeForm" (ngSubmit)="signUpPoke(rPokeForm.value)" class="ui form"
                 style="width: 50%;">
+				
+				<div class="ui negative message transition hidden" id="authorization1-fail-message">
+      <i class="ui close icon"></i>
+      <div class="header">Registraition has failed</div>
+      <p>{{errMsg}}</p>
+		</div>
+		<div class="ui positive message transition hidden" id="good-message">
+      <i class="ui close icon"></i>
+      <div class="header">Registraition completed</div>
+		</div>
+				
               <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
             <p>* all fields must be filled</p>
             <div class="field">
@@ -82,6 +95,13 @@
       <div class="ui one column centered grid">
         <div class="column" style="justify-content: center; display: flex">
           <form [formGroup]="rMasterForm" (ngSubmit)="signUpMaster(rMasterForm.value)" class="ui form" style="width: 50%;">
+		  
+		  <div class="ui negative message transition hidden" id="authorization2-fail-message">
+      <i class="ui close icon"></i>
+      <div class="header">Registraition has failed</div>
+      <p>{{errMsg}}</p>
+		</div>
+		  
             <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
 
             <p>* all fields must be filled</p>
