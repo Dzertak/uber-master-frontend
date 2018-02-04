@@ -15,14 +15,14 @@
             </div>
             <div class="field" [ngClass]="{'has-error':!rMasterForm.controls['firstNameMaster'].valid && rMasterForm.controls['firstNameMaster'].touched}">
               <label>First name *</label>
-              <input class="form-control" type="text" name="first-name" [ngModel]="rMasterForm.value.firstNameMaster" [formControl]="rMasterForm.controls['firstNameMaster']">
+              <input class="form-control" type="text" name="first-name" [formControl]="rMasterForm.controls['firstNameMaster']">
 			  <div *ngIf="rMasterForm.controls['firstNameMaster'].hasError('required') && rMasterForm.controls['firstNameMaster'].touched" class="alert" style = "color:red">Include a first name</div>           
 			  <div *ngIf="rMasterForm.controls['firstNameMaster'].hasError('minlength') && rMasterForm.controls['firstNameMaster'].touched" class="alert" style = "color:red">Your first name must be at least 2 characters long.</div>
 			  <div *ngIf="rMasterForm.controls['firstNameMaster'].hasError('maxlength') && rMasterForm.controls['firstNameMaster'].touched" class="alert"style = "color:red">Your first name cannot exceed 15 characters.</div>
 		   </div>
             <div class="field" [ngClass]="{'has-error':!rMasterForm.controls['lastNameMaster'].valid && rMasterForm.controls['lastNameMaster'].touched}">
               <label>Last name *</label>
-              <input class="form-control" type="text" name="last-name" [ngModel]="rMasterForm.value.lastNameMaster"   [formControl]="rMasterForm.controls['lastNameMaster']">
+              <input class="form-control" type="text" name="last-name"  [formControl]="rMasterForm.controls['lastNameMaster']">
 			  <div *ngIf="rMasterForm.controls['lastNameMaster'].hasError('required') && rMasterForm.controls['lastNameMaster'].touched" class="alert" style = "color:red">Include a last name</div>           
               <div *ngIf="rMasterForm.controls['lastNameMaster'].hasError('minlength') && rMasterForm.controls['lastNameMaster'].touched" class="alert" style = "color:red">Your last name must be at least 2 characters long.</div>
 			  <div *ngIf="rMasterForm.controls['lastNameMaster'].hasError('maxlength') && rMasterForm.controls['lastNameMaster'].touched" class="alert"style = "color:red">Your last name cannot exceed 20 characters.</div>
@@ -30,9 +30,8 @@
 			
             <div class="field" [ngClass]="{'has-error':!rMasterForm.controls['phoneNumberMaster'].valid && rMasterForm.controls['phoneNumberMaster'].touched}">
               <label>Phone *</label>
-              <input type="text" name="phone" [ngModel]="rMasterForm.value.phoneNumberMaster" [formControl]="rMasterForm.controls['phoneNumberMaster']">
+              <input type="text" name="phone" [formControl]="rMasterForm.controls['phoneNumberMaster']">
 			  <div *ngIf="rMasterForm.controls['phoneNumberMaster'].hasError('required') && rMasterForm.controls['phoneNumberMaster'].touched" class="alert" style = "color:red">Include a Phone Number</div>           
-			  <div>{{rMasterForm.value.phoneNumberMaster}}</div>
 			</div>
             <div class="field">
               <label>Location *</label>

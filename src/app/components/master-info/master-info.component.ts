@@ -115,10 +115,30 @@ public professions: { id: number; name: string }[];
 	   this.pictureMaster = this.master.picture;
 	   this.averMark = this.master.averMark; */
 	   
-	   this.rMasterForm.value.phoneNumberMaster = this.master.phoneNumber;
+	   /* this.rMasterForm.value.phoneNumberMaster = this.master.phoneNumber;
 	   this.rMasterForm.value.locationMaster = this.master.location;
 	   this.rMasterForm.value.firstNameMaster = this.firstNameMaster;
-	   this.rMasterForm.value.lastNameMaster = this.lastNameMaster; 
+	   this.rMasterForm.value.lastNameMaster = this.lastNameMaster; */ 
+	   
+	   this.rMasterForm = this.fb.group({
+      'firstNameMaster': [this.firstNameMaster, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(15)])],
+      'lastNameMaster': [this.lastNameMaster, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(20)])],
+      'phoneNumberMaster': [this.master.phoneNumber, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
+      'locationMaster': [this.master.location, Validators.required],
+      'userDescriptionMaster': [this.master.userDescription],
+      'passwordMaster': [this.master.password, Validators.required],
+      'confirmPasswordMaster': [this.master.password, Validators.required],
+      'profession': [this.master.profession, Validators.required],
+      'startTime': [this.master.start_time, Validators.required],
+      'endTime': [this.master.end_time, Validators.required],
+      'tools': [this.master.tools],
+      'experience': [this.master.experience, Validators.required],
+      'skills': [this.master.skills],
+      'smoke': [this.master.smoke, Validators.required],
+      'payment': [this.master.payment, Validators.required]
+
+    });
+	   
 	   
        });
 	  
