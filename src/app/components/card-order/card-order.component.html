@@ -14,7 +14,9 @@
   </div>
   <div class="extra content">
     <div class="right floated author" (click)="showPoke()" *ngIf="!isLoading">
-      <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg"> {{getNamePoke()}}
+      <cl-image *ngIf="poke.picture != null"   [public-id]="poke.picture" class="ui avatar image" format="jpg">{{getNamePoke()}}
+      </cl-image>
+      <img *ngIf="poke.picture == null" class="ui avatar image" src="https://semantic-ui.com/images/avatar/large/steve.jpg">{{getNamePoke()}}
     </div>
     <div class="left floated button">
       <button class="ui blue basic button" (click)="showOrder()">Details</button>

@@ -4,7 +4,9 @@
       <div class="column" style="width: 65%!important;">
         <div class="ui grid">
           <div class="six wide column">
-            <img class="ui medium rounded left floated image" src="https://semantic-ui.com/images/avatar/large/matt.jpg" style="width: 100%">
+            <cl-image *ngIf="poke.picture != null"   [public-id]="poke.picture" class="ui medium rounded left floated image" format="jpg" style="width: 100%">
+            </cl-image>
+            <img *ngIf="poke.picture == null" class="ui medium rounded left floated image" src="https://semantic-ui.com/images/avatar/large/matt.jpg" style="width: 100%">
             <h2 style="text-align: center">{{poke.name}}</h2>
 
             <table class="ui red fixed table" style="width: 100%">

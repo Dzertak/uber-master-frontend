@@ -49,8 +49,6 @@ import {HoverCardOrderDirective} from "./directive/hover-card-order.directive";
 import { PokeComponent } from './components/poke/poke.component';
 import {PokeOrderFilterPipe} from "./pipe/pokeOrderFilter.pipe";
 
-
-
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: AuthorizationPageComponent},
   {path: 'masters', canActivate: [AuthguardGuard], component: ListMastersPageComponent},
@@ -114,8 +112,9 @@ const routes: Routes = [
     NgxPaginationModule,
 	//L_SEMANTIC_UI_MODULE,
 	SuiModule,
-  	CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'ubermaster' } as CloudinaryConfiguration),
-    ReactiveFormsModule
+  	CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'dcnt32vmg' , upload_preset: 'mrcxskvw'} as CloudinaryConfiguration),
+    ReactiveFormsModule,
+    FileUploadModule
   ],
   providers: [AuthorizeService, RegistrationService, AuthguardGuard, OrderService, MasterService, PokeService],
   bootstrap: [AppComponent]

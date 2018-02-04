@@ -4,7 +4,10 @@
             <div class="column" style="width: 65%!important;">
                 <div class="ui grid">
                     <div class="six wide column">
-                        <img class="ui medium rounded left floated image" src="https://semantic-ui.com/images/avatar/large/matt.jpg" style="width: 100%">
+                      <cl-image *ngIf="master.picture != null"   [public-id]="master.picture" class="ui medium rounded left floated image" format="jpg" style="width: 100%">
+                      </cl-image>
+
+                      <img *ngIf="master.picture == null" class="ui medium rounded left floated image" src="https://semantic-ui.com/images/avatar/large/matt.jpg" style="width: 100%">
                         <h2 style="text-align: center">{{master.name}}</h2>
 	                    <div  class="ui primary basic button" style="width: 100%" [routerLink]="['/master-info']">
                             Edit Personal Information
@@ -12,7 +15,7 @@
 <table class="ui red fixed table" style="width:100%">
   <tbody>
   <!-- <tr> <lsu-rating [(ngModel)]="rating" [maxRating]="'5'" [type]="'star'" [size]="'large '"></lsu-rating></tr> -->
-	
+
 	<tr>
       <td><i class="configure icon" ></i>Profession</td>
       <td style="padding-left:11px">{{master.profession}}</td>
@@ -49,8 +52,8 @@
 		</td>
     </tr>
 	</tbody>
- </table> 
-		
+ </table>
+
 		</div>
                     <div class="ten wide column" style="padding-top: 0px">
                         <div class="two column centered row">
@@ -59,8 +62,8 @@
 
 
             <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
-    
-           
+
+
 	<div class="ui top attached tabular menu">
 	<a class="item "  [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" data-tab="first">Orders in process</a>
 	<a class="item " [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" data-tab="second">Orders completed</a>
@@ -78,15 +81,15 @@
 
                 <span class="toolbar-spacer"></span>
 
-               
+
               </div>
 
     </div>
 	<app-master-profile-card
                       *ngFor="let ord of orders  | orderFilter2:tag | orderFilter: searchStr| paginate: config "
-                       [order]="ord" 
+                       [order]="ord"
 
-              ></app-master-profile-card> 
+              ></app-master-profile-card>
 
             <div class="paginationPadding" style="padding-right: 40px;">
 
@@ -106,7 +109,7 @@
             </div>
 
             </div>
-			
+
 			</div>
 			<div class="ui bottom attached tab segment" data-tab="second" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" >
 			 <div class="ui one column centered grid">
@@ -121,15 +124,15 @@
 
                 <span class="toolbar-spacer"></span>
 
-               
+
               </div>
 
     </div>
-	<app-card-order 
+	<app-card-order
                       *ngFor="let ord of orders  | orderFilter2:tag2 | orderFilter: searchStr2| paginate: config2 "
-                       [order]="ord" 
+                       [order]="ord"
 
-              ></app-card-order> 
+              ></app-card-order>
 
             <div class="paginationPadding" style="padding-right: 40px;">
 
@@ -148,7 +151,7 @@
             </div>
 
             </div>
-			
+
 			</div>
 			<div class="ui bottom attached tab segment" data-tab="third" [ngClass]="{'active':swipe===2}" (click)="swipeTab(2)" >
 			 <div class="ui one column centered grid">
@@ -163,15 +166,15 @@
 
                 <span class="toolbar-spacer"></span>
 
-               
+
               </div>
 
     </div>
-	<app-card-order 
+	<app-card-order
                       *ngFor="let ord of orders  | orderFilter2:tag3 | orderFilter: searchStr3| paginate: config3 "
-                       [order]="ord" 
+                       [order]="ord"
 
-              ></app-card-order> 
+              ></app-card-order>
 
             <div class="paginationPadding" style="padding-right: 40px;">
 
@@ -190,7 +193,7 @@
             </div>
 
             </div>
-			
+
 			</div>
 			</div>
 			</div>

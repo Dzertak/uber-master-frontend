@@ -9,35 +9,43 @@
       <div class="ui one column centered grid">
         <div class="column" style="justify-content: center; display: flex">
 
+
           <form [formGroup]="rPokeForm" (ngSubmit)="signUpPoke(rPokeForm.value)" class="ui form"
                 style="width: 50%;">
-              <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
+
+
+            <cl-image *ngIf="file != null"   [public-id]="file.public_id" class="imgThumbnail" format="jpg">
+              <cl-transformation height="275" width="275" crop="fill" radius="15"></cl-transformation>
+            </cl-image>
+
+            <img *ngIf="file == null" class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" >
+
+
             <p>* all fields must be filled</p>
             <div class="field">
-              <label>Your photo *</label>
-              <input name="file" type="file"
-                     class="file-upload" data-cloudinary-field="image_id"
-                     data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}">
-                     <!--[(ngModel)]="picturePoke">-->
+                <h3>Drop your photo</h3>
+                <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                     (fileOver)="fileOverBase($event)" [uploader]="uploader"
+                     class="well my-drop-zone"></div>
             </div>
             <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['firstNamePoke'].valid && rPokeForm.controls['firstNamePoke'].touched}">
               <label>First name *</label>
               <input class="form-control" type="text" name="first-name-poke" placeholder="First name"  [formControl]="rPokeForm.controls['firstNamePoke']">
-			  <div *ngIf="rPokeForm.controls['firstNamePoke'].hasError('required') && rPokeForm.controls['firstNamePoke'].touched" class="alert" style = "color:red">Include a first name</div>           
+			  <div *ngIf="rPokeForm.controls['firstNamePoke'].hasError('required') && rPokeForm.controls['firstNamePoke'].touched" class="alert" style = "color:red">Include a first name</div>
 			  <div *ngIf="rPokeForm.controls['firstNamePoke'].hasError('minlength') && rPokeForm.controls['firstNamePoke'].touched" class="alert" style = "color:red">Your first name must be at least 2 characters long.</div>
 			  <div *ngIf="rPokeForm.controls['firstNamePoke'].hasError('maxlength') && rPokeForm.controls['firstNamePoke'].touched" class="alert"style = "color:red">Your first name cannot exceed 15 characters.</div>
 		   </div>
             <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['lastNamePoke'].valid && rPokeForm.controls['lastNamePoke'].touched}">
               <label>Last name *</label>
               <input class="form-control" type="text" name="last-name" placeholder="Last name" [formControl]="rPokeForm.controls['lastNamePoke']">
-			  <div *ngIf="rPokeForm.controls['lastNamePoke'].hasError('required') && rPokeForm.controls['lastNamePoke'].touched" class="alert" style = "color:red">Include a last name</div>           
+			  <div *ngIf="rPokeForm.controls['lastNamePoke'].hasError('required') && rPokeForm.controls['lastNamePoke'].touched" class="alert" style = "color:red">Include a last name</div>
               <div *ngIf="rPokeForm.controls['lastNamePoke'].hasError('minlength') && rPokeForm.controls['lastNamePoke'].touched" class="alert" style = "color:red">Your last name must be at least 2 characters long.</div>
 			  <div *ngIf="rPokeForm.controls['lastNamePoke'].hasError('maxlength') && rPokeForm.controls['lastNamePoke'].touched" class="alert"style = "color:red">Your last name cannot exceed 20 characters.</div>
 			</div>
             <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['phoneNumberPoke'].valid && rPokeForm.controls['phoneNumberPoke'].touched}">
               <label>Phone *</label>
               <input type="text" name="phone" placeholder="3808800225353" [formControl]="rPokeForm.controls['phoneNumberPoke']">
-			  <div *ngIf="rPokeForm.controls['phoneNumberPoke'].hasError('required') && rPokeForm.controls['phoneNumberPoke'].touched" class="alert" style = "color:red">Include a Phone Number</div>           
+			  <div *ngIf="rPokeForm.controls['phoneNumberPoke'].hasError('required') && rPokeForm.controls['phoneNumberPoke'].touched" class="alert" style = "color:red">Include a Phone Number</div>
             </div>
             <div class="field">
               <label>Location *</label>
@@ -53,13 +61,13 @@
             <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['passwordPoke'].valid && rPokeForm.controls['passwordPoke'].touched}">
               <label>Password *</label>
               <input type="password" name="password" placeholder="Password..." [formControl]="rPokeForm.controls['passwordPoke']">
-			  <div *ngIf="rPokeForm.controls['passwordPoke'].hasError('required') && rPokeForm.controls['passwordPoke'].touched" class="alert" style = "color:red">Enter Password</div>           
+			  <div *ngIf="rPokeForm.controls['passwordPoke'].hasError('required') && rPokeForm.controls['passwordPoke'].touched" class="alert" style = "color:red">Enter Password</div>
             </div>
             <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['confirmPasswordPoke'].valid && rPokeForm.controls['confirmPasswordPoke'].touched}">
               <label>Confirm password *</label>
               <input type="password" name="confirm-password" placeholder="Confirm password..."
                     [formControl]="rPokeForm.controls['confirmPasswordPoke']">
-			  <div *ngIf="rPokeForm.controls['confirmPasswordPoke'].hasError('required') && rPokeForm.controls['confirmPasswordPoke'].touched" class="alert" style = "color:red">Confirm Password</div>           
+			  <div *ngIf="rPokeForm.controls['confirmPasswordPoke'].hasError('required') && rPokeForm.controls['confirmPasswordPoke'].touched" class="alert" style = "color:red">Confirm Password</div>
             </div>
             <div class="ui one column stackable grid container">
               <div class="column">
@@ -82,34 +90,38 @@
       <div class="ui one column centered grid">
         <div class="column" style="justify-content: center; display: flex">
           <form [formGroup]="rMasterForm" (ngSubmit)="signUpMaster(rMasterForm.value)" class="ui form" style="width: 50%;">
-            <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
+            <cl-image *ngIf="file != null"   [public-id]="file.public_id" class="imgThumbnail" format="jpg">
+              <cl-transformation height="275" width="275" crop="fill" radius="15"></cl-transformation>
+            </cl-image>
+
+            <img *ngIf="file == null" class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" >
+
 
             <p>* all fields must be filled</p>
             <div class="field">
-              <label>Your photo *</label>
-              <input name="file" type="file"
-                     class="file-upload" data-cloudinary-field="image_id"
-                     data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}">
-                     <!--[(ngModel)]="pictureMaster">-->
+              <h3>Drop your photo</h3>
+              <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                   (fileOver)="fileOverBase($event)" [uploader]="uploader"
+                   class="well my-drop-zone"></div>
             </div>
             <div class="field" [ngClass]="{'has-error':!rMasterForm.controls['firstNameMaster'].valid && rMasterForm.controls['firstNameMaster'].touched}">
               <label>First name *</label>
               <input class="form-control" type="text" name="first-name-poke" placeholder="First name"  [formControl]="rMasterForm.controls['firstNameMaster']">
-			  <div *ngIf="rMasterForm.controls['firstNameMaster'].hasError('required') && rMasterForm.controls['firstNameMaster'].touched" class="alert" style = "color:red">Include a first name</div>           
+			  <div *ngIf="rMasterForm.controls['firstNameMaster'].hasError('required') && rMasterForm.controls['firstNameMaster'].touched" class="alert" style = "color:red">Include a first name</div>
 			  <div *ngIf="rMasterForm.controls['firstNameMaster'].hasError('minlength') && rMasterForm.controls['firstNameMaster'].touched" class="alert" style = "color:red">Your first name must be at least 2 characters long.</div>
 			  <div *ngIf="rMasterForm.controls['firstNameMaster'].hasError('maxlength') && rMasterForm.controls['firstNameMaster'].touched" class="alert"style = "color:red">Your first name cannot exceed 15 characters.</div>
 		   </div>
             <div class="field" [ngClass]="{'has-error':!rMasterForm.controls['lastNameMaster'].valid && rMasterForm.controls['lastNameMaster'].touched}">
               <label>Last name *</label>
               <input class="form-control" type="text" name="last-name" placeholder="Last name" [formControl]="rMasterForm.controls['lastNameMaster']">
-			  <div *ngIf="rMasterForm.controls['lastNameMaster'].hasError('required') && rMasterForm.controls['lastNameMaster'].touched" class="alert" style = "color:red">Include a last name</div>           
+			  <div *ngIf="rMasterForm.controls['lastNameMaster'].hasError('required') && rMasterForm.controls['lastNameMaster'].touched" class="alert" style = "color:red">Include a last name</div>
               <div *ngIf="rMasterForm.controls['lastNameMaster'].hasError('minlength') && rMasterForm.controls['lastNameMaster'].touched" class="alert" style = "color:red">Your last name must be at least 2 characters long.</div>
 			  <div *ngIf="rMasterForm.controls['lastNameMaster'].hasError('maxlength') && rMasterForm.controls['lastNameMaster'].touched" class="alert"style = "color:red">Your last name cannot exceed 20 characters.</div>
 			</div>
             <div class="field" [ngClass]="{'has-error':!rMasterForm.controls['phoneNumberMaster'].valid && rMasterForm.controls['phoneNumberMaster'].touched}">
               <label>Phone *</label>
               <input type="text" name="phone" placeholder="3808800225353" [formControl]="rMasterForm.controls['phoneNumberMaster']">
-			  <div *ngIf="rMasterForm.controls['phoneNumberMaster'].hasError('required') && rMasterForm.controls['phoneNumberMaster'].touched" class="alert" style = "color:red">Include a Phone Number</div>           
+			  <div *ngIf="rMasterForm.controls['phoneNumberMaster'].hasError('required') && rMasterForm.controls['phoneNumberMaster'].touched" class="alert" style = "color:red">Include a Phone Number</div>
             </div>
             <div class="field">
               <label>Location *</label>
@@ -125,13 +137,13 @@
             <div class="field" [ngClass]="{'has-error':!rMasterForm.controls['passwordMaster'].valid && rMasterForm.controls['passwordMaster'].touched}">
               <label>Password *</label>
               <input type="password" name="password" placeholder="Password..." [formControl]="rMasterForm.controls['passwordMaster']">
-			  <div *ngIf="rMasterForm.controls['passwordMaster'].hasError('required') && rMasterForm.controls['passwordMaster'].touched" class="alert" style = "color:red">Enter Password</div>           
+			  <div *ngIf="rMasterForm.controls['passwordMaster'].hasError('required') && rMasterForm.controls['passwordMaster'].touched" class="alert" style = "color:red">Enter Password</div>
             </div>
             <div class="field" [ngClass]="{'has-error':!rMasterForm.controls['confirmPasswordMaster'].valid && rMasterForm.controls['confirmPasswordMaster'].touched}">
               <label>Confirm password *</label>
               <input type="password" name="confirm-password" placeholder="Confirm password..."
                     [formControl]="rMasterForm.controls['confirmPasswordMaster']">
-			  <div *ngIf="rMasterForm.controls['confirmPasswordMaster'].hasError('required') && rMasterForm.controls['confirmPasswordMaster'].touched" class="alert" style = "color:red">Confirm Password</div>           
+			  <div *ngIf="rMasterForm.controls['confirmPasswordMaster'].hasError('required') && rMasterForm.controls['confirmPasswordMaster'].touched" class="alert" style = "color:red">Confirm Password</div>
             </div>
             <div class="field">
               <label>Profession *</label>
@@ -150,7 +162,7 @@
             <div class="field" [ngClass]="{'has-error':!rMasterForm.controls['experience'].valid && rMasterForm.controls['experience'].touched}">
               <label>Experience *</label>
               <input type="text" name="experience" placeholder="Your experience..." [formControl]="rMasterForm.controls['experience']">
-			  <div *ngIf="rMasterForm.controls['experience'].hasError('required') && rMasterForm.controls['experience'].touched" class="alert" style = "color:red">Enter your Experience</div>           
+			  <div *ngIf="rMasterForm.controls['experience'].hasError('required') && rMasterForm.controls['experience'].touched" class="alert" style = "color:red">Enter your Experience</div>
             </div>
             <div class="field" > <!--style="margin-left:30px; width:160px;"-->
               <label>Work time *</label>

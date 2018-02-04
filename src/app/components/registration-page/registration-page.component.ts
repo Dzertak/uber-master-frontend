@@ -1,7 +1,6 @@
 import {Component, NgModule, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import * as  Cloudinary from 'cloudinary-core';
-import {FileUploader} from 'ng2-file-upload';
+import {FileUploader, FileUploaderOptions, ParsedResponseHeaders} from 'ng2-file-upload';
 import {RegistrationService} from '../../services/registration.service';
 import {User} from '../../models/user.model';
 import {Poke} from '../../models/poke.model';
@@ -10,7 +9,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OrderService} from '../../services/order.service';
 import {Order} from '../../models/order.model';
 import {AuthorizeService} from '../../services/authorize.service';
-import {isBoolean} from 'util';
+import {Cloudinary} from '@cloudinary/angular-4.x';
 
 const URL = 'https://api.cloudinary.com/v1_1/ubermaster/image/upload';
 
@@ -22,7 +21,6 @@ declare var $: any;
   styleUrls: ['./registration-page.component.css']
 })
 export class RegistrationPageComponent implements OnInit {
-  public uploader: FileUploader = new FileUploader({url: URL});
   swipe: number = 0;
   picturePoke: string;
 
@@ -40,9 +38,13 @@ export class RegistrationPageComponent implements OnInit {
   averMark: number;
   smoke: boolean;
 
+  public uploader: FileUploader;
+  public hasBaseDropZoneOver = false;
+  private file: any = null;
+
 
   constructor(private fb: FormBuilder, private router: Router, private registrationService: RegistrationService,
-              private authService: AuthorizeService) {
+              private authService: AuthorizeService, private cloudinary: Cloudinary) {
 
     this.rPokeForm = fb.group({
       'firstNamePoke': [null, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(15)])],
@@ -76,6 +78,60 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
+    const uploaderOptions: FileUploaderOptions = {
+      url: `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/image/upload`,
+      // Upload files automatically upon addition to upload queue
+      autoUpload: true,
+      // Use xhrTransport in favor of iframeTransport
+      isHTML5: true,
+      // Calculate progress independently for each uploaded file
+      removeAfterUpload: true,
+
+      // XHR request headers
+      headers: [
+        {
+          name: 'X-Requested-With',
+          value: 'XMLHttpRequest'
+        }
+      ]
+    };
+
+    this.uploader = new FileUploader(uploaderOptions);
+    this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
+      // Add Cloudinary's unsigned upload preset to the upload form
+      form.append('upload_preset', this.cloudinary.config().upload_preset);
+      form.append('tags', 'ubermaster');
+      form.append('file', fileItem);
+
+      // Use default "withCredentials" value for CORS requests
+      fileItem.withCredentials = false;
+      return { fileItem, form };
+    };
+
+
+    this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) =>
+      upsertResponse(
+        {
+          file: item.file,
+          status,
+          data: JSON.parse(response)
+        }
+
+      );
+
+    const upsertResponse = fileItem => {
+      if (fileItem.status !== 200) {
+        console.log('Upload to cloudinary Failed');
+        console.log(fileItem);
+        return false;
+      }
+      this.file = fileItem.data;
+      console.log(fileItem.data);
+    };
+
+
     if (this.authService.getUserLoggedIn()) {
       this.router.navigate(['orders']);
     }
@@ -109,7 +165,7 @@ export class RegistrationPageComponent implements OnInit {
   signUpPoke(create) {
     let poke = new Poke(create.firstNamePoke + ' ' + create.lastNamePoke,
       null, null, create.locationPoke, create.userDescriptionPoke,
-      create.phoneNumberPoke, create.passwordPoke, ' ', false);
+      create.phoneNumberPoke, create.passwordPoke, this.file.public_id, false);
     this.registrationService.reg(poke, 'Poke');
 
     /*.subscribe(response => {
@@ -128,17 +184,15 @@ export class RegistrationPageComponent implements OnInit {
 
     let master = new Master(create.firstNameMaster + ' ' + create.lastNameMaster,
       null, null, create.locationMaster, create.userDescriptionMaster,
-      create.phoneNumberMaster, create.passwordMaster, create.pictureMaster, false,
+      create.phoneNumberMaster, create.passwordMaster, this.file.public_id, false,
       create.profession, create.skills, create.experience, create.payment, create.smoke,
       create.tools, create.startTime, create.endTime, create.averMark);
     this.registrationService.reg(master, 'Master');
   }
 
-  uploadImage(nameImage: String) {
-    this.uploader.autoUpload(nameImage,
-      function (error, result) {
-        console.log(result);
-      });
+
+  public fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
   }
 
 }
