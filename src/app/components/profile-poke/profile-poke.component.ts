@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component,Input, OnInit } from '@angular/core';
 import {Poke} from "../../models/poke.model";
-import {Order} from "../../index"; 
-import {OrderService} from "../../services/order.service"; 
+import {Order} from "../../index";
+import {OrderService} from "../../services/order.service";
 import {PaginationInstance} from "ngx-pagination";
 import {ActivatedRoute} from "@angular/router";
 
@@ -28,7 +28,7 @@ export class ProfilePokeComponent implements OnInit {
 	tag2: string = '';
 	tag3: string = '';
 	isLoad: boolean = true;
-	
+
 //poke = {"name":"SR","description":"SRDESCR","object_id":0,"location":"Primorskyy","userDescription":"SRUSERDESCR","phoneNumber":"99999999","picture":"SRpic1","classType":"Poke","isUserBlocked":false};
 
  /* orders = [
@@ -43,9 +43,9 @@ export class ProfilePokeComponent implements OnInit {
       {"name":"Replacement of electrical wiring","description":"DESCR : 38","object_id":38,"master":18,"masterName":null,"masterProfession":"Electrician","startDate":-61599024840000,"dueDate":-61598679240000,"bigDescription":"Replacement of electrical wiring","smallDescription":"Replacement of electrical wiring","status":"In processing"},
       {"name":"Repairing of rosette","description":"DESCR : 39","object_id":39,"master":16,"masterName":null,"masterProfession":"Locksmith","startDate":-61599024840000,"dueDate":-61597210440000,"bigDescription":"Repairing of rosette","smallDescription":"Repairing of rosette","status":"In processing"}
       ]; */
-	  
+
 	  orders = [];
-	  
+
 
 
  public filter: string = '';
@@ -75,54 +75,55 @@ export class ProfilePokeComponent implements OnInit {
         screenReaderPageLabel: 'page',
         screenReaderCurrentLabel: `You're on page`
     };
-  
+
   loading(status: boolean){
     this.isLoad=status;
   }
-  
-  
+
+
   constructor(private router: ActivatedRoute, private pokeService: PokeService, private authorizeService: AuthorizeService) { }
 
   ngOnInit() {
-	  this.idP = this.router.snapshot.params.id;	  
-	  this.pokeService.getPokeOrders(this.idP).subscribe(orders => {  
+	  this.idP = this.router.snapshot.params.id;
+	  this.pokeService.getPokeOrders(this.idP).subscribe(orders => {
 	   this.orders = orders;
 		//this.loading(false);
-        
+
        });
-    this.pokeService.getPoke(this.idP).subscribe(poke => {  
+
+    this.pokeService.getPoke(this.idP).subscribe(poke => {
 	   this.poke = poke;
 		this.loading(false);
-        
        });
 	   this.tag = "In processing";
 	   this.tag2 = "New";
 	   this.tag3 = "Master done";
-  }
-  
 
-  
+  }
+
+
+
   getSelectedTextValue() {
        this.tag = "In processing";
   }
- 
-  
+
+
   onPageChange(number: number) {
         console.log('change to page', number);
         this.config.currentPage = number;
-	
+
     }
-	
+
 	onPageChange2(number: number) {
         console.log('change to page', number);
 		this.config2.currentPage = number;
     }
-	
+
 	onPageChange3(number: number) {
         console.log('change to page', number);
 		this.config3.currentPage = number;
     }
-	
+
 	swipeTab(tab: number){
         this.swipe = tab;
     }

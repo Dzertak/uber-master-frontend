@@ -60,7 +60,9 @@
 
         <div class="extra content" >
           <div class="right floated aughtor" (click)="showPoke()" *ngIf="!isLoading">
-            <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" >{{getNamePoke()}}
+            <cl-image *ngIf="poke.picture != null"   [public-id]="poke.picture" class="ui avatar image" format="jpg">{{getNamePoke()}}
+            </cl-image>
+            <img *ngIf="poke.picture == null" class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg" >{{getNamePoke()}}
           </div>
 
           <div class="left floated aughtor" *ngIf="order.status=='New' && isMasterAndProfession()">
