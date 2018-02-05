@@ -23,11 +23,11 @@
       <div class="header">Registraition completed</div>
 		</div>
 
-            <cl-image *ngIf="file != null"   [public-id]="file.public_id" class="imgThumbnail" format="jpg">
+            <cl-image *ngIf="file != null"   [public-id]="file.public_id" class="imgThumbnail" format="jpg" style="display: block; margin: 0 auto">
               <cl-transformation height="275" width="275" crop="fill" radius="15"></cl-transformation>
             </cl-image>
 
-            <img *ngIf="file == null" class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" >
+            <img *ngIf="file == null" class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
 
 
             <p>* all fields must be filled</p>
@@ -53,7 +53,7 @@
 			</div>
             <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['phoneNumberPoke'].valid && rPokeForm.controls['phoneNumberPoke'].touched}">
               <label>Phone *</label>
-              <input type="text" name="phone" placeholder="3808800225353" [formControl]="rPokeForm.controls['phoneNumberPoke']">
+              <input type="text" name="phone" placeholder="380880022535" [formControl]="rPokeForm.controls['phoneNumberPoke']">
 			  <div *ngIf="rPokeForm.controls['phoneNumberPoke'].hasError('required') && rPokeForm.controls['phoneNumberPoke'].touched" class="alert" style = "color:red">Include a Phone Number</div>
             </div>
             <div class="field">
@@ -99,23 +99,22 @@
       <div class="ui one column centered grid">
         <div class="column" style="justify-content: center; display: flex">
           <form [formGroup]="rMasterForm" (ngSubmit)="signUpMaster(rMasterForm.value)" class="ui form" style="width: 50%;">
-<<<<<<< HEAD
+<!-- <<<<<<< HEAD -->
 		  
 		  <div class="ui negative message transition hidden" id="authorization2-fail-message">
       <i class="ui close icon"></i>
       <div class="header">Registraition has failed</div>
       <p>{{errMsg}}</p>
 		</div>
-		  
-            <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
-=======
-            <cl-image *ngIf="file != null"   [public-id]="file.public_id" class="imgThumbnail" format="jpg">
+
+<!-- ======= -->
+            <cl-image *ngIf="file != null"   [public-id]="file.public_id" class="imgThumbnail" format="jpg" style="display: block; margin: 0 auto">
               <cl-transformation height="275" width="275" crop="fill" radius="15"></cl-transformation>
             </cl-image>
 
-            <img *ngIf="file == null" class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" >
+            <img *ngIf="file == null" class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
 
->>>>>>> 42e05c005f2160af1ee0c096644c086bc5675b19
+<!-- >>>>>>> 42e05c005f2160af1ee0c096644c086bc5675b19 -->
 
             <p>* all fields must be filled</p>
             <div class="field">

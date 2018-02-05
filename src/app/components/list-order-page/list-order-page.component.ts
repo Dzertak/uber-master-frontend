@@ -99,6 +99,9 @@ user:User;
     this.orderService.getOrderList().subscribe(orders => { 
       this.loading(false);
       this.orders = orders;
+    }, responseError => {
+        this.loading(false);
+        this.orders = [];
     })
   }
   }

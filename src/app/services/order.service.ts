@@ -27,6 +27,7 @@ export class OrderService {
     public getOrderList() {
         return this.http.get(url+'entities/getOrdersByStatus?status='+'New', this.options)
             .map(response => response.json())
+            .catch(this._errorHandler);
     }
 	
 	public getWholeOrderList() {
@@ -69,7 +70,11 @@ export class OrderService {
 	     return this.http.post(url+"entities/addOrder",order,this.options)
              .map(response => response.json());
     }
-	
-	
+
+    _errorHandler(error: Response){
+        console.error(JSON.parse(JSON.stringify(error.json())));
+        var obj = JSON.parse(JSON.stringify(error.json()));
+        return Observable.throw(obj.message);
+    }
 
 }

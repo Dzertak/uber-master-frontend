@@ -40,7 +40,7 @@ export class RegistrationPageComponent implements OnInit {
 
   public uploader: FileUploader;
   public hasBaseDropZoneOver = false;
-  private file: any = null;
+  file: any = null;
 
 
   constructor(private fb: FormBuilder, private router: Router, private registrationService: RegistrationService,
