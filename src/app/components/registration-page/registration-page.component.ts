@@ -59,8 +59,8 @@ export class RegistrationPageComponent implements OnInit {
     })
 
     this.rMasterForm = fb.group({
-      'firstNameMaster': [null, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(15)])],
-      'lastNameMaster': [null, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(20)])],
+      'firstNameMaster': [null, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(15)])],
+      'lastNameMaster': [null, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(20)])],
       'phoneNumberMaster': [null, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationMaster': ['Location...', Validators.required],
       'userDescriptionMaster': [null],
