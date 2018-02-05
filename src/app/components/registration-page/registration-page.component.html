@@ -85,7 +85,7 @@
                   <input type="submit" class="ui green button" value="Sign Up"
                          [disabled]="!rPokeForm.valid ||
                          rPokeForm.controls['passwordPoke'].value != rPokeForm.controls['confirmPasswordPoke'].value ||
-                         rPokeForm.controls['locationPoke'].value == 'Location...'">
+                         rPokeForm.controls['locationPoke'].value == 'Location...' || file == null">
                   <div class="ui blue submit button" (click)="authorization()">Back to Login</div>
                 </div>
               </div>
@@ -214,7 +214,7 @@
                          [disabled]="!rMasterForm.valid ||
                          rMasterForm.controls['passwordMaster'].value != rMasterForm.controls['confirmPasswordMaster'].value ||
                          rMasterForm.controls['locationMaster'].value == 'Location...' ||
-                         rMasterForm.controls['profession'].value == 'Profession...'">
+                         rMasterForm.controls['profession'].value == 'Profession...' || file == null">
                   <div class="ui blue submit button" (click)="authorization()">Back to Login</div>
                 </div>
               </div>

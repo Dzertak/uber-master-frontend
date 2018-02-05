@@ -154,12 +154,13 @@ export class RegistrationPageComponent implements OnInit {
     ];
 
     this.professions = [
-      {id: 0, name: 'Profession...'},
-      {id: 1, name: 'Locksmith'},
-      {id: 2, name: 'Electrician'},
-      {id: 3, name: 'Cleaner'},
-      {id: 4, name: 'Computer foreman'},
-      {id: 4, name: 'Handyman'}
+        {id: 0, name: 'Profession...'},
+        {id: 1, name: 'Locksmith'},
+        {id: 2, name: 'Plumber'},
+        {id: 3, name: 'Electrician'},
+        {id: 4, name: 'Cleaner'},
+        {id: 5, name: 'Computer foreman'},
+        {id: 6, name: 'Handyman'}
     ];
   }
 
