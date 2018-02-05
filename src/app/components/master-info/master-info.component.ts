@@ -54,8 +54,8 @@ public professions: { id: number; name: string }[];
       'phoneNumberMaster': [null, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationMaster': ['Location...', Validators.required],
       'userDescriptionMaster': [null],
-      'passwordMaster': [null, Validators.required],
-      'confirmPasswordMaster': [null, Validators.required],
+      'passwordMaster': [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
+      'confirmPasswordMaster': [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
       'profession': ['Profession...', Validators.required],
       'startTime': [null, Validators.required],
       'endTime': [null, Validators.required],
@@ -100,6 +100,7 @@ public professions: { id: number; name: string }[];
 	   this.firstNameMaster = str[0];
 	   this.lastNameMaster = str[1];
 	   
+	   //this.pictureMaster = this.master.picture;
 	   /* this.phoneNumberMaster = this.master.phoneNumber;
 	   this.locationMaster = this.master.location;
 	   this.userDescriptionMaster = this.master.userDescription;
@@ -120,15 +121,15 @@ public professions: { id: number; name: string }[];
 	   this.rMasterForm.value.locationMaster = this.master.location;
 	   this.rMasterForm.value.firstNameMaster = this.firstNameMaster;
 	   this.rMasterForm.value.lastNameMaster = this.lastNameMaster; */ 
-	   
+
 	   this.rMasterForm = this.fb.group({
       'firstNameMaster': [this.firstNameMaster, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(15)])],
       'lastNameMaster': [this.lastNameMaster, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(20)])],
       'phoneNumberMaster': [this.master.phoneNumber, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationMaster': [this.master.location, Validators.required],
       'userDescriptionMaster': [this.master.userDescription],
-      'passwordMaster': [this.master.password, Validators.required],
-      'confirmPasswordMaster': [this.master.password, Validators.required],
+      'passwordMaster': [this.master.password, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
+      'confirmPasswordMaster': [this.master.password, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
       'profession': [this.master.profession, Validators.required],
       'startTime': [this.master.start_time, Validators.required],
       'endTime': [this.master.end_time, Validators.required],
@@ -183,7 +184,7 @@ public professions: { id: number; name: string }[];
     } */
       this.master.name = this.rMasterForm.value.firstNameMaster + " " + this.rMasterForm.value.lastNameMaster;
       //this.uploadImage(this.pictureMaster);
-	  this.master.picture = this.pictureMaster;
+	  //this.master.picture = this.pictureMaster;
       this.master.phoneNumber = this.rMasterForm.value.phoneNumberMaster;
       this.master.location = this.rMasterForm.value.locationMaster;
       this.master.userDescription = this.rMasterForm.value.userDescriptionMaster;

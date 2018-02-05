@@ -2,58 +2,76 @@
   <div class="ui one column centered grid">
     <div class="two column centered row">
       <div class="column" style="width: 65%!important; border: 1px solid lightgray; padding-bottom: 14px; padding-top: 14px; border-radius: 5px;">
-        <form class="ui form" style="width: 100%">
+         <form [formGroup]="rPokeForm" (ngSubmit)="confirmChanges()" class="ui form" style="width: 50%;">
+            <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
 
-          <div class="field">
-            <label>Your photo</label>
-            <input name="file" type="file"
-                   class="file-upload" data-cloudinary-field="image_id"
-                   data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}" [(ngModel)]="picturePoke">
-          </div>
-          <div class="field">
-            <label>First name *</label>
-            <input type="text" name="first-name-poke" [(ngModel)]="firstNamePoke">
-          </div>
-          <div class="field">
-            <label>Last name *</label>
-            <input type="text" name="last-name" [(ngModel)]="lastNamePoke">
-          </div>
-          <div class="field">
-            <label>Phone *</label>
-            <input type="text" name="phone"  [(ngModel)]="phoneNumberPoke">
-          </div>
-          <div class="field">
-            <label>Location *</label>
-            <select name="location" [(ngModel)]="locationPoke">
-              <option>Primorskyy</option>
-              <option>Malinovskyy</option>
-              <option>Kievskyy</option>
-              <option>Suvorovskyy</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Description</label>
-            <input type="text" name="description"  [(ngModel)]="userDescriptionPoke">
-          </div>
-          <div class="field">
-            <label>Password *</label>
-            <input type="password" name="password" [(ngModel)]="passwordPoke">
-          </div>
-          <div class="field">
-            <label>Confirm password *</label>
-            <input type="password" name="confirm-password"  [(ngModel)]="confirmPasswordPoke">
-          </div>
-          <div class="field" style="justify-content: center; display: flex">
-          <div class="ui green labeled icon button" (click)="confirmChanges()">
-            <i class="signup icon"></i>
-            Confirm Changes
-          </div>
-          </div>
-		  <div class="ui positive message transition hidden" id="update-success-message">
-				<i class="close icon"></i>
-				<div class="header">Profile Updated</div>
-		  </div>
-        </form>
+            <p>* all fields must be filled</p>
+            <div class="field">
+              <label>Your photo *</label>
+              <input name="file" type="file"
+                     class="file-upload" data-cloudinary-field="image_id"
+                     data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}">
+                     <!--[(ngModel)]="picturePoke">-->
+            </div>
+            <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['firstNamePoke'].valid && rPokeForm.controls['firstNamePoke'].touched}">
+              <label>First name *</label>
+              <input class="form-control" type="text" name="first-name" [formControl]="rPokeForm.controls['firstNamePoke']">
+			  <div *ngIf="rPokeForm.controls['firstNamePoke'].hasError('required') && rPokeForm.controls['firstNamePoke'].touched" class="alert" style = "color:red">Include First name</div>           
+			  <div *ngIf="rPokeForm.controls['firstNamePoke'].hasError('minlength') && rPokeForm.controls['firstNamePoke'].touched" class="alert" style = "color:red">Your first name must be at least 2 characters long.</div>
+			  <div *ngIf="rPokeForm.controls['firstNamePoke'].hasError('maxlength') && rPokeForm.controls['firstNamePoke'].touched" class="alert"style = "color:red">Your first name cannot exceed 15 characters.</div>
+		   </div>
+            <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['lastNamePoke'].valid && rPokeForm.controls['lastNamePoke'].touched}">
+              <label>Last name *</label>
+              <input class="form-control" type="text" name="last-name"  [formControl]="rPokeForm.controls['lastNamePoke']">
+			  <div *ngIf="rPokeForm.controls['lastNamePoke'].hasError('required') && rPokeForm.controls['lastNamePoke'].touched" class="alert" style = "color:red">Include Last name</div>           
+              <div *ngIf="rPokeForm.controls['lastNamePoke'].hasError('minlength') && rPokeForm.controls['lastNamePoke'].touched" class="alert" style = "color:red">Your last name must be at least 2 characters long.</div>
+			  <div *ngIf="rPokeForm.controls['lastNamePoke'].hasError('maxlength') && rPokeForm.controls['lastNamePoke'].touched" class="alert"style = "color:red">Your last name cannot exceed 20 characters.</div>
+			</div>
+			
+            <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['phoneNumberPoke'].valid && rPokeForm.controls['phoneNumberPoke'].touched}">
+              <label>Phone *</label>
+              <input type="text" name="phone" [formControl]="rPokeForm.controls['phoneNumberPoke']">
+			  <div *ngIf="rPokeForm.controls['phoneNumberPoke'].hasError('required') && rPokeForm.controls['phoneNumberPoke'].touched" class="alert" style = "color:red">Include Phone Number</div>           
+			</div>
+            <div class="field">
+              <label>Location *</label>
+              <select class="ui dropdown" name="location"  formControlName="locationPoke">
+                <option *ngFor="let c of locations"  [value]="c.name">{{c.name}}</option>
+              </select>
+            </div>
+            <div class="field"> 
+              <label>Description</label>
+              <textarea  rows="3" type="text" name="description" placeholder="Tell something about you..."
+                        formControlName="userDescriptionPoke"> </textarea>
+            </div>
+            <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['passwordPoke'].valid && rPokeForm.controls['passwordPoke'].touched}">
+              <label>Password *</label>
+              <input type="password" name="password" placeholder="Password..." [formControl]="rPokeForm.controls['passwordPoke']">
+			  <div *ngIf="rPokeForm.controls['passwordPoke'].hasError('required') && rPokeForm.controls['passwordPoke'].touched" class="alert" style = "color:red">Enter Password</div>           
+              <div *ngIf="rPokeForm.controls['passwordPoke'].hasError('minlength') && rPokeForm.controls['passwordPoke'].touched" class="alert" style = "color:red">Your Password must be at least 4 characters long.</div>
+			  <div *ngIf="rPokeForm.controls['passwordPoke'].hasError('maxlength') && rPokeForm.controls['passwordPoke'].touched" class="alert"style = "color:red">Your Password cannot exceed 16 characters.</div>
+			</div>
+            <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['confirmPasswordPoke'].valid && rPokeForm.controls['confirmPasswordPoke'].touched}">
+              <label>Confirm password *</label>
+              <input type="password" name="confirm-password" placeholder="Confirm password..."
+                    [formControl]="rPokeForm.controls['confirmPasswordPoke']">
+			  <div *ngIf="rPokeForm.controls['confirmPasswordPoke'].hasError('required') && rPokeForm.controls['confirmPasswordPoke'].touched" class="alert" style = "color:red">Confirm Password</div>           
+              <div *ngIf="rPokeForm.controls['confirmPasswordPoke'].hasError('minlength') && rPokeForm.controls['confirmPasswordPoke'].touched" class="alert" style = "color:red">Your Password must be at least 4 characters long.</div>
+			  <div *ngIf="rPokeForm.controls['confirmPasswordPoke'].hasError('maxlength') && rPokeForm.controls['confirmPasswordPoke'].touched" class="alert" style = "color:red">Your Password cannot exceed 16 characters.</div>            
+			</div>
+            <div class="ui one column stackable grid container">
+              <div class="column">
+                <div class="field" style="justify-content: center; display: flex">
+                  <input type="submit" class="ui green button" value="Confirm Changes"
+                         [disabled]="!rPokeForm.valid ||
+                         rPokeForm.controls['passwordPoke'].value != rPokeForm.controls['confirmPasswordPoke'].value ||
+                         rPokeForm.controls['locationPoke'].value == 'Location...'">
+				
+				</div>
+              </div>
+            </div>
+
+          </form>
       </div>
     </div>
   </div>
