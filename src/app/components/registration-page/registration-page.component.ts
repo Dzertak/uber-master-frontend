@@ -54,8 +54,8 @@ export class RegistrationPageComponent implements OnInit {
       'phoneNumberPoke': [null, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationPoke': ['Location...', Validators.required],
       'userDescriptionPoke': [null],
-      'passwordPoke': [null, Validators.required],
-      'confirmPasswordPoke': [null, Validators.required]
+      'passwordPoke': [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+      'confirmPasswordPoke': [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])]
     })
 
     this.rMasterForm = fb.group({
@@ -64,16 +64,16 @@ export class RegistrationPageComponent implements OnInit {
       'phoneNumberMaster': [null, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationMaster': ['Location...', Validators.required],
       'userDescriptionMaster': [null],
-      'passwordMaster': [null, Validators.required],
-      'confirmPasswordMaster': [null, Validators.required],
+      'passwordMaster': [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+      'confirmPasswordMaster': [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
       'profession': ['Profession...', Validators.required],
       'startTime': [null, Validators.required],
       'endTime': [null, Validators.required],
       'tools': [null],
-      'experience': [null, Validators.required],
+      'experience': [null, Validators.compose([Validators.required, Validators.min(0)])],
       'skills': [null],
       'smoke': [null, Validators.required],
-      'payment': [null, Validators.required]
+      'payment': [null, Validators.compose([Validators.required, Validators.min(0)])]
 
     })
 

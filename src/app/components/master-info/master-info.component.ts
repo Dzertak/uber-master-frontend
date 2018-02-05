@@ -54,16 +54,16 @@ public professions: { id: number; name: string }[];
       'phoneNumberMaster': [null, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationMaster': ['Location...', Validators.required],
       'userDescriptionMaster': [null],
-      'passwordMaster': [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
-      'confirmPasswordMaster': [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
+      'passwordMaster': [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+      'confirmPasswordMaster': [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
       'profession': ['Profession...', Validators.required],
       'startTime': [null, Validators.required],
       'endTime': [null, Validators.required],
       'tools': [null],
-      'experience': [null, Validators.required],
+      'experience': [null, Validators.required, Validators.compose([Validators.required, Validators.min(0)])],
       'skills': [null],
       'smoke': [null, Validators.required],
-      'payment': [null, Validators.required]
+      'payment': [null, Validators.required, Validators.compose([Validators.required, Validators.min(0)])]
 
     }) 
 	
@@ -128,16 +128,16 @@ public professions: { id: number; name: string }[];
       'phoneNumberMaster': [this.master.phoneNumber, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationMaster': [this.master.location, Validators.required],
       'userDescriptionMaster': [this.master.userDescription],
-      'passwordMaster': [this.master.password, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
-      'confirmPasswordMaster': [this.master.password, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
+      'passwordMaster': [this.master.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+      'confirmPasswordMaster': [this.master.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
       'profession': [this.master.profession, Validators.required],
       'startTime': [this.master.start_time, Validators.required],
       'endTime': [this.master.end_time, Validators.required],
       'tools': [this.master.tools],
-      'experience': [this.master.experience, Validators.required],
+      'experience': [this.master.experience, Validators.compose([Validators.required, Validators.min(0)])],
       'skills': [this.master.skills],
       'smoke': [this.master.smoke, Validators.required],
-      'payment': [this.master.payment, Validators.required]
+      'payment': [this.master.payment, Validators.compose([Validators.required, Validators.min(0)])]
 
     });
 	   

@@ -72,13 +72,17 @@
               <label>Password *</label>
               <input type="password" name="password" placeholder="Password..." [formControl]="rPokeForm.controls['passwordPoke']">
 			  <div *ngIf="rPokeForm.controls['passwordPoke'].hasError('required') && rPokeForm.controls['passwordPoke'].touched" class="alert" style = "color:red">Enter Password</div>
-            </div>
+			  <div *ngIf="rPokeForm.controls['passwordPoke'].hasError('minlength') && rPokeForm.controls['passwordPoke'].touched" class="alert" style = "color:red">Your Password must be at least 4 characters long.</div>
+			  <div *ngIf="rPokeForm.controls['passwordPoke'].hasError('maxlength') && rPokeForm.controls['passwordPoke'].touched" class="alert"style = "color:red">Your Password cannot exceed 16 characters.</div>
+			</div>
             <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['confirmPasswordPoke'].valid && rPokeForm.controls['confirmPasswordPoke'].touched}">
               <label>Confirm password *</label>
               <input type="password" name="confirm-password" placeholder="Confirm password..."
                     [formControl]="rPokeForm.controls['confirmPasswordPoke']">
 			  <div *ngIf="rPokeForm.controls['confirmPasswordPoke'].hasError('required') && rPokeForm.controls['confirmPasswordPoke'].touched" class="alert" style = "color:red">Confirm Password</div>
-            </div>
+              <div *ngIf="rPokeForm.controls['confirmPasswordPoke'].hasError('minlength') && rPokeForm.controls['confirmPasswordPoke'].touched" class="alert" style = "color:red">Your Password must be at least 4 characters long.</div>
+			  <div *ngIf="rPokeForm.controls['confirmPasswordPoke'].hasError('maxlength') && rPokeForm.controls['confirmPasswordPoke'].touched" class="alert"style = "color:red">Your Password cannot exceed 16 characters.</div>
+			</div>
             <div class="ui one column stackable grid container">
               <div class="column">
                 <div class="field" style="justify-content: center; display: flex">
@@ -156,13 +160,17 @@
               <label>Password *</label>
               <input type="password" name="password" placeholder="Password..." [formControl]="rMasterForm.controls['passwordMaster']">
 			  <div *ngIf="rMasterForm.controls['passwordMaster'].hasError('required') && rMasterForm.controls['passwordMaster'].touched" class="alert" style = "color:red">Enter Password</div>
-            </div>
+			  <div *ngIf="rMasterForm.controls['passwordMaster'].hasError('minlength') && rMasterForm.controls['passwordMaster'].touched" class="alert" style = "color:red">Your Password must be at least 4 characters long.</div>
+			  <div *ngIf="rMasterForm.controls['passwordMaster'].hasError('maxlength') && rMasterForm.controls['passwordMaster'].touched" class="alert" style = "color:red">Your Password cannot exceed 16 characters.</div>
+			</div>
             <div class="field" [ngClass]="{'has-error':!rMasterForm.controls['confirmPasswordMaster'].valid && rMasterForm.controls['confirmPasswordMaster'].touched}">
               <label>Confirm password *</label>
               <input type="password" name="confirm-password" placeholder="Confirm password..."
                     [formControl]="rMasterForm.controls['confirmPasswordMaster']">
 			  <div *ngIf="rMasterForm.controls['confirmPasswordMaster'].hasError('required') && rMasterForm.controls['confirmPasswordMaster'].touched" class="alert" style = "color:red">Confirm Password</div>
-            </div>
+              <div *ngIf="rMasterForm.controls['confirmPasswordMaster'].hasError('minlength') && rMasterForm.controls['confirmPasswordMaster'].touched" class="alert" style = "color:red">Your Password must be at least 4 characters long.</div>
+			  <div *ngIf="rMasterForm.controls['confirmPasswordMaster'].hasError('maxlength') && rMasterForm.controls['confirmPasswordMaster'].touched" class="alert" style = "color:red">Your Password cannot exceed 16 characters.</div>
+			</div>
             <div class="field">
               <label>Profession *</label>
               <select class="ui dropdown" name="profession" formControlName="profession">
@@ -181,7 +189,8 @@
               <label>Experience *</label>
               <input type="text" name="experience" placeholder="Your experience..." [formControl]="rMasterForm.controls['experience']">
 			  <div *ngIf="rMasterForm.controls['experience'].hasError('required') && rMasterForm.controls['experience'].touched" class="alert" style = "color:red">Enter your Experience</div>
-            </div>
+			  <div *ngIf="rMasterForm.controls['experience'].hasError('min') && rMasterForm.controls['experience'].touched" class="alert" style = "color:red">Experience should be positive</div>
+		   </div>
             <div class="field" > <!--style="margin-left:30px; width:160px;"-->
               <label>Work time *</label>
               <div style="margin-left:20px; width:190px;">
@@ -199,6 +208,7 @@
               <input type="number" name="payment" id="payment" step="10" min="0" value="0"
                      style="width:90px; height:10px;" formControlName="payment">
               <label for="payment" style="float:right;">$</label>
+			  <div *ngIf="rMasterForm.controls['payment'].hasError('min') && rMasterForm.controls['payment'].touched" class="alert" style = "color:red">Payment should be positive</div>
             </div>
             <div class="field" style="margin-left:30px; width:160px;">
               <label for="smoking" style="float:left;">Smoking * </label>

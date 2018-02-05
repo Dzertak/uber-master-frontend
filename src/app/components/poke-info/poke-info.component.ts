@@ -45,8 +45,8 @@ public locations: { id: number; name: string }[];
       'phoneNumberPoke': [null, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationPoke': ['Location...', Validators.required],
       'userDescriptionPoke': [null],
-      'passwordPoke': [null,  Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
-      'confirmPasswordPoke': [null,  Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])]
+      'passwordPoke': [null,  Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+      'confirmPasswordPoke': [null,  Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])]
     })
   
   }
@@ -86,8 +86,8 @@ public locations: { id: number; name: string }[];
       'phoneNumberPoke': [this.poke.phoneNumber, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationPoke': [this.poke.location, Validators.required],
       'userDescriptionPoke': [this.poke.description],
-      'passwordPoke': [this.poke.password, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
-      'confirmPasswordPoke': [this.poke.password, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])]
+      'passwordPoke': [this.poke.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+      'confirmPasswordPoke': [this.poke.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])]
     })
 	  
        });
