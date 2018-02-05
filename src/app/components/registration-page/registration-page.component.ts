@@ -47,8 +47,8 @@ export class RegistrationPageComponent implements OnInit {
               private authService: AuthorizeService, private cloudinary: Cloudinary) {
 
     this.rPokeForm = fb.group({
-      'firstNamePoke': [null, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(15)])],
-      'lastNamePoke': [null, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(20)])],
+      'firstNamePoke': [null, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(15)])],
+      'lastNamePoke': [null, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(20)])],
       'phoneNumberPoke': [null, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
       'locationPoke': ['Location...', Validators.required],
       'userDescriptionPoke': [null],
