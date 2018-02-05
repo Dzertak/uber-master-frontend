@@ -9,7 +9,7 @@
 </div> -->
 
 
-<div class="ui segment" >
+<div class="ui segment" [ngClass]="{'loading':isLoading}">
   <div style="color: black">
     <h3>
       Welcome to UberMaster
@@ -34,7 +34,7 @@
       <p>Check the input data</p>
     </div>
 
-    <div class="ui one column middle aligned very relaxed stackable grid" [ngClass]="{'loading':isLoading}">
+    <div class="ui one column middle aligned very relaxed stackable grid" >
       <div class="column">
         <div class="ui form">
           <div class="field">

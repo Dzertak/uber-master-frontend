@@ -35,7 +35,8 @@
                 <h3>Drop your photo</h3>
                 <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
                      (fileOver)="fileOverBase($event)" [uploader]="uploader"
-                     class="well my-drop-zone"></div>
+                     class="well my-drop-zone">
+                </div>
             </div>
             <div class="field" [ngClass]="{'has-error':!rPokeForm.controls['firstNamePoke'].valid && rPokeForm.controls['firstNamePoke'].touched}">
               <label>First name *</label>

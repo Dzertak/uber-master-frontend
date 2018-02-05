@@ -78,7 +78,7 @@ export class AuthorizeService {
                 if (authPair.first == 200)
                     authPair.setSecond(response.json().token);
                 return authPair;
-            })
+            }).catch(this._errorHandler)
 			// .catch((err) => {
 
 			   // let errMessage : string;

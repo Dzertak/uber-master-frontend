@@ -61,6 +61,9 @@ export class AuthorizationPageComponent implements OnInit {
               this.isLoading = false;
               this.showFailedAuthorization();
           }
+      }, responseError => {
+          this.isLoading = false;
+          this.showFailedAuthorization();
       });
 
       //for test
