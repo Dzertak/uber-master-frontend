@@ -56,12 +56,16 @@ export class AuthorizationPageComponent implements OnInit {
                   this.isFail=false;
                   this.isLoading = false;
                   this.router.navigate(['orders']);
-              }, responseErrorMessage => {this.errMsg = responseErrorMessage, this.showFailedAuthorization();});
+              }, responseErrorMessage => {
+                  this.isLoading = false;
+                  this.errMsg = responseErrorMessage;
+                      this.showFailedAuthorization();});
           }  else {
               this.isLoading = false;
               this.showFailedAuthorization();
           }
       }, responseError => {
+          this.errMsg = responseError;
           this.isLoading = false;
           this.showFailedAuthorization();
       });
