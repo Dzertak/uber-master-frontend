@@ -16,20 +16,12 @@ export class RegistrationService{
 
     reg(user: User, userType: string){
         if (userType == 'Poke'){
-            return this.http.post(url + "registerPoke", user).map(response =>
-          response.json()
-        )
-        .map(response => {
-          return response;
-        }).catch(this._errorHandler);
+            return this.http.post(url + "registerPoke", user)
+                .catch(this._errorHandler);
             }
 		else {
-           return this.http.post(url + "registerMaster", user).map(response =>
-          response.json()
-        )
-        .map(response => {
-          return response;
-        }).catch(this._errorHandler);
+           return this.http.post(url + "registerMaster", user)
+               .catch(this._errorHandler);
         }
 
     }

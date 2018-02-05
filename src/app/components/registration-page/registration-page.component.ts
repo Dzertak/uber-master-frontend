@@ -10,6 +10,7 @@ import {OrderService} from '../../services/order.service';
 import {Order} from '../../models/order.model';
 import {AuthorizeService} from '../../services/authorize.service';
 import {Cloudinary} from '@cloudinary/angular-4.x';
+import {_MatButtonToggleGroupMixinBase} from "@angular/material";
 
 const URL = 'https://api.cloudinary.com/v1_1/ubermaster/image/upload';
 
@@ -40,7 +41,8 @@ export class RegistrationPageComponent implements OnInit {
 
   public uploader: FileUploader;
   public hasBaseDropZoneOver = false;
-  private file: any = null;
+  file: any = null;
+  isLoadingPicture: boolean = false;
 
 
   constructor(private fb: FormBuilder, private router: Router, private registrationService: RegistrationService,
@@ -100,6 +102,7 @@ export class RegistrationPageComponent implements OnInit {
 
     this.uploader = new FileUploader(uploaderOptions);
     this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
+
       // Add Cloudinary's unsigned upload preset to the upload form
       form.append('upload_preset', this.cloudinary.config().upload_preset);
       form.append('tags', 'ubermaster');
@@ -210,7 +213,10 @@ export class RegistrationPageComponent implements OnInit {
       create.tools, create.startTime, create.endTime, create.averMark);
 	  
     this.registrationService.reg(master, 'Master').subscribe( response => {
-	this.router.navigate(['authorization']);} , responseErrorMessage => {this.errMsg = responseErrorMessage, this.showFailedAuthorization2();});
+	this.router.navigate(['authorization']);},
+            responseErrorMessage => {
+      this.errMsg = responseErrorMessage, this.showFailedAuthorization2();
+    });
             
 	  
   }
