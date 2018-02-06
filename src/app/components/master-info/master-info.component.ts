@@ -45,6 +45,7 @@ public professions: { id: number; name: string }[];
   smoke: boolean;
   averMark: number;
 
+    isLoad: boolean = true;
     isCreating: boolean = false;
 
   constructor(private fb: FormBuilder, private router: Router,private masterService: MasterService, private authorizeService: AuthorizeService) {
@@ -95,7 +96,7 @@ public professions: { id: number; name: string }[];
 	  
 	  this.user = this.authorizeService.getUser();
 	  this.masterService.getMaster(this.user.object_id.toString()).subscribe(master => {
-	   
+          this.isLoad = false;
 	   this.master = master;
 	   var str = this.user.name.split(" ",2);
 	   this.firstNameMaster = str[0];
@@ -205,9 +206,11 @@ public professions: { id: number; name: string }[];
 	this.masterService.updateMaster(this.master).subscribe(response => {
         this.isCreating = false;
         this.showSuccessUpdate();
+        this.router.navigate(['/profileMaster',this.master.object_id]);
     }, error => {
         this.isCreating = false;
         this.showSuccessUpdate();
+        this.router.navigate(['/profileMaster',this.master.object_id]);
     });
   }
   

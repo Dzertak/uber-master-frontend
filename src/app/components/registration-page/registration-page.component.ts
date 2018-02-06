@@ -42,7 +42,7 @@ export class RegistrationPageComponent implements OnInit {
   public uploader: FileUploader;
   public hasBaseDropZoneOver = false;
   file: any = null;
-  isLoadingPicture: boolean = false;
+  isLoading: boolean = false;
 
 
   constructor(private fb: FormBuilder, private router: Router, private registrationService: RegistrationService,
@@ -102,6 +102,7 @@ export class RegistrationPageComponent implements OnInit {
 
     this.uploader = new FileUploader(uploaderOptions);
     this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
+      this.isLoading = true;
 
       // Add Cloudinary's unsigned upload preset to the upload form
       form.append('upload_preset', this.cloudinary.config().upload_preset);
@@ -125,6 +126,7 @@ export class RegistrationPageComponent implements OnInit {
       );
 
     const upsertResponse = fileItem => {
+        this.isLoading = false;
       if (fileItem.status !== 200) {
         console.log('Upload to cloudinary Failed');
         console.log(fileItem);
@@ -185,13 +187,18 @@ export class RegistrationPageComponent implements OnInit {
   errMsg: string;
 	
   signUpPoke(create) {
+    this.isLoading = true;
     let poke = new Poke(create.firstNamePoke + ' ' + create.lastNamePoke,
       null, null, create.locationPoke, create.userDescriptionPoke,
       create.phoneNumberPoke, create.passwordPoke, this.file.public_id, false);
     this.registrationService.reg(poke, 'Poke').subscribe( user => {
 		//this.showGood();
+        this.isLoading = false;
 		this.router.navigate(['authorization']);		
-	} , responseErrorMessage => {this.errMsg = responseErrorMessage, this.showFailedAuthorization1();});
+	} , responseErrorMessage => {
+        this.isLoading = false;
+      this.errMsg = responseErrorMessage;
+      this.showFailedAuthorization1();});
 
     /*.subscribe(response => {
       if (response.status==200){
@@ -207,6 +214,7 @@ export class RegistrationPageComponent implements OnInit {
       this.smoke = false;
     }
 
+      this.isLoading = true;
     let master = new Master(create.firstNameMaster + ' ' + create.lastNameMaster,
       null, null, create.locationMaster, create.userDescriptionMaster,
       create.phoneNumberMaster, create.passwordMaster, this.file.public_id, false,
@@ -214,9 +222,11 @@ export class RegistrationPageComponent implements OnInit {
       create.tools, create.startTime, create.endTime, create.averMark);
 	  
     this.registrationService.reg(master, 'Master').subscribe( response => {
+            this.isLoading = false;
 	this.router.navigate(['authorization']);},
             responseErrorMessage => {
-      this.errMsg = responseErrorMessage, this.showFailedAuthorization2();
+                this.isLoading = false;
+      this.errMsg = responseErrorMessage; this.showFailedAuthorization2();
     });
             
 	  

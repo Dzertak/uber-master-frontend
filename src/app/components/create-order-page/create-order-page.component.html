@@ -1,9 +1,9 @@
 
-<div class="ui bottom attached segment" *ngIf="!isLoad">
+<div class="ui bottom attached segment">
   <div class="ui one column centered grid">
     <div class="two column centered row">
       <div class="column" style="width: 65%!important;">
-<div class="ui small loading form segment" xmlns="" [ngClass]="{'loading':isLoading}">
+<div class="ui small form segment" xmlns="" [ngClass]="{'loading':isLoading}">
   <form [formGroup]="rForm" (ngSubmit)="createOrder(rForm.value)">
     <div class="ui form-container">
       <div class="ui columns">

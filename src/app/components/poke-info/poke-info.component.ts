@@ -1,12 +1,12 @@
 import {Component, NgModule, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import * as  Cloudinary from 'cloudinary-core';
-import { FileUploader } from 'ng2-file-upload';
 import {User} from "../../models/user.model";
 import {Poke} from "../../models/poke.model";
 import {PokeService} from "../../services/poke.service";
 import {AuthorizeService} from "../../services/authorize.service";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FileUploader, FileUploaderOptions, ParsedResponseHeaders} from 'ng2-file-upload';
+import {Cloudinary} from '@cloudinary/angular-4.x';
 
 const URL = 'https://api.cloudinary.com/v1_1/ubermaster/image/upload';
 
@@ -19,7 +19,7 @@ declare var $:any;
   styleUrls: ['./poke-info.component.css']
 })
 export class PokeInfoComponent implements OnInit {
-public uploader:FileUploader = new FileUploader({url: URL});
+
 
 public rPokeForm: FormGroup;
 public locations: { id: number; name: string }[];
@@ -34,10 +34,16 @@ public locations: { id: number; name: string }[];
   userDescriptionPoke: string;
   passwordPoke: string;
   confirmPasswordPoke: string;
+
     isCreating: boolean = false;
-  
-  
-  constructor(private fb: FormBuilder, private router: Router,private pokeService: PokeService, private authorizeService: AuthorizeService) { 
+    isLoad: boolean = true;
+
+    public uploader: FileUploader;
+    public hasBaseDropZoneOver = false;
+    file: any = null;
+
+  constructor(private fb: FormBuilder, private router: Router,private pokeService: PokeService,
+              private authorizeService: AuthorizeService, private cloudinary: Cloudinary) {
 	
 	
 	this.rPokeForm = fb.group({
@@ -64,6 +70,60 @@ public locations: { id: number; name: string }[];
       {id: 4, name: 'Suvorovskyy'},
     ];
 
+      const uploaderOptions: FileUploaderOptions = {
+          url: `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/image/upload`,
+          // Upload files automatically upon addition to upload queue
+          autoUpload: true,
+          // Use xhrTransport in favor of iframeTransport
+          isHTML5: true,
+          // Calculate progress independently for each uploaded file
+          removeAfterUpload: true,
+
+          // XHR request headers
+          headers: [
+              {
+                  name: 'X-Requested-With',
+                  value: 'XMLHttpRequest'
+              }
+          ]
+      };
+
+      this.uploader = new FileUploader(uploaderOptions);
+      this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
+          this.isCreating = true;
+
+          // Add Cloudinary's unsigned upload preset to the upload form
+          form.append('upload_preset', this.cloudinary.config().upload_preset);
+          form.append('tags', 'ubermaster');
+          form.append('file', fileItem);
+
+          // Use default "withCredentials" value for CORS requests
+          fileItem.withCredentials = false;
+          return { fileItem, form };
+      };
+
+
+      this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) =>
+          upsertResponse(
+              {
+                  file: item.file,
+                  status,
+                  data: JSON.parse(response)
+              }
+
+          );
+
+      const upsertResponse = fileItem => {
+          this.isCreating = false;
+          if (fileItem.status !== 200) {
+              console.log('Upload to cloudinary Failed');
+              console.log(fileItem);
+              return false;
+          }
+          this.file = fileItem.data;
+          console.log(fileItem.data);
+      };
+
 	  
 	  $('.message .close').on('click', function () {
           $(this)
@@ -73,7 +133,7 @@ public locations: { id: number; name: string }[];
 	  
 	  this.user = this.authorizeService.getUser();
 	  this.pokeService.getPoke(this.user.object_id.toString()).subscribe(poke => {
-
+	      this.isLoad = false;
 	  this.poke = poke;
 	  var str = this.user.name.split(" ",2);
 	  this.firstNamePoke = str[0];
@@ -126,5 +186,9 @@ public locations: { id: number; name: string }[];
     this.uploader.autoUpload(nameImage,
       function(error, result) {console.log(result); });
   }
+
+    public fileOverBase(e: any): void {
+        this.hasBaseDropZoneOver = e;
+    }
 
 }

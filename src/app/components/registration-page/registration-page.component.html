@@ -1,4 +1,4 @@
-<div class="ui one column stackable grid container loading" style="width: 65%!important">
+<div class="ui one column stackable grid container" style="width: 65%!important">
   <div class="column">
     <div class="ui top attached tabular menu">
       <a class="item" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" data-tab="poke">I am Poke</a>
@@ -11,7 +11,7 @@
 
 
           <form [formGroup]="rPokeForm" (ngSubmit)="signUpPoke(rPokeForm.value)" class="ui form"
-                style="width: 50%;">
+                style="width: 50%;" [ngClass]="{'loading':isLoading}">
 
 				<div class="ui negative message transition hidden" id="authorization1-fail-message">
       <i class="ui close icon"></i>
@@ -103,7 +103,7 @@
          [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)">
       <div class="ui one column centered grid">
         <div class="column" style="justify-content: center; display: flex">
-          <form [formGroup]="rMasterForm" (ngSubmit)="signUpMaster(rMasterForm.value)" class="ui form" style="width: 50%;">
+          <form [formGroup]="rMasterForm" (ngSubmit)="signUpMaster(rMasterForm.value)" class="ui form" style="width: 50%;" [ngClass]="{'loading':isLoading}">
 
 		  
 		  <div class="ui negative message transition hidden" id="authorization2-fail-message">
