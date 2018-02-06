@@ -1,5 +1,5 @@
-<div class="ui one column stackable grid container" >
-  <div class="column" style="padding-left: 100px; padding-right: 100px;">
+<div class="ui one column stackable grid container loading" style="width: 65%!important">
+  <div class="column">
     <div class="ui top attached tabular menu">
       <a class="item" [ngClass]="{'active':swipe===0}" (click)="swipeTab(0)" data-tab="poke">I am Poke</a>
       <a class="item" [ngClass]="{'active':swipe===1}" (click)="swipeTab(1)" data-tab="master">I am Master</a>
@@ -23,11 +23,11 @@
       <div class="header">Registraition completed</div>
 		</div>
 
-            <cl-image *ngIf="file != null"   [public-id]="file.public_id" class="imgThumbnail" format="jpg" style="display: block; margin: 0 auto">
+            <cl-image *ngIf="file != null"   [public-id]="file.public_id" class="imgThumbnail" format="jpg" style="display: block; margin: 0 auto;  width: 100%; height: auto">
               <cl-transformation height="275" width="275" crop="fill" radius="15"></cl-transformation>
             </cl-image>
 
-            <img *ngIf="file == null" class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
+            <img *ngIf="file == null" class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto;  width: 100%; height: auto">
 
 
             <p>* all fields must be filled</p>
@@ -112,11 +112,11 @@
       <p>{{errMsg}}</p>
 		</div>
 
-            <cl-image *ngIf="file != null"   [public-id]="file.public_id" class="imgThumbnail" format="jpg" style="display: block; margin: 0 auto">
+            <cl-image *ngIf="file != null"   [public-id]="file.public_id" class="imgThumbnail" format="jpg" style="display: block; margin: 0 auto;  width: 100%; height: auto">
               <cl-transformation height="275" width="275" crop="fill" radius="15"></cl-transformation>
             </cl-image>
 
-            <img *ngIf="file == null" class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
+            <img *ngIf="file == null" class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto; width: 100%; height: auto">
 
 
             <p>* all fields must be filled</p>

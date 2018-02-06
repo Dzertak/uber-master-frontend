@@ -22,12 +22,20 @@ export class CardPokeComponent implements OnInit {
   
   blockUser(poke: Poke){
 		this.poke.blocked = true;
-		this.pokeService.updatePoke(poke);
+		this.pokeService.updatePoke(poke).subscribe(response => {
+		    alert(response)
+        }, error => {
+		    alert(error)
+        });
   }
   
   unblockUser(poke: Poke){
 		this.poke.blocked = false;
-		this.pokeService.updatePoke(poke);
+		this.pokeService.updatePoke(poke).subscribe(response => {
+            alert(response)
+        }, error => {
+            alert(error)
+        });;
   }
   
   isAdmin(): boolean{

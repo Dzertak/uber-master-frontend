@@ -4,9 +4,9 @@
 			<div class="column" style="width: 65%!important;">
 				<div class="ui grid">
 					<div class="six wide column">
-            <cl-image *ngIf="master.picture != null"   [public-id]="master.picture" class="ui medium rounded left floated image" format="jpg" style="width: 100%">
+            <cl-image *ngIf="master.picture != null"   [public-id]="master.picture" class="ui medium rounded left floated image" format="jpg" style="width: 100%; height: auto">
             </cl-image>
-            <img *ngIf="master.picture == null" class="ui medium rounded left floated image" src="https://semantic-ui.com/images/avatar/large/steve.jpg" style="width: 100%">
+            <img *ngIf="master.picture == null" class="ui medium rounded left floated image" src="https://semantic-ui.com/images/avatar/large/steve.jpg" style="width: 100%; height: auto">
 						<h2 style="text-align: center">{{master.name}}</h2>
 
 		<table class="ui red fixed table" style="width: 100%">

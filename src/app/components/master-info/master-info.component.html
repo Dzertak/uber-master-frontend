@@ -1,9 +1,9 @@
-<div class="ui bottom attached segment" *ngIf="!isLoad">
+<div class="ui bottom attached segment" *ngIf="!isLoad" ngClass="{'loading':isCreating}">
   <div class="ui one column centered grid">
     <div class="two column centered row">
       <div class="column" >
-         <form [formGroup]="rMasterForm" (ngSubmit)="confirmChanges()" class="ui form" style="width: 50%;">
-            <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto">
+         <form [formGroup]="rMasterForm" (ngSubmit)="confirmChanges()" class="ui form" style="width: 50%; margin: 0 auto; display: block">
+            <img class="disabled medium ui image" src="https://semantic-ui.com/images/wireframe/image.png" style="display: block; margin: 0 auto;  width: 100%; height: auto">
 
             <p>* all fields must be filled</p>
             <div class="field">

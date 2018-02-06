@@ -1,15 +1,19 @@
-
-<div class="ui one column centered grid">
-    <div class="column" id="toolbar">
-        <div class="ui raised link card" style="width: 100%;">
-        <div class="content" style="padding: 0px">
-          <cl-image *ngIf="master.picture != null"   [public-id]="master.picture" class="left floated small ui image" format="jpg" style="margin-bottom: 0px">
+<div class="ui raised link card" style="width: 100%; margin-bottom: 14px">
+    <div class="ui grid" style="margin: 0px">
+        <div class="six wide column" style="padding: 0px">
+          <cl-image *ngIf="master.picture != null"   [public-id]="master.picture"  format="jpg" style="margin-bottom: 0px;  width: 100%; height: auto">
           </cl-image>
-            <img *ngIf="master.picture == null" class="left floated small ui image" style="margin-bottom: 0px" src="https://semantic-ui.com/images/avatar/large/steve.jpg">
+            <img *ngIf="master.picture == null" style="margin-bottom: 0px;  width: 100%; height: auto" src="https://semantic-ui.com/images/avatar/large/steve.jpg">
+        </div>
+
+            <div class="ten wide column" style="padding: 0px">
+                <div class="two column centered row" style="padding: 0px">
+                    <div class="column">
+
             <div class="right floated author" style="padding: 14px">
                 <sui-rating class="star huge" [ngModel]="mastersRate()" [maximum]="5" isReadonly="false"></sui-rating>
             </div>
-            <div style="padding: 14px">
+            <div style="padding-top: 14px; padding-left: 14px">
                 <div class="header">
                     <h3>{{master.name}}</h3>
                 </div>
@@ -21,7 +25,6 @@
                 </div>
             </div>
 
-        </div>
 
 		 <div class="extra content" *ngIf="isAdmin()">
 		  <div class="right floated author " style="display: flex;">
@@ -37,13 +40,13 @@
 				<h4 class="ui header">
 					  <i class="lock icon" ></i>
 					  <div class="content">  User is blocked </div>
-
-
 				</h4>
 			  </div>
 	  </div>
-
     </div>
+                </div>
+            </div>
+        </div>
 </div>
-</div>
+
 

@@ -77,15 +77,21 @@ export class CreateOrderPageComponent implements OnInit {
 	  
     console.log(this.order)
     this.orderService.createOder(this.order).subscribe(result => {
-        console.log(result);
-  });
+        this.showSuccessCreation();
+        this.isLoading = false;
+        this.router.navigate(['orders']);
+  }, error => {
+        this.showSuccessCreation();
+        this.isLoading = false;
+        this.router.navigate(['orders']);
+    });
   
-	this.showSuccessCreation();
+	/*this.showSuccessCreation();
     setTimeout(() => {
         this.isLoading = false;
         this.router.navigate(['orders']);
     },1500)
-
+*/
   }
 
 

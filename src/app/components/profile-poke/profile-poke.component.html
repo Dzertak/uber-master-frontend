@@ -5,10 +5,10 @@
                 <div class="ui grid">
                     <div class="six wide column">
 
-                      <cl-image *ngIf="poke.picture != null"   [public-id]="poke.picture" class="ui medium rounded left floated image" format="jpg" style="width: 100%">
+                      <cl-image *ngIf="poke.picture != null"   [public-id]="poke.picture" class="ui medium rounded left floated image" format="jpg" style="width: 100%; height: auto">
                       </cl-image>
 
-                      <img *ngIf="poke.picture == null" class="ui medium rounded left floated image" src="https://semantic-ui.com/images/avatar/large/matt.jpg" style="width: 100%">
+                      <img *ngIf="poke.picture == null" class="ui medium rounded left floated image" src="https://semantic-ui.com/images/avatar/large/matt.jpg" style="width: 100%; height: auto">
                         <h2 style="text-align: center">{{poke.name}}</h2>
                             <div  class="ui primary basic button" style="width:100%" [routerLink]="['/poke-info']">
                                 Edit Personal Information

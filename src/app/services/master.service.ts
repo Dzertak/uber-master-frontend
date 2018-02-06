@@ -5,7 +5,9 @@ import {ActivatedRoute} from "@angular/router";
 import {AuthorizeService, url} from  "../index";
 import {Convertator} from "./convertator.service";
 import {Master} from "../models/master.model";
-
+import {Observable} from "rxjs/Observable";
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class MasterService {
@@ -42,9 +44,8 @@ export class MasterService {
     }
 	
 	public updateMaster(master: Master){
-		this.http.post(url+"entities/updateMaster", master,this.options).subscribe(result =>{
-            alert(result)
-        })
+		return this.http.post(url+"entities/updateMaster", master,this.options)
+            .catch(this._errorHandler);
 	}
 	
 	/* public blockMaster(master: Master){
@@ -53,5 +54,11 @@ export class MasterService {
             alert(result)
         })
 	} */
+
+    _errorHandler(error: Response){
+        console.error(JSON.parse(JSON.stringify(error.json())));
+        var obj = JSON.parse(JSON.stringify(error.json()));
+        return Observable.throw(obj.message);
+    }
 
 }

@@ -45,6 +45,7 @@ public professions: { id: number; name: string }[];
   smoke: boolean;
   averMark: number;
 
+    isCreating: boolean = false;
 
   constructor(private fb: FormBuilder, private router: Router,private masterService: MasterService, private authorizeService: AuthorizeService) {
 	  
@@ -199,8 +200,15 @@ public professions: { id: number; name: string }[];
       this.master.smoke = this.rMasterForm.value.smoke;
       this.passwordMaster == this.rMasterForm.value.confirmPasswordMaster;
       this.master.password = this.rMasterForm.value.passwordMaster;
-	this.masterService.updateMaster(this.master); 
-	this.showSuccessUpdate();
+
+      this.isCreating = true;
+	this.masterService.updateMaster(this.master).subscribe(response => {
+        this.isCreating = false;
+        this.showSuccessUpdate();
+    }, error => {
+        this.isCreating = false;
+        this.showSuccessUpdate();
+    });
   }
   
   uploadImage(nameImage: String){

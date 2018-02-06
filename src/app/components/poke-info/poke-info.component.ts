@@ -34,6 +34,7 @@ public locations: { id: number; name: string }[];
   userDescriptionPoke: string;
   passwordPoke: string;
   confirmPasswordPoke: string;
+    isCreating: boolean = false;
   
   
   constructor(private fb: FormBuilder, private router: Router,private pokeService: PokeService, private authorizeService: AuthorizeService) { 
@@ -111,10 +112,14 @@ public locations: { id: number; name: string }[];
       this.poke.blocked = false;
       this.passwordPoke == this.rPokeForm.value.confirmPasswordPoke
       this.poke.password = this.rPokeForm.value.passwordPoke;
-     
-	this.pokeService.updatePoke(this.poke); 
-	this.showSuccessUpdate();
-	
+     this.isCreating = true;
+	this.pokeService.updatePoke(this.poke).subscribe(response => {
+	    this.isCreating = false;
+        this.showSuccessUpdate();
+    }, error => {
+        this.isCreating = false;
+        this.showSuccessUpdate();
+    });
   }
   
   uploadImage(nameImage: String){

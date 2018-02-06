@@ -38,12 +38,20 @@ export class CardMasterComponent implements OnInit {
 	
 	blockUser(master: Master){
 		this.master.blocked = true;
-		this.masterService.updateMaster(master);
+		this.masterService.updateMaster(master).subscribe(response => {
+		    alert(response);
+        }, error => {
+		    alert(error);
+        });
   }
   
   unblockUser(master: Master){
 		this.master.blocked = false;
-		this.masterService.updateMaster(master);
+		this.masterService.updateMaster(master).subscribe(response => {
+            alert(response);
+        }, error => {
+            alert(error);
+        });
   }
   
   isAdmin(): boolean{

@@ -5,6 +5,9 @@ import {ActivatedRoute} from "@angular/router";
 import {AuthorizeService, url} from  "../index";
 import {Convertator} from "./convertator.service";
 import {Poke} from "../models/poke.model";
+import {Observable} from "rxjs/Observable";
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 
 @Injectable()
@@ -42,9 +45,8 @@ export class PokeService {
     }
 	
 	public updatePoke(poke: Poke){
-		this.http.post(url+"entities/updatePoke", poke,this.options).subscribe(result =>{
-            alert(result)
-        })
+		return this.http.post(url+"entities/updatePoke", poke,this.options)
+            .catch(this._errorHandler);
 	}
 	
 	/* public blockPoke(poke: Poke){
@@ -53,6 +55,11 @@ export class PokeService {
             alert(result)
         })
 	} */
-	
+
+    _errorHandler(error: Response){
+        console.error(JSON.parse(JSON.stringify(error.json())));
+        var obj = JSON.parse(JSON.stringify(error.json()));
+        return Observable.throw(obj.message);
+    }
 
 }
