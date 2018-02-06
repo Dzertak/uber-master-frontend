@@ -4,3 +4,23 @@
   margin-left: 500px;
   margin-top: 50px;
 }
+
+.image{
+  height:150px;
+  width:150px;
+  radius: 20px;
+  margin-left: 75px;
+  margin-top: 10px;
+}
+
+.imgThumbnail {
+  margin-left: 75px;
+  margin-top: 10px;
+}
+
+.my-drop-zone { border: dotted 3px lightgray; height: 100px }
+.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+
+.imgThumbnail{
+  padding: 4px;
+}

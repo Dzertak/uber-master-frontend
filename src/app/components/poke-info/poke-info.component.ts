@@ -21,12 +21,11 @@ declare var $:any;
 export class PokeInfoComponent implements OnInit {
 
 
-public rPokeForm: FormGroup;
-public locations: { id: number; name: string }[];
+  public rPokeForm: FormGroup;
+  public locations: { id: number; name: string }[];
 
   user: User;
   poke: Poke;
-  picturePoke: string;
   firstNamePoke: string;
   lastNamePoke: string;
   phoneNumberPoke: string;
@@ -34,35 +33,48 @@ public locations: { id: number; name: string }[];
   userDescriptionPoke: string;
   passwordPoke: string;
   confirmPasswordPoke: string;
+  picture: string;
 
-    isCreating: boolean = false;
-    isLoad: boolean = true;
+  isCreating: boolean = false;
+  isLoad: boolean = true;
 
-    public uploader: FileUploader;
-    public hasBaseDropZoneOver = false;
-    file: any = null;
+  public uploader: FileUploader;
+  public hasBaseDropZoneOver = false;
+  file: any = null;
 
   constructor(private fb: FormBuilder, private router: Router,private pokeService: PokeService,
               private authorizeService: AuthorizeService, private cloudinary: Cloudinary) {
-	
-	
-	this.rPokeForm = fb.group({
-      'firstNamePoke': [null, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(15)])],
-      'lastNamePoke': [null, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(20)])],
-      'phoneNumberPoke': [null, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
-      'locationPoke': ['Location...', Validators.required],
-      'userDescriptionPoke': [null],
-      'passwordPoke': [null,  Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
-      'confirmPasswordPoke': [null,  Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])]
-    })
-  
+
+    this.user = this.authorizeService.getUser();
+    this.pokeService.getPoke(this.user.object_id.toString()).subscribe(poke => {
+      this.isLoad = false;
+      this.poke = poke;
+      var str = this.user.name.split(" ",2);
+      this.firstNamePoke = str[0];
+      this.lastNamePoke = str[1];
+
+      this.picture = poke.picture;
+
+
+      this.rPokeForm = this.fb.group({
+        'firstNamePoke': [this.firstNamePoke, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(15)])],
+        'lastNamePoke': [this.lastNamePoke, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(20)])],
+        'phoneNumberPoke': [poke.phoneNumber, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
+        'locationPoke': [poke.location, Validators.required],
+        'userDescriptionPoke': [poke.description],
+        'passwordPoke': [poke.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+        'confirmPasswordPoke': [poke.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])]
+      })
+
+    });
+
   }
 
-  
+
   ngOnInit() {
-	  
-	   
-	  this.locations = [
+
+
+    this.locations = [
       {id: 0, name: 'Location...'},
       {id: 1, name: 'Primorskyy'},
       {id: 2, name: 'Malinovskyy'},
@@ -70,125 +82,106 @@ public locations: { id: number; name: string }[];
       {id: 4, name: 'Suvorovskyy'},
     ];
 
-      const uploaderOptions: FileUploaderOptions = {
-          url: `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/image/upload`,
-          // Upload files automatically upon addition to upload queue
-          autoUpload: true,
-          // Use xhrTransport in favor of iframeTransport
-          isHTML5: true,
-          // Calculate progress independently for each uploaded file
-          removeAfterUpload: true,
+    const uploaderOptions: FileUploaderOptions = {
+      url: `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/image/upload`,
+      // Upload files automatically upon addition to upload queue
+      autoUpload: true,
+      // Use xhrTransport in favor of iframeTransport
+      isHTML5: true,
+      // Calculate progress independently for each uploaded file
+      removeAfterUpload: true,
 
-          // XHR request headers
-          headers: [
-              {
-                  name: 'X-Requested-With',
-                  value: 'XMLHttpRequest'
-              }
-          ]
-      };
+      // XHR request headers
+      headers: [
+        {
+          name: 'X-Requested-With',
+          value: 'XMLHttpRequest'
+        }
+      ]
+    };
 
-      this.uploader = new FileUploader(uploaderOptions);
-      this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
-          this.isCreating = true;
+    this.uploader = new FileUploader(uploaderOptions);
+    this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
+      this.isCreating = true;
 
-          // Add Cloudinary's unsigned upload preset to the upload form
-          form.append('upload_preset', this.cloudinary.config().upload_preset);
-          form.append('tags', 'ubermaster');
-          form.append('file', fileItem);
+      // Add Cloudinary's unsigned upload preset to the upload form
+      form.append('upload_preset', this.cloudinary.config().upload_preset);
+      form.append('tags', 'ubermaster');
+      form.append('file', fileItem);
 
-          // Use default "withCredentials" value for CORS requests
-          fileItem.withCredentials = false;
-          return { fileItem, form };
-      };
+      // Use default "withCredentials" value for CORS requests
+      fileItem.withCredentials = false;
+      return { fileItem, form };
+    };
 
 
-      this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) =>
-          upsertResponse(
-              {
-                  file: item.file,
-                  status,
-                  data: JSON.parse(response)
-              }
+    this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) =>
+      upsertResponse(
+        {
+          file: item.file,
+          status,
+          data: JSON.parse(response)
+        }
 
-          );
+      );
 
-      const upsertResponse = fileItem => {
-          this.isCreating = false;
-          if (fileItem.status !== 200) {
-              console.log('Upload to cloudinary Failed');
-              console.log(fileItem);
-              return false;
-          }
-          this.file = fileItem.data;
-          console.log(fileItem.data);
-      };
+    const upsertResponse = fileItem => {
+      this.isCreating = false;
+      if (fileItem.status !== 200) {
+        console.log('Upload to cloudinary Failed');
+        console.log(fileItem);
+        return false;
+      }
+      this.file = fileItem.data;
+      console.log(fileItem.data);
+    };
 
-	  
-	  $('.message .close').on('click', function () {
-          $(this)
-              .closest('.message')
-              .transition('fade');
-      });
-	  
-	  this.user = this.authorizeService.getUser();
-	  this.pokeService.getPoke(this.user.object_id.toString()).subscribe(poke => {
-	      this.isLoad = false;
-	  this.poke = poke;
-	  var str = this.user.name.split(" ",2);
-	  this.firstNamePoke = str[0];
-	  this.lastNamePoke = str[1];
-	  
-	  //this.picturePoke = this.poke.picture;
-	  
-	  this.rPokeForm = this.fb.group({
-      'firstNamePoke': [this.firstNamePoke, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(15)])],
-      'lastNamePoke': [this.lastNamePoke, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(20)])],
-      'phoneNumberPoke': [this.poke.phoneNumber, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
-      'locationPoke': [this.poke.location, Validators.required],
-      'userDescriptionPoke': [this.poke.description],
-      'passwordPoke': [this.poke.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
-      'confirmPasswordPoke': [this.poke.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])]
-    })
-	  
-       });
-	 
-	  
+
+    $('.message .close').on('click', function () {
+      $(this)
+        .closest('.message')
+        .transition('fade');
+    });
+
+
+
+
   }
-  
+
   showSuccessUpdate() {
-      $('#update-success-message').removeClass('hidden');
+    $('#update-success-message').removeClass('hidden');
   }
-  
+
   confirmChanges(){
-	  
-   
-      this.poke.name = this.rPokeForm.value.firstNamePoke + " " + this.rPokeForm.value.lastNamePoke;
-      this.poke.picture = this.picturePoke;
-      //this.uploadImage(this.picturePoke);
-      this.poke.phoneNumber = this.rPokeForm.value.phoneNumberPoke;
-      this.poke.location = this.rPokeForm.value.locationPoke;
-      this.poke.userDescription = this.rPokeForm.value.userDescriptionPoke;
-      this.poke.blocked = false;
-      this.passwordPoke == this.rPokeForm.value.confirmPasswordPoke
-      this.poke.password = this.rPokeForm.value.passwordPoke;
-     this.isCreating = true;
-	this.pokeService.updatePoke(this.poke).subscribe(response => {
-	    this.isCreating = false;
-        this.showSuccessUpdate();
+
+    if (this.file != null) {
+      this.poke.picture = this.file.public_id;
+    }
+
+    this.poke.name = this.rPokeForm.value.firstNamePoke + ' ' + this.rPokeForm.value.lastNamePoke;
+    this.poke.phoneNumber = this.rPokeForm.value.phoneNumberPoke;
+    this.poke.location = this.rPokeForm.value.locationPoke;
+    this.poke.userDescription = this.rPokeForm.value.userDescriptionPoke;
+    this.poke.blocked = false;
+    this.passwordPoke == this.rPokeForm.value.confirmPasswordPoke
+    this.poke.password = this.rPokeForm.value.passwordPoke;
+    this.isCreating = true;
+    this.pokeService.updatePoke(this.poke).subscribe(response => {
+      this.isCreating = false;
+      this.showSuccessUpdate();
     }, error => {
-        this.isCreating = false;
-        this.showSuccessUpdate();
+      this.isCreating = false;
+      this.showSuccessUpdate();
     });
   }
-  
+
   uploadImage(nameImage: String){
     this.uploader.autoUpload(nameImage,
       function(error, result) {console.log(result); });
   }
 
-    public fileOverBase(e: any): void {
-        this.hasBaseDropZoneOver = e;
-    }
+  public fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
 
 }
