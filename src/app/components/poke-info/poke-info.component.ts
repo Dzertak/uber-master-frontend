@@ -62,8 +62,8 @@ export class PokeInfoComponent implements OnInit {
         'phoneNumberPoke': [poke.phoneNumber, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
         'locationPoke': [poke.location, Validators.required],
         'userDescriptionPoke': [poke.description],
-        'passwordPoke': [poke.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
-        'confirmPasswordPoke': [poke.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])]
+        'passwordPoke': [atob(poke.password), Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+        'confirmPasswordPoke': [atob(poke.password), Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])]
       })
 
     });
@@ -163,8 +163,8 @@ export class PokeInfoComponent implements OnInit {
     this.poke.location = this.rPokeForm.value.locationPoke;
     this.poke.userDescription = this.rPokeForm.value.userDescriptionPoke;
     this.poke.blocked = false;
-    this.passwordPoke == this.rPokeForm.value.confirmPasswordPoke
-    this.poke.password = this.rPokeForm.value.passwordPoke;
+    // this.passwordPoke == this.rPokeForm.value.confirmPasswordPoke
+    this.poke.password = btoa(this.rPokeForm.value.passwordPoke);
     this.isCreating = true;
     this.pokeService.updatePoke(this.poke).subscribe(response => {
       this.isCreating = false;

@@ -16,6 +16,7 @@ const URL = 'https://api.cloudinary.com/v1_1/ubermaster/image/upload';
 
 declare var $: any;
 
+
 @Component({
   selector: 'app-registration-page',
   templateUrl: './registration-page.component.html',
@@ -26,7 +27,6 @@ export class RegistrationPageComponent implements OnInit {
   picturePoke: string;
 
   pictureMaster: string;
-
   variable: { phoneNumber, pass }
 
   private order: Order;
@@ -140,7 +140,7 @@ export class RegistrationPageComponent implements OnInit {
     if (this.authService.getUserLoggedIn()) {
       this.router.navigate(['orders']);
     }
-	
+
 	 $('.message .close').on('click', function () {
           $(this)
               .closest('.message')
@@ -173,7 +173,7 @@ export class RegistrationPageComponent implements OnInit {
   swipeTab(tab: number) {
     this.swipe = tab;
   }
-  
+
   showFailedAuthorization1() {
       $('#authorization1-fail-message').removeClass('hidden');
   }
@@ -183,18 +183,18 @@ export class RegistrationPageComponent implements OnInit {
   showGood() {
       $('#good-message').removeClass('hidden');
   }
-  
+
   errMsg: string;
-	
+
   signUpPoke(create) {
     this.isLoading = true;
     let poke = new Poke(create.firstNamePoke + ' ' + create.lastNamePoke,
       null, null, create.locationPoke, create.userDescriptionPoke,
-      create.phoneNumberPoke, create.passwordPoke, this.file.public_id, false);
+      create.phoneNumberPoke, btoa(create.passwordPoke), this.file.public_id, false);
     this.registrationService.reg(poke, 'Poke').subscribe( user => {
 		//this.showGood();
         this.isLoading = false;
-		this.router.navigate(['authorization']);		
+		this.router.navigate(['authorization']);
 	} , responseErrorMessage => {
         this.isLoading = false;
       this.errMsg = responseErrorMessage;
@@ -217,10 +217,12 @@ export class RegistrationPageComponent implements OnInit {
       this.isLoading = true;
     let master = new Master(create.firstNameMaster + ' ' + create.lastNameMaster,
       null, null, create.locationMaster, create.userDescriptionMaster,
-      create.phoneNumberMaster, create.passwordMaster, this.file.public_id, false,
+      create.phoneNumberMaster, btoa(create.passwordMaster), this.file.public_id, false,
       create.profession, create.skills, create.experience, create.payment, create.smoke,
       create.tools, create.startTime, create.endTime, create.averMark);
-	  
+
+
+
     this.registrationService.reg(master, 'Master').subscribe( response => {
             this.isLoading = false;
 	this.router.navigate(['authorization']);},
@@ -228,8 +230,7 @@ export class RegistrationPageComponent implements OnInit {
                 this.isLoading = false;
       this.errMsg = responseErrorMessage; this.showFailedAuthorization2();
     });
-            
-	  
+
   }
 
 

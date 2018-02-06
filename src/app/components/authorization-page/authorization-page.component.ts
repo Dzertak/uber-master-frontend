@@ -45,14 +45,14 @@ export class AuthorizationPageComponent implements OnInit {
   }
 
 	errMsg: string;
-	
+
   loginUser(){
       this.isLoading = true;
       //work
-      this.authorizeService.auth(this.phone,this.pass).subscribe( authPair => {
+      this.authorizeService.auth(this.phone, btoa(this.pass)).subscribe( authPair => {
           if (authPair.first==200 && authPair.first != null){
-              this.authorizeService.login(authPair,this.phone,this.pass).subscribe(user => {
-                  this.authorizeService.signIn(authPair,user);
+              this.authorizeService.login(authPair, this.phone, btoa(this.pass)).subscribe(user => {
+                  this.authorizeService.signIn(authPair, user);
                   this.isFail=false;
                   this.isLoading = false;
                   this.router.navigate(['orders']);

@@ -89,8 +89,8 @@ export class MasterInfoComponent implements OnInit {
         'phoneNumberMaster': [this.master.phoneNumber, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
         'locationMaster': [this.master.location, Validators.required],
         'userDescriptionMaster': [this.master.userDescription],
-        'passwordMaster': [this.master.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
-        'confirmPasswordMaster': [this.master.password, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+        'passwordMaster': [atob(this.master.password), Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+        'confirmPasswordMaster': [atob(this.master.password), Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
         'profession': [this.master.profession, Validators.required],
         'startTime': [this.master.start_time, Validators.required],
         'endTime': [this.master.end_time, Validators.required],
@@ -256,7 +256,7 @@ export class MasterInfoComponent implements OnInit {
     this.master.payment = this.rMasterForm.value.payment;
     this.master.smoke = this.rMasterForm.value.smoke;
     // this.passwordMaster == this.rMasterForm.value.confirmPasswordMaster;
-    this.master.password = this.rMasterForm.value.passwordMaster;
+    this.master.password = btoa(this.rMasterForm.value.passwordMaster);
 
     this.isCreating = true;
     this.masterService.updateMaster(this.master).subscribe(response => {
