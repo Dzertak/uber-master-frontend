@@ -20,10 +20,8 @@
     </div>
     <div class="left floated button">
       <button class="ui blue basic button" (click)="showOrder()">Details</button>
+      <button class="ui negative button" style="margin-bottom: 0px" (click)="deleteOrder(order.object_id)"
+              *ngIf="isAdmin() && (order.status=='In processing' || order.status=='New') ">Delete</button>
     </div>
-	<div class="right floated button">
-	<button class="ui negative button" style="margin-bottom: 0px" (click)="deleteOrder(order.object_id)"
-					  *ngIf="isAdmin() && (order.status=='In processing' || order.status=='New') ">Delete</button>
-  </div>
   </div>
 </div>

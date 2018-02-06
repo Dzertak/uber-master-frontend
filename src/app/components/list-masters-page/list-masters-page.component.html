@@ -73,8 +73,7 @@
               <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
 <app-card-master
                       *ngFor="let mast of masters  | masterSearch: searchStr|  paginate: config "
-                       [master]="mast" 
-					   [routerLink]="['/master',mast.object_id]"
+                       [master]="mast"
               ></app-card-master>
 
 

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Master} from "../../index";
 import {MasterService} from "../../services/master.service";
 import {AuthorizeService} from "../../index";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-card-master',
@@ -17,7 +18,7 @@ export class CardMasterComponent implements OnInit {
     avg:number;
     sum:number;
 
-  constructor(private masterService: MasterService, private authService: AuthorizeService) { }
+  constructor(private masterService: MasterService, private authService: AuthorizeService, private router: Router) { }
 
   ngOnInit() {
       this.masterService.getMasterOrders(this.master.object_id.toString()).subscribe(orders => {
@@ -56,6 +57,9 @@ export class CardMasterComponent implements OnInit {
   
   isAdmin(): boolean{
 	  return (this.authService.getUserType() == "Admin");
-	  
+  }
+
+  showMaster(){
+      this.router.navigate(['/master',this.master.object_id])
   }
 }

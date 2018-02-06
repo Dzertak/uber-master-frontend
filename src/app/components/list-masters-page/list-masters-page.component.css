@@ -21,6 +21,8 @@
 #outbar{
     text-align: center;
     display: flex;
+    padding-bottom: 14px;
+    padding-top: 0px;
 }
 
 #number{
