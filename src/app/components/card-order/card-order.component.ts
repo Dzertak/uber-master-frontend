@@ -47,6 +47,8 @@ export class CardOrderComponent implements OnInit {
   }
   
   deleteOrder(id: string){
-	  this.orderService.deleteOrder(id);
+	  this.orderService.deleteOrder(id).subscribe(result => {
+	    alert(result);
+      });
   }
 }

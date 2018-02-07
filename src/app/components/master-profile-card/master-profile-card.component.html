@@ -1,5 +1,8 @@
 <div class="ui raised link card" style="width: 100%; margin-bottom: 6px">
   <div class="content">
+      <div class="right floated author" *ngIf="isUpdate">
+          <div class="ui active small centered inline loader"></div>
+  </div>
     <div class="header" style="word-wrap: break-word">{{order.name}}</div>
     <div>
       <span class="category">{{order.status}}</span>

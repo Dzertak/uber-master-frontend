@@ -136,7 +136,7 @@
             <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
 			
 <app-card-order
-                      *ngFor="let ord of orders  | orderFilter:tag | orderSearchAdmin:searchStr | paginate: config"
+                      *ngFor="let ord of orders  |  orderFilterProf:tag | orderSearchAdmin:searchStr | paginate: config"
                        [order]="ord"
 
               ></app-card-order>

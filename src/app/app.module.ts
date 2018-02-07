@@ -48,6 +48,7 @@ import { RateOrderComponent } from './components/rate-order/rate-order.component
 import {HoverCardOrderDirective} from "./directive/hover-card-order.directive";
 import { PokeComponent } from './components/poke/poke.component';
 import {PokeOrderFilterPipe} from "./pipe/pokeOrderFilter.pipe";
+import {OrderFilterProfPipe} from "./pipe/orderFilterProf.pipe";
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: AuthorizationPageComponent},
@@ -100,7 +101,8 @@ const routes: Routes = [
     RateOrderComponent,
       HoverCardOrderDirective,
       PokeComponent,
-      PokeOrderFilterPipe
+      PokeOrderFilterPipe,
+      OrderFilterProfPipe
   ],
   imports: [
     BrowserModule,

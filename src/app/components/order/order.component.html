@@ -18,9 +18,9 @@
             <h4>
               <i class="checkmark icon"></i>
               {{order.status}}</h4>
-            <h4 class="ui sub header" *ngIf="order.masterEndDate!==null">
-              <i class="checkmark icon"></i>
-              {{order.masterEndDate | date :'dd-MM-yyyy HH:mm' }}</h4>
+            <h5 class="ui sub header" *ngIf="order.masterEndDate!==null">
+              <i class="configure icon"></i>
+              {{order.masterEndDate | date :'dd-MM-yyyy HH:mm' }}</h5>
           </div>
 
 

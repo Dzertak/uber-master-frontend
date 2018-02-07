@@ -40,30 +40,34 @@ export class OrderService {
             .map(response => response.json())
             .map(response => {
                 return Convertator.toOrder(response);
-            });
+            })
+            .catch(this._errorHandler);
     }
 
     public updateOrderByMaster(order: Order, user: User){
         order.master=user.object_id;
         order.status="In processing";
         console.log(order);
-        return this.http.post(url+"entities/updateOrder", order, this.options);
+        return this.http.post(url+"entities/updateOrder", order, this.options)
+            .catch(this._errorHandler);
     }
 	
 	public updateOrderByPoke(order: Order, user: User){
         order.status="Completed";
-        return this.http.post(url+"entities/updateOrder", order, this.options);
+        console.log(order);
+        return this.http.post(url+"entities/updateOrder", order, this.options)
+            .catch(this._errorHandler);
     }
 	
 	public completeOrderByMaster(order: Order){
         order.status="Master done";
-        return this.http.post(url+"entities/updateOrder", order, this.options);
+        return this.http.post(url+"entities/updateOrder", order, this.options)
+            .catch(this._errorHandler);
     }
 
 	 public deleteOrder(id: string){
-        this.http.delete(url+"entities/deleteEntity?id="+id, this.options).subscribe(result =>{
-            alert(result)
-        })
+       return this.http.delete(url+"entities/deleteEntity?id="+id, this.options)
+            .catch(this._errorHandler);
     }
 
     public createOder(order: Order){

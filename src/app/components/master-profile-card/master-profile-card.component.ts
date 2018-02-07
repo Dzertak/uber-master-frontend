@@ -28,6 +28,7 @@ notAdmin = true;
 	user: User;
     isLoading: boolean = true;
     poke: Poke;
+    isUpdate: boolean = false;
 
   constructor(private router: ActivatedRoute,private authService: AuthorizeService,
               private orderService: OrderService, public modalService:SuiModalService,
@@ -53,20 +54,36 @@ notAdmin = true;
   }
   
   deleteOrder(id: string){
-	  this.orderService.deleteOrder(id);
+	  this.orderService.deleteOrder(id).subscribe(result => {
+          this.justRouter.navigate(['/orders'])
+      });
   }
   
   confirmOrder(order: Order){
 	  this.orderService.updateOrderByPoke(order, this.user).subscribe(result => {
           order.status="Completed";
+      }, error => {
+          this.isUpdate = false;
+          alert('Confirm error!')
       });
 	  
   }
   
   confirmCompletionByMaster(order: Order){
       order.masterEndDate = new Date();
+      this.isUpdate = true;
 	  this.orderService.completeOrderByMaster(order).subscribe(result => {
 	      order.status = 'Master done';
+	      this.orderService.getOrder(order.object_id.toString()).subscribe(resOrder => {
+	          this.isUpdate = false;
+              this.justRouter.navigate(['/orders'])
+          }, error => {
+              this.isUpdate = false;
+              alert('Confirm error!')
+          })
+      }, error => {
+          this.isUpdate = false;
+          alert('Confirm error!')
       });
   }
 
