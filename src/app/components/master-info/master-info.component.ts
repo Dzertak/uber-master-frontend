@@ -84,8 +84,8 @@ export class MasterInfoComponent implements OnInit {
         this.rMasterForm.value.lastNameMaster = this.lastNameMaster; */
 
       this.rMasterForm = this.fb.group({
-        'firstNameMaster': [this.firstNameMaster, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(15)])],
-        'lastNameMaster': [this.lastNameMaster, Validators.compose([Validators.required, Validators.pattern('^[A-Z][a-z].*$'), Validators.minLength(2), Validators.maxLength(20)])],
+        'firstNameMaster': [this.firstNameMaster, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(15)])],
+        'lastNameMaster': [this.lastNameMaster, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(20)])],
         'phoneNumberMaster': [this.master.phoneNumber, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
         'locationMaster': [this.master.location, Validators.required],
         'userDescriptionMaster': [this.master.userDescription],
@@ -256,7 +256,7 @@ export class MasterInfoComponent implements OnInit {
     this.master.payment = this.rMasterForm.value.payment;
     this.master.smoke = this.rMasterForm.value.smoke;
     // this.passwordMaster == this.rMasterForm.value.confirmPasswordMaster;
-    this.master.password = btoa(this.rMasterForm.value.passwordMaster);
+    this.master.password =  btoa(this.rMasterForm.value.passwordMaster)  ;
 
     this.isCreating = true;
     this.masterService.updateMaster(this.master).subscribe(response => {

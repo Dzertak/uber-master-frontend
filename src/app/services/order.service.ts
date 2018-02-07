@@ -51,7 +51,7 @@ export class OrderService {
     }
 	
 	public updateOrderByPoke(order: Order, user: User){
-        order.status="Completed";
+        //order.status="Completed";
         return this.http.post(url+"entities/updateOrder", order, this.options);
     }
 	

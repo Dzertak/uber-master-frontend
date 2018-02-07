@@ -13,9 +13,9 @@
 			  <button class="ui blue basic button" (click)="showOrder()" style="margin-bottom: 0px">Details</button>
 			  <button class="ui negative button" style="margin-bottom: 0px" (click)="deleteOrder(order.object_id)"
 					  *ngIf="isPoke() && notAdmin && (order.status=='In processing' || order.status=='New') ">Delete</button>
-			  <button class="ui positive button" style="margin-bottom: 0px" (click)="confirmOrder(order)"
+			  <button class="ui positive button" style="margin-bottom: 0px" 
 					  *ngIf="isPoke() && notAdmin && order.status=='Master done'"
-					  [routerLink]="['/rate',order.object_id]">Confirm Complation</button>
+					  [routerLink]="['/rate',order.object_id]">Confirm Complation</button><!-- (click)="confirmOrder(order)" -->
 			  <button class="left floated ui positive basic button" style="margin-bottom: 0px"  (click)="confirmCompletionByMaster(order)"
 					  *ngIf="!isPoke() && notAdmin && order.status=='In processing'">Confirm Completion </button>
 		  </div>
