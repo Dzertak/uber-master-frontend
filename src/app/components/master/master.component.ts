@@ -25,11 +25,12 @@ export class MasterComponent implements OnInit {
 	idM: string;
 	//user: User;
 	orders = [];
+	ordersWithComments = [];
 	avg:number;
 	sum:number;
 	swipe: number = 1;
-   searchStr = '';
-   searchStr2 = '';
+   searchStr: string = '';
+   searchStr2: string = '';
   tag: string = '';
   tag2: string = '';
   isLoad: boolean = true;
@@ -71,10 +72,15 @@ export class MasterComponent implements OnInit {
 	this.idM = this.router.snapshot.params.id;
 	//this.user = this.authorizeService.getUser();
 	//this.idM = this.user.object_id.toString();
-	this.masterService.getMasterOrders(this.idM).subscribe(orders => {  
-	   this.orders = orders;
+	this.masterService.getMasterOrders(this.idM).subscribe(ords => {
+	   this.orders = ords;
+        /*for(var i = 1; i <= ords.length; i++){
+            if (ords.pop(i).comment!=''){
+                console.log(ords.pop(i))
+                this.ordersWithComments.push(ords.pop(i));
+            }
+        }*/
 		//this.loading(false);
-        
        });
     this.masterService.getMaster(this.idM).subscribe(master => {  
 	   this.master = master;

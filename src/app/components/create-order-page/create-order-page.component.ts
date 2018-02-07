@@ -73,7 +73,7 @@ export class CreateOrderPageComponent implements OnInit {
     this.order = new Order(create.name, 'Order', null,
       create.smallDescription, create.bigDescription, this.startDate,
       this.dueDate, 'New', null, null, create.masterProfession,
-      0, null, this.authService.getUser().object_id, ' ');
+      0, null, this.authService.getUser().object_id, '');
 
 	  
     console.log(this.order)

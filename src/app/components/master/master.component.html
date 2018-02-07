@@ -59,10 +59,24 @@
             <div class="ui active centered inline loader" style="margin-top: 50%" [ngClass]="{'active':isLoad}"></div>
 
 
-	<div class="ui top attached segment" style = "margin-top: 14px">
-	<a class="item " [ngClass]="{'active':swipe===1}"  >Orders completed</a></div>
+								<div *ngIf="ordersWithComments.length!=0" class="ui top active attached segment" style = "margin-top: 14px">
+									<a class="item"  >Comments</a></div>
 
-			<div class="ui bottom attached tab segment" [ngClass]="{'active':swipe===1}"  >
+								<div *ngIf="ordersWithComments.length!=0" class="ui bottom active attached tab segment"  >
+
+									<app-card-comment
+											*ngFor="let ord of ordersWithComments"
+											[order]="ord"
+									></app-card-comment>
+
+									</div>
+
+
+
+	<div class="ui top active attached segment" style = "margin-top: 14px">
+	<a class="item">Orders completed</a></div>
+
+			<div class="ui bottom active attached tab segment"  >
 			 <div class="ui one column centered grid">
 
               <div class="column" id="outbar">
@@ -76,7 +90,7 @@
 
     </div>
 	<app-card-order
-                      *ngFor="let ord of orders | orderFilter2:tag2 | orderSearchAdmin:searchStr | paginate: config2 "
+                      *ngFor="let ord of orders | orderFilter2:tag2 | orderFilter:searchStr | paginate: config2 "
                        [order]="ord"
 
               ></app-card-order>
