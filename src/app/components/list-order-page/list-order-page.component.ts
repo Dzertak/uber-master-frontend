@@ -17,7 +17,7 @@ export class ListOrderPageComponent implements OnInit {
 
     prof : {} = professions;
 user:User;
-  tag: string;
+  tag: string = '';
   isLoad: boolean = true;
   counterOrder: number;
   //curPage : number;

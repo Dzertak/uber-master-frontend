@@ -33,6 +33,7 @@ export class OrderComponent implements OnInit {
     this.id = this.router.snapshot.params.id;
     this.user = this.authorizeService.getUser();
     this.orderService.getOrder(this.id).subscribe(order => {
+      console.log(order);
       this.order = order;
       this.loading(false);
       this.pokeService.getPoke(order.pokeId.toString()).subscribe(poke => {
