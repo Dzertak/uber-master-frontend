@@ -26,19 +26,23 @@ export class RateOrderComponent implements OnInit {
 	  this.user = this.authService.getUser();
       this.orderService.getOrder(this.id).subscribe(order => {
         this.order = order;
+		this.rating = order.mark;
       })
   }
  
 
-  confirmOrder(){
-	    this.order.mark = this.rating;
-		this.order.comment = this.commentByPoke;
-		this.orderService.updateOrderByPoke(this.order, this.user);
+  confirmOrder(order: Order){
+	    order.mark = this.rating;
+		order.comment = this.commentByPoke;
+		order.status="Completed";
+		//this.orderService.updateOrderByPoke(this.order, this.user);
+		this.orderService.updateOrderByPoke(order, this.user).subscribe(result => {
+      });
 	  //this.router2.navigate("['/profilePoke',this.user.object_id]");
   }
   
   disabling(): boolean{
-	  if(this.rating==null)
+	  if(this.rating==0)
 		return true;
 	  else return false;
   

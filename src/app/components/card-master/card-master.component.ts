@@ -27,15 +27,20 @@ export class CardMasterComponent implements OnInit {
   }
 
     mastersRate(){
-        this.sum = 0;
-        this.avg = 0;
-        for(let ord of this.orders)
-        {
-            this.sum += ord.mark;
-        }
-        this.avg = this.sum/this.orders.length;
-        return Math.round(this.avg);
-    }
+		this.sum = 0;
+		this.avg = 0;
+		var count: number = 0;
+		for(let ord of this.orders)
+		{
+			if(ord.mark != 0)
+			{
+			this.sum += ord.mark;
+			count++;
+			}
+		}
+		this.avg = this.sum/count /* this.orders.length */;
+		return Math.round(this.avg);
+	}
 	
 	blockUser(master: Master){
 		this.master.blocked = true;
