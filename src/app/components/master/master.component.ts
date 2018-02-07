@@ -28,8 +28,8 @@ export class MasterComponent implements OnInit {
 	avg:number;
 	sum:number;
 	swipe: number = 1;
-   searchStr = '';
-   searchStr2 = '';
+   searchStr: string = '';
+   searchStr2: string = '';
   tag: string = '';
   tag2: string = '';
   isLoad: boolean = true;
