@@ -1,26 +1,39 @@
 <div class="ui bottom attached segment">
-    <div class="ui one column centered grid">
-        <div class="two column centered row">
-            <div class="column" style="width: 65%!important; border: 1px solid lightgray; border-radius: 5px; padding-bottom: 14px;">
-        
-		<h1 style="margin-bottom: 11px">Rate Order</h1>
-		<sui-rating class="star huge" [(ngModel)]="rating" [maximum]="5"></sui-rating>
-	    <!-- <div class="left floated author ">
-	<button class="ui positive button" style="margin-bottom: 0px" (click)="rateOrder()" >Rate</button>
-	</div> -->
+  <div class="ui one column centered grid">
+    <div class="two column centered row">
+      <div class="column"
+           style="width: 65%!important; border: 1px solid lightgray; border-radius: 5px; padding-bottom: 14px;">
 
-                <h2 style="margin-top: 14px; margin-bottom: 11px">Comment Order</h2>
-	 <div class="field" style="width: 100%">
-        <textarea style="width: 100%; height: 200px" [(ngModel)]="commentByPoke"  [disabled]="disabling()" ></textarea>
-    </div>
-	<!-- <div class="left floated author ">
-	<button class="ui positive button" style="margin-bottom: 0px" (click)="commentOrder()" >Comment</button>
-	</div> -->
+
+        <h1 style="margin-bottom: 11px">Rate Order</h1>
+        <sui-rating class="star huge" [(ngModel)]="rating" [maximum]="5"></sui-rating>
+        <!-- <div class="left floated author ">
+      <button class="ui positive button" style="margin-bottom: 0px" (click)="rateOrder()" >Rate</button>
+      </div> -->
+
+        <h2 style="margin-top: 14px; margin-bottom: 11px">Comment Order</h2>
+        <div class="alert ui red message"
+             *ngIf="commentByPoke.length > 300">
+          <div class="header">
+            Comment is too long. Please make it no longer than 300 symbols.
+          </div>
+        </div>
+        <div class="field" style="width: 100%">
+
+            <textarea style="width: 100%; height: 200px" [(ngModel)]="commentByPoke"
+                      [disabled]="disabling()"></textarea>
+          </div>
+          <!-- <div class="left floated author ">
+            <button class="ui positive button" style="margin-bottom: 0px" (click)="commentOrder()" >Comment</button>
+            </div> -->
           <div style="margin: 0 auto; display: block; padding-top: 11px">
-	<button class="ui positive button" style="margin: 0 auto; display: block" (click)="confirmOrder(order)"  [routerLink]="['/profilePoke',this.user.object_id]">Confirm Complation</button>
-	</div>
+            <button class="ui positive button" style="margin: 0 auto; display: block" (click)="confirmOrder(order)"
+                    [disabled]="commentByPoke.length > 300"
+                    [routerLink]="['/profilePoke',this.user.object_id]">Confirm Complation
+            </button>
+          </div>
         </div>
       </div>
-</div>
-</div>
+    </div>
+  </div>
 
