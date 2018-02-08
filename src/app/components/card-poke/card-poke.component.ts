@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Poke} from "../../index";
 import {PokeService} from "../../services/poke.service";
 import {AuthorizeService} from "../../index";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-card-poke',
@@ -14,7 +15,7 @@ export class CardPokeComponent implements OnInit {
   @Input() poke: Poke;
 
 
-  constructor(private pokeService: PokeService, private authService: AuthorizeService) { }
+  constructor(private pokeService: PokeService, private authService: AuthorizeService, private router: Router) { }
 
   ngOnInit() {
 
@@ -38,9 +39,19 @@ export class CardPokeComponent implements OnInit {
         });;
   }
   
+   deletePoke(id: string){
+	  this.pokeService.deletePoke(id).subscribe(result => {
+	    alert(result);
+      });
+  }
+  
   isAdmin(): boolean{
 	  return (this.authService.getUserType() == "Admin");
 	  
+  }
+  
+  showPoke(){
+      this.router.navigate(['/poke',this.poke.object_id])
   }
   
 

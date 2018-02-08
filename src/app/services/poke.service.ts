@@ -49,6 +49,11 @@ export class PokeService {
             .catch(this._errorHandler);
 	}
 	
+	public deletePoke(id: string){
+       return this.http.delete(url+"entities/deleteEntity?id="+id, this.options)
+            .catch(this._errorHandler);
+    }
+	
 	/* public blockPoke(poke: Poke){
 		poke.blocked = true;
 		this.http.post(url+"entities/updatePoke", poke,this.options).subscribe(result =>{

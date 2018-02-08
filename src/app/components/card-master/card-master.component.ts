@@ -60,6 +60,12 @@ export class CardMasterComponent implements OnInit {
         });
   }
   
+  deleteMaster(id: string){
+	  this.masterService.deleteMaster(id).subscribe(result => {
+	    alert(result);
+      });
+  }
+  
   isAdmin(): boolean{
 	  return (this.authService.getUserType() == "Admin");
   }

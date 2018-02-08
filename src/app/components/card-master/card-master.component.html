@@ -32,6 +32,10 @@
             			 <div style="display: flex;"  *ngIf="isAdmin() && master.blocked">
             		      <button class="left floated  ui positive basic button" style="margin-bottom: 0px"  (click)="unblockUser(master)">Unblock User</button>
             		  </div>
+					  
+					  <button class="left floated  ui negative button" style="margin-bottom: 0px"  (click)="deleteMaster(master.object_id)"
+					  *ngIf="isAdmin()">Delete User</button>
+					  
             		  </div>
             			   <div class="left floated author " style="display: flex;"  *ngIf="isAdmin() && master.blocked">
             				<h4 class="ui header">

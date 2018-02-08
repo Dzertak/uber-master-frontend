@@ -48,6 +48,11 @@ export class MasterService {
             .catch(this._errorHandler);
 	}
 	
+	public deleteMaster(id: string){
+       return this.http.delete(url+"entities/deleteEntity?id="+id, this.options)
+            .catch(this._errorHandler);
+    }
+	
 	/* public blockMaster(master: Master){
 		master.blocked = true;
 		this.http.post(url+"entities/updateMaster", master,this.options).subscribe(result =>{
