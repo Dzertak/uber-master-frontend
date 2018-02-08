@@ -169,9 +169,11 @@ export class PokeInfoComponent implements OnInit {
     this.pokeService.updatePoke(this.poke).subscribe(response => {
       this.isCreating = false;
       this.showSuccessUpdate();
+
     }, error => {
       this.isCreating = false;
       this.showSuccessUpdate();
+
     });
   }
 
