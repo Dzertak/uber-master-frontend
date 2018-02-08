@@ -72,7 +72,7 @@ export class RegistrationPageComponent implements OnInit {
       'tools': [null],
       'experience': [null, Validators.compose([Validators.required, Validators.min(0)])],
       'skills': [null],
-      'smoke': [null, Validators.required],
+      'smoke': [false, Validators.required],
       'payment': [null, Validators.compose([Validators.required, Validators.min(0)])]
 
     })
@@ -80,8 +80,6 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
     const uploaderOptions: FileUploaderOptions = {
       url: `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/image/upload`,
       // Upload files automatically upon addition to upload queue
@@ -208,11 +206,6 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   signUpMaster(create) {
-    if (create.smoke == 'true') {
-      this.smoke = true;
-    } else {
-      this.smoke = false;
-    }
 
       this.isLoading = true;
     let master = new Master(create.firstNameMaster + ' ' + create.lastNameMaster,

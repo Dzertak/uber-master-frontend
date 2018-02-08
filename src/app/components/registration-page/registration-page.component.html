@@ -105,7 +105,7 @@
         <div class="column" style="justify-content: center; display: flex">
           <form [formGroup]="rMasterForm" (ngSubmit)="signUpMaster(rMasterForm.value)" class="ui form" style="width: 50%;" [ngClass]="{'loading':isLoading}">
 
-		  
+
 		  <div class="ui negative message transition hidden" id="authorization2-fail-message">
       <i class="ui close icon"></i>
       <div class="header">Registraition has failed</div>
@@ -212,8 +212,8 @@
             </div>
             <div class="field" style="margin-left:30px; width:160px;">
               <label for="smoking" style="float:left;">Smoking * </label>
-              <input type="radio" name="smoke" id="smoking" value="true" formControlName="smoke"> Yes
-              <input type="radio" name="smoke" value="false" checked formControlName="smoke"> No
+              <input type="radio" name="smoke" id="smoking" [value]="true" formControlName="smoke"> Yes
+              <input type="radio" name="smoke" [value]="false" formControlName="smoke"> No
             </div>
             <div class="ui one column stackable grid container">
               <div class="column">

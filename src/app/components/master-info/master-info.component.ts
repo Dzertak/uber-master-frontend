@@ -57,7 +57,7 @@ export class MasterInfoComponent implements OnInit {
     this.masterService.getMaster(this.user.object_id.toString()).subscribe(master => {
       this.isLoad = false;
       this.master = master;
-      var str = this.user.name.split(' ', 2);
+      var str = this.master.name.split(' ', 2);
       this.firstNameMaster = str[0];
       this.lastNameMaster = str[1];
 

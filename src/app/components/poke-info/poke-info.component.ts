@@ -49,7 +49,7 @@ export class PokeInfoComponent implements OnInit {
     this.pokeService.getPoke(this.user.object_id.toString()).subscribe(poke => {
       this.isLoad = false;
       this.poke = poke;
-      var str = this.user.name.split(" ",2);
+      var str = this.poke.name.split(" ",2);
       this.firstNamePoke = str[0];
       this.lastNamePoke = str[1];
 
@@ -57,8 +57,8 @@ export class PokeInfoComponent implements OnInit {
 
 
       this.rPokeForm = this.fb.group({
-        'firstNamePoke': [this.firstNamePoke, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(15)])],
-        'lastNamePoke': [this.lastNamePoke, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я].*$'), Validators.minLength(2), Validators.maxLength(20)])],
+        'firstNamePoke': [this.firstNamePoke, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я]+'), Validators.minLength(2), Validators.maxLength(15)])],
+        'lastNamePoke': [this.lastNamePoke, Validators.compose([Validators.required, Validators.pattern('^[A-ZА-Я][a-zа-я]+$'), Validators.minLength(2), Validators.maxLength(20)])],
         'phoneNumberPoke': [poke.phoneNumber, Validators.compose([Validators.required, Validators.pattern('^380[0-9]{9}$')])],
         'locationPoke': [poke.location, Validators.required],
         'userDescriptionPoke': [poke.description],
